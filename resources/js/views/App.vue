@@ -18,6 +18,7 @@
                         <router-link :to="{ name: 'register' }" class="nav-link" v-if="!isLoggedIn">Register</router-link>
                         <li class="nav-link" v-if="isLoggedIn"> Hi, {{name}}</li>
                         <router-link :to="{ name: 'board' }" class="nav-link" v-if="isLoggedIn">Board</router-link>
+                        <router-link :to="{ name: 'categories' }" class="nav-link" v-if="isLoggedIn">Categories</router-link>
                         <router-link :to="{ name: 'logout' }" class="nav-link" v-if="isLoggedIn">Logout</router-link>
                     </ul>
                 </div>

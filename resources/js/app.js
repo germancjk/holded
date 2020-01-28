@@ -8,6 +8,7 @@ import Dashboard    from './views/Board'
 import Login        from './views/Login'
 import Register     from './views/Register'
 import Home         from './views/Welcome'
+import Category     from './views/Category'
 
 const router = new VueRouter({
     mode: 'history',
@@ -37,6 +38,9 @@ const router = new VueRouter({
             name: 'logout',
             component: Login,
         },
+        {
+          path: '/categories', name: 'categories', component: Category
+        }
     ],
 });
 
