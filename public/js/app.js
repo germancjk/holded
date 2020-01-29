@@ -262,9 +262,177 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Category.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp\\htdocs\\holded\\resources\\js\\views\\Category.vue: Unexpected keyword 'this' (77:39)\n\n\u001b[0m \u001b[90m 75 | \u001b[39m    methods \u001b[33m:\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 76 | \u001b[39m        addNew(id) {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 77 | \u001b[39m          axios\u001b[33m.\u001b[39mpost(\u001b[32m'api/category'\u001b[39m\u001b[33m,\u001b[39m { \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mname })\u001b[33m.\u001b[39mthen(response \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 78 | \u001b[39m              \u001b[90m// this.categories[id].tasks.push(response.data.data)\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 79 | \u001b[39m          })\u001b[0m\n\u001b[0m \u001b[90m 80 | \u001b[39m        }\u001b[33m,\u001b[39m\u001b[0m\n    at Parser.raise (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:7013:17)\n    at Parser.checkReservedWord (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10361:12)\n    at Parser.parseObjectProperty (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10099:12)\n    at Parser.parseObjPropValue (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10119:101)\n    at Parser.parseObjectMember (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10043:10)\n    at Parser.parseObj (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9963:25)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9582:28)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9219:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9199:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9067:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9040:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9000:21)\n    at Parser.parseExprListItem (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10295:18)\n    at Parser.parseCallExpressionArguments (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9404:22)\n    at Parser.parseSubscript (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9310:31)\n    at Parser.parseSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9240:19)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9229:17)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9199:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9067:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9040:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9000:21)\n    at Parser.parseExpression (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:8950:23)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10787:23)\n    at Parser.parseStatement (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10658:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11234:25)\n    at Parser.parseBlockBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11221:10)\n    at Parser.parseBlock (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11205:10)\n    at Parser.parseFunctionBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10220:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10190:10)\n    at Parser.parseMethod (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10160:10)\n    at Parser.parseObjectMethod (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10077:19)\n    at Parser.parseObjPropValue (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10119:23)\n    at Parser.parseObjectMember (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10043:10)\n    at Parser.parseObj (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9963:25)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9582:28)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9219:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {//
+  },
+  data: function data() {
+    return {
+      name: '',
+      edit: false,
+      itemId: null,
+      submitName: 'Add',
+      categories: [],
+      showError: false,
+      messageError: ''
+    };
+  },
+  methods: {
+    handleSubmit: function handleSubmit(e) {
+      var _this = this;
+
+      e.preventDefault();
+
+      if (this.name.length > 0) {
+        if (this.edit) {
+          axios.patch("api/category/".concat(this.itemId), {
+            name: this.name
+          }).then(function (response) {
+            console.log('Categoria modificada:', _this.name);
+            _this.name = '';
+            _this.submitName = 'Add';
+
+            _this.loadList();
+          });
+        } else {
+          axios.post('api/category', {
+            name: this.name
+          }).then(function (response) {
+            console.log('Categoria ingresada:', _this.name);
+            _this.name = '';
+
+            _this.loadList();
+          });
+        }
+      } else {
+        this.showError = true;
+        this.messageError = 'Error chars length';
+      }
+    },
+    update: function update(id) {
+      var _this2 = this;
+
+      this.edit = true;
+      axios.get("api/category/".concat(id)).then(function (response) {
+        console.log('Data:', response);
+        _this2.submitName = 'Update';
+        _this2.name = response.data.name;
+        _this2.itemId = id;
+      });
+    },
+    remove: function remove(id) {
+      var _this3 = this;
+
+      if (id > 0) {
+        axios["delete"]("api/category/".concat(id)).then(function (response) {
+          console.log('Categoria eliminada:', id);
+
+          _this3.loadList();
+        });
+      }
+    },
+    loadList: function loadList() {
+      var _this4 = this;
+
+      var token = localStorage.getItem('jwt');
+      axios.defaults.headers.common['Content-Type'] = 'application/json';
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+      axios.get('api/category').then(function (response) {
+        _this4.categories = [];
+        response.data.forEach(function (data) {
+          _this4.categories.push({
+            id: data.id,
+            name: data.name
+          });
+        });
+      });
+    },
+    endEditing: function endEditing(task) {
+      axios.patch("api/task/".concat(task.id), {
+        name: task.name
+      }).then(function (response) {// You can do anything you wan't here.
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.showError = false;
+    this.loadList();
+  },
+  computed: {//
+  }
+});
 
 /***/ }),
 
@@ -1909,6 +2077,16 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
+        _vm.showError
+          ? _c("div", { staticClass: "alert alert-danger" }, [
+              _vm._v("\n        " + _vm._s(_vm.messageError) + "\n      ")
+            ])
+          : _vm._e()
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("h5", { staticClass: "card-title" }, [_vm._v("Categories")]),
@@ -1959,8 +2137,12 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v("Add")]
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.handleSubmit }
+                },
+                [_vm._v(_vm._s(_vm.submitName))]
               )
             ])
           ])
@@ -1985,7 +2167,41 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(element.name))]),
                     _vm._v(" "),
-                    _vm._m(1, true)
+                    _c("td", { staticClass: "text-right" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-warning",
+                          attrs: { type: "button", name: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.update(element.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-edit" }),
+                          _vm._v(" Edit\n                    ")
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-sm btn-danger",
+                          attrs: { type: "button", name: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.remove(element.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "fa fa-trash" }),
+                          _vm._v(" Remove\n                    ")
+                        ]
+                      )
+                    ])
                   ])
                 }),
                 0
@@ -2010,36 +2226,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-right" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-warning",
-          attrs: { type: "button", name: "button" }
-        },
-        [
-          _c("i", { staticClass: "fa fa-edit" }),
-          _vm._v(" Edit\n                    ")
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger",
-          attrs: { type: "button", name: "button" }
-        },
-        [
-          _c("i", { staticClass: "fa fa-trash" }),
-          _vm._v(" Remove\n                    ")
-        ]
-      )
     ])
   }
 ]

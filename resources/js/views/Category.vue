@@ -1,5 +1,12 @@
 <template>
     <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="alert alert-danger" v-if="showError">
+            {{ messageError }}
+          </div>
+        </div>
+      </div>
         <div class="row">
           <div class="col-12">
           <!-- <ul>
@@ -18,7 +25,7 @@
                       <small id="name" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary">Add</button>
+                  <button type="button" class="btn btn-primary" @click="handleSubmit">{{ submitName }}</button>
                 </form>
                 <!-- end -->
               </div>
@@ -43,10 +50,10 @@
                       <th scope="row">{{ element.id }}</th>
                       <td>{{ element.name }}</td>
                       <td class="text-right">
-                        <button class="btn btn-warning" type="button" name="button">
+                        <button class="btn btn-sm btn-warning" type="button" name="button" @click="update(element.id)">
                           <i class="fa fa-edit"></i> Edit
                         </button>
-                        <button class="btn btn-danger" type="button" name="button">
+                        <button class="btn btn-sm btn-danger" type="button" name="button" @click="remove(element.id)">
                           <i class="fa fa-trash"></i> Remove
                         </button>
                       </td>
@@ -67,55 +74,84 @@ export default {
     },
     data(){
       return {
-        name: null,
+        name: '',
+        edit: false,
+        itemId: null,
+        submitName: 'Add',
         categories : [],
-        editingTask : null
+        showError: false,
+        messageError: ''
       }
     },
     methods : {
-        addNew(id) {
-          axios.post('api/category', { this.name }).then(response => {
-              // this.categories[id].tasks.push(response.data.data)
-          })
-        },
-        loadTasks() {
-          this.categories.map(category => {
-              axios.get(`api/category/${category.id}/tasks`).then(response => {
-                  category.tasks = response.data
-              })
-          })
-        },
-        changeOrder(data){
-        },
-        endEditing(task) {
-            this.editingTask = null
-
-            axios.patch(`api/task/${task.id}`, {name: task.name}).then(response => {
-                // You can do anything you wan't here.
+      handleSubmit(e) {
+        e.preventDefault()
+        if (this.name.length > 0) {
+          if (this.edit) {
+            axios.patch(`api/category/${this.itemId}`, { name: this.name }).then(response => {
+                console.log('Categoria modificada:', this.name)
+                this.name = ''
+                this.submitName = 'Add'
+                this.loadList()
             })
-        },
-        editTask(task){
-            this.editingTask = task
+          } else {
+            axios.post('api/category', { name: this.name }).then(response => {
+                console.log('Categoria ingresada:', this.name)
+                this.name = ''
+                this.loadList()
+            })
+          }
+        } else {
+          this.showError = true
+          this.messageError = 'Error chars length'
         }
-    },
-    mounted() {
+      },
+      update(id) {
+        this.edit = true
+
+        axios.get(`api/category/${id}`).then(response => {
+          console.log('Data:', response)
+          this.submitName = 'Update'
+          this.name = response.data.name
+          this.itemId = id
+        })
+      },
+      remove(id) {
+        if (id > 0) {
+          axios.delete(`api/category/${id}`).then(response => {
+            console.log('Categoria eliminada:', id)
+            this.loadList()
+          })
+        }
+      },
+      loadList() {
         let token = localStorage.getItem('jwt')
 
         axios.defaults.headers.common['Content-Type'] = 'application/json'
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
         axios.get('api/category').then(response => {
-            response.data.forEach((data) => {
-                this.categories.push({
-                    id : data.id,
-                    name : data.name,
-                    tasks : []
-                })
+          this.categories = []
+          response.data.forEach((data) => {
+            this.categories.push({
+              id : data.id,
+              name : data.name
             })
-            this.loadTasks()
+          })
         })
+      },
+      endEditing(task) {
+        axios.patch(`api/task/${task.id}`, {name: task.name}).then(response => {
+            // You can do anything you wan't here.
+        })
+      }
+    },
+    mounted() {
+      this.showError = false
+      this.loadList()
     },
     computed: {
+      //
     }
 }
 </script>
