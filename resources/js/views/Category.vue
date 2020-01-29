@@ -9,15 +9,12 @@
       </div>
         <div class="row">
           <div class="col-12">
-          <!-- <ul>
-            <li v-for="element,index in categories">{{element.name}}</li>
-          </ul> -->
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Categories</h5>
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 <!-- init -->
-                <form>
+                <form @submit.prevent="handleSubmit">
                   <div class="form-group">
                     <div class="col-12">
                       <label for="name">Name</label>
@@ -76,7 +73,7 @@ export default {
       return {
         name: '',
         edit: false,
-        itemId: null,
+        id: null,
         submitName: 'Add',
         categories : [],
         showError: false,
@@ -88,17 +85,17 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`api/category/${this.itemId}`, { name: this.name }).then(response => {
+            axios.patch(`api/category/${this.id}`, { name: this.name }).then(response => {
                 console.log('Categoria modificada:', this.name)
                 this.name = ''
                 this.submitName = 'Add'
-                this.loadList()
+                this.list()
             })
           } else {
             axios.post('api/category', { name: this.name }).then(response => {
                 console.log('Categoria ingresada:', this.name)
                 this.name = ''
-                this.loadList()
+                this.list()
             })
           }
         } else {
@@ -112,19 +109,19 @@ export default {
         axios.get(`api/category/${id}`).then(response => {
           console.log('Data:', response)
           this.submitName = 'Update'
+          this.id = id
           this.name = response.data.name
-          this.itemId = id
         })
       },
       remove(id) {
         if (id > 0) {
           axios.delete(`api/category/${id}`).then(response => {
             console.log('Categoria eliminada:', id)
-            this.loadList()
+            this.list()
           })
         }
       },
-      loadList() {
+      list() {
         let token = localStorage.getItem('jwt')
 
         axios.defaults.headers.common['Content-Type'] = 'application/json'
@@ -139,16 +136,11 @@ export default {
             })
           })
         })
-      },
-      endEditing(task) {
-        axios.patch(`api/task/${task.id}`, {name: task.name}).then(response => {
-            // You can do anything you wan't here.
-        })
       }
     },
     mounted() {
       this.showError = false
-      this.loadList()
+      this.list()
     },
     computed: {
       //

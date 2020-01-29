@@ -11,9 +11,9 @@ Route::post('logout', 'UserController@logout');
 Route::post('register', 'UserController@register');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    // Route::get('/category/{category}/tasks', 'CategoryController@tasks');
-    Route::resource('/category', 'CategoryController');
-    Route::delete('/category/{id}', 'CategoryController@destroy');
-    Route::get('/category/{id}', 'CategoryController@show');
-    // Route::resource('/task', 'TaskController');
+  // Categories
+  Route::resource('/category', 'CategoryController');
+  Route::get('/category/{id}', 'CategoryController@show');
+  Route::patch('/category/{id}', 'CategoryController@update');
+  Route::delete('/category/{id}', 'CategoryController@destroy');
 });
