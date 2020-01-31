@@ -20,6 +20,7 @@
                         <router-link :to="{ name: 'categories' }" class="nav-link" v-if="isLoggedIn">Categories</router-link>
                         <router-link :to="{ name: 'stores' }" class="nav-link" v-if="isLoggedIn">Stores</router-link>
                         <router-link :to="{ name: 'taxes' }" class="nav-link" v-if="isLoggedIn">Taxes</router-link>
+                        <router-link :to="{ name: 'suppliers' }" class="nav-link" v-if="isLoggedIn">Suppliers</router-link>
                         <router-link :to="{ name: 'logout' }" class="nav-link" v-if="isLoggedIn">Logout</router-link>
                     </ul>
                 </div>

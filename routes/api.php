@@ -28,4 +28,10 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/tax/{id}', 'TaxController@show');
   Route::patch('/tax/{id}', 'TaxController@update');
   Route::delete('/tax/{id}', 'TaxController@destroy');
+
+  // Supplier
+  Route::resource('/supplier', 'SupplierController');
+  Route::get('/supplier/{id}', 'SupplierController@show');
+  Route::patch('/supplier/{id}', 'SupplierController@update');
+  Route::delete('/supplier/{id}', 'SupplierController@destroy');
 });

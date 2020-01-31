@@ -8,6 +8,7 @@ export default new Vuex.Store({
     categories: [],
     stores: [],
     taxes: [],
+    suppliers: [],
   },
   mutations: {
     loadCategories (state) {
@@ -38,6 +39,20 @@ export default new Vuex.Store({
         state.stores = [...data]
       })
     },
+    loadSuppliers (state) {
+      let token = localStorage.getItem('jwt')
+      
+      axios.defaults.headers.common['Content-Type'] = 'application/json'
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+      axios.get('api/supplier').then(response => {
+        let data = []
+        response.data.forEach((item) => {
+          data.push(item)
+        })
+        state.suppliers = [...data]
+      })
+    },
     loadTaxes (state) {
       let token = localStorage.getItem('jwt')
 
@@ -63,6 +78,9 @@ export default new Vuex.Store({
     getTaxes ({ commit }) {
       commit('loadTaxes')
     },
+    getSuppliers ({ commit }) {
+      commit('loadSuppliers')
+    },
   },
   modules: {
     //
@@ -76,6 +94,9 @@ export default new Vuex.Store({
     },
     taxes (state) {
       return state.taxes
+    },
+    suppliers (state) {
+      return state.suppliers
     },
   }
 })

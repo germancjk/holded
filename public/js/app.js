@@ -17862,6 +17862,12 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../views/Tax.vue */ "./resources/js/views/Tax.vue"));
   }
+}, {
+  path: '/suppliers',
+  name: 'suppliers',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../views/Supplier.vue */ "./resources/js/views/Supplier.vue"));
+  }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
@@ -17890,7 +17896,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   state: {
     categories: [],
     stores: [],
-    taxes: []
+    taxes: [],
+    suppliers: []
   },
   mutations: {
     loadCategories: function loadCategories(state) {
@@ -17915,6 +17922,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
           data.push(item);
         });
         state.stores = [].concat(data);
+      });
+    },
+    loadSuppliers: function loadSuppliers(state) {
+      var token = localStorage.getItem('jwt');
+      axios.defaults.headers.common['Content-Type'] = 'application/json';
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+      axios.get('api/supplier').then(function (response) {
+        var data = [];
+        response.data.forEach(function (item) {
+          data.push(item);
+        });
+        state.suppliers = [].concat(data);
       });
     },
     loadTaxes: function loadTaxes(state) {
@@ -17942,6 +17961,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     getTaxes: function getTaxes(_ref3) {
       var commit = _ref3.commit;
       commit('loadTaxes');
+    },
+    getSuppliers: function getSuppliers(_ref4) {
+      var commit = _ref4.commit;
+      commit('loadSuppliers');
     }
   },
   modules: {//
@@ -17955,6 +17978,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     taxes: function taxes(state) {
       return state.taxes;
+    },
+    suppliers: function suppliers(state) {
+      return state.suppliers;
     }
   }
 }));

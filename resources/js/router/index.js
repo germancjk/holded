@@ -45,6 +45,11 @@ const routes = [
           name: 'taxes',
           component: () => import ('../views/Tax.vue')
         },
+        {
+          path: '/suppliers',
+          name: 'suppliers',
+          component: () => import ('../views/Supplier.vue')
+        },
     ]
 
 const router = new VueRouter({
