@@ -11,7 +11,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Categories</h5>
+                <h5 class="card-title">Taxes</h5>
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 <!-- init -->
                 <form @submit.prevent="handleSubmit">
@@ -20,6 +20,11 @@
                       <label for="name">Name</label>
                       <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
                       <small id="name" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="col-12">
+                      <label for="percent">Percent</label>
+                      <input type="text" class="form-control" id="percent" aria-describedby="percent" v-model="percent" required>
+                      <small id="percent" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                   </div>
                   <button type="button" class="btn btn-primary" @click="handleSubmit">{{ submitName }}</button>
@@ -39,13 +44,15 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Name</th>
+                      <th scope="col">Percent</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="element,index in categories">
+                    <tr v-for="element,index in taxes">
                       <th scope="row">{{ element.id }}</th>
                       <td>{{ element.name }}</td>
+                      <td>{{ element.percent }}</td>
                       <td class="text-right">
                         <button class="btn btn-sm btn-warning" type="button" name="button" @click="update(element.id)">
                           <i class="fa fa-edit"></i> Edit
@@ -74,6 +81,7 @@ export default {
     data(){
       return {
         name: '',
+        percent: '',
         edit: false,
         id: null,
         submitName: 'Add',
@@ -86,15 +94,17 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`api/category/${this.id}`, { name: this.name }).then(response => {
+            axios.patch(`api/tax/${this.id}`, { name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
+                this.percent = ''
                 this.submitName = 'Add'
-                this.getCategories()
+                this.getTaxes()
             })
           } else {
-            axios.post('api/category', { name: this.name }).then(response => {
+            axios.post('api/tax', { name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
-                this.getCategories()
+                this.percent = ''
+                this.getTaxes()
             })
           }
         } else {
@@ -105,27 +115,28 @@ export default {
       update(id) {
         this.edit = true
 
-        axios.get(`api/category/${id}`).then(response => {
+        axios.get(`api/tax/${id}`).then(response => {
           this.submitName = 'Update'
           this.id = id
           this.name = response.data.name
+          this.percent = response.data.percent
         })
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`api/category/${id}`).then(response => {
-            this.getCategories()
+          axios.delete(`api/tax/${id}`).then(response => {
+            this.getTaxes()
           })
         }
       },
-      ...mapActions(['getCategories'])
+      ...mapActions(['getTaxes'])
     },
     mounted() {
       this.showError = false
-      this.getCategories()
+      this.getTaxes()
     },
     computed: {
-      ...mapGetters(['categories'])
+      ...mapGetters(['taxes'])
     }
 }
 </script>

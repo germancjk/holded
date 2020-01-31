@@ -11,7 +11,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Categories</h5>
+                <h5 class="card-title">Stores</h5>
                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 <!-- init -->
                 <form @submit.prevent="handleSubmit">
@@ -43,7 +43,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="element,index in categories">
+                    <tr v-for="element,index in stores">
                       <th scope="row">{{ element.id }}</th>
                       <td>{{ element.name }}</td>
                       <td class="text-right">
@@ -86,15 +86,15 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`api/category/${this.id}`, { name: this.name }).then(response => {
+            axios.patch(`api/store/${this.id}`, { name: this.name }).then(response => {
                 this.name = ''
                 this.submitName = 'Add'
-                this.getCategories()
+                this.getStores()
             })
           } else {
-            axios.post('api/category', { name: this.name }).then(response => {
+            axios.post('api/store', { name: this.name }).then(response => {
                 this.name = ''
-                this.getCategories()
+                this.getStores()
             })
           }
         } else {
@@ -105,7 +105,7 @@ export default {
       update(id) {
         this.edit = true
 
-        axios.get(`api/category/${id}`).then(response => {
+        axios.get(`api/store/${id}`).then(response => {
           this.submitName = 'Update'
           this.id = id
           this.name = response.data.name
@@ -113,19 +113,19 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`api/category/${id}`).then(response => {
-            this.getCategories()
+          axios.delete(`api/store/${id}`).then(response => {
+            this.getStores()
           })
         }
       },
-      ...mapActions(['getCategories'])
+      ...mapActions(['getStores'])
     },
     mounted() {
       this.showError = false
-      this.getCategories()
+      this.getStores()
     },
     computed: {
-      ...mapGetters(['categories'])
+      ...mapGetters(['stores'])
     }
 }
 </script>

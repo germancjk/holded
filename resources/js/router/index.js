@@ -34,7 +34,17 @@ const routes = [
           path: '/categories',
           name: 'categories',
           component: () => import ('../views/Category.vue')
-        }
+        },
+        {
+          path: '/stores',
+          name: 'stores',
+          component: () => import ('../views/Stores.vue')
+        },
+        {
+          path: '/taxes',
+          name: 'taxes',
+          component: () => import ('../views/Tax.vue')
+        },
     ]
 
 const router = new VueRouter({

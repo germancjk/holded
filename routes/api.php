@@ -16,4 +16,16 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/category/{id}', 'CategoryController@show');
   Route::patch('/category/{id}', 'CategoryController@update');
   Route::delete('/category/{id}', 'CategoryController@destroy');
+
+  // Stores
+  Route::resource('/store', 'StoreController');
+  Route::get('/store/{id}', 'StoreController@show');
+  Route::patch('/store/{id}', 'StoreController@update');
+  Route::delete('/store/{id}', 'StoreController@destroy');
+
+  // Stores
+  Route::resource('/tax', 'TaxController');
+  Route::get('/tax/{id}', 'TaxController@show');
+  Route::patch('/tax/{id}', 'TaxController@update');
+  Route::delete('/tax/{id}', 'TaxController@destroy');
 });

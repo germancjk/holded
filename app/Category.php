@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use SoftDeletes;
+  use SoftDeletes;
 
-    protected $fillable = ['name'];
+  protected $fillable = ['name'];
 
-    public function tasks() {
-        return $this->hasMany(Task::class);
-    }
+  // public function tasks() {
+  //     return $this->hasMany(Task::class);
+  // }
 }

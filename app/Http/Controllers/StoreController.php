@@ -7,79 +7,44 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return response()->json(Store::all()->toArray());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $store = Store::create($request->only('name'));
+
+        return response()->json([
+            'status' => (bool) $store,
+            'message'=> $store ? 'Store Created' : 'Error Creating Store'
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Store  $store
-     * @return \Illuminate\Http\Response
-     */
     public function show(Store $store)
     {
-        //
+      return response()->json($store);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Store  $store
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Store $store)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Store  $store
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Store $store)
     {
-        //
+        $status = $store->update($request->only('name'));
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Store Updated!' : 'Error Updating Store'
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Store  $store
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Store $store)
     {
-        //
+        $status = $store->delete();
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Store Deleted' : 'Error Deleting Store'
+        ]);
     }
+
 }
