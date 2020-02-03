@@ -16,7 +16,6 @@ class CreateItemSkusTable extends Migration
         Schema::create('item_skus', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('item_id');
-            $table->unsignedInteger('store_id');
             $table->string('name');
             $table->float('sale_price');
             $table->timestamps();

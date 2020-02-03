@@ -50,6 +50,11 @@ const routes = [
           name: 'suppliers',
           component: () => import ('../views/Supplier.vue')
         },
+        {
+          path: '/item.new',
+          name: 'item.new',
+          component: () => import ('../views/ItemNew.vue')
+        },
     ]
 
 const router = new VueRouter({

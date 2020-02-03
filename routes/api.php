@@ -34,4 +34,10 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/supplier/{id}', 'SupplierController@show');
   Route::patch('/supplier/{id}', 'SupplierController@update');
   Route::delete('/supplier/{id}', 'SupplierController@destroy');
+
+  // Item
+  Route::resource('/item', 'ItemController');
+  Route::get('/item/{id}', 'ItemController@show');
+  Route::patch('/item/{id}', 'ItemController@update');
+  Route::delete('/item/{id}', 'ItemController@destroy');
 });

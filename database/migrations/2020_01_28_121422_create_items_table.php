@@ -16,12 +16,14 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->unsignedInteger('category_id');
             $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('tax_id');
-            $table->integer('cost');
+            $table->float('cost');
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->foreign('tax_id')->references('id')->on('taxes');
         });

@@ -81,7 +81,8 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this2 = this;
 
-      axios.post('api/logout', {// email: this.email,
+      axios.post('api/logout', {
+        email: this.email
       }).then(function (response) {
         _this2.$router.go('/');
       })["catch"](function (error) {
@@ -90,6 +91,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    // localStorage.removeItem('jwt')
     if (localStorage.getItem('jwt')) {
       return next('board');
     }

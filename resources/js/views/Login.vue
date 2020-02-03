@@ -70,7 +70,7 @@
             },
             logout(){
               axios.post('api/logout', {
-                  // email: this.email,
+                  email: this.email,
                 })
                 .then(response => {
                     this.$router.go('/')
@@ -81,11 +81,12 @@
             }
         },
         beforeRouteEnter (to, from, next) {
-            if (localStorage.getItem('jwt')) {
-                return next('board');
-            }
+          // localStorage.removeItem('jwt')
+          if (localStorage.getItem('jwt')) {
+            return next('board');
+          }
 
-            next();
+          next();
         }
     }
 </script>

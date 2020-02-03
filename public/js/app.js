@@ -243,6 +243,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1526,6 +1528,17 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "nav-link",
+                            attrs: { to: { name: "item.new" } }
+                          },
+                          [_vm._v("New")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
                             attrs: { to: { name: "categories" } }
                           },
                           [_vm._v("Categories")]
@@ -1551,6 +1564,17 @@ var render = function() {
                             attrs: { to: { name: "taxes" } }
                           },
                           [_vm._v("Taxes")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "suppliers" } }
+                          },
+                          [_vm._v("Suppliers")]
                         )
                       : _vm._e(),
                     _vm._v(" "),
@@ -17830,7 +17854,7 @@ var routes = [{
   path: '/register',
   name: 'register',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
   }
 }, {
   path: '/board',
@@ -17848,25 +17872,31 @@ var routes = [{
   path: '/categories',
   name: 'categories',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../views/Category.vue */ "./resources/js/views/Category.vue"));
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../views/Category.vue */ "./resources/js/views/Category.vue"));
   }
 }, {
   path: '/stores',
   name: 'stores',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../views/Stores.vue */ "./resources/js/views/Stores.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../views/Stores.vue */ "./resources/js/views/Stores.vue"));
   }
 }, {
   path: '/taxes',
   name: 'taxes',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../views/Tax.vue */ "./resources/js/views/Tax.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../views/Tax.vue */ "./resources/js/views/Tax.vue"));
   }
 }, {
   path: '/suppliers',
   name: 'suppliers',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../views/Supplier.vue */ "./resources/js/views/Supplier.vue"));
+  }
+}, {
+  path: '/item.new',
+  name: 'item.new',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(8), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../views/ItemNew.vue */ "./resources/js/views/ItemNew.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

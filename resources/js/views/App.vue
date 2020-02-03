@@ -1,35 +1,36 @@
 <template>
-    <div>
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <router-link :to="{name: 'home'}" class="navbar-brand">holded</router-link>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <div>
+    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <div class="container">
+          <router-link :to="{name: 'home'}" class="navbar-brand">holded</router-link>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto"></ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        <router-link :to="{ name: 'login' }" class="nav-link" v-if="!isLoggedIn">Login</router-link>
-                        <router-link :to="{ name: 'register' }" class="nav-link" v-if="!isLoggedIn">Register</router-link>
-                        <li class="nav-link" v-if="isLoggedIn"> Hi, {{name}}</li>
-                        <router-link :to="{ name: 'board' }" class="nav-link" v-if="isLoggedIn">Board</router-link>
-                        <router-link :to="{ name: 'categories' }" class="nav-link" v-if="isLoggedIn">Categories</router-link>
-                        <router-link :to="{ name: 'stores' }" class="nav-link" v-if="isLoggedIn">Stores</router-link>
-                        <router-link :to="{ name: 'taxes' }" class="nav-link" v-if="isLoggedIn">Taxes</router-link>
-                        <router-link :to="{ name: 'suppliers' }" class="nav-link" v-if="isLoggedIn">Suppliers</router-link>
-                        <router-link :to="{ name: 'logout' }" class="nav-link" v-if="isLoggedIn">Logout</router-link>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <main class="py-4">
-            <router-view></router-view>
-        </main>
-    </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side Of Navbar -->
+            <ul class="navbar-nav mr-auto"></ul>
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Authentication Links -->
+              <router-link :to="{ name: 'login' }" class="nav-link" v-if="!isLoggedIn">Login</router-link>
+              <router-link :to="{ name: 'register' }" class="nav-link" v-if="!isLoggedIn">Register</router-link>
+              <li class="nav-link" v-if="isLoggedIn"> Hi, {{name}}</li>
+              <router-link :to="{ name: 'board' }" class="nav-link" v-if="isLoggedIn">Board</router-link>
+              <router-link :to="{ name: 'item.new' }" class="nav-link" v-if="isLoggedIn">New</router-link>
+              <router-link :to="{ name: 'categories' }" class="nav-link" v-if="isLoggedIn">Categories</router-link>
+              <router-link :to="{ name: 'stores' }" class="nav-link" v-if="isLoggedIn">Stores</router-link>
+              <router-link :to="{ name: 'taxes' }" class="nav-link" v-if="isLoggedIn">Taxes</router-link>
+              <router-link :to="{ name: 'suppliers' }" class="nav-link" v-if="isLoggedIn">Suppliers</router-link>
+              <router-link :to="{ name: 'logout' }" class="nav-link" v-if="isLoggedIn">Logout</router-link>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <main class="py-4">
+        <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script type="text/javascript">

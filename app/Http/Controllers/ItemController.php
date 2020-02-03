@@ -7,36 +7,28 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  public function index()
+  {
+    return response()->json(Item::all()->toArray());
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  public function store(Request $request)
+  {
+    $item = Item::create([
+      'name' => $request->name,
+      'category_id' => $request->category_id,
+      'supplier_id' => $request->supplier_id,
+      'tax_id' => $request->tax_id,
+      'cost' => $request->cost
+    ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    return response()->json([
+      'status' => (bool) $item,
+      'data'   => $item,
+      'message' => $item ? 'Item Created!' : 'Error Creating Item'
+    ]);
+  }
+  
 
     /**
      * Display the specified resource.
