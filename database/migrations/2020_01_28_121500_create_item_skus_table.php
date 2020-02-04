@@ -17,6 +17,7 @@ class CreateItemSkusTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('item_id');
             $table->string('name');
+            $table->float('cost');
             $table->float('sale_price');
             $table->timestamps();
             $table->softDeletes();

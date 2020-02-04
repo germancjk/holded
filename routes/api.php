@@ -40,4 +40,10 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/item/{id}', 'ItemController@show');
   Route::patch('/item/{id}', 'ItemController@update');
   Route::delete('/item/{id}', 'ItemController@destroy');
+
+  // Item SKU
+  Route::resource('/itemsku', 'ItemSkuController');
+  Route::get('/itemsku/{id}', 'ItemSkuController@show');
+  Route::patch('/itemsku/{id}', 'ItemSkuController@update');
+  Route::delete('/itemsku/{id}', 'ItemSkuController@destroy');
 });

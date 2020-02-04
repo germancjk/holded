@@ -17896,7 +17896,7 @@ var routes = [{
   path: '/item.new',
   name: 'item.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(8), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../views/ItemNew.vue */ "./resources/js/views/ItemNew.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/ItemNew.vue */ "./resources/js/views/ItemNew.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

@@ -55,27 +55,27 @@
             <div class="card-body">
               <h5 class="card-title">Skus</h5>
               <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-              <div class="form-row">
+              <div class="form-row" v-for="(sku, index) in skus" :key="index">
                 <div class="form-group col-6">
                   <label for="sku">Name</label>
-                  <input type="text" class="form-control" id="sku" aria-describedby="sku" v-model="sku" required autofocus>
+                  <input v-model="sku.name" :name="`skus[${index}][name]`" type="text" class="form-control" required autofocus>
                   <small id="sku" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group col-2">
                   <label for="cost">Cost</label>
-                  <input type="text" class="form-control" id="cost" aria-describedby="cost" v-model="cost" value="0">
+                  <input v-model="sku.cost" :name="`skus[${index}][cost]`" type="text" class="form-control" value="0">
                 </div>
                 <div class="form-group col-2">
                   <label for="sale_price">Sale Price</label>
-                  <input type="text" class="form-control" id="sale_price" aria-describedby="sale_price" v-model="sale_price" value="0">
+                  <input v-model="sku.sale_price" :name="`skus[${index}][sale_price]`" type="text" class="form-control" value="0">
                 </div>
                 <div class="form-group col-2">
                   <label for="quantity">Quantity</label>
-                  <input type="text" class="form-control" id="quantity" aria-describedby="quantity" v-model="quantity" value="0">
+                  <input v-model="sku.quantity" :name="`skus[${index}][quantity]`" type="text" class="form-control" value="0">
                 </div>
               </div>
               <div class="form-row">
-                <button type="button" class="btn btn-success btn-sm">+ Add New</button>
+                <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Add New</button>
               </div>
             </div>
           </div>
@@ -101,21 +101,33 @@ export default {
         name: '',
         supplier: 0,
         category: 0,
-        cost: 0,
         tax: 0,
-        sku: '',
-        sale_price: 0,
-        quantity: 0,
+        itemCreated: [],
+        skus: [
+          {
+            name: '',
+            cost: 0,
+            sale_price: 0,
+            quantity: 0
+          }
+        ],
         submitName: 'Add',
         showError: false,
         messageError: [],
       }
     },
     methods : {
+      addSku () {
+        this.skus.push({
+          name: '',
+          cost: 0,
+          sale_price: 0,
+          quantity: 0
+        })
+      },
       submit(e) {
         e.preventDefault()
         this.messageError = []
-        this.messageError.push('Errors below:')
 
         if (this.name.length === 0) {
           this.messageError.push('Name is empty')
@@ -126,9 +138,6 @@ export default {
         if (this.supplier.length === 0) {
           this.messageError.push('Select Supplier')
         }
-        if (this.cost.length === 0) {
-          this.cost = 0
-        }
         if (this.tax.length === 0) {
           this.messageError.push('Select Tax')
         }
@@ -137,23 +146,47 @@ export default {
           name: this.name,
           category_id: this.category,
           supplier_id: this.supplier,
-          cost: this.cost,
           tax_id: this.tax,
         }
 
-        if (this.messageError.length === 1) {
+        // add new item
+        if (this.messageError.length === 0) {
           axios.post('api/item', params).then(response => {
-            this.showError = false
-            this.name = ''
-            this.category = 0
-            this.supplier = 0
-            this.cost = 0
-            this.tax = 0
-            this.getCategories()
-            this.getSuppliers()
-            this.getTaxes()
+            this.itemCreated = response.data.data
+            // add new sku
+            this.skus.forEach(element => {
+              if (element.name.length > 0) {
+                let paramsSku = {
+                  item_id: this.itemCreated.id,
+                  name: element.name,
+                  cost: element.cost,
+                  sale_price: element.sale_price,
+                }
+                axios.post('api/itemsku', paramsSku).then(response => {
+                  //
+                })
+              }
+            });
           })
+          // clean objects
+          this.showError = false
+          this.name = ''
+          this.category = 0
+          this.supplier = 0
+          this.tax = 0
+          this.getCategories()
+          this.getSuppliers()
+          this.getTaxes()
+          this.skus = [
+            {
+              name: '',
+              cost: 0,
+              sale_price: 0,
+              quantity: 0
+            }
+          ]
         } else {
+          this.messageError.unshift('Errors below:')
           console.log('Error', this.messageError.length)
           this.showError = true
         }

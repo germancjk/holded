@@ -18,8 +18,7 @@ class ItemController extends Controller
       'name' => $request->name,
       'category_id' => $request->category_id,
       'supplier_id' => $request->supplier_id,
-      'tax_id' => $request->tax_id,
-      'cost' => $request->cost
+      'tax_id' => $request->tax_id
     ]);
 
     return response()->json([
@@ -28,7 +27,7 @@ class ItemController extends Controller
       'message' => $item ? 'Item Created!' : 'Error Creating Item'
     ]);
   }
-  
+
 
     /**
      * Display the specified resource.

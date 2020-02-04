@@ -19,7 +19,6 @@ class CreateItemsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('tax_id');
-            $table->float('cost');
             $table->timestamps();
             $table->softDeletes();
 

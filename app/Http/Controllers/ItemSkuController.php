@@ -18,25 +18,26 @@ class ItemSkuController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+     public function store(Request $request)
+     {
+       $itemSku = ItemSku::create([
+         'item_id' => $request->item_id,
+         'name' => $request->name,
+         'cost' => $request->cost,
+         'sale_price' => $request->sale_price
+       ]);
+
+       return response()->json([
+         'status' => (bool) $itemSku,
+         'data'   => $itemSku,
+         'message' => $itemSku ? 'ItemSku Created!' : 'Error Creating ItemSku'
+       ]);
+     }
 
     /**
      * Display the specified resource.
