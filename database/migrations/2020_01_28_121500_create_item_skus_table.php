@@ -22,7 +22,6 @@ class CreateItemSkusTable extends Migration
             $table->softDeletes();
 
             $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('store_id')->references('id')->on('stores');
         });
     }
 

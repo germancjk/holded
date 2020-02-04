@@ -15,13 +15,13 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('item_id');
+            $table->unsignedInteger('item_sku_id');
             $table->unsignedInteger('store_id');
             $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('item_sku_id')->references('id')->on('item_skus');
             $table->foreign('store_id')->references('id')->on('stores');
         });
     }
