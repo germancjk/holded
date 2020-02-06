@@ -15,13 +15,23 @@
               <!-- Authentication Links -->
               <router-link :to="{ name: 'login' }" class="nav-link" v-if="!isLoggedIn">Login</router-link>
               <router-link :to="{ name: 'register' }" class="nav-link" v-if="!isLoggedIn">Register</router-link>
+
               <li class="nav-link" v-if="isLoggedIn"> Hi, {{name}}</li>
               <router-link :to="{ name: 'board' }" class="nav-link" v-if="isLoggedIn">Board</router-link>
+              <router-link :to="{ name: 'items' }" class="nav-link" v-if="isLoggedIn">Items</router-link>
+              <router-link :to="{ name: 'stock' }" class="nav-link" v-if="isLoggedIn">Stock</router-link>
               <router-link :to="{ name: 'item.new' }" class="nav-link" v-if="isLoggedIn">New</router-link>
-              <router-link :to="{ name: 'categories' }" class="nav-link" v-if="isLoggedIn">Categories</router-link>
-              <router-link :to="{ name: 'stores' }" class="nav-link" v-if="isLoggedIn">Stores</router-link>
-              <router-link :to="{ name: 'taxes' }" class="nav-link" v-if="isLoggedIn">Taxes</router-link>
-              <router-link :to="{ name: 'suppliers' }" class="nav-link" v-if="isLoggedIn">Suppliers</router-link>
+              <li class="nav-item dropdown" v-if="isLoggedIn">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Tools
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <router-link :to="{ name: 'categories' }" class="dropdown-item" v-if="isLoggedIn">Categories</router-link>
+                  <router-link :to="{ name: 'stores' }" class="dropdown-item" v-if="isLoggedIn">Stores</router-link>
+                  <router-link :to="{ name: 'taxes' }" class="dropdown-item" v-if="isLoggedIn">Taxes</router-link>
+                  <router-link :to="{ name: 'suppliers' }" class="dropdown-item" v-if="isLoggedIn">Suppliers</router-link>
+                </div>
+              </li>
               <router-link :to="{ name: 'logout' }" class="nav-link" v-if="isLoggedIn">Logout</router-link>
             </ul>
           </div>

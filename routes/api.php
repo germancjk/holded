@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
   // Item
   Route::resource('/item', 'ItemController');
+  Route::get('/items', 'ItemController@index');
   Route::get('/item/{id}', 'ItemController@show');
   Route::patch('/item/{id}', 'ItemController@update');
   Route::delete('/item/{id}', 'ItemController@destroy');

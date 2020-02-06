@@ -245,6 +245,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1528,6 +1538,28 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "nav-link",
+                            attrs: { to: { name: "items" } }
+                          },
+                          [_vm._v("Items")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "stock" } }
+                          },
+                          [_vm._v("Stock")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
                             attrs: { to: { name: "item.new" } }
                           },
                           [_vm._v("New")]
@@ -1535,47 +1567,77 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.isLoggedIn
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "categories" } }
-                          },
-                          [_vm._v("Categories")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "stores" } }
-                          },
-                          [_vm._v("Stores")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "taxes" } }
-                          },
-                          [_vm._v("Taxes")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "suppliers" } }
-                          },
-                          [_vm._v("Suppliers")]
-                        )
+                      ? _c("li", { staticClass: "nav-item dropdown" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link dropdown-toggle",
+                              attrs: {
+                                href: "#",
+                                id: "navbarDropdown",
+                                role: "button",
+                                "data-toggle": "dropdown",
+                                "aria-haspopup": "true",
+                                "aria-expanded": "false"
+                              }
+                            },
+                            [_vm._v("\n                Tools\n              ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "navbarDropdown" }
+                            },
+                            [
+                              _vm.isLoggedIn
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "categories" } }
+                                    },
+                                    [_vm._v("Categories")]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.isLoggedIn
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "stores" } }
+                                    },
+                                    [_vm._v("Stores")]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.isLoggedIn
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "taxes" } }
+                                    },
+                                    [_vm._v("Taxes")]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.isLoggedIn
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "suppliers" } }
+                                    },
+                                    [_vm._v("Suppliers")]
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ])
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.isLoggedIn
@@ -17896,7 +17958,19 @@ var routes = [{
   path: '/item.new',
   name: 'item.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(8), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../views/ItemNew.vue */ "./resources/js/views/ItemNew.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/ItemNew.vue */ "./resources/js/views/ItemNew.vue"));
+  }
+}, {
+  path: '/items',
+  name: 'items',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../views/Items.vue */ "./resources/js/views/Items.vue"));
+  }
+}, {
+  path: '/stock',
+  name: 'stock',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -17924,10 +17998,11 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    categories: [],
-    stores: [],
     taxes: [],
-    suppliers: []
+    // items: [],
+    stores: [],
+    suppliers: [],
+    categories: []
   },
   mutations: {
     loadCategories: function loadCategories(state) {

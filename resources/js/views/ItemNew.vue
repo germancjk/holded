@@ -6,6 +6,9 @@
         <div class="alert alert-danger" v-if="showError">
           <div v-for="element in messageError">{{ element }}</div>
         </div>
+        <div class="alert alert-success" v-if="showAdd">
+          Item Added
+        </div>
       </div>
     </div>
 
@@ -119,6 +122,7 @@ export default {
         submitName: 'Add',
         showError: false,
         messageError: [],
+        showAdd: false,
       }
     },
     methods : {
@@ -140,7 +144,10 @@ export default {
       },
       submitSku(item_id) {
         // submit new sku
+        const total = this.skus.length;
+        let quantity = 0;
         this.skus.forEach(element => {
+          quantity++;
           if (element.name.length > 0) {
             let params = {
               item_id: item_id,
@@ -156,6 +163,11 @@ export default {
                 quantity: element.quantity
               }
               this.submitStock(stock)
+              // clear when fits total of skus
+              if (total == quantity) {
+                this.showAdd = true
+                this.clearForm()
+              }
             })
           }
         });
@@ -179,6 +191,9 @@ export default {
         if (this.store.length === 0) {
           this.messageError.push('Select Store')
         }
+        if (this.skus[0].name.length === 0) {
+          this.messageError.push('Please add at least one Sku')
+        }
 
         const params = {
           name: this.name,
@@ -190,6 +205,7 @@ export default {
         // add new item
         if (this.messageError.length === 0) {
           axios.post('api/item', params).then(response => {
+            console.log(response)
             this.submitSku(response.data.data.id)
           })
         } else {
@@ -200,11 +216,21 @@ export default {
       },
       clearForm() {
         // clean objects
+        this.messageError = []
         this.showError = false
+        this.showAdd = false
         this.name = ''
         this.category = 0
         this.supplier = 0
         this.tax = 0
+        this.skus = [
+          {
+            name: '',
+            cost: 0,
+            sale_price: 0,
+            quantity: 0
+          }
+        ]
         this.getCategories()
         this.getSuppliers()
         this.getStores()

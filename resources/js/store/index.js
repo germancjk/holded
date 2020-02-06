@@ -5,10 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    categories: [],
-    stores: [],
     taxes: [],
+    // items: [],
+    stores: [],
     suppliers: [],
+    categories: [],
   },
   mutations: {
     loadCategories (state) {
@@ -41,7 +42,7 @@ export default new Vuex.Store({
     },
     loadSuppliers (state) {
       let token = localStorage.getItem('jwt')
-      
+
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 

@@ -9,7 +9,21 @@ class StockController extends Controller
 {
     public function index()
     {
-      return response()->json(Stock::all()->toArray());
+      return response()->json(
+        Stock::join('item_skus', 'stocks.item_sku_id', '=', 'item_skus.id')
+            ->join('items', 'item_skus.id', '=', 'items.id')
+            ->join('stores', 'stocks.store_id', '=', 'stores.id')
+            ->select(
+                'stocks.quantity as quantity',
+                'items.name as item_name',
+                'item_skus.id as sku_id',
+                'item_skus.name as sku_name',
+                'stores.name as store_name'
+                )
+            ->getQuery()
+            ->get()
+            ->toArray()
+          );
     }
 
     public function store(Request $request)

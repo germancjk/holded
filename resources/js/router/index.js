@@ -55,6 +55,16 @@ const routes = [
           name: 'item.new',
           component: () => import ('../views/ItemNew.vue')
         },
+        {
+          path: '/items',
+          name: 'items',
+          component: () => import ('../views/Items.vue')
+        },
+        {
+          path: '/stock',
+          name: 'stock',
+          component: () => import ('../views/Stock.vue')
+        },
     ]
 
 const router = new VueRouter({

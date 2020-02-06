@@ -9,7 +9,20 @@ class ItemController extends Controller
 {
   public function index()
   {
-    return response()->json(Item::all()->toArray());
+    return response()->json(
+      Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
+          ->join('categories', 'items.category_id', '=', 'categories.id')
+          ->select(
+              'items.name as item_name',
+              'item_skus.id as sku_id',
+              'item_skus.name as sku_name',
+              'item_skus.sale_price as sku_sale_price',
+              'categories.name as category_name'
+              )
+          ->getQuery()
+          ->get()
+          ->toArray()
+        );
   }
 
   public function store(Request $request)
