@@ -46,4 +46,10 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/itemsku/{id}', 'ItemSkuController@show');
   Route::patch('/itemsku/{id}', 'ItemSkuController@update');
   Route::delete('/itemsku/{id}', 'ItemSkuController@destroy');
+
+  // Stocks
+  Route::resource('/stock', 'StockController');
+  Route::get('/stock/{id}', 'StockController@show');
+  Route::patch('/stock/{id}', 'StockController@update');
+  Route::delete('/stock/{id}', 'StockController@destroy');
 });

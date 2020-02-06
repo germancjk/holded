@@ -7,35 +7,24 @@ use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+      return response()->json(Stock::all()->toArray());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+      $stock = Stock::create([
+        'item_sku_id' => $request->item_sku_id,
+        'store_id' => $request->store_id,
+        'quantity' => $request->quantity
+      ]);
+
+      return response()->json([
+        'status' => (bool) $stock,
+        'data'   => $stock,
+        'message' => $stock ? 'Stock Created!' : 'Error Creating Stock'
+      ]);
     }
 
     /**

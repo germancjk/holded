@@ -10,8 +10,4 @@ class Store extends Model
   use SoftDeletes;
 
   protected $fillable = ['name'];
-
-  // public function tasks() {
-  //     return $this->hasMany(Task::class);
-  // }
 }

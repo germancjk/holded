@@ -38,9 +38,14 @@
               </div>
 
               <div class="form-row">
-                <div class="form-group col-12">
+                <div class="form-group col-6">
                   <label for="tax">Tax</label>
                   <v-select v-model="tax" label="name" :options="taxes" :reduce="taxes => taxes.id" ></v-select>
+                </div>
+
+                <div class="form-group col-6">
+                  <label for="store">Stores</label>
+                  <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
                 </div>
               </div>
             </div>
@@ -94,7 +99,7 @@ import 'vue-select/dist/vue-select.css';
 
 export default {
     components: {
-        vSelect
+      vSelect
     },
     data(){
       return {
@@ -102,7 +107,7 @@ export default {
         supplier: 0,
         category: 0,
         tax: 0,
-        itemCreated: [],
+        store: 0,
         skus: [
           {
             name: '',
@@ -125,6 +130,36 @@ export default {
           quantity: 0
         })
       },
+      submitStock(stock) {
+        // submit stock
+        this.skus.forEach(element => {
+          axios.post('api/stock', stock).then(response => {
+            console.log(response)
+          })
+        });
+      },
+      submitSku(item_id) {
+        // submit new sku
+        this.skus.forEach(element => {
+          if (element.name.length > 0) {
+            let params = {
+              item_id: item_id,
+              name: element.name,
+              cost: element.cost,
+              sale_price: element.sale_price,
+            }
+            axios.post('api/itemsku', params).then(response => {
+              console.log(response)
+              let stock = {
+                item_sku_id: response.data.data.id,
+                store_id: this.store,
+                quantity: element.quantity
+              }
+              this.submitStock(stock)
+            })
+          }
+        });
+      },
       submit(e) {
         e.preventDefault()
         this.messageError = []
@@ -141,6 +176,9 @@ export default {
         if (this.tax.length === 0) {
           this.messageError.push('Select Tax')
         }
+        if (this.store.length === 0) {
+          this.messageError.push('Select Store')
+        }
 
         const params = {
           name: this.name,
@@ -152,55 +190,37 @@ export default {
         // add new item
         if (this.messageError.length === 0) {
           axios.post('api/item', params).then(response => {
-            this.itemCreated = response.data.data
-            // add new sku
-            this.skus.forEach(element => {
-              if (element.name.length > 0) {
-                let paramsSku = {
-                  item_id: this.itemCreated.id,
-                  name: element.name,
-                  cost: element.cost,
-                  sale_price: element.sale_price,
-                }
-                axios.post('api/itemsku', paramsSku).then(response => {
-                  //
-                })
-              }
-            });
+            this.submitSku(response.data.data.id)
           })
-          // clean objects
-          this.showError = false
-          this.name = ''
-          this.category = 0
-          this.supplier = 0
-          this.tax = 0
-          this.getCategories()
-          this.getSuppliers()
-          this.getTaxes()
-          this.skus = [
-            {
-              name: '',
-              cost: 0,
-              sale_price: 0,
-              quantity: 0
-            }
-          ]
         } else {
           this.messageError.unshift('Errors below:')
           console.log('Error', this.messageError.length)
           this.showError = true
         }
       },
-      ...mapActions(['getSuppliers', 'getTaxes', 'getCategories'])
+      clearForm() {
+        // clean objects
+        this.showError = false
+        this.name = ''
+        this.category = 0
+        this.supplier = 0
+        this.tax = 0
+        this.getCategories()
+        this.getSuppliers()
+        this.getStores()
+        this.getTaxes()
+      },
+      ...mapActions(['getSuppliers', 'getTaxes', 'getCategories', 'getStores'])
     },
     mounted() {
       this.showError = false
       this.getCategories()
       this.getSuppliers()
+      this.getStores()
       this.getTaxes()
     },
     computed: {
-      ...mapGetters(['suppliers', 'taxes', 'categories'])
+      ...mapGetters(['suppliers', 'taxes', 'categories', 'stores'])
     }
 }
 </script>
