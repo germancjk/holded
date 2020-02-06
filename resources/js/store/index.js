@@ -10,6 +10,7 @@ export default new Vuex.Store({
     stores: [],
     suppliers: [],
     categories: [],
+    baseApiUrl: 'http://localhost:8000',
   },
   mutations: {
     loadCategories (state) {
@@ -18,7 +19,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get('api/category').then(response => {
+      axios.get(`${state.baseApiUrl}/api/category`).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -32,7 +33,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get('api/store').then(response => {
+      axios.get(`${state.baseApiUrl}/api/store`).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -46,7 +47,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get('api/supplier').then(response => {
+      axios.get(`${state.baseApiUrl}/api/supplier`).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -60,7 +61,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get('api/tax').then(response => {
+      axios.get(`${state.baseApiUrl}/api/tax`).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -98,6 +99,9 @@ export default new Vuex.Store({
     },
     suppliers (state) {
       return state.suppliers
+    },
+    baseApiUrl (state) {
+      return state.baseApiUrl
     },
   }
 })

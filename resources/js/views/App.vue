@@ -15,7 +15,7 @@
               <!-- Authentication Links -->
               <router-link :to="{ name: 'login' }" class="nav-link" v-if="!isLoggedIn">Login</router-link>
               <router-link :to="{ name: 'register' }" class="nav-link" v-if="!isLoggedIn">Register</router-link>
-
+              <!-- Menu Links -->
               <li class="nav-link" v-if="isLoggedIn"> Hi, {{name}}</li>
               <router-link :to="{ name: 'board' }" class="nav-link" v-if="isLoggedIn">Board</router-link>
               <router-link :to="{ name: 'items' }" class="nav-link" v-if="isLoggedIn">Items</router-link>
