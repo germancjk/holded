@@ -222,6 +222,7 @@ export default {
         this.name = ''
         this.category = 0
         this.supplier = 0
+        this.stores = 0
         this.tax = 0
         this.skus = [
           {

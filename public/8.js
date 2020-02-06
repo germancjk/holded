@@ -252,6 +252,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.name = '';
       this.category = 0;
       this.supplier = 0;
+      this.stores = 0;
       this.tax = 0;
       this.skus = [{
         name: '',
