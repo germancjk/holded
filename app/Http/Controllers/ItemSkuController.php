@@ -39,15 +39,12 @@ class ItemSkuController extends Controller
        ]);
      }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ItemSku  $itemSku
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ItemSku $itemSku)
+    public function show(Request $request)
     {
-        //
+      return response()->json(ItemSku::where('item_id', $request->id)
+                                      ->get()
+                                      ->toArray()
+                                    );
     }
 
     /**

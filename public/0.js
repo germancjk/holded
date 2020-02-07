@@ -125,8 +125,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      // id: this.$route.params.id,
-      id: 0,
+      id: this.$route.params.id,
+      edit: false,
       name: '',
       supplier: 0,
       category: 0,
@@ -145,6 +145,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({
+    checkEdit: function checkEdit() {
+      var _this = this;
+
+      if (this.id) {
+        console.log('id', this.id);
+        this.edit = true;
+        var token = localStorage.getItem('jwt');
+        axios.defaults.headers.common['Content-Type'] = 'application/json';
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        axios.get("".concat(this.baseApiUrl, "/api/item/").concat(this.id)).then(function (response) {
+          console.log(response);
+          _this.submitName = 'Update';
+          _this.name = response.data.name;
+          _this.supplier = response.data.supplier_id;
+          _this.category = response.data.category_id;
+          _this.tax = response.data.tax_id;
+          _this.store = response.data.store_id;
+        });
+        axios.get("".concat(this.baseApiUrl, "/api/item/sku/").concat(this.id)).then(function (response) {
+          console.log(response);
+          _this.skus = [];
+          response.data.forEach(function (element) {
+            _this.skus.push({
+              name: element.name,
+              cost: element.cost,
+              sale_price: element.sale_price,
+              quantity: 0
+            });
+          });
+        });
+      }
+    },
     addSku: function addSku() {
       this.skus.push({
         name: '',
@@ -162,7 +194,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     submitSku: function submitSku(item_id) {
-      var _this = this;
+      var _this2 = this;
 
       // submit new sku
       var total = this.skus.length;
@@ -181,24 +213,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             console.log(response);
             var stock = {
               item_sku_id: response.data.data.id,
-              store_id: _this.store,
+              store_id: _this2.store,
               quantity: element.quantity
             };
 
-            _this.submitStock(stock); // clear when fits total of skus
+            _this2.submitStock(stock); // clear when fits total of skus
 
 
             if (total == quantity) {
-              _this.showAdd = true;
+              _this2.showAdd = true;
 
-              _this.clearForm();
+              _this2.clearForm();
             }
           });
         }
       });
     },
     submit: function submit(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault();
       this.messageError = [];
@@ -238,7 +270,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         axios.post('api/item', params).then(function (response) {
           console.log(response);
 
-          _this2.submitSku(response.data.data.id);
+          _this3.submitSku(response.data.data.id);
         });
       } else {
         this.messageError.unshift('Errors below:');
@@ -270,12 +302,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getSuppliers', 'getTaxes', 'getCategories', 'getStores'])),
   mounted: function mounted() {
     this.showError = false;
+    this.checkEdit();
     this.getCategories();
     this.getSuppliers();
     this.getStores();
     this.getTaxes();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['suppliers', 'taxes', 'categories', 'stores']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['suppliers', 'taxes', 'categories', 'stores', 'baseApiUrl']))
 });
 
 /***/ }),
@@ -467,7 +500,7 @@ var render = function() {
                     { staticClass: "form-group col-6" },
                     [
                       _c("label", { attrs: { for: "store" } }, [
-                        _vm._v("Stores")
+                        _vm._v("Store (default)")
                       ]),
                       _vm._v(" "),
                       _c("v-select", {

@@ -41,17 +41,10 @@ class ItemController extends Controller
     ]);
   }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Item $item)
-    {
-        //
-    }
+  public function show(Item $item)
+  {
+    return response()->json($item);
+  }
 
     /**
      * Show the form for editing the specified resource.

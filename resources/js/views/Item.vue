@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="form-group col-6">
-                  <label for="store">Stores</label>
+                  <label for="store">Store (default)</label>
                   <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
                 </div>
               </div>
@@ -106,8 +106,8 @@ export default {
     },
     data(){
       return {
-        // id: this.$route.params.id,
-        id: 0,
+        id: this.$route.params.id,
+        edit: false,
         name: '',
         supplier: 0,
         category: 0,
@@ -128,6 +128,39 @@ export default {
       }
     },
     methods : {
+      checkEdit() {
+        if (this.id) {
+          console.log('id', this.id)
+          this.edit = true
+          let token = localStorage.getItem('jwt')
+
+          axios.defaults.headers.common['Content-Type'] = 'application/json'
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+          axios.get(`${this.baseApiUrl}/api/item/${this.id}`).then(response => {
+            console.log(response)
+            this.submitName = 'Update'
+            this.name = response.data.name
+            this.supplier = response.data.supplier_id
+            this.category = response.data.category_id
+            this.tax = response.data.tax_id
+            this.store = response.data.store_id
+          })
+
+          axios.get(`${this.baseApiUrl}/api/item/sku/${this.id}`).then(response => {
+            console.log(response)
+            this.skus = []
+            response.data.forEach(element => {
+              this.skus.push({
+                name: element.name,
+                cost: element.cost,
+                sale_price: element.sale_price,
+                quantity: 0
+              })
+            })
+          })
+        }
+      },
       addSku () {
         this.skus.push({
           name: '',
@@ -243,13 +276,14 @@ export default {
     },
     mounted() {
       this.showError = false
+      this.checkEdit()
       this.getCategories()
       this.getSuppliers()
       this.getStores()
       this.getTaxes()
     },
     computed: {
-      ...mapGetters(['suppliers', 'taxes', 'categories', 'stores'])
+      ...mapGetters(['suppliers', 'taxes', 'categories', 'stores', 'baseApiUrl'])
     }
 }
 </script>

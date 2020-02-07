@@ -18,12 +18,14 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('supplier_id');
+            $table->unsignedInteger('store_id');
             $table->unsignedInteger('tax_id');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->foreign('store_id')->references('id')->on('stores');
             $table->foreign('tax_id')->references('id')->on('taxes');
         });
     }
