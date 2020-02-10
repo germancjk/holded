@@ -9,5 +9,5 @@ class Store extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['name'];
+  protected $fillable = ['name', 'user_id'];
 }

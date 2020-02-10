@@ -15,6 +15,7 @@ class TaxController extends Controller
     public function store(Request $request)
     {
       $tax = Tax::create([
+          'user_id' => $request->user_id,
           'name' => $request->name,
           'percent' => $request->percent
       ]);

@@ -9,5 +9,5 @@ class Supplier extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['name', 'address'];
+  protected $fillable = ['name', 'address', 'user_id'];
 }

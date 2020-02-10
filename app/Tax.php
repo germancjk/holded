@@ -9,5 +9,5 @@ class Tax extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['name', 'percent'];
+  protected $fillable = ['name', 'percent', 'user_id'];
 }

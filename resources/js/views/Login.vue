@@ -39,54 +39,65 @@
 </template>
 
 <script>
-    export default {
-        data(){
-            return {
-                email : "",
-                password : ""
-            }
-        },
-        methods : {
-            handleSubmit(e){
-                e.preventDefault()
+import { mapGetters, mapActions } from 'vuex'
 
-                if (this.password.length > 0) {
-                    axios.post('api/login', {
-                        email: this.email,
-                        password: this.password
-                      })
-                      .then(response => {
-                        localStorage.setItem('user',response.data.success.name)
-                        localStorage.setItem('jwt',response.data.success.token)
+  export default {
+    data(){
+      return {
+        email : "",
+        password : ""
+      }
+    },
+    methods : {
+        handleSubmit(e){
+          e.preventDefault()
 
-                        if (localStorage.getItem('jwt') != null){
-                            this.$router.go('/board')
-                        }
-                      })
-                      .catch(function (error) {
-                        console.error(error);
-                      });
+          if (this.password.length > 0) {
+            axios.post('api/login', {
+                email: this.email,
+                password: this.password
+              })
+              .then(response => {
+                localStorage.setItem('user_id', response.data.success.id)
+                localStorage.setItem('user', response.data.success.name)
+                localStorage.setItem('jwt', response.data.success.token)
+
+                if (localStorage.getItem('jwt') != null){
+                  // set on store
+                  const login = {
+                    id: response.data.success.id,
+                    name: response.data.success.name,
+                  }
+                  console.log('login', login)
+                  this.setLoginData(login)
+                  // this.$router.go('/board')
                 }
-            },
-            logout(){
-              axios.post('api/logout', {
-                  email: this.email,
-                })
-                .then(response => {
-                    this.$router.go('/')
-                })
-                .catch(function (error) {
-                  console.error(error);
-                });
-            }
-        },
-        beforeRouteEnter (to, from, next) {
-          // localStorage.removeItem('jwt')
-          if (localStorage.getItem('jwt')) {
-            return next('board');
+              })
+              .catch(function (error) {
+                console.error(error);
+              });
           }
+        },
+        logout(){
+          axios.post('api/logout', {
+              email: this.email,
+            })
+            .then(response => {
+                this.$router.go('/')
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+        },
+        ...mapActions(['setLoginData']),
+    },
+    beforeRouteEnter (to, from, next) {
+      // localStorage.removeItem('jwt')
+      if (localStorage.getItem('jwt')) {
+        return next('board');
+      }
 
-          next();
-        }
+      next();
     }
+  }
 </script>

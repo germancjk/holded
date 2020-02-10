@@ -28,6 +28,7 @@ class ItemController extends Controller
   public function store(Request $request)
   {
     $item = Item::create([
+      'user_id' => $request->user_id,
       'name' => $request->name,
       'category_id' => $request->category_id,
       'supplier_id' => $request->supplier_id,

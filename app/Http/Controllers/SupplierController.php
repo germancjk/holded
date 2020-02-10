@@ -15,6 +15,7 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
       $supplier = Supplier::create([
+          'user_id' => $request->user_id,
           'name' => $request->name,
           'address' => $request->address
       ]);

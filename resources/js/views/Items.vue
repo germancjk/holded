@@ -22,9 +22,6 @@
                       <td scope="row" class="text-right">{{ element.sku_sale_price }}</td>
                       <td class="text-right">
                         <router-link class="btn btn-sm btn-warning" :to="{ name: 'item.edit', params: { id: element.sku_id }}"><i class="fa fa-edit"></i> Edit</router-link>
-                        <!-- <button class="btn btn-sm btn-warning" type="button" name="button" @click="this.$router.push({ name: 'item.edit', params: { id: element.sku_id}})">
-                          <i class="fa fa-edit"></i> Edit
-                        </button> -->
                         <button class="btn btn-sm btn-danger" type="button" name="button" @click="remove(element.sku_id)">
                           <i class="fa fa-trash"></i> Remove
                         </button>

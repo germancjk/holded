@@ -29,6 +29,7 @@ class StockController extends Controller
     public function store(Request $request)
     {
       $stock = Stock::create([
+        'user_id' => $request->user_id,
         'item_sku_id' => $request->item_sku_id,
         'store_id' => $request->store_id,
         'quantity' => $request->quantity

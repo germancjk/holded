@@ -9,7 +9,7 @@ class Task extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'category_id', 'user_id', 'order'];
+    protected $fillable = ['name', 'category_id', 'user_id', 'order', 'user_id'];
 
     public function category() {
         return $this->hasOne(Category::class);

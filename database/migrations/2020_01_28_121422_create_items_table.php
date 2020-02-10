@@ -15,7 +15,9 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('name');
+            $table->string('barcode')->nullable();
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('store_id');
@@ -23,6 +25,7 @@ class CreateItemsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->foreign('store_id')->references('id')->on('stores');

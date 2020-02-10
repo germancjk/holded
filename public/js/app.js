@@ -27764,13 +27764,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
+    login: {
+      id: 0,
+      name: ''
+    },
     taxes: [],
-    // items: [],
     stores: [],
     suppliers: [],
     categories: [],
@@ -27824,6 +27835,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         });
         state.taxes = [].concat(data);
       });
+    },
+    setLoginData: function setLoginData(state, data) {
+      console.log('data:', data);
+      state.login = _toConsumableArray(data);
     }
   },
   actions: {
@@ -27842,6 +27857,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     getSuppliers: function getSuppliers(_ref4) {
       var commit = _ref4.commit;
       commit('loadSuppliers');
+    },
+    setLoginData: function setLoginData(_ref5, data) {
+      var commit = _ref5.commit;
+      commit('setLoginData', data);
     }
   },
   modules: {//
@@ -27861,6 +27880,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     baseApiUrl: function baseApiUrl(state) {
       return state.baseApiUrl;
+    },
+    loginData: function loginData(state) {
+      return state.login;
     }
   }
 }));

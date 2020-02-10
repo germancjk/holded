@@ -26,6 +26,7 @@ class ItemSkuController extends Controller
      public function store(Request $request)
      {
        $itemSku = ItemSku::create([
+         'user_id' => $request->user_id,
          'item_id' => $request->item_id,
          'name' => $request->name,
          'cost' => $request->cost,

@@ -14,7 +14,10 @@ class StoreController extends Controller
 
     public function store(Request $request)
     {
-        $store = Store::create($request->only('name'));
+        $store = Store::create([
+          'user_id' => $request->user_id,
+          'name' => $request->name,
+          ]);
 
         return response()->json([
             'status' => (bool) $store,

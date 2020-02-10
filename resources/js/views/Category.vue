@@ -92,6 +92,7 @@ export default {
                 this.getCategories()
             })
           } else {
+            console.log(this.login)
             axios.post(`${this.baseApiUrl}/api/category`, { name: this.name }).then(response => {
                 this.name = ''
                 this.getCategories()
@@ -125,7 +126,7 @@ export default {
       this.getCategories()
     },
     computed: {
-      ...mapGetters(['categories', 'baseApiUrl'])
+      ...mapGetters(['categories', 'baseApiUrl', 'loginData'])
     }
 }
 </script>

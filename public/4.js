@@ -113,6 +113,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this.getCategories();
           });
         } else {
+          console.log(this.login);
           axios.post("".concat(this.baseApiUrl, "/api/category"), {
             name: this.name
           }).then(function (response) {
@@ -150,7 +151,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.showError = false;
     this.getCategories();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'baseApiUrl']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'baseApiUrl', 'loginData']))
 });
 
 /***/ }),

@@ -9,5 +9,5 @@ class Stock extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['item_sku_id', 'store_id', 'quantity'];
+  protected $fillable = ['item_sku_id', 'store_id', 'quantity', 'user_id'];
 }
