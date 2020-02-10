@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[8],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Stores.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************!*\
@@ -88,7 +88,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      userId: localStorage.getItem('user_id'),
       name: '',
       edit: false,
       id: null,
@@ -105,8 +104,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.name.length > 0) {
         if (this.edit) {
-          axios.patch("".concat(this.baseApiUrl, "/api/store/").concat(this.id), {
-            user_id: this.userId,
+          axios.patch("api/store/".concat(this.id), {
             name: this.name
           }).then(function (response) {
             _this.name = '';
@@ -115,8 +113,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this.getStores();
           });
         } else {
-          axios.post("".concat(this.baseApiUrl, "/api/store"), {
-            user_id: this.userId,
+          axios.post('api/store', {
             name: this.name
           }).then(function (response) {
             _this.name = '';
@@ -143,9 +140,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       if (id > 0) {
-        axios["delete"]("".concat(this.baseApiUrl, "/api/store/").concat(id), {
-          user_id: this.userId
-        }).then(function (response) {
+        axios["delete"]("api/store/".concat(id)).then(function (response) {
           _this3.getStores();
         });
       }
@@ -155,7 +150,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.showError = false;
     this.getStores();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['stores', 'baseApiUrl']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['stores']))
 });
 
 /***/ }),

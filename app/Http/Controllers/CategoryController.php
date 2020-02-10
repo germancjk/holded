@@ -37,7 +37,10 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $status = $category->update($request->only('user_id'), $request->only('name'));
+        $status = $category->update([
+          'user_id' => $request->user_id,
+          'name' => $request->name,
+          ]);
 
         return response()->json([
             'status' => $status,

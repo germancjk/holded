@@ -64,8 +64,9 @@ export default {
     },
     data(){
         return {
-            categories : [],
-            editingTask : null
+          userId: localStorage.getItem('user_id'),
+          categories : [],
+          editingTask : null
         }
     },
     methods : {

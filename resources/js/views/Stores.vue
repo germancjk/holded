@@ -73,6 +73,7 @@ export default {
     },
     data(){
       return {
+        userId: localStorage.getItem('user_id'),
         name: '',
         edit: false,
         id: null,
@@ -86,13 +87,13 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`api/store/${this.id}`, { name: this.name }).then(response => {
+            axios.patch(`${this.baseApiUrl}/api/store/${this.id}`, { user_id: this.userId, name: this.name }).then(response => {
                 this.name = ''
                 this.submitName = 'Add'
                 this.getStores()
             })
           } else {
-            axios.post('api/store', { name: this.name }).then(response => {
+            axios.post(`${this.baseApiUrl}/api/store`, { user_id: this.userId, name: this.name }).then(response => {
                 this.name = ''
                 this.getStores()
             })
@@ -113,7 +114,7 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`api/store/${id}`).then(response => {
+          axios.delete(`${this.baseApiUrl}/api/store/${id}`, { user_id: this.userId }).then(response => {
             this.getStores()
           })
         }
@@ -125,7 +126,7 @@ export default {
       this.getStores()
     },
     computed: {
-      ...mapGetters(['stores'])
+      ...mapGetters(['stores', 'baseApiUrl'])
     }
 }
 </script>

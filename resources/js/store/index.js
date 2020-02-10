@@ -5,10 +5,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    login: {
-      id: 0,
-      name: '',
-    },
     taxes: [],
     stores: [],
     suppliers: [],
@@ -72,10 +68,6 @@ export default new Vuex.Store({
         state.taxes = [...data]
       })
     },
-    setLoginData (state, data) {
-      console.log('data:', data)
-      state.login = [...data]
-    },
   },
   actions: {
     getCategories ({ commit }) {
@@ -90,9 +82,6 @@ export default new Vuex.Store({
     getSuppliers ({ commit }) {
       commit('loadSuppliers')
     },
-    setLoginData ({commit}, data) {
-      commit('setLoginData', data)
-    }
   },
   modules: {
     //
@@ -113,8 +102,5 @@ export default new Vuex.Store({
     baseApiUrl (state) {
       return state.baseApiUrl
     },
-    loginData (state) {
-      return state.login
-    }
   }
 })

@@ -49,47 +49,41 @@ import { mapGetters, mapActions } from 'vuex'
       }
     },
     methods : {
-        handleSubmit(e){
-          e.preventDefault()
+      handleSubmit(e){
+        e.preventDefault()
 
-          if (this.password.length > 0) {
-            axios.post('api/login', {
-                email: this.email,
-                password: this.password
-              })
-              .then(response => {
-                localStorage.setItem('user_id', response.data.success.id)
-                localStorage.setItem('user', response.data.success.name)
-                localStorage.setItem('jwt', response.data.success.token)
-
-                if (localStorage.getItem('jwt') != null){
-                  // set on store
-                  const login = {
-                    id: response.data.success.id,
-                    name: response.data.success.name,
-                  }
-                  console.log('login', login)
-                  this.setLoginData(login)
-                  // this.$router.go('/board')
-                }
-              })
-              .catch(function (error) {
-                console.error(error);
-              });
-          }
-        },
-        logout(){
-          axios.post('api/logout', {
+        if (this.password.length > 0) {
+          axios.post('api/login', {
               email: this.email,
+              password: this.password
             })
             .then(response => {
-                this.$router.go('/')
+              localStorage.setItem('user_id', response.data.success.id)
+              localStorage.setItem('user', response.data.success.name)
+              localStorage.setItem('jwt', response.data.success.token)
+
+              if (localStorage.getItem('jwt') != null){
+                // set on store
+                this.setUser(response.data.success)
+                this.$router.go('/board')
+              }
             })
             .catch(function (error) {
               console.error(error);
             });
-        },
-        ...mapActions(['setLoginData']),
+        }
+      },
+      logout(){
+        axios.post('api/logout', {
+            email: this.email,
+          })
+          .then(response => {
+              this.$router.go('/')
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      },
     },
     beforeRouteEnter (to, from, next) {
       // localStorage.removeItem('jwt')

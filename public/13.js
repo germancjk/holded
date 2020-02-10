@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Category.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
@@ -88,7 +88,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      userId: localStorage.getItem('user_id'),
       name: '',
       edit: false,
       id: null,
@@ -106,7 +105,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.name.length > 0) {
         if (this.edit) {
           axios.patch("".concat(this.baseApiUrl, "/api/category/").concat(this.id), {
-            user_id: this.userId,
             name: this.name
           }).then(function (response) {
             _this.name = '';
@@ -115,8 +113,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this.getCategories();
           });
         } else {
+          console.log(this.userId);
           axios.post("".concat(this.baseApiUrl, "/api/category"), {
-            user_id: this.userId,
+            id: this.userId,
             name: this.name
           }).then(function (response) {
             _this.name = '';
@@ -143,9 +142,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       if (id > 0) {
-        axios["delete"]("".concat(this.baseApiUrl, "/api/category/").concat(id), {
-          user_id: this.userId
-        }).then(function (response) {
+        axios["delete"]("".concat(this.baseApiUrl, "/api/category/").concat(id)).then(function (response) {
           _this3.getCategories();
         });
       }
@@ -155,7 +152,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.showError = false;
     this.getCategories();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'baseApiUrl']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'baseApiUrl', 'userId']))
 });
 
 /***/ }),

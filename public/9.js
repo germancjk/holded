@@ -95,6 +95,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      userId: localStorage.getItem('user_id'),
       name: '',
       address: '',
       edit: false,
@@ -113,6 +114,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.name.length > 0) {
         if (this.edit) {
           axios.patch("api/supplier/".concat(this.id), {
+            user_id: this.userId,
             name: this.name,
             address: this.address
           }).then(function (response) {
@@ -124,6 +126,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
         } else {
           axios.post('api/supplier', {
+            user_id: this.userId,
             name: this.name,
             address: this.address
           }).then(function (response) {
@@ -153,7 +156,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       if (id > 0) {
-        axios["delete"]("api/supplier/".concat(id)).then(function (response) {
+        axios["delete"]("api/supplier/".concat(id), {
+          user_id: this.userId
+        }).then(function (response) {
           _this3.getSuppliers();
         });
       }

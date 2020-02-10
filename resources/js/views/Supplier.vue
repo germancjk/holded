@@ -80,6 +80,7 @@ export default {
     },
     data(){
       return {
+        userId: localStorage.getItem('user_id'),
         name: '',
         address: '',
         edit: false,
@@ -94,14 +95,14 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`api/supplier/${this.id}`, { name: this.name, address: this.address }).then(response => {
+            axios.patch(`api/supplier/${this.id}`, { user_id: this.userId, name: this.name, address: this.address }).then(response => {
                 this.name = ''
                 this.address = ''
                 this.submitName = 'Add'
                 this.getSuppliers()
             })
           } else {
-            axios.post('api/supplier', { name: this.name, address: this.address }).then(response => {
+            axios.post('api/supplier', { user_id: this.userId, name: this.name, address: this.address }).then(response => {
                 this.name = ''
                 this.address = ''
                 this.getSuppliers()
@@ -124,7 +125,7 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`api/supplier/${id}`).then(response => {
+          axios.delete(`api/supplier/${id}`, { user_id: this.userId }).then(response => {
             this.getSuppliers()
           })
         }

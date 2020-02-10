@@ -80,6 +80,7 @@ export default {
     },
     data(){
       return {
+        userId: localStorage.getItem('user_id'),
         name: '',
         percent: '',
         edit: false,
@@ -94,14 +95,14 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`api/tax/${this.id}`, { name: this.name, percent: this.percent }).then(response => {
+            axios.patch(`api/tax/${this.id}`, { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
                 this.percent = ''
                 this.submitName = 'Add'
                 this.getTaxes()
             })
           } else {
-            axios.post('api/tax', { name: this.name, percent: this.percent }).then(response => {
+            axios.post('api/tax', { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
                 this.percent = ''
                 this.getTaxes()
@@ -124,7 +125,7 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`api/tax/${id}`).then(response => {
+          axios.delete(`api/tax/${id}`, { user_id: this.userId }).then(response => {
             this.getTaxes()
           })
         }

@@ -73,6 +73,7 @@ export default {
     },
     data(){
       return {
+        userId: localStorage.getItem('user_id'),
         name: '',
         edit: false,
         id: null,
@@ -86,16 +87,15 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`${this.baseApiUrl}/api/category/${this.id}`, { name: this.name }).then(response => {
+            axios.patch(`${this.baseApiUrl}/api/category/${this.id}`, { user_id: this.userId, name: this.name }).then(response => {
                 this.name = ''
                 this.submitName = 'Add'
                 this.getCategories()
             })
           } else {
-            console.log(this.login)
-            axios.post(`${this.baseApiUrl}/api/category`, { name: this.name }).then(response => {
-                this.name = ''
-                this.getCategories()
+            axios.post(`${this.baseApiUrl}/api/category`, { user_id: this.userId, name: this.name }).then(response => {
+              this.name = ''
+              this.getCategories()
             })
           }
         } else {
@@ -114,7 +114,7 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`${this.baseApiUrl}/api/category/${id}`).then(response => {
+          axios.delete(`${this.baseApiUrl}/api/category/${id}`, { user_id: this.userId }).then(response => {
             this.getCategories()
           })
         }
@@ -126,7 +126,7 @@ export default {
       this.getCategories()
     },
     computed: {
-      ...mapGetters(['categories', 'baseApiUrl', 'loginData'])
+      ...mapGetters(['categories', 'baseApiUrl'])
     }
 }
 </script>

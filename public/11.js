@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[11],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Item.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************!*\
@@ -116,15 +116,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -134,7 +125,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      userId: localStorage.getItem('user_id'),
       id: this.$route.params.id,
       edit: false,
       name: '',
@@ -150,7 +140,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }],
       submitName: 'Add',
       showError: false,
-      btnDisabled: false,
       messageError: [],
       showAdd: false
     };
@@ -160,11 +149,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       if (this.id) {
+        console.log('id', this.id);
         this.edit = true;
         var token = localStorage.getItem('jwt');
         axios.defaults.headers.common['Content-Type'] = 'application/json';
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         axios.get("".concat(this.baseApiUrl, "/api/item/").concat(this.id)).then(function (response) {
+          console.log(response);
           _this.submitName = 'Update';
           _this.name = response.data.name;
           _this.supplier = response.data.supplier_id;
@@ -173,6 +164,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.store = response.data.store_id;
         });
         axios.get("".concat(this.baseApiUrl, "/api/item/sku/").concat(this.id)).then(function (response) {
+          console.log(response);
           _this.skus = [];
           response.data.forEach(function (element) {
             _this.skus.push({
@@ -194,53 +186,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     submitStock: function submitStock(stock) {
-      var _this2 = this;
-
       // submit stock
-      var total = this.skus.length;
-      var quantity = 0;
-      axios.post('api/stock', stock).then(function (response) {
-        quantity++; // clear when fits total of skus
-
-        if (total == quantity) {
-          _this2.showAdd = true;
-
-          _this2.clearForm();
-        }
+      this.skus.forEach(function (element) {
+        axios.post('api/stock', stock).then(function (response) {
+          console.log(response);
+        });
       });
     },
     submitSku: function submitSku(item_id) {
-      var _this3 = this;
+      var _this2 = this;
 
       // submit new sku
+      var total = this.skus.length;
+      var quantity = 0;
       this.skus.forEach(function (element) {
+        quantity++;
+
         if (element.name.length > 0) {
           var params = {
-            user_id: _this3.userId,
             item_id: item_id,
             name: element.name,
             cost: element.cost,
             sale_price: element.sale_price
           };
           axios.post('api/itemsku', params).then(function (response) {
+            console.log(response);
             var stock = {
-              user_id: _this3.userId,
               item_sku_id: response.data.data.id,
-              store_id: _this3.store,
+              store_id: _this2.store,
               quantity: element.quantity
             };
 
-            _this3.submitStock(stock);
+            _this2.submitStock(stock); // clear when fits total of skus
+
+
+            if (total == quantity) {
+              _this2.showAdd = true;
+
+              _this2.clearForm();
+            }
           });
         }
       });
     },
     submit: function submit(e) {
-      var _this4 = this;
+      var _this3 = this;
 
       e.preventDefault();
       this.messageError = [];
-      this.btnDisabled = true;
 
       if (this.name.length === 0) {
         this.messageError.push('Name is empty');
@@ -258,7 +251,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.messageError.push('Select Tax');
       }
 
-      if (this.stores.length === 0) {
+      if (this.store.length === 0) {
         this.messageError.push('Select Store');
       }
 
@@ -267,7 +260,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var params = {
-        user_id: this.userId,
         name: this.name,
         category_id: this.category,
         supplier_id: this.supplier,
@@ -276,24 +268,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.messageError.length === 0) {
         axios.post('api/item', params).then(function (response) {
-          _this4.submitSku(response.data.data.id);
+          console.log(response);
+
+          _this3.submitSku(response.data.data.id);
         });
       } else {
         this.messageError.unshift('Errors below:');
         console.log('Error', this.messageError.length);
         this.showError = true;
-        this.btnDisabled = false;
       }
     },
     clearForm: function clearForm() {
       // clean objects
       this.messageError = [];
       this.showError = false;
-      this.btnDisabled = false;
+      this.showAdd = false;
       this.name = '';
       this.category = 0;
       this.supplier = 0;
-      this.store = 0;
+      this.stores = 0;
       this.tax = 0;
       this.skus = [{
         name: '',
@@ -544,11 +537,13 @@ var render = function() {
                 [
                   _c("h5", { staticClass: "card-title" }, [_vm._v("Skus")]),
                   _vm._v(" "),
-                  _vm._m(0),
-                  _vm._v(" "),
                   _vm._l(_vm.skus, function(sku, index) {
                     return _c("div", { key: index, staticClass: "form-row" }, [
                       _c("div", { staticClass: "form-group col-6" }, [
+                        _c("label", { attrs: { for: "sku" } }, [
+                          _vm._v("Name")
+                        ]),
+                        _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
@@ -574,10 +569,27 @@ var render = function() {
                               _vm.$set(sku, "name", $event.target.value)
                             }
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "small",
+                          {
+                            staticClass: "form-text text-muted",
+                            attrs: { id: "sku" }
+                          },
+                          [
+                            _vm._v(
+                              "We'll never share your email with anyone else."
+                            )
+                          ]
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group col-2" }, [
+                        _c("label", { attrs: { for: "cost" } }, [
+                          _vm._v("Cost")
+                        ]),
+                        _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
@@ -606,6 +618,10 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group col-2" }, [
+                        _c("label", { attrs: { for: "sale_price" } }, [
+                          _vm._v("Sale Price")
+                        ]),
+                        _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
@@ -634,6 +650,10 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group col-2" }, [
+                        _c("label", { attrs: { for: "quantity" } }, [
+                          _vm._v("Quantity")
+                        ]),
+                        _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
@@ -685,7 +705,7 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-primary",
-            attrs: { type: "button", disabled: _vm.btnDisabled },
+            attrs: { type: "button" },
             on: { click: _vm.submit }
           },
           [_vm._v(_vm._s(_vm.submitName))]
@@ -694,30 +714,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row" }, [
-      _c("div", { staticClass: "form-group col-6" }, [
-        _c("label", { attrs: { for: "sku" } }, [_vm._v("Name")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-2" }, [
-        _c("label", { attrs: { for: "cost" } }, [_vm._v("Cost")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-2" }, [
-        _c("label", { attrs: { for: "cost" } }, [_vm._v("Sale Price")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-2" }, [
-        _c("label", { attrs: { for: "cost" } }, [_vm._v("Quantity")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
