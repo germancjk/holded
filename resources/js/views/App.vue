@@ -19,8 +19,16 @@
               <li class="nav-link" v-if="isLoggedIn"> Hi, {{name}}</li>
               <router-link :to="{ name: 'board' }" class="nav-link" v-if="isLoggedIn">Board</router-link>
               <router-link :to="{ name: 'items' }" class="nav-link" v-if="isLoggedIn">Items</router-link>
-              <router-link :to="{ name: 'stock' }" class="nav-link" v-if="isLoggedIn">Stock</router-link>
               <router-link :to="{ name: 'item.new' }" class="nav-link" v-if="isLoggedIn">New</router-link>
+              <li class="nav-item dropdown" v-if="isLoggedIn">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Stocks
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <router-link :to="{ name: 'stock' }" class="dropdown-item" v-if="isLoggedIn">Stock</router-link>
+                  <router-link :to="{ name: 'movements' }" class="dropdown-item" v-if="isLoggedIn">Movements</router-link>
+                </div>
+              </li>
               <li class="nav-item dropdown" v-if="isLoggedIn">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Tools

@@ -48,6 +48,12 @@ class ItemSkuController extends Controller
                                     );
     }
 
+    public function search(Request $request)
+    {
+      // Route::post('/search/', 'ItemSkuController@search');
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

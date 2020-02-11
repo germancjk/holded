@@ -10012,6 +10012,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11306,21 +11314,62 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "nav-link",
-                            attrs: { to: { name: "stock" } }
-                          },
-                          [_vm._v("Stock")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
                             attrs: { to: { name: "item.new" } }
                           },
                           [_vm._v("New")]
                         )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c("li", { staticClass: "nav-item dropdown" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link dropdown-toggle",
+                              attrs: {
+                                href: "#",
+                                id: "navbarDropdown",
+                                role: "button",
+                                "data-toggle": "dropdown",
+                                "aria-haspopup": "true",
+                                "aria-expanded": "false"
+                              }
+                            },
+                            [_vm._v("\n                Stocks\n              ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "dropdown-menu",
+                              attrs: { "aria-labelledby": "navbarDropdown" }
+                            },
+                            [
+                              _vm.isLoggedIn
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "stock" } }
+                                    },
+                                    [_vm._v("Stock")]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.isLoggedIn
+                                ? _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { to: { name: "movements" } }
+                                    },
+                                    [_vm._v("Movements")]
+                                  )
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ])
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.isLoggedIn
@@ -27675,13 +27724,13 @@ var routes = [{
   path: '/login',
   name: 'login',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
   }
 }, {
   path: '/register',
   name: 'register',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
   }
 }, {
   path: '/board',
@@ -27693,7 +27742,7 @@ var routes = [{
   path: '/logout',
   name: 'logout',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
   }
 }, {
   path: '/categories',
@@ -27705,31 +27754,31 @@ var routes = [{
   path: '/stores',
   name: 'stores',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../views/Stores.vue */ "./resources/js/views/Stores.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../views/Stores.vue */ "./resources/js/views/Stores.vue"));
   }
 }, {
   path: '/taxes',
   name: 'taxes',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../views/Tax.vue */ "./resources/js/views/Tax.vue"));
+    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../views/Tax.vue */ "./resources/js/views/Tax.vue"));
   }
 }, {
   path: '/suppliers',
   name: 'suppliers',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../views/Supplier.vue */ "./resources/js/views/Supplier.vue"));
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../views/Supplier.vue */ "./resources/js/views/Supplier.vue"));
   }
 }, {
   path: '/item',
   name: 'item.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
   }
 }, {
   path: '/item/:id',
   name: 'item.edit',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(0)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
   }
 }, {
   path: '/items',
@@ -27741,7 +27790,13 @@ var routes = [{
   path: '/stock',
   name: 'stock',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
+  }
+}, {
+  path: '/movements',
+  name: 'movements',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../views/Movements.vue */ "./resources/js/views/Movements.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -27773,6 +27828,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     stores: [],
     suppliers: [],
     categories: [],
+    searches: [],
     baseApiUrl: 'http://localhost:8000'
   },
   mutations: {
@@ -27823,6 +27879,20 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         });
         state.taxes = [].concat(data);
       });
+    },
+    searchItems: function searchItems(state, search) {
+      var token = localStorage.getItem('jwt');
+      axios.defaults.headers.common['Content-Type'] = 'application/json';
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+      axios.post("".concat(state.baseApiUrl, "/api/search"), {
+        search: search
+      }).then(function (response) {
+        var data = [];
+        response.data.forEach(function (item) {
+          data.push(item);
+        });
+        state.searches = [].concat(data);
+      });
     }
   },
   actions: {
@@ -27841,6 +27911,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     getSuppliers: function getSuppliers(_ref4) {
       var commit = _ref4.commit;
       commit('loadSuppliers');
+    },
+    findItems: function findItems(_ref5, data) {
+      var commit = _ref5.commit;
+      commit('searchItems', data);
     }
   },
   modules: {//
@@ -27860,6 +27934,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     baseApiUrl: function baseApiUrl(state) {
       return state.baseApiUrl;
+    },
+    searches: function searches(state) {
+      return state.searches;
     }
   }
 }));

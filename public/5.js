@@ -147,7 +147,7 @@ var render = function() {
                             attrs: {
                               to: {
                                 name: "item.edit",
-                                params: { id: element.sku_id }
+                                params: { id: element.item_id }
                               }
                             }
                           },

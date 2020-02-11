@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[10],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tax.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Tax.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Supplier.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Supplier.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -97,7 +97,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       userId: localStorage.getItem('user_id'),
       name: '',
-      percent: '',
+      address: '',
       edit: false,
       id: null,
       submitName: 'Add',
@@ -113,27 +113,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.name.length > 0) {
         if (this.edit) {
-          axios.patch("api/tax/".concat(this.id), {
+          axios.patch("api/supplier/".concat(this.id), {
             user_id: this.userId,
             name: this.name,
-            percent: this.percent
+            address: this.address
           }).then(function (response) {
             _this.name = '';
-            _this.percent = '';
+            _this.address = '';
             _this.submitName = 'Add';
 
-            _this.getTaxes();
+            _this.getSuppliers();
           });
         } else {
-          axios.post('api/tax', {
+          axios.post('api/supplier', {
             user_id: this.userId,
             name: this.name,
-            percent: this.percent
+            address: this.address
           }).then(function (response) {
             _this.name = '';
-            _this.percent = '';
+            _this.address = '';
 
-            _this.getTaxes();
+            _this.getSuppliers();
           });
         }
       } else {
@@ -145,38 +145,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       this.edit = true;
-      axios.get("api/tax/".concat(id)).then(function (response) {
+      axios.get("api/supplier/".concat(id)).then(function (response) {
         _this2.submitName = 'Update';
         _this2.id = id;
         _this2.name = response.data.name;
-        _this2.percent = response.data.percent;
+        _this2.address = response.data.address;
       });
     },
     remove: function remove(id) {
       var _this3 = this;
 
       if (id > 0) {
-        axios["delete"]("api/tax/".concat(id), {
+        axios["delete"]("api/supplier/".concat(id), {
           user_id: this.userId
         }).then(function (response) {
-          _this3.getTaxes();
+          _this3.getSuppliers();
         });
       }
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getTaxes'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getSuppliers'])),
   mounted: function mounted() {
     this.showError = false;
-    this.getTaxes();
+    this.getSuppliers();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['taxes']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['suppliers']))
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tax.vue?vue&type=template&id=e9cf8a48&":
-/*!*************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Tax.vue?vue&type=template&id=e9cf8a48& ***!
-  \*************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Supplier.vue?vue&type=template&id=7a9b902a&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Supplier.vue?vue&type=template&id=7a9b902a& ***!
+  \******************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -203,7 +203,7 @@ var render = function() {
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
-            _c("h5", { staticClass: "card-title" }, [_vm._v("Taxes")]),
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Suppliers")]),
             _vm._v(" "),
             _c(
               "form",
@@ -259,8 +259,8 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-12" }, [
-                    _c("label", { attrs: { for: "percent" } }, [
-                      _vm._v("Percent")
+                    _c("label", { attrs: { for: "address" } }, [
+                      _vm._v("Address")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -268,24 +268,24 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.percent,
-                          expression: "percent"
+                          value: _vm.address,
+                          expression: "address"
                         }
                       ],
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
-                        id: "percent",
-                        "aria-describedby": "percent",
+                        id: "address",
+                        "aria-describedby": "address",
                         required: ""
                       },
-                      domProps: { value: _vm.percent },
+                      domProps: { value: _vm.address },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.percent = $event.target.value
+                          _vm.address = $event.target.value
                         }
                       }
                     }),
@@ -294,7 +294,7 @@ var render = function() {
                       "small",
                       {
                         staticClass: "form-text text-muted",
-                        attrs: { id: "percent" }
+                        attrs: { id: "address" }
                       },
                       [_vm._v("We'll never share your email with anyone else.")]
                     )
@@ -326,7 +326,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.taxes, function(element, index) {
+                _vm._l(_vm.suppliers, function(element, index) {
                   return _c("tr", [
                     _c("th", { attrs: { scope: "row" } }, [
                       _vm._v(_vm._s(element.id))
@@ -334,7 +334,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(element.name))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(element.percent))]),
+                    _c("td", [_vm._v(_vm._s(element.address))]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-right" }, [
                       _c(
@@ -393,7 +393,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Percent")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Address")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])
@@ -406,17 +406,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/views/Tax.vue":
-/*!************************************!*\
-  !*** ./resources/js/views/Tax.vue ***!
-  \************************************/
+/***/ "./resources/js/views/Supplier.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/views/Supplier.vue ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Tax_vue_vue_type_template_id_e9cf8a48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tax.vue?vue&type=template&id=e9cf8a48& */ "./resources/js/views/Tax.vue?vue&type=template&id=e9cf8a48&");
-/* harmony import */ var _Tax_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tax.vue?vue&type=script&lang=js& */ "./resources/js/views/Tax.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Supplier_vue_vue_type_template_id_7a9b902a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Supplier.vue?vue&type=template&id=7a9b902a& */ "./resources/js/views/Supplier.vue?vue&type=template&id=7a9b902a&");
+/* harmony import */ var _Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Supplier.vue?vue&type=script&lang=js& */ "./resources/js/views/Supplier.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -426,9 +426,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Tax_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Tax_vue_vue_type_template_id_e9cf8a48___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Tax_vue_vue_type_template_id_e9cf8a48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Supplier_vue_vue_type_template_id_7a9b902a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Supplier_vue_vue_type_template_id_7a9b902a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -438,38 +438,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/Tax.vue"
+component.options.__file = "resources/js/views/Supplier.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/Tax.vue?vue&type=script&lang=js&":
-/*!*************************************************************!*\
-  !*** ./resources/js/views/Tax.vue?vue&type=script&lang=js& ***!
-  \*************************************************************/
+/***/ "./resources/js/views/Supplier.vue?vue&type=script&lang=js&":
+/*!******************************************************************!*\
+  !*** ./resources/js/views/Supplier.vue?vue&type=script&lang=js& ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tax_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Tax.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tax.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tax_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Supplier.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Supplier.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/Tax.vue?vue&type=template&id=e9cf8a48&":
-/*!*******************************************************************!*\
-  !*** ./resources/js/views/Tax.vue?vue&type=template&id=e9cf8a48& ***!
-  \*******************************************************************/
+/***/ "./resources/js/views/Supplier.vue?vue&type=template&id=7a9b902a&":
+/*!************************************************************************!*\
+  !*** ./resources/js/views/Supplier.vue?vue&type=template&id=7a9b902a& ***!
+  \************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tax_vue_vue_type_template_id_e9cf8a48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Tax.vue?vue&type=template&id=e9cf8a48& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tax.vue?vue&type=template&id=e9cf8a48&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tax_vue_vue_type_template_id_e9cf8a48___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_template_id_7a9b902a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Supplier.vue?vue&type=template&id=7a9b902a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Supplier.vue?vue&type=template&id=7a9b902a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_template_id_7a9b902a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tax_vue_vue_type_template_id_e9cf8a48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Supplier_vue_vue_type_template_id_7a9b902a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -22,7 +22,7 @@
               <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
               <div class="form-row">
                 <div class="form-group col-12">
-                  <label for="name">Name</label>
+                  <label for="name">Name <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
                   <small id="name" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
@@ -30,24 +30,24 @@
 
               <div class="form-row">
                 <div class="form-group col-6">
-                  <label for="categories">Category</label>
+                  <label for="categories">Category <span class="text-danger">*</span></label>
                   <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id"></v-select>
                 </div>
 
                 <div class="form-group col-6">
-                  <label for="supplier">Supplier</label>
+                  <label for="supplier">Supplier <span class="text-danger">*</span></label>
                   <v-select v-model="supplier" label="name" :options="suppliers" :reduce="suppliers => suppliers.id" ></v-select>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-6">
-                  <label for="tax">Tax</label>
+                  <label for="tax">Tax <span class="text-danger">*</span></label>
                   <v-select v-model="tax" label="name" :options="taxes" :reduce="taxes => taxes.id" ></v-select>
                 </div>
 
                 <div class="form-group col-6">
-                  <label for="store">Store (default)</label>
+                  <label for="store">Store (default) <span class="text-danger">*</span></label>
                   <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
                 </div>
               </div>
@@ -61,33 +61,38 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Skus</h5>
-              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+              <h5 class="card-title">Skus <small><i>The SKU is an unique name of each variant.</i></small></h5>
               <div class="form-row">
                 <div class="form-group col-6">
-                  <label for="sku">Name</label>
+                  <label for="sku">Name <span class="text-danger">*</span></label>
                 </div>
-                <div class="form-group col-2">
+                <div class="form-group col-3">
+                  <label for="cost">Barcode</label>
+                </div>
+                <div class="form-group col-1">
                   <label for="cost">Cost</label>
                 </div>
-                <div class="form-group col-2">
-                  <label for="cost">Sale Price</label>
+                <div class="form-group col-1">
+                  <label for="sale_price">Sale Price</label>
                 </div>
-                <div class="form-group col-2">
-                  <label for="cost">Quantity</label>
+                <div class="form-group col-1">
+                  <label for="quantity">Quantity</label>
                 </div>
               </div>
               <div class="form-row" v-for="(sku, index) in skus" :key="index">
                 <div class="form-group col-6">
-                  <input v-model="sku.name" :name="`skus[${index}][name]`" type="text" class="form-control" required autofocus >
+                  <input v-model="sku.name" :name="`skus[${index}][name]`" type="text" class="form-control" required autofocus placeholder="SKU Name - must be unique" >
                 </div>
-                <div class="form-group col-2">
+                <div class="form-group col-3">
+                  <input v-model="sku.barcode" :name="`skus[${index}][barcode]`" type="text" class="form-control" value="0">
+                </div>
+                <div class="form-group col-1">
                   <input v-model="sku.cost" :name="`skus[${index}][cost]`" type="text" class="form-control" value="0">
                 </div>
-                <div class="form-group col-2">
+                <div class="form-group col-1">
                   <input v-model="sku.sale_price" :name="`skus[${index}][sale_price]`" type="text" class="form-control" value="0">
                 </div>
-                <div class="form-group col-2">
+                <div class="form-group col-1">
                   <input v-model="sku.quantity" :name="`skus[${index}][quantity]`" type="text" class="form-control" value="0">
                 </div>
               </div>
@@ -125,6 +130,7 @@ export default {
         store: 0,
         skus: [
           {
+            barcode: '',
             name: '',
             cost: 0,
             sale_price: 0,
@@ -172,6 +178,7 @@ export default {
       addSku () {
         this.skus.push({
           name: '',
+          barcode: '',
           cost: 0,
           sale_price: 0,
           quantity: 0
@@ -197,6 +204,7 @@ export default {
             let params = {
               user_id: this.userId,
               item_id: item_id,
+              barcode: element.barcode,
               name: element.name,
               cost: element.cost,
               sale_price: element.sale_price,
@@ -230,7 +238,7 @@ export default {
         if (this.tax.length === 0) {
           this.messageError.push('Select Tax')
         }
-        if (this.stores.length === 0) {
+        if (this.store.length === 0) {
           this.messageError.push('Select Store')
         }
         if (this.skus[0].name.length === 0) {

@@ -13,6 +13,7 @@ class ItemController extends Controller
       Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
           ->join('categories', 'items.category_id', '=', 'categories.id')
           ->select(
+              'items.id as item_id',
               'items.name as item_name',
               'item_skus.id as sku_id',
               'item_skus.name as sku_name',

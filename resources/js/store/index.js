@@ -9,6 +9,7 @@ export default new Vuex.Store({
     stores: [],
     suppliers: [],
     categories: [],
+    searches: [],
     baseApiUrl: 'http://localhost:8000',
   },
   mutations: {
@@ -68,6 +69,20 @@ export default new Vuex.Store({
         state.taxes = [...data]
       })
     },
+    searchItems (state, search) {
+      let token = localStorage.getItem('jwt')
+
+      axios.defaults.headers.common['Content-Type'] = 'application/json'
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+      axios.post(`${state.baseApiUrl}/api/search`, { search }).then(response => {
+        let data = []
+        response.data.forEach((item) => {
+          data.push(item)
+        })
+        state.searches = [...data]
+      })
+    },
   },
   actions: {
     getCategories ({ commit }) {
@@ -81,6 +96,9 @@ export default new Vuex.Store({
     },
     getSuppliers ({ commit }) {
       commit('loadSuppliers')
+    },
+    findItems ({ commit }, data) {
+      commit('searchItems', data)
     },
   },
   modules: {
@@ -101,6 +119,9 @@ export default new Vuex.Store({
     },
     baseApiUrl (state) {
       return state.baseApiUrl
+    },
+    searches (state) {
+      return state.searches
     },
   }
 })

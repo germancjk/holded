@@ -70,6 +70,11 @@ const routes = [
           name: 'stock',
           component: () => import ('../views/Stock.vue')
         },
+        {
+          path: '/movements',
+          name: 'movements',
+          component: () => import ('../views/Movements.vue')
+        },
     ]
 
 const router = new VueRouter({
