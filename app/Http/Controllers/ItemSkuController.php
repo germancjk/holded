@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 
 class ItemSkuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+  public function index()
+  {
+    // return response()->json(
+    //   ItemSku::query()
+    //     ->with('category', 'itemSku')
+    //     ->orderBy('name')
+    //     ->get()
+    //     ->toArray()
+    //   );
+  }
 
     /**
      * Store a newly created resource in storage.
@@ -51,7 +52,6 @@ class ItemSkuController extends Controller
     public function search(Request $request)
     {
       // Route::post('/search/', 'ItemSkuController@search');
-
     }
 
     /**

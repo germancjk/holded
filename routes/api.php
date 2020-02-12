@@ -56,5 +56,5 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::delete('/stock/{id}', 'StockController@destroy');
 
   // Searches
-  Route::post('/search', 'ItemSkuController@search');
+  Route::post('/search', 'ItemController@find');
 });

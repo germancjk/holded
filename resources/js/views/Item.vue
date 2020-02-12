@@ -209,7 +209,7 @@ export default {
               cost: element.cost,
               sale_price: element.sale_price,
             }
-            axios.post('api/itemsku', params).then(response => {
+            axios.post(`${this.baseApiUrl}/api/itemsku`, params).then(response => {
               let stock = {
                 user_id: this.userId,
                 item_sku_id: response.data.data.id,
@@ -255,7 +255,7 @@ export default {
 
         // add new item
         if (this.messageError.length === 0) {
-          axios.post('api/item', params).then(response => {
+          axios.post(`${this.baseApiUrl}/api/item`, params).then(response => {
             this.submitSku(response.data.data.id)
           })
         } else {

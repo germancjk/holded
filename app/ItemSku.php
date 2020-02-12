@@ -12,7 +12,7 @@ class ItemSku extends Model
 
   protected $fillable = ['item_id', 'name', 'cost', 'sale_price', 'user_id'];
 
-  public function item() {
-    return $this->hasOne(Item::class);
-  }
+  // public function item() {
+  //   return $this->hasOne(Item::class);
+  // }
 }

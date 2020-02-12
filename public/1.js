@@ -230,7 +230,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             cost: element.cost,
             sale_price: element.sale_price
           };
-          axios.post('api/itemsku', params).then(function (response) {
+          axios.post("".concat(_this3.baseApiUrl, "/api/itemsku"), params).then(function (response) {
             var stock = {
               user_id: _this3.userId,
               item_sku_id: response.data.data.id,
@@ -283,7 +283,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }; // add new item
 
       if (this.messageError.length === 0) {
-        axios.post('api/item', params).then(function (response) {
+        axios.post("".concat(this.baseApiUrl, "/api/item"), params).then(function (response) {
           _this4.submitSku(response.data.data.id);
         });
       } else {
