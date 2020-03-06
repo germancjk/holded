@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
       return response()->json(
         Stock::join('item_skus', 'stocks.item_sku_id', '=', 'item_skus.id')
-            ->join('items', 'item_skus.id', '=', 'items.id')
+            ->join('items', 'item_skus.item_id', '=', 'items.id')
             ->join('stores', 'stocks.store_id', '=', 'stores.id')
             ->select(
                 'stocks.quantity as quantity',
@@ -20,6 +20,8 @@ class StockController extends Controller
                 'item_skus.name as sku_name',
                 'stores.name as store_name'
                 )
+            ->byStore($request->store_id)
+            ->bySearchItem($request->search)
             ->getQuery()
             ->get()
             ->toArray()

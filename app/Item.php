@@ -12,23 +12,6 @@ class Item extends Model
 
   protected $fillable = ['name', 'category_id', 'supplier_id', 'tax_id', 'user_id'];
 
-  // public function category()
-  // {
-  //   return $this->belongsTo(Category::class)
-  //     ->withDefault();
-  // }
-  //
-  // public function item()
-  // {
-  //   return $this->belongsTo(Item::class)
-  //     ->withDefault();
-  // }
-  //
-  // public function itemSku()
-  // {
-  //   return $this->hasMany(ItemSku::class)
-  //     ->withDefault();
-  // }
   public function scopeByCategory($query, $search)
   {
     if (empty($search)) {

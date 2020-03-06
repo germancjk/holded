@@ -27772,31 +27772,31 @@ var routes = [{
   path: '/item',
   name: 'item.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
   }
 }, {
   path: '/item/:id',
   name: 'item.edit',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
   }
 }, {
   path: '/items',
   name: 'items',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ../views/Items.vue */ "./resources/js/views/Items.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../views/Items.vue */ "./resources/js/views/Items.vue"));
   }
 }, {
   path: '/stock',
   name: 'stock',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
   }
 }, {
   path: '/movements',
   name: 'movements',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../views/Movements.vue */ "./resources/js/views/Movements.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../views/Movements.vue */ "./resources/js/views/Movements.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

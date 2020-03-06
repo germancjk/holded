@@ -49,6 +49,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {//
@@ -112,6 +125,80 @@ var render = function() {
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "form-row" }, [
+              _c(
+                "div",
+                { staticClass: "form-group col-4" },
+                [
+                  _c("v-select", {
+                    attrs: {
+                      label: "name",
+                      options: _vm.stores,
+                      reduce: function(stores) {
+                        return stores.id
+                      }
+                    },
+                    model: {
+                      value: _vm.store,
+                      callback: function($$v) {
+                        _vm.store = $$v
+                      },
+                      expression: "store"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-4" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.search,
+                      expression: "search"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "Search by Name" },
+                  domProps: { value: _vm.search },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group col-4" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button", name: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.find()
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Search\n              ")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mt-5" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
             _c("table", { staticClass: "table table-hover" }, [
               _vm._m(0),
               _vm._v(" "),
@@ -135,9 +222,7 @@ var render = function() {
                       "td",
                       { staticClass: "text-right", attrs: { scope: "row" } },
                       [_vm._v(_vm._s(element.quantity))]
-                    ),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-right" })
+                    )
                   ])
                 }),
                 0
@@ -162,9 +247,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "text-right", attrs: { scope: "col" } }, [
           _vm._v("Quantity")
-        ]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } })
+        ])
       ])
     ])
   }
