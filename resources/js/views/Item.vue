@@ -142,6 +142,7 @@ export default {
         btnDisabled: false,
         messageError: [],
         showAdd: false,
+        submitedLeft: 0,
       }
     },
     methods : {
@@ -187,11 +188,10 @@ export default {
       submitStock(stock) {
         // submit stock
         const total = this.skus.length;
-        let quantity = 0;
-        axios.post('api/stock', stock).then(response => {
-          quantity++;
+        axios.post(`${this.baseApiUrl}/api/stock`, stock).then(response => {
+          this.submitedLeft++;
           // clear when fits total of skus
-          if (total == quantity) {
+          if (total == this.submitedLeft) {
             this.showAdd = true
             this.clearForm()
           }

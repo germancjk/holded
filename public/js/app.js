@@ -10113,7 +10113,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.full-height[data-v-1ae8ae93] {\r\n    height: 100vh;\n}\n.flex-center[data-v-1ae8ae93] {\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\n.position-ref[data-v-1ae8ae93] {\r\n    position: relative;\n}\n.top-right[data-v-1ae8ae93] {\r\n    position: absolute;\r\n    right: 10px;\r\n    top: 18px;\n}\n.content[data-v-1ae8ae93] {\r\n    text-align: center;\n}\n.title[data-v-1ae8ae93] {\r\n    font-size: 60px;\n}\n.links > a[data-v-1ae8ae93] {\r\n    color: #636b6f;\r\n    padding: 0 25px;\r\n    font-size: 12px;\r\n    font-weight: 600;\r\n    letter-spacing: .1rem;\r\n    text-decoration: none;\r\n    text-transform: uppercase;\n}\n.m-b-md[data-v-1ae8ae93] {\r\n    margin-bottom: 30px;\r\n    color: #000000;\n}\r\n", ""]);
+exports.push([module.i, "\n.full-height[data-v-1ae8ae93] {\n    height: 100vh;\n}\n.flex-center[data-v-1ae8ae93] {\n    -webkit-box-align: center;\n            align-items: center;\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-pack: center;\n            justify-content: center;\n}\n.position-ref[data-v-1ae8ae93] {\n    position: relative;\n}\n.top-right[data-v-1ae8ae93] {\n    position: absolute;\n    right: 10px;\n    top: 18px;\n}\n.content[data-v-1ae8ae93] {\n    text-align: center;\n}\n.title[data-v-1ae8ae93] {\n    font-size: 60px;\n}\n.links > a[data-v-1ae8ae93] {\n    color: #636b6f;\n    padding: 0 25px;\n    font-size: 12px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.m-b-md[data-v-1ae8ae93] {\n    margin-bottom: 30px;\n    color: #000000;\n}\n", ""]);
 
 // exports
 
@@ -27772,31 +27772,31 @@ var routes = [{
   path: '/item',
   name: 'item.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
   }
 }, {
   path: '/item/:id',
   name: 'item.edit',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
   }
 }, {
   path: '/items',
   name: 'items',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../views/Items.vue */ "./resources/js/views/Items.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../views/Items.vue */ "./resources/js/views/Items.vue"));
   }
 }, {
   path: '/stock',
   name: 'stock',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
   }
 }, {
   path: '/movements',
   name: 'movements',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../views/Movements.vue */ "./resources/js/views/Movements.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(12), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../views/Movements.vue */ "./resources/js/views/Movements.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -28117,8 +28117,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\holded\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\holded\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/german/localhost/holded/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/german/localhost/holded/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

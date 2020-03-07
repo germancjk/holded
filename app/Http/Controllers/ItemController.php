@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\{ Item, ItemSku };
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
     return response()->json(
       Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
@@ -18,8 +19,12 @@ class ItemController extends Controller
               'item_skus.id as sku_id',
               'item_skus.name as sku_name',
               'item_skus.sale_price as sku_sale_price',
-              'categories.name as category_name'
+              'categories.name as category_name',
+              DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
               )
+          ->byCategory($request->category_id)
+          ->bySearchItem($request->search)
+          ->orWhere->bySearchItemSku($request->search)
           ->getQuery()
           ->get()
           ->toArray()
@@ -80,27 +85,5 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         //
-    }
-
-    public function find(Request $request)
-    {
-      return response()->json(
-        Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
-            ->join('categories', 'items.category_id', '=', 'categories.id')
-            ->select(
-                'items.id as item_id',
-                'items.name as item_name',
-                'item_skus.id as sku_id',
-                'item_skus.name as sku_name',
-                'item_skus.sale_price as sku_sale_price',
-                'categories.name as category_name'
-                )
-            ->byCategory($request->category_id)
-            ->bySearchItem($request->search)
-            ->orWhere->bySearchItemSku($request->search)
-            ->getQuery()
-            ->get()
-            ->toArray()
-          );
     }
 }

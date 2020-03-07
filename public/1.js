@@ -158,7 +158,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showError: false,
       btnDisabled: false,
       messageError: [],
-      showAdd: false
+      showAdd: false,
+      submitedLeft: 0
     };
   },
   methods: _objectSpread({
@@ -205,11 +206,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       // submit stock
       var total = this.skus.length;
-      var quantity = 0;
-      axios.post('api/stock', stock).then(function (response) {
-        quantity++; // clear when fits total of skus
+      axios.post("".concat(this.baseApiUrl, "/api/stock"), stock).then(function (response) {
+        _this2.submitedLeft++; // clear when fits total of skus
 
-        if (total == quantity) {
+        if (total == _this2.submitedLeft) {
           _this2.showAdd = true;
 
           _this2.clearForm();

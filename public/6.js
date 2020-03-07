@@ -92,6 +92,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -102,16 +104,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       name: '',
+      item: 0,
       from: 0,
       to: 0,
-      skus: [],
-      searchedData: {
-        sku_id: 0,
-        item_name: '',
-        sku_name: '',
-        barcode: '',
-        quantity: 0
-      },
+      cart: [],
+      list: [],
       btnDisabled: false,
       submitName: 'Add'
     };
@@ -120,35 +117,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     find: function find() {
       var _this = this;
 
-      var token = localStorage.getItem('jwt');
-      axios.defaults.headers.common['Content-Type'] = 'application/json';
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-      axios.get('api/movements').then(function (response) {
-        console.log(response);
-        _this.searchedData = {
-          sku_id: response['sku_id'],
-          item_name: response['item_name'],
-          sku_name: response['sku_name'],
-          barcode: response['barcode'],
-          quantity: response['quantity']
-        };
+      var params = {
+        store_id: this.from,
+        search: ''
+      };
+      axios.post("".concat(this.baseApiUrl, "/api/search"), params).then(function (response) {
+        _this.list = response['data'];
       });
     },
-    addItem: function addItem() {
-      this.skus.push({
-        sku_id: this.searchedData.sku_id,
-        name: this.searchedData.item_name + ' ' + this.searchedData.sku_name,
-        barcode: this.searchedData.barcode,
-        quantity: this.searchedData.quantity
+    stock: function stock(item) {
+      var _this2 = this;
+
+      var params = {
+        item_sku_id: item.sku_id,
+        store_id: this.from
+      };
+      axios.post("".concat(this.baseApiUrl, "/api/stock/item"), params).then(function (response) {
+        // add to cart
+        _this2.addCart({
+          sku_id: item.sku_id,
+          name: item.name,
+          quantity: 0,
+          available: response['data'][0].quantity
+        });
       });
+    },
+    addCart: function addCart(item) {
+      this.cart.push(item);
     },
     submit: function submit() {//
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getStores'])),
   mounted: function mounted() {
     this.getStores();
+    this.find();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['stores', 'baseApiUrl']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['stores', 'baseApiUrl'])),
+  watch: {
+    item: function item(_item) {
+      // search availability
+      this.stock(_item);
+    }
+  }
 });
 
 /***/ }),
@@ -234,50 +244,26 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "form-group col-12" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "text",
-                    id: "name",
-                    "aria-describedby": "name",
-                    required: "",
-                    autofocus: ""
-                  },
-                  domProps: { value: _vm.name },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.name = $event.target.value
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("small", [_vm._v("Test of name of a product")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-row" }, [
               _c(
-                "button",
-                {
-                  staticClass: "btn btn-success btn-sm",
-                  attrs: { type: "button" },
-                  on: { click: _vm.addItem }
-                },
-                [_vm._v("Add Item")]
+                "div",
+                { staticClass: "form-group col-12" },
+                [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("v-select", {
+                    attrs: { label: "name", options: _vm.list },
+                    model: {
+                      value: _vm.item,
+                      callback: function($$v) {
+                        _vm.item = $$v
+                      },
+                      expression: "item"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("small", [_vm._v("Test of name of a product")])
+                ],
+                1
               )
             ])
           ])
@@ -288,106 +274,61 @@ var render = function() {
     _c("div", { staticClass: "row mt-2 mb-2" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            [
-              _c("h5", { staticClass: "card-title" }, [_vm._v("To move")]),
-              _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("To move")]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-hover" }, [
               _vm._m(3),
               _vm._v(" "),
-              _vm._l(_vm.skus, function(sku, index) {
-                return _c("div", { key: index, staticClass: "form-row" }, [
-                  _c("div", { staticClass: "form-group col-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: sku.name,
-                          expression: "sku.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        name: "skus[" + index + "][name]",
-                        type: "text",
-                        required: "",
-                        autofocus: "",
-                        placeholder: "SKU Name - must be unique"
-                      },
-                      domProps: { value: sku.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+              _c(
+                "tbody",
+                _vm._l(_vm.cart, function(sku, index) {
+                  return _c("tr", { key: index }, [
+                    _c("td", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(_vm.cart[index].name))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { attrs: { scope: "row" } }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: sku.quantity,
+                            expression: "sku.quantity"
                           }
-                          _vm.$set(sku, "name", $event.target.value)
-                        }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-3" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: sku.barcode,
-                          expression: "sku.barcode"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        name: "skus[" + index + "][barcode]",
-                        type: "text",
-                        value: "0"
-                      },
-                      domProps: { value: sku.barcode },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        ],
+                        staticClass: "form-control col-2 text-right",
+                        attrs: {
+                          name: "cart[" + index + "][quantity]",
+                          type: "text",
+                          value: "0"
+                        },
+                        domProps: { value: sku.quantity },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(sku, "quantity", $event.target.value)
                           }
-                          _vm.$set(sku, "barcode", $event.target.value)
                         }
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-3" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: sku.quantity,
-                          expression: "sku.quantity"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        name: "skus[" + index + "][quantity]",
-                        type: "text",
-                        value: "0"
-                      },
-                      domProps: { value: sku.quantity },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(sku, "quantity", $event.target.value)
-                        }
-                      }
-                    })
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "text-right", attrs: { scope: "row" } },
+                      [_vm._v(_vm._s(_vm.cart[index].available))]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(4, true)
                   ])
-                ])
-              })
-            ],
-            2
-          )
+                }),
+                0
+              )
+            ])
+          ])
         ])
       ])
     ]),
@@ -435,21 +376,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row" }, [
-      _c("div", { staticClass: "form-group col-6" }, [
-        _c("label", { attrs: { for: "sku" } }, [
-          _vm._v("Name "),
-          _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-3" }, [
-        _c("label", { attrs: { for: "cost" } }, [_vm._v("Barcode")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-3" }, [
-        _c("label", { attrs: { for: "quantity" } }, [_vm._v("Quantity")])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Quantity")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Available")]),
+        _vm._v(" "),
+        _c("th")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { scope: "row" } }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-sm btn-outline-danger",
+          attrs: { type: "button" }
+        },
+        [_vm._v("Borrar")]
+      )
     ])
   }
 ]

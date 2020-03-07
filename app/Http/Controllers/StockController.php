@@ -88,4 +88,16 @@ class StockController extends Controller
     {
         //
     }
+
+    public function stock(Request $request)
+    {
+      return response()->json(
+        Stock::select('quantity')
+            ->where('store_id', '=', $request->store_id)
+            ->where('item_sku_id', '=', $request->item_sku_id)
+            ->getQuery()
+            ->get()
+            ->toArray()
+          );
+    }
 }

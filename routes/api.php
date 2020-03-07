@@ -54,8 +54,9 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::get('/stock/{id}', 'StockController@show');
   Route::patch('/stock/{id}', 'StockController@update');
   Route::delete('/stock/{id}', 'StockController@destroy');
-  Route::post('/stock', 'StockController@index');
+  Route::post('/stock/item', 'StockController@stock');
 
   // Searches
-  Route::post('/search', 'ItemController@find');
+  Route::post('/search', 'ItemController@index');
+  Route::post('/stock/search', 'StockController@index');
 });

@@ -84,7 +84,7 @@ export default {
           store_id: this.store,
           search: this.search,
         }
-        axios.post(`${this.baseApiUrl}/api/stock`, params).then(response => {
+        axios.post(`${this.baseApiUrl}/api/stock/search`, params).then(response => {
           console.log(response)
           this.list = response['data']
         })

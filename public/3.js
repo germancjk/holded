@@ -127,7 +127,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-19b23257] {\r\n    border:0;\r\n    border-radius: 0.5rem;\n}\n.transit-1[data-v-19b23257] {\r\n    -webkit-transition: all 1s;\r\n    transition: all 1s;\n}\n.small-card[data-v-19b23257] {\r\n    padding: 1rem;\r\n    background: #f5f8fa;\r\n    margin-bottom: 5px;\r\n    border-radius: .25rem;\n}\n.card-body-dark[data-v-19b23257]{\r\n    background-color: #ccc;\n}\ntextarea[data-v-19b23257] {\r\n    overflow: visible;\r\n    outline: 1px dashed black;\r\n    border: 0;\r\n    padding: 6px 0 2px 8px;\r\n    width: 100%;\r\n    height: 100%;\r\n    resize: none;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-19b23257] {\n    border:0;\n    border-radius: 0.5rem;\n}\n.transit-1[data-v-19b23257] {\n    -webkit-transition: all 1s;\n    transition: all 1s;\n}\n.small-card[data-v-19b23257] {\n    padding: 1rem;\n    background: #f5f8fa;\n    margin-bottom: 5px;\n    border-radius: .25rem;\n}\n.card-body-dark[data-v-19b23257]{\n    background-color: #ccc;\n}\ntextarea[data-v-19b23257] {\n    overflow: visible;\n    outline: 1px dashed black;\n    border: 0;\n    padding: 6px 0 2px 8px;\n    width: 100%;\n    height: 100%;\n    resize: none;\n}\n", ""]);
 
 // exports
 

@@ -36921,7 +36921,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\holded\resources\js\bootstrap.js */"./resources/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /Users/german/localhost/holded/resources/js/bootstrap.js */"./resources/js/bootstrap.js");
 
 
 /***/ })

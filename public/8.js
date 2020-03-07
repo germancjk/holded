@@ -10,6 +10,16 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-select/dist/vue-select.css */ "./node_modules/vue-select/dist/vue-select.css");
+/* harmony import */ var vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_select_dist_vue_select_css__WEBPACK_IMPORTED_MODULE_2__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -63,44 +73,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {//
+  components: {
+    vSelect: vue_select__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   data: function data() {
     return {
-      list: []
+      list: [],
+      search: null,
+      store: null
     };
   },
-  methods: {
+  methods: _objectSpread({
     items: function items() {
       var _this = this;
 
       var token = localStorage.getItem('jwt');
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-      axios.get('api/stock').then(function (response) {
+      axios.get("".concat(this.baseApiUrl, "/api/stock")).then(function (response) {
         console.log(response);
         _this.list = response['data'];
       });
     },
-    remove: function remove(id) {
+    find: function find() {
       var _this2 = this;
 
+      var params = {
+        store_id: this.store,
+        search: this.search
+      };
+      axios.post("".concat(this.baseApiUrl, "/api/stock/search"), params).then(function (response) {
+        console.log(response);
+        _this2.list = response['data'];
+      });
+    },
+    remove: function remove(id) {
+      var _this3 = this;
+
       if (id > 0) {
-        axios["delete"]("api/item/".concat(id)).then(function (response) {
+        axios["delete"]("".concat(this.baseApiUrl, "/api/item/").concat(id)).then(function (response) {
           console.log(response);
 
-          _this2.items();
+          _this3.items();
         });
       }
     }
-  },
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getStores'])),
   mounted: function mounted() {
     this.showError = false;
     this.items();
+    this.getStores();
   },
-  computed: {//
-  }
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['stores', 'baseApiUrl']))
 });
 
 /***/ }),
