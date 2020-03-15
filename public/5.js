@@ -90,48 +90,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       list: [],
       search: null,
-      category: null
+      category: null,
+      userId: localStorage.getItem('user_id')
     };
   },
   methods: _objectSpread({
-    items: function items() {
+    find: function find() {
       var _this = this;
 
       var token = localStorage.getItem('jwt');
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-      axios.get('api/items').then(function (response) {
-        console.log(response);
-        _this.list = response['data'];
-      });
-    },
-    find: function find() {
-      var _this2 = this;
-
       var params = {
+        user_id: this.userId,
         category_id: this.category,
         search: this.search
       };
       axios.post("".concat(this.baseApiUrl, "/api/search"), params).then(function (response) {
         console.log(response);
-        _this2.list = response['data'];
+        _this.list = response['data'];
       });
     },
     remove: function remove(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (id > 0) {
         axios["delete"]("".concat(this.baseApiUrl, "/api/item/").concat(id)).then(function (response) {
           console.log(response);
 
-          _this3.items();
+          _this2.items();
         });
       }
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getCategories'])),
   mounted: function mounted() {
     this.showError = false;
-    this.items();
+    this.find();
     this.getCategories();
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'baseApiUrl']))

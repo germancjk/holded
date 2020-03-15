@@ -20,6 +20,7 @@ class StockController extends Controller
                 'item_skus.name as sku_name',
                 'stores.name as store_name'
                 )
+            ->where('stocks.user_id', '=', $request->user_id)
             ->byStore($request->store_id)
             ->bySearchItem($request->search)
             ->getQuery()
@@ -44,38 +45,21 @@ class StockController extends Controller
       ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Stock  $stock
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Stock $stock)
+    public function update($array)
     {
-        //
-    }
+      $stock = Stock::updateOrInsert([
+          'user_id' => $array->user_id,
+          'item_sku_id' => $array->sku_id,
+          'store_id' => $array->store_id,
+        ],[
+          'quantity' => \DB::raw("stock.quantity + {$array->quantity}"),
+      ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Stock  $stock
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Stock $stock)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Stock  $stock
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Stock $stock)
-    {
-        //
+      return response()->json([
+        'status' => (bool) $stock,
+        'data'   => $stock,
+        'message' => $stock ? 'Stock Created!' : 'Error Creating Stock'
+      ]);
     }
 
     /**

@@ -1,6 +1,11 @@
 <template>
   <div class="container">
 
+    <!-- messages -->
+    <div v-if="done" class="alert alert-success" role="alert">
+      Movement done!
+    </div>
+
     <!-- init search -->
     <div class="row">
       <div class="col-12">
@@ -8,6 +13,7 @@
           <div class="card-body">
             <h5 class="card-title">Movements</h5>
             <p class="card-text">You can move items between stores with tracking.</p>
+
             <div class="form-row">
               <div class="form-group col-6">
                 <label for="tax">From <span class="text-danger">*</span></label>
@@ -23,12 +29,15 @@
               <div class="form-group col-12">
                 <label for="name">Search by: Name, Name + SKU or Barcode <span class="text-danger">*</span></label>
                 <v-select v-model="item" label="name" :options="list" ></v-select>
-                <small>Test of name of a product</small>
+                <!-- <small>Test of name of a product</small> -->
               </div>
             </div>
-            <!-- <div class="form-row">
-              <button type="button" class="btn btn-success btn-sm" @click="addItem">Add Item</button>
-            </div> -->
+            <div class="form-row">
+              <div class="form-group col-12">
+                <label for="comments">Comments <i>(optional)</i> </label>
+                <textarea v-model="comments" class="form-control"></textarea>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -45,20 +54,25 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th class="text-right">Quantity</th>
                   <th class="text-right">Available</th>
+                  <th class="text-right">Quantity</th>
                   <th ></th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(sku, index) in cart" :key="index">
-                  <td scope="row">{{ cart[index].name }}</td>
+                <tr v-for="(row, index) in cart" :key="index">
+                  <td scope="row">{{ row.name }}</td>
+                  <td scope="row" class="text-right">{{ row.available }} </td>
                   <td scope="row">
-                    <input v-model="sku.quantity" :name="`cart[${index}][quantity]`" type="text" class="form-control col-2 text-right" value="0">
+                    <input
+                      v-model="row.quantity"
+                      type="number"
+                      class="form-control col-sm-6 text-right float-right"
+                      min="1" :max="row.available"
+                    >
                   </td>
-                  <td scope="row" class="text-right">{{ cart[index].available }}</td>
-                  <td scope="row" >
-                    <button type="button" class="btn btn-sm btn-outline-danger">Borrar</button>
+                  <td scope="row">
+                    <button type="button" class="btn btn-sm btn-outline-danger float-right">Borrar</button>
                   </td>
                 </tr>
               </tbody>
@@ -84,25 +98,32 @@ export default {
     },
     data(){
       return {
+        userId: localStorage.getItem('user_id'),
         name: '',
         item: 0,
         from: 0,
         to: 0,
+        comments: '',
         cart: [],
         list: [],
         btnDisabled: false,
-        submitName: 'Add'
+        submitName: 'Move',
+        done: false,
       }
     },
     methods : {
       find() {
         const params = {
+          user_id: this.userId,
           store_id: this.from,
           search: '',
         }
         axios.post(`${this.baseApiUrl}/api/search`, params).then(response => {
           this.list = response['data']
         })
+      },
+      inCart(item) {
+        return this.cart.find( line => line.sku_id === item.sku_id )
       },
       stock(item) {
         const params = {
@@ -123,7 +144,29 @@ export default {
         this.cart.push(item)
       },
       submit() {
-        //
+        this.btnDisabled = true
+        const params = {
+          user_id: this.userId,
+          from: this.from,
+          to: this.to,
+          cart: this.cart,
+          comments: this.comments,
+        }
+        axios.post(`${this.baseApiUrl}/api/movement`, params).then(response => {
+          if (response.data.status == true) {
+            this.clean()
+          }
+        })
+      },
+      clean() {
+        this.done = true
+        this.name = ''
+        this.item = 0
+        this.from = 0
+        this.to = 0
+        this.comments = ''
+        this.cart = []
+        this.list = []
       },
       ...mapActions(['getStores'])
     },
@@ -133,12 +176,15 @@ export default {
     },
     computed: {
       ...mapGetters(['stores', 'baseApiUrl'])
-    }
-    ,
+    },
     watch: {
       item: function (item) {
         // search availability
-        this.stock(item)
+        if(item !== undefined){
+          if(this.inCart(item) === undefined){
+            this.stock(item)
+          }
+        }
       },
     }
 }

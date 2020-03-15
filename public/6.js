@@ -94,6 +94,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -103,14 +117,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      userId: localStorage.getItem('user_id'),
       name: '',
       item: 0,
       from: 0,
       to: 0,
+      comments: '',
       cart: [],
       list: [],
       btnDisabled: false,
-      submitName: 'Add'
+      submitName: 'Move',
+      done: false
     };
   },
   methods: _objectSpread({
@@ -118,11 +135,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       var params = {
+        user_id: this.userId,
         store_id: this.from,
         search: ''
       };
       axios.post("".concat(this.baseApiUrl, "/api/search"), params).then(function (response) {
         _this.list = response['data'];
+      });
+    },
+    inCart: function inCart(item) {
+      return this.cart.find(function (line) {
+        return line.sku_id === item.sku_id;
       });
     },
     stock: function stock(item) {
@@ -145,7 +168,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addCart: function addCart(item) {
       this.cart.push(item);
     },
-    submit: function submit() {//
+    submit: function submit() {
+      var _this3 = this;
+
+      this.btnDisabled = true;
+      var params = {
+        user_id: this.userId,
+        from: this.from,
+        to: this.to,
+        cart: this.cart,
+        comments: this.comments
+      };
+      axios.post("".concat(this.baseApiUrl, "/api/movement"), params).then(function (response) {
+        if (response.data.status == true) {
+          _this3.clean();
+        }
+      });
+    },
+    clean: function clean() {
+      this.done = true;
+      this.name = '';
+      this.item = 0;
+      this.from = 0;
+      this.to = 0;
+      this.comments = '';
+      this.cart = [];
+      this.list = [];
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getStores'])),
   mounted: function mounted() {
@@ -156,7 +204,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   watch: {
     item: function item(_item) {
       // search availability
-      this.stock(_item);
+      if (_item !== undefined) {
+        if (this.inCart(_item) === undefined) {
+          this.stock(_item);
+        }
+      }
     }
   }
 });
@@ -179,6 +231,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _vm.done
+      ? _c(
+          "div",
+          { staticClass: "alert alert-success", attrs: { role: "alert" } },
+          [_vm._v("\n    Movement done!\n  ")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
@@ -259,12 +319,37 @@ var render = function() {
                       },
                       expression: "item"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("small", [_vm._v("Test of name of a product")])
+                  })
                 ],
                 1
               )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-row" }, [
+              _c("div", { staticClass: "form-group col-12" }, [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.comments,
+                      expression: "comments"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  domProps: { value: _vm.comments },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.comments = $event.target.value
+                    }
+                  }
+                })
+              ])
             ])
           ])
         ])
@@ -278,15 +363,21 @@ var render = function() {
             _c("h5", { staticClass: "card-title" }, [_vm._v("To move")]),
             _vm._v(" "),
             _c("table", { staticClass: "table table-hover" }, [
-              _vm._m(3),
+              _vm._m(4),
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.cart, function(sku, index) {
+                _vm._l(_vm.cart, function(row, index) {
                   return _c("tr", { key: index }, [
                     _c("td", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(_vm.cart[index].name))
+                      _vm._v(_vm._s(row.name))
                     ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "text-right", attrs: { scope: "row" } },
+                      [_vm._v(_vm._s(row.available) + " ")]
+                    ),
                     _vm._v(" "),
                     _c("td", { attrs: { scope: "row" } }, [
                       _c("input", {
@@ -294,35 +385,26 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: sku.quantity,
-                            expression: "sku.quantity"
+                            value: row.quantity,
+                            expression: "row.quantity"
                           }
                         ],
-                        staticClass: "form-control col-2 text-right",
-                        attrs: {
-                          name: "cart[" + index + "][quantity]",
-                          type: "text",
-                          value: "0"
-                        },
-                        domProps: { value: sku.quantity },
+                        staticClass:
+                          "form-control col-sm-6 text-right float-right",
+                        attrs: { type: "number", min: "1", max: row.available },
+                        domProps: { value: row.quantity },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(sku, "quantity", $event.target.value)
+                            _vm.$set(row, "quantity", $event.target.value)
                           }
                         }
                       })
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "text-right", attrs: { scope: "row" } },
-                      [_vm._v(_vm._s(_vm.cart[index].available))]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(4, true)
+                    _vm._m(5, true)
                   ])
                 }),
                 0
@@ -376,13 +458,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "comments" } }, [
+      _vm._v("Comments "),
+      _c("i", [_vm._v("(optional)")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-right" }, [_vm._v("Quantity")]),
-        _vm._v(" "),
         _c("th", { staticClass: "text-right" }, [_vm._v("Available")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Quantity")]),
         _vm._v(" "),
         _c("th")
       ])
@@ -396,7 +487,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "btn btn-sm btn-outline-danger",
+          staticClass: "btn btn-sm btn-outline-danger float-right",
           attrs: { type: "button" }
         },
         [_vm._v("Borrar")]

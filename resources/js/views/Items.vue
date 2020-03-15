@@ -72,22 +72,18 @@ export default {
         list: [],
         search: null,
         category: null,
+        userId: localStorage.getItem('user_id'),
       }
     },
     methods : {
-      items() {
+      find() {
         let token = localStorage.getItem('jwt')
 
         axios.defaults.headers.common['Content-Type'] = 'application/json'
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-        axios.get('api/items').then(response => {
-          console.log(response)
-          this.list = response['data']
-        })
-      },
-      find() {
         const params = {
+          user_id: this.userId,
           category_id: this.category,
           search: this.search,
         }
@@ -108,7 +104,7 @@ export default {
     },
     mounted() {
       this.showError = false
-      this.items()
+      this.find()
       this.getCategories()
     },
     computed: {

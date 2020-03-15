@@ -62,25 +62,21 @@ export default {
     },
     data(){
       return {
+        userId: localStorage.getItem('user_id'),
         list: [],
         search: null,
         store: null,
       }
     },
     methods : {
-      items() {
+      find() {
         let token = localStorage.getItem('jwt')
 
         axios.defaults.headers.common['Content-Type'] = 'application/json'
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-        axios.get(`${this.baseApiUrl}/api/stock`).then(response => {
-          console.log(response)
-          this.list = response['data']
-        })
-      },
-      find() {
         const params = {
+          user_id: this.userId,
           store_id: this.store,
           search: this.search,
         }
@@ -101,7 +97,7 @@ export default {
     },
     mounted() {
       this.showError = false
-      this.items()
+      this.find()
       this.getStores()
     },
     computed: {

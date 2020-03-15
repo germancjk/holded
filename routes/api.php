@@ -59,4 +59,8 @@ Route::group(['middleware' => 'auth:api'], function() {
   // Searches
   Route::post('/search', 'ItemController@index');
   Route::post('/stock/search', 'StockController@index');
+
+  // Movements
+  Route::get('/movements', 'MovementController@show');
+  Route::post('/movement', 'MovementController@store');
 });

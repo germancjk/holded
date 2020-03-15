@@ -22,6 +22,7 @@ class ItemController extends Controller
               'categories.name as category_name',
               DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
               )
+          ->where('items.user_id', '=', $request->user_id)
           ->byCategory($request->category_id)
           ->bySearchItem($request->search)
           ->orWhere->bySearchItemSku($request->search)
