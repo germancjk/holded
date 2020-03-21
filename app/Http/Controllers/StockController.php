@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StockController extends Controller
 {
@@ -15,14 +16,14 @@ class StockController extends Controller
             ->join('stores', 'stocks.store_id', '=', 'stores.id')
             ->select(
                 'stocks.quantity as quantity',
-                'items.name as item_name',
                 'item_skus.id as sku_id',
-                'item_skus.name as sku_name',
-                'stores.name as store_name'
+                'stores.name as store_name',
+                DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
                 )
             ->where('stocks.user_id', '=', $request->user_id)
             ->byStore($request->store_id)
             ->bySearchItem($request->search)
+            ->orderBy('name')
             ->getQuery()
             ->get()
             ->toArray()
@@ -45,21 +46,9 @@ class StockController extends Controller
       ]);
     }
 
-    public function update($array)
+    public function update(Stock $stock)
     {
-      $stock = Stock::updateOrInsert([
-          'user_id' => $array->user_id,
-          'item_sku_id' => $array->sku_id,
-          'store_id' => $array->store_id,
-        ],[
-          'quantity' => \DB::raw("stock.quantity + {$array->quantity}"),
-      ]);
-
-      return response()->json([
-        'status' => (bool) $stock,
-        'data'   => $stock,
-        'message' => $stock ? 'Stock Created!' : 'Error Creating Stock'
-      ]);
+      //
     }
 
     /**

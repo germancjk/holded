@@ -41,40 +41,29 @@ class MovementController extends Controller
       foreach($request->cart as $line){
         // add movement
         $item = MovementItem::create([
+          'movement_id' => $move->id,
           'item_sku_id' => $line['sku_id'],
           'quantity' => $line['quantity'],
         ]);
         // update stock
         // from
-        $this->updateStock([
-          'user_id' => $request->user_id,
-          'sku_id' => $line['sku_id'],
-          'store_id' => $request->from,
-          'quantity' => $line['quantity'] * -1,
-        ]);
+        $q = $line['quantity'] * -1;
+        $flight = Stock::updateOrCreate(
+            ['user_id' => $request->user_id, 'item_sku_id' => $line['sku_id'], 'store_id' => $request->from],
+            ['quantity' => \DB::raw("quantity + {$q}")]
+        );
         // to
-        $this->updateStock([
-          'user_id' => $request->user_id,
-          'sku_id' => $line['sku_id'],
-          'store_id' => $request->from,
-          'quantity' => $line['quantity'],
-        ]);
+        $q = $line['quantity'];
+        $flight = Stock::updateOrCreate(
+            ['user_id' => $request->user_id, 'item_sku_id' => $line['sku_id'], 'store_id' => $request->to],
+            ['quantity' => \DB::raw("quantity + {$q}")]
+        );
       }
 
       return response()->json([
         'status' => (bool) $move,
         'data'   => $move,
         'message' => $move ? 'Move Created!' : 'Error Creating Move'
-      ]);
-    }
-
-    public function updateStock($array)
-    {
-      $stock = Stock::update([
-        'user_id' => $array->user_id,
-        'sku_id' => $array->sku_id,
-        'store_id' => $array->store_id,
-        'quantity' => $array->quantity,
       ]);
     }
 

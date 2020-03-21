@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/Movement.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
@@ -20,8 +20,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -369,12 +367,12 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("p", { staticClass: "lead mt-2" }, [_vm._v("Items to move")]),
-    _vm._v(" "),
     _c("div", { staticClass: "row mt-2 mb-2" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("To move")]),
+            _vm._v(" "),
             _c("table", { staticClass: "table table-hover" }, [
               _vm._m(6),
               _vm._v(" "),

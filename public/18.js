@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[9],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[18],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/Stores.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
@@ -16,13 +16,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -183,10 +176,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("p", { staticClass: "lead" }, [_vm._v("Stores")]),
-    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _vm.showError
@@ -201,6 +190,8 @@ var render = function() {
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Stores")]),
+            _vm._v(" "),
             _c(
               "form",
               {
@@ -250,7 +241,7 @@ var render = function() {
                         staticClass: "form-text text-muted",
                         attrs: { id: "name" }
                       },
-                      [_vm._v("Must be unique")]
+                      [_vm._v("We'll never share your email with anyone else.")]
                     )
                   ])
                 ]),
@@ -276,19 +267,23 @@ var render = function() {
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("table", { staticClass: "table table-hover" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "tbody",
                 _vm._l(_vm.stores, function(element, index) {
                   return _c("tr", [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(element.id))
+                    ]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(element.name))]),
                     _vm._v(" "),
                     _c("td", { staticClass: "text-right" }, [
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-sm btn-outline-info",
+                          staticClass: "btn btn-sm btn-warning",
                           attrs: { type: "button", name: "button" },
                           on: {
                             click: function($event) {
@@ -297,16 +292,15 @@ var render = function() {
                           }
                         },
                         [
-                          _c("font-awesome-icon", { attrs: { icon: "edit" } }),
+                          _c("i", { staticClass: "fa fa-edit" }),
                           _vm._v(" Edit\n                    ")
-                        ],
-                        1
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-sm btn-outline-danger",
+                          staticClass: "btn btn-sm btn-danger",
                           attrs: { type: "button", name: "button" },
                           on: {
                             click: function($event) {
@@ -315,10 +309,9 @@ var render = function() {
                           }
                         },
                         [
-                          _c("font-awesome-icon", { attrs: { icon: "trash" } }),
+                          _c("i", { staticClass: "fa fa-trash" }),
                           _vm._v(" Remove\n                    ")
-                        ],
-                        1
+                        ]
                       )
                     ])
                   ])
@@ -337,28 +330,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("small", [
-      _c("ul", { staticClass: "list-inline-mb-0 pl-0" }, [
-        _c("li", { staticClass: "list-inline-item" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Board")]),
-          _vm._v(" >")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-inline-item" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Tools")]),
-          _vm._v(" >")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-inline-item" }, [_vm._v("Stores")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })

@@ -10020,6 +10020,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -10113,7 +10165,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.full-height[data-v-1ae8ae93] {\n    height: 100vh;\n}\n.flex-center[data-v-1ae8ae93] {\n    -webkit-box-align: center;\n            align-items: center;\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-pack: center;\n            justify-content: center;\n}\n.position-ref[data-v-1ae8ae93] {\n    position: relative;\n}\n.top-right[data-v-1ae8ae93] {\n    position: absolute;\n    right: 10px;\n    top: 18px;\n}\n.content[data-v-1ae8ae93] {\n    text-align: center;\n}\n.title[data-v-1ae8ae93] {\n    font-size: 60px;\n}\n.links > a[data-v-1ae8ae93] {\n    color: #636b6f;\n    padding: 0 25px;\n    font-size: 12px;\n    font-weight: 600;\n    letter-spacing: .1rem;\n    text-decoration: none;\n    text-transform: uppercase;\n}\n.m-b-md[data-v-1ae8ae93] {\n    margin-bottom: 30px;\n    color: #000000;\n}\n", ""]);
+exports.push([module.i, "\n.full-height[data-v-1ae8ae93] {\r\n    height: 100vh;\n}\n.flex-center[data-v-1ae8ae93] {\r\n    -webkit-box-align: center;\r\n            align-items: center;\r\n    display: -webkit-box;\r\n    display: flex;\r\n    -webkit-box-pack: center;\r\n            justify-content: center;\n}\n.position-ref[data-v-1ae8ae93] {\r\n    position: relative;\n}\n.top-right[data-v-1ae8ae93] {\r\n    position: absolute;\r\n    right: 10px;\r\n    top: 18px;\n}\n.content[data-v-1ae8ae93] {\r\n    text-align: center;\n}\n.title[data-v-1ae8ae93] {\r\n    font-size: 60px;\n}\n.links > a[data-v-1ae8ae93] {\r\n    color: #636b6f;\r\n    padding: 0 25px;\r\n    font-size: 12px;\r\n    font-weight: 600;\r\n    letter-spacing: .1rem;\r\n    text-decoration: none;\r\n    text-transform: uppercase;\n}\n.m-b-md[data-v-1ae8ae93] {\r\n    margin-bottom: 30px;\r\n    color: #000000;\n}\r\n", ""]);
 
 // exports
 
@@ -11232,242 +11284,283 @@ var render = function() {
   return _c("div", [
     _c(
       "nav",
-      { staticClass: "navbar navbar-expand-md navbar-light navbar-laravel" },
+      {
+        staticClass:
+          "navbar navbar-expand-lg navbar-light border-bottom shadow-sm p-3 mb-3"
+      },
       [
         _c(
+          "router-link",
+          { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
+          [_vm._v("holded")]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
           "div",
-          { staticClass: "container" },
+          {
+            staticClass: "collapse navbar-collapse justify-content-end",
+            attrs: { id: "navbarSupportedContent" }
+          },
           [
-            _c(
-              "router-link",
-              { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
-              [_vm._v("holded")]
-            ),
+            !_vm.isLoggedIn
+              ? _c("ul", { staticClass: "navbar-nav mr-md-3" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link text-dark",
+                          attrs: { to: { name: "home" } }
+                        },
+                        [_vm._v("holded")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link text-dark",
+                          attrs: { to: { name: "login" } }
+                        },
+                        [_vm._v("Login")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-outline-primary",
+                          attrs: { to: { name: "register" } }
+                        },
+                        [_vm._v("Register")]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "collapse navbar-collapse",
-                attrs: { id: "navbarSupportedContent" }
-              },
-              [
-                _c("ul", { staticClass: "navbar-nav mr-auto" }),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  { staticClass: "navbar-nav ml-auto" },
-                  [
-                    !_vm.isLoggedIn
-                      ? _c(
+            _vm.isLoggedIn
+              ? _c("ul", { staticClass: "navbar-nav mr-md-3" }, [
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link text-dark",
+                          attrs: { to: { name: "board" } }
+                        },
+                        [_vm._v("Hi, " + _vm._s(_vm.name))]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link text-dark",
+                          attrs: { to: { name: "board" } }
+                        },
+                        [_vm._v("Board")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link text-dark",
+                          attrs: { to: { name: "items" } }
+                        },
+                        [_vm._v("Items")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link text-dark",
+                          attrs: { to: { name: "item.new" } }
+                        },
+                        [_vm._v("New")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item dropdown" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link text-dark dropdown-toggle",
+                        attrs: {
+                          href: "#",
+                          id: "navbarDropdown",
+                          role: "button",
+                          "data-toggle": "dropdown",
+                          "aria-haspopup": "true",
+                          "aria-expanded": "false"
+                        }
+                      },
+                      [_vm._v("\n            Stock\n          ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "dropdown-menu",
+                        attrs: { "aria-labelledby": "navbarDropdown" }
+                      },
+                      [
+                        _c(
                           "router-link",
                           {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "login" } }
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "stock" } }
                           },
-                          [_vm._v("Login")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.isLoggedIn
-                      ? _c(
+                          [_vm._v("Stock")]
+                        ),
+                        _vm._v(" "),
+                        _c(
                           "router-link",
                           {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "register" } }
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "movement" } }
                           },
-                          [_vm._v("Register")]
+                          [_vm._v("Movement")]
                         )
-                      : _vm._e(),
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item dropdown mr-2" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link text-dark dropdown-toggle",
+                        attrs: {
+                          href: "#",
+                          id: "navbarDropdown",
+                          role: "button",
+                          "data-toggle": "dropdown",
+                          "aria-haspopup": "true",
+                          "aria-expanded": "false"
+                        }
+                      },
+                      [_vm._v("\n            Tools\n          ")]
+                    ),
                     _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c("li", { staticClass: "nav-link" }, [
-                          _vm._v(" Hi, " + _vm._s(_vm.name))
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
+                    _c(
+                      "div",
+                      {
+                        staticClass: "dropdown-menu",
+                        attrs: { "aria-labelledby": "navbarDropdown" }
+                      },
+                      [
+                        _c(
                           "router-link",
                           {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "board" } }
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "categories" } }
                           },
-                          [_vm._v("Board")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
+                          [_vm._v("Categories")]
+                        ),
+                        _vm._v(" "),
+                        _c(
                           "router-link",
                           {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "items" } }
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "stores" } }
                           },
-                          [_vm._v("Items")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
+                          [_vm._v("Stores")]
+                        ),
+                        _vm._v(" "),
+                        _c(
                           "router-link",
                           {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "item.new" } }
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "taxes" } }
                           },
-                          [_vm._v("New")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c("li", { staticClass: "nav-item dropdown" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link dropdown-toggle",
-                              attrs: {
-                                href: "#",
-                                id: "navbarDropdown",
-                                role: "button",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false"
-                              }
-                            },
-                            [_vm._v("\n                Stocks\n              ")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "dropdown-menu",
-                              attrs: { "aria-labelledby": "navbarDropdown" }
-                            },
-                            [
-                              _vm.isLoggedIn
-                                ? _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "stock" } }
-                                    },
-                                    [_vm._v("Stock")]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.isLoggedIn
-                                ? _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "movements" } }
-                                    },
-                                    [_vm._v("Movements")]
-                                  )
-                                : _vm._e()
-                            ],
-                            1
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c("li", { staticClass: "nav-item dropdown" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link dropdown-toggle",
-                              attrs: {
-                                href: "#",
-                                id: "navbarDropdown",
-                                role: "button",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false"
-                              }
-                            },
-                            [_vm._v("\n                Tools\n              ")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "dropdown-menu",
-                              attrs: { "aria-labelledby": "navbarDropdown" }
-                            },
-                            [
-                              _vm.isLoggedIn
-                                ? _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "categories" } }
-                                    },
-                                    [_vm._v("Categories")]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.isLoggedIn
-                                ? _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "stores" } }
-                                    },
-                                    [_vm._v("Stores")]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.isLoggedIn
-                                ? _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "taxes" } }
-                                    },
-                                    [_vm._v("Taxes")]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.isLoggedIn
-                                ? _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "suppliers" } }
-                                    },
-                                    [_vm._v("Suppliers")]
-                                  )
-                                : _vm._e()
-                            ],
-                            1
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.isLoggedIn
-                      ? _c(
+                          [_vm._v("Taxes")]
+                        ),
+                        _vm._v(" "),
+                        _c(
                           "router-link",
                           {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "logout" } }
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "suppliers" } }
                           },
-                          [_vm._v("Logout")]
+                          [_vm._v("Suppliers")]
                         )
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ]
-            )
-          ],
-          1
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link text-dark",
+                          attrs: { to: { name: "logout" } }
+                        },
+                        [_vm._v("Logout")]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e()
+          ]
         )
-      ]
+      ],
+      1
     ),
     _vm._v(" "),
-    _c("main", { staticClass: "py-4" }, [_c("router-view")], 1)
+    _c(
+      "main",
+      { staticClass: "container" },
+      [_c("router-view"), _vm._v(" "), _vm._m(1)],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -11478,7 +11571,7 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "navbar-toggler",
+        staticClass: "navbar-toggler border-0",
         attrs: {
           type: "button",
           "data-toggle": "collapse",
@@ -11490,6 +11583,132 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "pt-4 my-md-5 pt-md-5 border-top" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12 col-md" }, [
+          _c("img", {
+            staticClass: "mb-2",
+            attrs: {
+              src: "/docs/4.4/assets/brand/bootstrap-solid.svg",
+              alt: "",
+              width: "24",
+              height: "24"
+            }
+          }),
+          _vm._v(" "),
+          _c("small", { staticClass: "d-block mb-3 text-muted" }, [
+            _vm._v("© 2017-2019")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6 col-md" }, [
+          _c("h5", [_vm._v("Features")]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-unstyled text-small" }, [
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Cool stuff")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Random feature")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Team feature")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Stuff for developers")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Another one")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Last time")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6 col-md" }, [
+          _c("h5", [_vm._v("Resources")]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-unstyled text-small" }, [
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Resource")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Resource name")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Another resource")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Final resource")
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-6 col-md" }, [
+          _c("h5", [_vm._v("About")]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "list-unstyled text-small" }, [
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Team")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Locations")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Privacy")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                _vm._v("Terms")
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -11658,7 +11877,7 @@ function normalizeComponent (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
-  * vue-router v3.1.6
+  * vue-router v3.1.5
   * (c) 2020 Evan You
   * @license MIT
   */
@@ -12601,8 +12820,7 @@ function fillParams (
       (regexpCompileCache[path] = pathToRegexp_1.compile(path));
 
     // Fix #2505 resolving asterisk routes { name: 'not-found', params: { pathMatch: '/not-found' }}
-    // and fix #3106 so that you can work with location descriptor object having params.pathMatch equal to empty string
-    if (typeof params.pathMatch === 'string') { params[0] = params.pathMatch; }
+    if (params.pathMatch) { params[0] = params.pathMatch; }
 
     return filler(params, { pretty: true })
   } catch (e) {
@@ -13350,10 +13568,7 @@ function setupScroll () {
   // location.host contains the port and location.hostname doesn't
   var protocolAndPath = window.location.protocol + '//' + window.location.host;
   var absolutePath = window.location.href.replace(protocolAndPath, '');
-  // preserve existing history state as it could be overriden by the user
-  var stateCopy = extend({}, window.history.state);
-  stateCopy.key = getStateKey();
-  window.history.replaceState(stateCopy, '', absolutePath);
+  window.history.replaceState({ key: getStateKey() }, '', absolutePath);
   window.addEventListener('popstate', function (e) {
     saveScrollPosition();
     if (e.state && e.state.key) {
@@ -14568,7 +14783,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.1.6';
+VueRouter.version = '3.1.5';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -26582,8 +26797,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
 /**
- * vuex v3.1.3
- * (c) 2020 Evan You
+ * vuex v3.1.2
+ * (c) 2019 Evan You
  * @license MIT
  */
 function applyMixin (Vue) {
@@ -26975,10 +27190,7 @@ Store.prototype.commit = function commit (_type, _payload, _options) {
       handler(payload);
     });
   });
-
-  this._subscribers
-    .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
-    .forEach(function (sub) { return sub(mutation, this$1.state); });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
 
   if (
      true &&
@@ -27010,7 +27222,6 @@ Store.prototype.dispatch = function dispatch (_type, _payload) {
 
   try {
     this._actionSubscribers
-      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
       .filter(function (sub) { return sub.before; })
       .forEach(function (sub) { return sub.before(action, this$1.state); });
   } catch (e) {
@@ -27379,7 +27590,9 @@ function enableStrictMode (store) {
 }
 
 function getNestedState (state, path) {
-  return path.reduce(function (state, key) { return state[key]; }, state)
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
 }
 
 function unifyObjectStyle (type, payload, options) {
@@ -27622,7 +27835,7 @@ function getModuleByNamespace (store, helper, namespace) {
 var index_esm = {
   Store: Store,
   install: install,
-  version: '3.1.3',
+  version: '3.1.2',
   mapState: mapState,
   mapMutations: mapMutations,
   mapGetters: mapGetters,
@@ -27730,79 +27943,79 @@ var routes = [{
   path: '/login',
   name: 'login',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
   }
 }, {
   path: '/register',
   name: 'register',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
   }
 }, {
-  path: '/board',
+  path: '/panel/board',
   name: 'board',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../views/Board.vue */ "./resources/js/views/Board.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../views/panel/Board.vue */ "./resources/js/views/panel/Board.vue"));
   }
 }, {
   path: '/logout',
   name: 'logout',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
   }
 }, {
-  path: '/categories',
+  path: '/panel/categories',
   name: 'categories',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../views/Category.vue */ "./resources/js/views/Category.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../views/panel/Category.vue */ "./resources/js/views/panel/Category.vue"));
   }
 }, {
-  path: '/stores',
+  path: '/panel/stores',
   name: 'stores',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../views/Stores.vue */ "./resources/js/views/Stores.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../views/panel/Stores.vue */ "./resources/js/views/panel/Stores.vue"));
   }
 }, {
-  path: '/taxes',
+  path: '/panel/taxes',
   name: 'taxes',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../views/Tax.vue */ "./resources/js/views/Tax.vue"));
+    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../views/panel/Tax.vue */ "./resources/js/views/panel/Tax.vue"));
   }
 }, {
-  path: '/suppliers',
+  path: '/panel/suppliers',
   name: 'suppliers',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../views/Supplier.vue */ "./resources/js/views/Supplier.vue"));
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../views/panel/Supplier.vue */ "./resources/js/views/panel/Supplier.vue"));
   }
 }, {
-  path: '/item',
+  path: '/panel/item/new',
   name: 'item.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../views/panel/ItemNew.vue */ "./resources/js/views/panel/ItemNew.vue"));
   }
 }, {
-  path: '/item/:id',
+  path: '/panel/item/:id',
   name: 'item.edit',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/Item.vue */ "./resources/js/views/Item.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../views/panel/ItemNew.vue */ "./resources/js/views/panel/ItemNew.vue"));
   }
 }, {
-  path: '/items',
+  path: '/panel/items',
   name: 'items',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../views/Items.vue */ "./resources/js/views/Items.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../views/panel/Items.vue */ "./resources/js/views/panel/Items.vue"));
   }
 }, {
-  path: '/stock',
+  path: '/panel/stock',
   name: 'stock',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/Stock.vue */ "./resources/js/views/Stock.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/panel/Stock.vue */ "./resources/js/views/panel/Stock.vue"));
   }
 }, {
-  path: '/movements',
-  name: 'movements',
+  path: '/panel/movement',
+  name: 'movement',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../views/Movements.vue */ "./resources/js/views/Movements.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../views/panel/Movement.vue */ "./resources/js/views/panel/Movement.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -28123,8 +28336,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/holded/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/holded/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\holded\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\holded\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

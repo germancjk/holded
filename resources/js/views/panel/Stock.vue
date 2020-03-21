@@ -1,15 +1,27 @@
 <template>
     <div class="container">
-      <div class="row mt-5">
+
+      <small>
+        <ul class="list-inline-mb-0 pl-0">
+          <li class="list-inline-item"><a href="#">Board</a> ></li>
+          <li class="list-inline-item"><a href="#">Stock</a> ></li>
+          <li class="list-inline-item">Stock control</li>
+        </ul>
+      </small>
+
+      <p class="lead">Stock control</p>
+
+      <div class="row">
         <div class="col-12">
-          <div class="card">
+          <!-- <h3 class="mb-3">Stock</h3> -->
+          <div class="card shadow-sm">
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-4">
-                  <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id"></v-select>
+                  <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Select a store..."></v-select>
                 </div>
                 <div class="form-group col-4">
-                  <input type="text" v-model="search" class="form-control" placeholder="Search by Name / SKU">
+                  <input type="text" v-model="search" class="form-control" placeholder="Search by Name">
                 </div>
                 <div class="form-group col-4">
                   <button class="btn btn-primary" type="button" name="button" @click="find()">
@@ -29,24 +41,16 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <!-- <th scope="col">#</th> -->
                     <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col" class="text-right">Sale Price</th>
-                    <th scope="col"></th>
+                    <th scope="col">Store</th>
+                    <th scope="col" class="text-right">Quantity</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="element,index in list">
-                    <td scope="row">{{ element.item_name }} - {{ element.sku_name }}</td>
-                    <td scope="row">{{ element.category_name }}</td>
-                    <td scope="row" class="text-right">{{ element.sku_sale_price }}</td>
-                    <td class="text-right">
-                      <router-link class="btn btn-sm btn-warning" :to="{ name: 'item.edit', params: { id: element.item_id }}"><i class="fa fa-edit"></i> Edit</router-link>
-                      <button class="btn btn-sm btn-danger" type="button" name="button" @click="remove(element.sku_id)">
-                        <i class="fa fa-trash"></i> Remove
-                      </button>
-                    </td>
+                    <td scope="row">{{ element.name }}</td>
+                    <td scope="row">{{ element.store_name }}</td>
+                    <td scope="row" class="text-right">{{ element.quantity }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -69,10 +73,10 @@ export default {
     },
     data(){
       return {
+        userId: localStorage.getItem('user_id'),
         list: [],
         search: null,
-        category: null,
-        userId: localStorage.getItem('user_id'),
+        store: null,
       }
     },
     methods : {
@@ -84,10 +88,10 @@ export default {
 
         const params = {
           user_id: this.userId,
-          category_id: this.category,
+          store_id: this.store,
           search: this.search,
         }
-        axios.post(`${this.baseApiUrl}/api/search`, params).then(response => {
+        axios.post(`${this.baseApiUrl}/api/stock/search`, params).then(response => {
           console.log(response)
           this.list = response['data']
         })
@@ -100,15 +104,15 @@ export default {
           })
         }
       },
-      ...mapActions(['getCategories'])
+      ...mapActions(['getStores']),
     },
     mounted() {
       this.showError = false
       this.find()
-      this.getCategories()
+      this.getStores()
     },
     computed: {
-      ...mapGetters(['categories', 'baseApiUrl'])
+      ...mapGetters(['stores', 'baseApiUrl'])
     }
 }
 </script>

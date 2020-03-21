@@ -9,5 +9,5 @@ class MovementItem extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['item_sku_id', 'quantity'];
+  protected $fillable = ['movement_id', 'item_sku_id', 'quantity'];
 }

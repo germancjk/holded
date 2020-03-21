@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/Category.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
@@ -16,16 +16,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -186,15 +176,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("p", { staticClass: "lead" }, [_vm._v("Categories")]),
-    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
         _vm.showError
           ? _c("div", { staticClass: "alert alert-danger" }, [
-              _vm._v("\n          " + _vm._s(_vm.messageError) + "\n        ")
+              _vm._v("\n        " + _vm._s(_vm.messageError) + "\n      ")
             ])
           : _vm._e()
       ])
@@ -204,6 +190,8 @@ var render = function() {
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Categories")]),
+            _vm._v(" "),
             _c(
               "form",
               {
@@ -253,7 +241,7 @@ var render = function() {
                         staticClass: "form-text text-muted",
                         attrs: { id: "name" }
                       },
-                      [_vm._v("Must be unique.")]
+                      [_vm._v("We'll never share your email with anyone else.")]
                     )
                   ])
                 ]),
@@ -280,7 +268,7 @@ var render = function() {
           _c("div", { staticClass: "card-body" }, [
             _vm.categories
               ? _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(1),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -292,7 +280,7 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "btn btn-sm btn-outline-info",
+                              staticClass: "btn btn-sm btn-warning",
                               attrs: { type: "button", name: "button" },
                               on: {
                                 click: function($event) {
@@ -312,7 +300,7 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "btn btn-sm btn-outline-danger",
+                              staticClass: "btn btn-sm btn-danger",
                               attrs: { type: "button", name: "button" },
                               on: {
                                 click: function($event) {
@@ -342,26 +330,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("small", [
-      _c("ul", { staticClass: "list-inline-mb-0 pl-0" }, [
-        _c("li", { staticClass: "list-inline-item" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Board")]),
-          _vm._v(" >")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-inline-item" }, [
-          _c("a", { attrs: { href: "#" } }, [_vm._v("Tools")]),
-          _vm._v(" >")
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "list-inline-item" }, [_vm._v("Categories")])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -21,9 +21,9 @@ const routes = [
             component: () => import ('../views/Register.vue'),
         },
         {
-            path: '/board',
+            path: '/panel/board',
             name: 'board',
-            component: () => import ('../views/Board.vue'),
+            component: () => import ('../views/panel/Board.vue'),
         },
         {
             path: '/logout',
@@ -31,49 +31,49 @@ const routes = [
             component: () => import ('../views/Login.vue'),
         },
         {
-          path: '/categories',
+          path: '/panel/categories',
           name: 'categories',
-          component: () => import ('../views/Category.vue')
+          component: () => import ('../views/panel/Category.vue')
         },
         {
-          path: '/stores',
+          path: '/panel/stores',
           name: 'stores',
-          component: () => import ('../views/Stores.vue')
+          component: () => import ('../views/panel/Stores.vue')
         },
         {
-          path: '/taxes',
+          path: '/panel/taxes',
           name: 'taxes',
-          component: () => import ('../views/Tax.vue')
+          component: () => import ('../views/panel/Tax.vue')
         },
         {
-          path: '/suppliers',
+          path: '/panel/suppliers',
           name: 'suppliers',
-          component: () => import ('../views/Supplier.vue')
+          component: () => import ('../views/panel/Supplier.vue')
         },
         {
-          path: '/item',
+          path: '/panel/item/new',
           name: 'item.new',
-          component: () => import ('../views/Item.vue')
+          component: () => import ('../views/panel/ItemNew.vue')
         },
         {
-          path: '/item/:id',
+          path: '/panel/item/:id',
           name: 'item.edit',
-          component: () => import ('../views/Item.vue')
+          component: () => import ('../views/panel/ItemNew.vue')
         },
         {
-          path: '/items',
+          path: '/panel/items',
           name: 'items',
-          component: () => import ('../views/Items.vue')
+          component: () => import ('../views/panel/Items.vue')
         },
         {
-          path: '/stock',
+          path: '/panel/stock',
           name: 'stock',
-          component: () => import ('../views/Stock.vue')
+          component: () => import ('../views/panel/Stock.vue')
         },
         {
-          path: '/movements',
-          name: 'movements',
-          component: () => import ('../views/Movements.vue')
+          path: '/panel/movement',
+          name: 'movement',
+          component: () => import ('../views/panel/Movement.vue')
         },
     ]
 

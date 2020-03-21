@@ -1,6 +1,16 @@
 <template>
   <div class="container">
 
+    <small>
+      <ul class="list-inline-mb-0 pl-0">
+        <li class="list-inline-item"><a href="#">Board</a> ></li>
+        <li class="list-inline-item">Items ></li>
+        <li class="list-inline-item">New</li>
+      </ul>
+    </small>
+
+    <p class="lead">Create an Item</p>
+
     <div class="row">
       <div class="col-12">
         <div class="alert alert-danger" v-if="showError">
@@ -18,37 +28,35 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Items</h5>
-              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
               <div class="form-row">
                 <div class="form-group col-12">
                   <label for="name">Name <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
-                  <small id="name" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  <small id="name" class="form-text text-muted">This will be the generic name of the item</small>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-6">
                   <label for="categories">Category <span class="text-danger">*</span></label>
-                  <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id"></v-select>
+                  <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id" placeholder="Select..."></v-select>
                 </div>
 
                 <div class="form-group col-6">
                   <label for="supplier">Supplier <span class="text-danger">*</span></label>
-                  <v-select v-model="supplier" label="name" :options="suppliers" :reduce="suppliers => suppliers.id" ></v-select>
+                  <v-select v-model="supplier" label="name" :options="suppliers" :reduce="suppliers => suppliers.id" placeholder="Select..."></v-select>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-6">
                   <label for="tax">Tax <span class="text-danger">*</span></label>
-                  <v-select v-model="tax" label="name" :options="taxes" :reduce="taxes => taxes.id" ></v-select>
+                  <v-select v-model="tax" label="name" :options="taxes" :reduce="taxes => taxes.id" placeholder="Select..."></v-select>
                 </div>
 
                 <div class="form-group col-6">
                   <label for="store">Store (default) <span class="text-danger">*</span></label>
-                  <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
+                  <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Select..."></v-select>
                 </div>
               </div>
             </div>
@@ -57,11 +65,12 @@
       </div>
 
       <!-- init skus -->
-      <div class="row mt-2 mb-2">
+      <p class="lead mt-2">Skus - <i>The SKU is an unique name of each variant.</i></p>
+
+      <div class="row mb-2">
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Skus <small><i>The SKU is an unique name of each variant.</i></small></h5>
               <div class="form-row">
                 <div class="form-group col-6">
                   <label for="sku">Name <span class="text-danger">*</span></label>

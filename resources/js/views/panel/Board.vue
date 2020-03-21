@@ -37,6 +37,8 @@ textarea {
 </style>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
     components: {
         //
@@ -84,7 +86,7 @@ export default {
         axios.defaults.headers.common['Content-Type'] = 'application/json'
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-        axios.get('api/category').then(response => {
+        axios.get(`${this.baseApiUrl}/api/category`).then(response => {
             response.data.forEach((data) => {
                 this.categories.push({
                     id : data.id,
@@ -96,6 +98,7 @@ export default {
         })
     },
     computed: {
+      ...mapGetters(['categories', 'baseApiUrl'])
     }
 }
 </script>

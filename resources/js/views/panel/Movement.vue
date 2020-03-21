@@ -1,6 +1,16 @@
 <template>
   <div class="container">
 
+    <small>
+      <ul class="list-inline-mb-0 pl-0">
+        <li class="list-inline-item"><a href="#">Board</a> ></li>
+        <li class="list-inline-item"><a href="#">Stock</a> ></li>
+        <li class="list-inline-item">Movements</li>
+      </ul>
+    </small>
+
+    <p class="lead">Movements <i>You can move items between stores with tracking</i></p>
+
     <!-- messages -->
     <div v-if="done" class="alert alert-success" role="alert">
       Movement done!
@@ -11,9 +21,6 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Movements</h5>
-            <p class="card-text">You can move items between stores with tracking.</p>
-
             <div class="form-row">
               <div class="form-group col-6">
                 <label for="tax">From <span class="text-danger">*</span></label>
@@ -44,11 +51,13 @@
     </div>
 
     <!-- init cart -->
+    <p class="lead mt-2">Items to move</p>
+
     <div class="row mt-2 mb-2">
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">To move</h5>
+            <!-- <h5 class="card-title">To move</h5> -->
 
             <table class="table table-hover">
               <thead>
@@ -72,7 +81,7 @@
                     >
                   </td>
                   <td scope="row">
-                    <button type="button" class="btn btn-sm btn-outline-danger float-right">Borrar</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger float-right" @click="deleteItem(index)">Borrar</button>
                   </td>
                 </tr>
               </tbody>
@@ -143,6 +152,10 @@ export default {
       addCart(item) {
         this.cart.push(item)
       },
+      deleteItem: function(index) {
+        this.cart.splice(index, 1)
+        this.item = 0
+      },
       submit() {
         this.btnDisabled = true
         const params = {
@@ -182,7 +195,9 @@ export default {
         // search availability
         if(item !== undefined){
           if(this.inCart(item) === undefined){
-            this.stock(item)
+            if(item != 0){
+              this.stock(item)
+            }
           }
         }
       },

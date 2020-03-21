@@ -15,10 +15,12 @@ class CreateMovementItemsTable extends Migration
     {
         Schema::create('movement_items', function (Blueprint $table) {
           $table->increments('id');
+          $table->unsignedInteger('movement_id');
           $table->unsignedInteger('item_sku_id');
           $table->unsignedInteger('quantity');
           $table->timestamps();
 
+          $table->foreign('movement_id')->references('id')->on('movements');
           $table->foreign('item_sku_id')->references('id')->on('item_skus');
         });
     }

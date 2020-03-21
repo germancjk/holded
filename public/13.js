@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[3],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[13],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/panel/Board.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************!*\
@@ -9,13 +9,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -54,7 +47,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {//
   },
@@ -106,7 +98,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var token = localStorage.getItem('jwt');
     axios.defaults.headers.common['Content-Type'] = 'application/json';
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-    axios.get("".concat(this.baseApiUrl, "/api/category")).then(function (response) {
+    axios.get('api/category').then(function (response) {
       response.data.forEach(function (data) {
         _this2.categories.push({
           id: data.id,
@@ -118,7 +110,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this2.loadTasks();
     });
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'baseApiUrl']))
+  computed: {}
 });
 
 /***/ }),
