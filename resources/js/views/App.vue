@@ -26,30 +26,42 @@
         <ul class="navbar-nav mr-md-3"v-if="isLoggedIn">
           <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Hi, {{name}}</router-link></li>
           <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Board</router-link></li>
-          <li class="nav-item"><router-link :to="{ name: 'items' }" class="nav-link text-dark">Items</router-link></li>
-          <li class="nav-item"><router-link :to="{ name: 'item.new' }" class="nav-link text-dark">New</router-link></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Items
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <router-link :to="{ name: 'items' }" class="dropdown-item text-dark">Items</router-link>
+              <router-link :to="{ name: 'item.new' }" class="dropdown-item text-dark">New Item</router-link>
+            </div>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Stock
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <router-link :to="{ name: 'stock' }" class="dropdown-item text-dark">Stock</router-link>
-              <router-link :to="{ name: 'movement' }" class="dropdown-item text-dark">Movement</router-link>
+              <router-link :to="{ name: 'movements' }" class="dropdown-item text-dark">Movements</router-link>
             </div>
           </li>
-          <li class="nav-item dropdown mr-2">
+          <li class="nav-item dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Tools
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <router-link :to="{ name: 'categories' }" class="dropdown-item text-dark">Categories</router-link>
               <router-link :to="{ name: 'stores' }" class="dropdown-item text-dark">Stores</router-link>
-              <router-link :to="{ name: 'taxes' }" class="dropdown-item text-dark">Taxes</router-link>
               <router-link :to="{ name: 'suppliers' }" class="dropdown-item text-dark">Suppliers</router-link>
+              <router-link :to="{ name: 'taxes' }" class="dropdown-item text-dark">Taxes</router-link>
             </div>
           </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'logout' }" class="nav-link text-dark">Logout</router-link>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <font-awesome-icon icon="user-cog" />
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <router-link :to="{ name: 'logout' }" class="dropdown-item text-dark">Logout</router-link>
+            </div>
           </li>
         </ul>
       </div>

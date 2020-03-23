@@ -9,7 +9,10 @@
         </ul>
       </small>
 
-      <p class="lead">Items list</p>
+      <p class="lead">
+        Items list
+        <router-link :to="{ name: 'item.new' }" class="btn btn-sm btn-success float-right">+ New Item</router-link>
+      </p>
 
       <div class="row">
         <div class="col-12">
@@ -37,7 +40,8 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <table class="table table-hover">
+              <p class="text-center" v-if="loading"><font-awesome-icon icon="spinner" spin /></p>
+              <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
@@ -85,10 +89,12 @@ export default {
         search: null,
         category: null,
         userId: localStorage.getItem('user_id'),
+        loading: true,
       }
     },
     methods : {
       find() {
+        this.loading = true
         let token = localStorage.getItem('jwt')
 
         axios.defaults.headers.common['Content-Type'] = 'application/json'
@@ -100,7 +106,7 @@ export default {
           search: this.search,
         }
         axios.post(`${this.baseApiUrl}/api/search`, params).then(response => {
-          console.log(response)
+          this.loading = false
           this.list = response['data']
         })
       },

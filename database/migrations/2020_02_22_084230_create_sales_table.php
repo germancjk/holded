@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrackingsTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,20 @@ class CreateTrackingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trackings', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('item_sku_id');
-            $table->smallInteger('type');
-            $table->integer('quantity');
+            $table->unsignedInteger('store_id');
+            $table->float('cost')->default(0);
+            $table->float('taxes')->default(0);
+            $table->float('subtotal')->default(0);
+            $table->float('total')->default(0);
+            $table->float('profit')->default(0);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('item_sku_id')->references('id')->on('item_skus');
+            $table->foreign('store_id')->references('id')->on('stores');
         });
     }
 
@@ -33,6 +37,6 @@ class CreateTrackingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trackings');
+        Schema::dropIfExists('sales');
     }
 }

@@ -1,104 +1,91 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-          <ul>
-            <li v-for="element,index in categories">{{element.name}}</li>
+  <div class="container">
+    <p class="lead">Board</p>
+
+    <div class="row">
+      <!-- daily sales -->
+      <div class="col-sm-4 mb-4">
+        <div class="card shadow-sm">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h5 class="my-0">Today</h5></li>
+            <li class="list-group-item">Sales <strong class="float-right">12.000,00 €</strong></li>
+            <li class="list-group-item text-success">Profit <strong class="float-right">8.540,00 €</strong></li>
           </ul>
         </div>
-    </div>
-</template>
+      </div>
 
-<style scoped>
-.card {
-    border:0;
-    border-radius: 0.5rem;
-}
-.transit-1 {
-    transition: all 1s;
-}
-.small-card {
-    padding: 1rem;
-    background: #f5f8fa;
-    margin-bottom: 5px;
-    border-radius: .25rem;
-}
-.card-body-dark{
-    background-color: #ccc;
-}
-textarea {
-    overflow: visible;
-    outline: 1px dashed black;
-    border: 0;
-    padding: 6px 0 2px 8px;
-    width: 100%;
-    height: 100%;
-    resize: none;
-}
-</style>
+      <!-- monthly sales -->
+      <div class="col-sm-4 mb-4">
+        <div class="card shadow-sm">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h5 class="my-0">This Month</h5></li>
+            <li class="list-group-item">Sales <strong class="float-right">121.000,00 €</strong></li>
+            <li class="list-group-item text-success">Profit <strong class="float-right">46.540,00 €</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- user info -->
+      <div class="col-sm-4 mb-4">
+        <div class="card text-white bg-primary shadow-sm">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item text-white bg-primary"><h5 class="my-0">Hi, Germán!</h5></li>
+            <li class="list-group-item text-white bg-primary">My Profile</li>
+            <li class="list-group-item text-white bg-primary">Dapibus ac facilisis in</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <!-- monthly stats -->
+      <div class="col-sm-8 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            monthly stats
+            https://vue-chartjs.org/guide/#introduction
+          </div>
+        </div>
+      </div>
+
+      <!-- quick links -->
+      <div class="col-sm-4 mb-4">
+        <div class="card shadow-sm">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h5 class="my-0">Quick Links</h5></li>
+            <li class="list-group-item">Stock</li>
+            <li class="list-group-item"><router-link :to="{ name: 'items' }" class="text-dark">Items</router-link></li>
+            <li class="list-group-item">+ New Movement</li>
+            <li class="list-group-item">+ New Item</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-    components: {
-        //
-    },
-    data(){
-        return {
-            categories : [],
-            editingTask : null
-        }
-    },
-    methods : {
-        addNew(id) {
-            let user_id = 1
-            let name = "New task"
-            let category_id = this.categories[id].id
-            let order = this.categories[id].tasks.length
-
-            axios.post('api/task', {user_id, name, order, category_id}).then(response => {
-                this.categories[id].tasks.push(response.data.data)
-            })
-        },
-        loadTasks() {
-          this.categories.map(category => {
-              axios.get(`api/category/${category.id}/tasks`).then(response => {
-                  category.tasks = response.data
-              })
-          })
-        },
-        changeOrder(data){
-        },
-        endEditing(task) {
-            this.editingTask = null
-
-            axios.patch(`api/task/${task.id}`, {name: task.name}).then(response => {
-                // You can do anything you wan't here.
-            })
-        },
-        editTask(task){
-            this.editingTask = task
-        }
-    },
-    mounted() {
-        let token = localStorage.getItem('jwt')
-
-        axios.defaults.headers.common['Content-Type'] = 'application/json'
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-
-        axios.get(`${this.baseApiUrl}/api/category`).then(response => {
-            response.data.forEach((data) => {
-                this.categories.push({
-                    id : data.id,
-                    name : data.name,
-                    tasks : []
-                })
-            })
-            this.loadTasks()
-        })
-    },
-    computed: {
-      ...mapGetters(['categories', 'baseApiUrl'])
+  components: {
+      //
+  },
+  data(){
+    return {
+      //
     }
+  },
+  methods : {
+    //
+  },
+  mounted() {
+    //
+  },
+  computed: {
+    ...mapGetters(['baseApiUrl'])
+  }
 }
 </script>

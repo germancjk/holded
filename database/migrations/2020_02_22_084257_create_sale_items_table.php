@@ -25,6 +25,7 @@ class CreateSaleItemsTable extends Migration
             $table->float('total')->default(0);
             $table->float('profit')->default(0);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('sale_id')->references('id')->on('sales');

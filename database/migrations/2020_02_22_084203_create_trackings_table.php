@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovementsTable extends Migration
+class CreateTrackingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreateMovementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('movements', function (Blueprint $table) {
+        Schema::create('trackings', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('from');
-            $table->unsignedInteger('to');
-            $table->string('comments')->nullable();
-            $table->integer('status');
-            $table->dateTime('received')->nullable();
+            $table->unsignedInteger('item_sku_id');
+            $table->smallInteger('type');
+            $table->integer('quantity');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('from')->references('id')->on('stores');
-            $table->foreign('to')->references('id')->on('stores');
+            $table->foreign('item_sku_id')->references('id')->on('item_skus');
         });
     }
 
@@ -36,6 +34,6 @@ class CreateMovementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movements');
+        Schema::dropIfExists('trackings');
     }
 }

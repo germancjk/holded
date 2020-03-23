@@ -3,14 +3,20 @@ import router from './router'
 import store  from './store'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEdit, faTrash, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTrash, faSpinner, faUserCog } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import App from './views/App'
 
-library.add(faEdit, faTrash, faSpinner)
+library.add(faEdit, faTrash, faSpinner, faUserCog)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// Vue.filter('capitalize', function (value) {
+//   if (!value) return ''
+//   value = value.toString()
+//   return value.charAt(0).toUpperCase() + value.slice(1)
+// })
 
 const app = new Vue({
     el: '#app',

@@ -71,9 +71,14 @@ const routes = [
           component: () => import ('../views/panel/Stock.vue')
         },
         {
-          path: '/panel/movement',
-          name: 'movement',
-          component: () => import ('../views/panel/Movement.vue')
+          path: '/panel/movement/new',
+          name: 'movement.new',
+          component: () => import ('../views/panel/MovementNew.vue')
+        },
+        {
+          path: '/panel/movements',
+          name: 'movements',
+          component: () => import ('../views/panel/Movements.vue')
         },
     ]
 

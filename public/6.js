@@ -91,6 +91,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -103,13 +107,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       list: [],
       search: null,
       category: null,
-      userId: localStorage.getItem('user_id')
+      userId: localStorage.getItem('user_id'),
+      loading: true
     };
   },
   methods: _objectSpread({
     find: function find() {
       var _this = this;
 
+      this.loading = true;
       var token = localStorage.getItem('jwt');
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
@@ -119,7 +125,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         search: this.search
       };
       axios.post("".concat(this.baseApiUrl, "/api/search"), params).then(function (response) {
-        console.log(response);
+        _this.loading = false;
         _this.list = response['data'];
       });
     },
@@ -161,7 +167,22 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("p", { staticClass: "lead" }, [_vm._v("Items list")]),
+    _c(
+      "p",
+      { staticClass: "lead" },
+      [
+        _vm._v("\n    Items list\n    "),
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-sm btn-success float-right",
+            attrs: { to: { name: "item.new" } }
+          },
+          [_vm._v("+ New Item")]
+        )
+      ],
+      1
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
@@ -242,78 +263,96 @@ var render = function() {
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [
-            _c("table", { staticClass: "table table-hover" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.list, function(element, index) {
-                  return _c("tr", [
-                    _c("td", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(element.name))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(element.category_name))
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "text-right", attrs: { scope: "row" } },
-                      [_vm._v(_vm._s(element.sku_sale_price) + " €")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      { staticClass: "text-right" },
-                      [
+            _vm.loading
+              ? _c(
+                  "p",
+                  { staticClass: "text-center" },
+                  [
+                    _c("font-awesome-icon", {
+                      attrs: { icon: "spinner", spin: "" }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            !_vm.loading
+              ? _c("table", { staticClass: "table table-hover" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.list, function(element, index) {
+                      return _c("tr", [
+                        _c("td", { attrs: { scope: "row" } }, [
+                          _vm._v(_vm._s(element.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { attrs: { scope: "row" } }, [
+                          _vm._v(_vm._s(element.category_name))
+                        ]),
+                        _vm._v(" "),
                         _c(
-                          "router-link",
+                          "td",
                           {
-                            staticClass: "btn btn-sm btn-outline-info",
-                            attrs: {
-                              to: {
-                                name: "item.edit",
-                                params: { id: element.item_id }
-                              }
-                            }
+                            staticClass: "text-right",
+                            attrs: { scope: "row" }
                           },
-                          [
-                            _c("font-awesome-icon", {
-                              attrs: { icon: "edit" }
-                            }),
-                            _vm._v(" Edit\n                  ")
-                          ],
-                          1
+                          [_vm._v(_vm._s(element.sku_sale_price) + " €")]
                         ),
                         _vm._v(" "),
                         _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-sm btn-outline-danger",
-                            attrs: { type: "button", name: "button" },
-                            on: {
-                              click: function($event) {
-                                return _vm.remove(element.sku_id)
-                              }
-                            }
-                          },
+                          "td",
+                          { staticClass: "text-right" },
                           [
-                            _c("font-awesome-icon", {
-                              attrs: { icon: "trash" }
-                            }),
-                            _vm._v(" Remove\n                  ")
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-sm btn-outline-info",
+                                attrs: {
+                                  to: {
+                                    name: "item.edit",
+                                    params: { id: element.item_id }
+                                  }
+                                }
+                              },
+                              [
+                                _c("font-awesome-icon", {
+                                  attrs: { icon: "edit" }
+                                }),
+                                _vm._v(" Edit\n                  ")
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                attrs: { type: "button", name: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.remove(element.sku_id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("font-awesome-icon", {
+                                  attrs: { icon: "trash" }
+                                }),
+                                _vm._v(" Remove\n                  ")
+                              ],
+                              1
+                            )
                           ],
                           1
                         )
-                      ],
-                      1
-                    )
-                  ])
-                }),
-                0
-              )
-            ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              : _vm._e()
           ])
         ])
       ])

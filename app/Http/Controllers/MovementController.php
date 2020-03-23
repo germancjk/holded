@@ -7,21 +7,27 @@ use Illuminate\Http\Request;
 
 class MovementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        //
+      return response()->json(
+        Movement::select(
+            'movements.id as id',
+            'movements.comments',
+            'movements.created_at',
+            'stf.name as store_name_from',
+            'stt.name as store_name_to',
+            )
+            ->join('stores as stf', 'movements.from', '=', 'stf.id')
+            ->join('stores as stt', 'movements.to', '=', 'stt.id')
+            ->where('movements.user_id', '=', $request->user_id)
+            ->orderBy('created_at')
+            ->getQuery()
+            ->get()
+            ->toArray()
+      );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //

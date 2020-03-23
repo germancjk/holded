@@ -4,7 +4,6 @@
       <small>
         <ul class="list-inline-mb-0 pl-0">
           <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Stock</a> ></li>
           <li class="list-inline-item">Stock control</li>
         </ul>
       </small>
@@ -13,7 +12,6 @@
 
       <div class="row">
         <div class="col-12">
-          <!-- <h3 class="mb-3">Stock</h3> -->
           <div class="card shadow-sm">
             <div class="card-body">
               <div class="form-row">
@@ -38,7 +36,8 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <table class="table table-hover">
+              <p class="text-center" v-if="loading"><font-awesome-icon icon="spinner" spin /></p>
+              <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
@@ -77,10 +76,12 @@ export default {
         list: [],
         search: null,
         store: null,
+        loading: true,
       }
     },
     methods : {
       find() {
+        this.loading = true
         let token = localStorage.getItem('jwt')
 
         axios.defaults.headers.common['Content-Type'] = 'application/json'
@@ -92,7 +93,7 @@ export default {
           search: this.search,
         }
         axios.post(`${this.baseApiUrl}/api/stock/search`, params).then(response => {
-          console.log(response)
+          this.loading = false
           this.list = response['data']
         })
       },

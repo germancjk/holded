@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalesTable extends Migration
+class CreateMovementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,20 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('movements', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('store_id');
-            $table->float('cost')->default(0);
-            $table->float('taxes')->default(0);
-            $table->float('subtotal')->default(0);
-            $table->float('total')->default(0);
-            $table->float('profit')->default(0);
+            $table->unsignedInteger('from');
+            $table->unsignedInteger('to');
+            $table->string('comments')->nullable();
+            $table->integer('status');
+            $table->dateTime('received')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('store_id')->references('id')->on('stores');
+            $table->foreign('from')->references('id')->on('stores');
+            $table->foreign('to')->references('id')->on('stores');
         });
     }
 
@@ -36,6 +37,6 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('movements');
     }
 }
