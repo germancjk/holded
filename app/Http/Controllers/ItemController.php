@@ -18,6 +18,7 @@ class ItemController extends Controller
               'items.name as item_name',
               'item_skus.id as sku_id',
               'item_skus.name as sku_name',
+              'item_skus.cost',
               'item_skus.sale_price as sku_sale_price',
               'categories.name as category_name',
               DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
@@ -49,9 +50,25 @@ class ItemController extends Controller
     ]);
   }
 
-  public function show(Item $item)
+  public function show(Request $request)
   {
-    return response()->json($item);
+    return response()->json(
+      Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
+          ->join('categories', 'items.category_id', '=', 'categories.id')
+          ->select(
+              'items.id as item_id',
+              'items.name as item_name',
+              'item_skus.id as sku_id',
+              'item_skus.name as sku_name',
+              'item_skus.sale_price as sku_sale_price',
+              'categories.name as category_name',
+              DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
+              )
+          ->where('item_skus.id', '=', $request->sku_id)
+          ->getQuery()
+          ->get()
+          ->toArray()
+        );
   }
 
     /**

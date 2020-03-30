@@ -28,6 +28,15 @@
           <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Board</router-link></li>
           <li class="nav-item dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sales
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <router-link :to="{ name: 'sales.new' }" class="dropdown-item text-dark">New Sale</router-link>
+              <router-link :to="{ name: 'sales' }" class="dropdown-item text-dark">Sales</router-link>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Items
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

@@ -35,7 +35,19 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $item = Sale::create([
+        'user_id' => $request->user_id,
+        'name' => $request->name,
+        'category_id' => $request->category_id,
+        'supplier_id' => $request->supplier_id,
+        'tax_id' => $request->tax_id
+      ]);
+
+      return response()->json([
+        'status' => (bool) $item,
+        'data'   => $item,
+        'message' => $item ? 'Item Created!' : 'Error Creating Item'
+      ]);
     }
 
     /**

@@ -80,6 +80,16 @@ const routes = [
           name: 'movements',
           component: () => import ('../views/panel/Movements.vue')
         },
+        {
+          path: '/panel/sales',
+          name: 'sales',
+          component: () => import ('../views/panel/Sales.vue')
+        },
+        {
+          path: '/panel/sales.new',
+          name: 'sales.new',
+          component: () => import ('../views/panel/SalesNew.vue')
+        },
     ]
 
 const router = new VueRouter({

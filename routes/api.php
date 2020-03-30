@@ -63,4 +63,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   // Movements
   Route::post('/movements', 'MovementController@index');
   Route::post('/movement', 'MovementController@store');
+
+  // Sales
+  Route::post('/sales.new', 'SaleController@store');
 });
