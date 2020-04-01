@@ -28083,19 +28083,19 @@ var routes = [{
   path: '/panel/stores',
   name: 'stores',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../views/panel/Stores.vue */ "./resources/js/views/panel/Stores.vue"));
+    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../views/panel/Stores.vue */ "./resources/js/views/panel/Stores.vue"));
   }
 }, {
   path: '/panel/taxes',
   name: 'taxes',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ../views/panel/Tax.vue */ "./resources/js/views/panel/Tax.vue"));
+    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../views/panel/Tax.vue */ "./resources/js/views/panel/Tax.vue"));
   }
 }, {
   path: '/panel/suppliers',
   name: 'suppliers',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../views/panel/Supplier.vue */ "./resources/js/views/panel/Supplier.vue"));
+    return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ../views/panel/Supplier.vue */ "./resources/js/views/panel/Supplier.vue"));
   }
 }, {
   path: '/panel/item/new',
@@ -28119,7 +28119,7 @@ var routes = [{
   path: '/panel/stock',
   name: 'stock',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ../views/panel/Stock.vue */ "./resources/js/views/panel/Stock.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ../views/panel/Stock.vue */ "./resources/js/views/panel/Stock.vue"));
   }
 }, {
   path: '/panel/movement/new',
@@ -28137,13 +28137,13 @@ var routes = [{
   path: '/panel/sales',
   name: 'sales',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sales.vue */ "./resources/js/views/panel/Sales.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sales.vue */ "./resources/js/views/panel/Sales.vue"));
   }
 }, {
   path: '/panel/sales.new',
   name: 'sales.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../views/panel/SalesNew.vue */ "./resources/js/views/panel/SalesNew.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ../views/panel/SalesNew.vue */ "./resources/js/views/panel/SalesNew.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

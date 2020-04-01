@@ -9,5 +9,5 @@ class Sale extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['user_id', 'from', 'cart'];
+  protected $fillable = ['user_id', 'store_id', 'cart', 'taxes', 'total', 'profit', 'cost'];
 }

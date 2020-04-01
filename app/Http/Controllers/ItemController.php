@@ -13,6 +13,7 @@ class ItemController extends Controller
     return response()->json(
       Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
           ->join('categories', 'items.category_id', '=', 'categories.id')
+          ->join('taxes', 'items.tax_id', '=', 'taxes.id')
           ->select(
               'items.id as item_id',
               'items.name as item_name',
@@ -21,6 +22,7 @@ class ItemController extends Controller
               'item_skus.cost',
               'item_skus.sale_price as sku_sale_price',
               'categories.name as category_name',
+              'taxes.percent',
               DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
               )
           ->where('items.user_id', '=', $request->user_id)

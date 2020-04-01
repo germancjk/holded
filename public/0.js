@@ -7,7 +7,7 @@
 /*! exports provided: default */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp\\htdocs\\holded\\resources\\js\\views\\panel\\SalesNew.vue: Unexpected keyword 'this' (162:21)\n\n\u001b[0m \u001b[90m 160 | \u001b[39m        console\u001b[33m.\u001b[39mlog(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart)\u001b[0m\n\u001b[0m \u001b[90m 161 | \u001b[39m      }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 162 | \u001b[39m      updateQuantity(\u001b[36mthis\u001b[39m\u001b[33m,\u001b[39m index){\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 163 | \u001b[39m        console\u001b[33m.\u001b[39mlog(\u001b[32m'this'\u001b[39m\u001b[33m,\u001b[39m \u001b[36mthis\u001b[39m)\u001b[0m\n\u001b[0m \u001b[90m 164 | \u001b[39m        console\u001b[33m.\u001b[39mlog(\u001b[32m'index'\u001b[39m\u001b[33m,\u001b[39m index)\u001b[0m\n\u001b[0m \u001b[90m 165 | \u001b[39m      }\u001b[33m,\u001b[39m\u001b[0m\n    at Parser.raise (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:7013:17)\n    at Parser.checkReservedWord (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10361:12)\n    at Parser.parseIdentifierName (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10331:12)\n    at Parser.parseIdentifier (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10303:23)\n    at Parser.parseBindingAtom (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:8741:17)\n    at Parser.parseMaybeDefault (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:8801:25)\n    at Parser.parseAssignableListItem (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:8783:23)\n    at Parser.parseBindingList (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:8775:24)\n    at Parser.parseFunctionParams (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11386:24)\n    at Parser.parseMethod (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10159:10)\n    at Parser.parseObjectMethod (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10077:19)\n    at Parser.parseObjPropValue (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10119:23)\n    at Parser.parseObjectMember (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10043:10)\n    at Parser.parseObj (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9963:25)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9582:28)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9219:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9199:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9067:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9040:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9000:21)\n    at Parser.parseObjectProperty (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10094:101)\n    at Parser.parseObjPropValue (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10119:101)\n    at Parser.parseObjectMember (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10043:10)\n    at Parser.parseObj (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9963:25)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9582:28)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9219:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9199:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9067:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9040:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9000:21)\n    at Parser.parseExportDefaultExpression (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11836:24)\n    at Parser.parseExport (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11738:31)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10762:27)\n    at Parser.parseStatement (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10658:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11234:25)\n    at Parser.parseBlockBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11221:10)");
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\xampp\\htdocs\\holded\\resources\\js\\views\\panel\\SalesNew.vue: Unexpected token (188:76)\n\n\u001b[0m \u001b[90m 186 | \u001b[39m      updateQuantity(quantity\u001b[33m,\u001b[39m index){\u001b[0m\n\u001b[0m \u001b[90m 187 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mtotal \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mprice \u001b[33m*\u001b[39m quantity\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 188 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mtaxes \u001b[33m=\u001b[39m (\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mtotal \u001b[33m*\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39m\u001b[33m.\u001b[39mpercent) \u001b[33m/\u001b[39m \u001b[35m100\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     | \u001b[39m                                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 189 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mprofit \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mtotal \u001b[33m-\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mtaxes \u001b[33m-\u001b[39m (\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mcart[index]\u001b[33m.\u001b[39mcost \u001b[33m*\u001b[39m quantity)\u001b[0m\n\u001b[0m \u001b[90m 190 | \u001b[39m      }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 191 | \u001b[39m      updateDiscount(discount\u001b[33m,\u001b[39m index){\u001b[0m\n    at Parser.raise (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:7013:17)\n    at Parser.unexpected (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:8384:16)\n    at Parser.parseIdentifierName (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10325:18)\n    at Parser.parseIdentifier (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10303:23)\n    at Parser.parseMaybePrivateName (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9666:19)\n    at Parser.parseSubscript (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9274:104)\n    at Parser.parseSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9240:19)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9229:17)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9199:21)\n    at Parser.parseExprOpBaseRightExpr (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9159:34)\n    at Parser.parseExprOpRightExpr (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9152:21)\n    at Parser.parseExprOp (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9115:27)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9077:17)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9040:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9000:21)\n    at Parser.parseParenAndDistinguishExpression (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9782:28)\n    at Parser.parseExprAtom (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9560:21)\n    at Parser.parseExprSubscripts (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9219:23)\n    at Parser.parseMaybeUnary (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9199:21)\n    at Parser.parseExprOps (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9067:23)\n    at Parser.parseMaybeConditional (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9040:23)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9000:21)\n    at Parser.parseMaybeAssign (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9027:25)\n    at Parser.parseExpression (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:8950:23)\n    at Parser.parseStatementContent (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10787:23)\n    at Parser.parseStatement (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10658:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11234:25)\n    at Parser.parseBlockBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11221:10)\n    at Parser.parseBlock (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:11205:10)\n    at Parser.parseFunctionBody (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10220:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10190:10)\n    at Parser.parseMethod (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10160:10)\n    at Parser.parseObjectMethod (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10077:19)\n    at Parser.parseObjPropValue (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10119:23)\n    at Parser.parseObjectMember (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:10043:10)\n    at Parser.parseObj (C:\\xampp\\htdocs\\holded\\node_modules\\@babel\\parser\\lib\\index.js:9963:25)");
 
 /***/ }),
 
@@ -176,9 +176,12 @@ var render = function() {
                         ],
                         staticClass:
                           "form-control col-sm-6 text-right float-right",
-                        attrs: { type: "number", max: "100" },
+                        attrs: { type: "text", max: "100" },
                         domProps: { value: row.discount },
                         on: {
+                          keyup: function($event) {
+                            return _vm.updateDiscount(row.discount, index)
+                          },
                           input: function($event) {
                             if ($event.target.composing) {
                               return
@@ -201,11 +204,11 @@ var render = function() {
                         ],
                         staticClass:
                           "form-control col-sm-6 text-right float-right",
-                        attrs: { type: "number", min: "1" },
+                        attrs: { type: "text", min: "1" },
                         domProps: { value: row.quantity },
                         on: {
-                          change: function($event) {
-                            return _vm.updateQuantity(this, index)
+                          keyup: function($event) {
+                            return _vm.updateQuantity(row.quantity, index)
                           },
                           input: function($event) {
                             if ($event.target.composing) {
@@ -229,9 +232,12 @@ var render = function() {
                         ],
                         staticClass:
                           "form-control col-sm-6 text-right float-right",
-                        attrs: { type: "number", min: "1" },
+                        attrs: { type: "text", min: "1" },
                         domProps: { value: row.total },
                         on: {
+                          keyup: function($event) {
+                            return _vm.updateTotal(row.total, index)
+                          },
                           input: function($event) {
                             if ($event.target.composing) {
                               return
@@ -262,6 +268,28 @@ var render = function() {
                 }),
                 0
               )
+            ]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-hover" }, [
+              _c("tbody", [
+                _c("tr", { staticClass: "text-right" }, [
+                  _c("td", [_vm._v("Profit: " + _vm._s(_vm.cartProfit) + " €")])
+                ]),
+                _vm._v(" "),
+                _c("tr", { staticClass: "text-right" }, [
+                  _c("td", [
+                    _vm._v("SubTotal: " + _vm._s(_vm.cartTaxes) + " €")
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", { staticClass: "text-right" }, [
+                  _c("td", [
+                    _c("strong", [
+                      _vm._v("Total: " + _vm._s(_vm.cartTotal) + " €")
+                    ])
+                  ])
+                ])
+              ])
             ])
           ])
         ])
@@ -335,7 +363,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", { staticClass: "text-right" }, [_vm._v("Discount")]),
+        _c("th", { staticClass: "text-right" }, [_vm._v("Discount %")]),
         _vm._v(" "),
         _c("th", { staticClass: "text-right" }, [_vm._v("Quantity")]),
         _vm._v(" "),

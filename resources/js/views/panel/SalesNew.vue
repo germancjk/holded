@@ -101,6 +101,20 @@
               </tbody>
             </table>
 
+            <table class="table table-hover">
+              <tbody>
+                <tr class="text-right">
+                  <td>Profit: {{ cartProfit }} €</td>
+                </tr>
+                <tr class="text-right">
+                  <td>Taxes: {{ cartTaxes }} €</td>
+                </tr>
+                <tr class="text-right">
+                  <td><strong>Total: {{ cartTotal }} €</strong> </td>
+                </tr>
+              </tbody>
+            </table>
+
           </div>
         </div>
       </div>
@@ -127,8 +141,8 @@ export default {
         from: 0,
         quantity: 1,
         discount: 0,
-        cart: [],
         list: [],
+        cart: [],
         btnDisabled: false,
         submitName: 'Done',
         done: false,
@@ -150,27 +164,49 @@ export default {
       },
       addCart(item) {
         const total = this.quantity * item.sku_sale_price
+        const taxes = (total * item.percent) / 100
+        const profit = (total - taxes) - (item.cost * this.quantity)
+        const cartCost = item.cost * this.quantity
 
         this.cart.push({
           sku_id: item.sku_id,
           name: item.name,
           cost: item.cost,
+          percent: item.percent,
           price: item.sku_sale_price,
           priceCart: item.sku_sale_price,
+          cartCost: cartCost,
           quantity: this.quantity,
           discount: this.discount,
+          taxes: taxes,
           total: total,
+          profit: profit,
         })
         this.item = 0
         console.log(this.cart)
       },
       updateQuantity(quantity, index){
-        this.cart[index].total = this.cart[index].price * quantity
+        const total = this.cart[index].price * quantity
+        const taxes = (total * this.cart[index].percent) / 100
+        const profit = (total - taxes) - (this.cart[index].cost * this.cart[index].quantity)
+
+        this.cart[index].total = total
+        this.cart[index].taxes = taxes
+        this.cart[index].profit = profit
+        this.cart[index].cartCost = this.cart[index].quantity * this.cart[index].cost
       },
       updateDiscount(discount, index){
         const percent = (discount / 100) * this.cart[index].price
-        this.cart[index].priceCart = this.cart[index].price - percent
-        this.cart[index].total = this.cart[index].priceCart * this.cart[index].quantity
+        const price = this.cart[index].price - percent
+        const total = price * this.cart[index].quantity
+        const taxes = (total * this.cart[index].percent) / 100
+        const profit = total - taxes - (this.cart[index].cost * this.cart[index].quantity)
+
+        this.cart[index].priceCart = price
+        this.cart[index].total = total
+        this.cart[index].taxes = taxes
+        this.cart[index].profit = profit
+        this.cart[index].cartCost = this.cart[index].quantity * this.cart[index].cost
       },
       updateTotal(total, index){
         this.cart[index].total = total
@@ -181,17 +217,21 @@ export default {
         this.item = 0
       },
       submit() {
-        this.btnDisabled = true
+        // this.btnDisabled = true
         const params = {
           user_id: this.userId,
           from: this.from,
           cart: this.cart,
+          taxes: this.cartTaxes,
+          total: this.cartTotal,
+          profit: this.cartProfit,
+          cost: this.cartCost,
         }
-        console.log(params)
-        return
+console.log(params)
         axios.post(`${this.baseApiUrl}/api/sales.new`, params).then(response => {
+          console.log(response)
           if (response.data.status == true) {
-            this.clean()
+            // this.clean()
           }
         })
       },
@@ -210,7 +250,37 @@ export default {
       this.find()
     },
     computed: {
-      ...mapGetters(['stores', 'baseApiUrl'])
+      ...mapGetters(['stores', 'baseApiUrl']),
+      cartTotal () {
+        const items = this.cart
+        let suma = 0
+        if(items.length > 0){
+          items.forEach(element => (suma += element.total))
+        }
+
+        return suma
+      },
+      cartTaxes () {
+        const items = this.cart
+        let suma = 0
+        items.forEach(element => (suma += element.taxes))
+
+        return suma
+      },
+      cartProfit () {
+        const items = this.cart
+        let suma = 0
+        items.forEach(element => (suma += element.profit))
+
+        return suma
+      },
+      cartCost () {
+        const items = this.cart
+        let suma = 0
+        items.forEach(element => (suma += element.cartCost))
+
+        return suma
+      },
     },
     watch: {
       item: function (item) {

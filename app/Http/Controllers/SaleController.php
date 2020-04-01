@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Sale;
+use App\{ Sale, SaleItem };
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -37,11 +37,27 @@ class SaleController extends Controller
     {
       $item = Sale::create([
         'user_id' => $request->user_id,
-        'name' => $request->name,
-        'category_id' => $request->category_id,
-        'supplier_id' => $request->supplier_id,
-        'tax_id' => $request->tax_id
+        'store_id' => $request->from,
+        'cost' => $request->cost,
+        'taxes' => $request->taxes,
+        'subtotal' => ($request->total - $request->taxes),
+        'total' => $request->total,
+        'profit' => $request->profit
       ]);
+
+      foreach ($request->cart as $key => $value) {
+        $saleItem = SaleItem::create([
+          'sale_id' => $item->id,
+          'item_sku_id' => $value['sku_id'],
+          'quantity' => $value['quantity'],
+          'cost' => $value['cost'],
+          'taxes' => $value['taxes'],
+          'discount' => $value['discount'],
+          'subtotal' => ($value['total'] - $value['taxes']),
+          'total' => $value['total'],
+          'profit' => $value['profit'],
+        ]);
+      }
 
       return response()->json([
         'status' => (bool) $item,

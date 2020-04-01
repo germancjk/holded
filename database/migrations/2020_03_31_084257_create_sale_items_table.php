@@ -15,9 +15,9 @@ class CreateSaleItemsTable extends Migration
     {
         Schema::create('sale_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
             $table->unsignedInteger('sale_id');
             $table->unsignedInteger('item_sku_id');
+            $table->unsignedInteger('quantity');
             $table->float('cost')->default(0);
             $table->float('taxes')->default(0);
             $table->float('discount')->default(0);
@@ -27,7 +27,6 @@ class CreateSaleItemsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('sale_id')->references('id')->on('sales');
             $table->foreign('item_sku_id')->references('id')->on('item_skus');
         });
