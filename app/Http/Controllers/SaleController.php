@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{ Sale, SaleItem };
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -12,9 +13,27 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      return response()->json(
+        Sale::select(
+            'sales.id',
+            'sales.store_id',
+            'sales.cost',
+            'sales.taxes',
+            'sales.subtotal',
+            'sales.total',
+            'sales.profit',
+            'sales.created_at',
+            'stf.name as store_name',
+            )
+            ->join('stores as stf', 'sales.store_id', '=', 'stf.id')
+            ->where('sales.user_id', '=', $request->user_id)
+            ->orderBy('created_at')
+            ->getQuery()
+            ->get()
+            ->toArray()
+      );
     }
 
     /**
@@ -72,9 +91,28 @@ class SaleController extends Controller
      * @param  \App\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function show(Sale $sale)
+    public function show(Request $request)
     {
-        //
+      return response()->json(
+        Sale::select(
+            'sales.id',
+            'sales.store_id',
+            'sales.cost',
+            'sales.taxes',
+            'sales.subtotal',
+            'sales.total',
+            'sales.profit',
+            'sales.created_at',
+            'stf.name as store_name',
+            )
+            ->join('stores as stf', 'sales.store_id', '=', 'stf.id')
+            ->where('sales.id', '=', $request->id)
+            ->where('sales.user_id', '=', $request->user_id)
+            ->orderBy('created_at')
+            ->getQuery()
+            ->get()
+            ->toArray()
+      );
     }
 
     /**
@@ -109,5 +147,58 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         //
+    }
+
+    public function items(Request $request)
+    {
+      return response()->json(
+        SaleItem::join('item_skus', 'sale_items.item_sku_id', '=', 'item_skus.id')
+            ->join('items', 'items.id', '=', 'item_skus.item_id')
+            ->select(
+                'sale_items.quantity',
+                'sale_items.cost',
+                'sale_items.taxes',
+                'sale_items.discount',
+                'sale_items.subtotal',
+                'sale_items.total',
+                'sale_items.profit',
+                DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
+                )
+            // ->where('sales.user_id', '=', $request->user_id)
+            ->where('sale_items.sale_id', '=', $request->id)
+            ->getQuery()
+            ->get()
+            ->toArray()
+          );
+    }
+
+    public function boardToday(Request $request)
+    {
+      $from = date('Y-m-d') . ' 00:00:00';
+      $to   = date('Y-m-d') . ' 23:59:59';
+
+      return response()->json(
+        Sale::select(DB::raw('SUM(total) as total'), DB::raw('SUM(profit) as profit'))
+            ->where('user_id', '=', $request->user_id)
+            ->whereBetween('created_at', [$from, $to])
+            ->getQuery()
+            ->get()
+            ->toArray()
+          );
+    }
+
+    public function boardMonth(Request $request)
+    {
+      $from = date('Y-m-01') . ' 00:00:00';
+      $to   = date('Y-m-31') . ' 23:59:59';
+
+      return response()->json(
+        Sale::select(DB::raw('SUM(total) as total'), DB::raw('SUM(profit) as profit'))
+            ->where('user_id', '=', $request->user_id)
+            ->whereBetween('created_at', [$from, $to])
+            ->getQuery()
+            ->get()
+            ->toArray()
+          );
     }
 }

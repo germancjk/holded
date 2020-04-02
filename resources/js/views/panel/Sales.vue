@@ -4,13 +4,13 @@
       <small>
         <ul class="list-inline-mb-0 pl-0">
           <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Movements</li>
+          <li class="list-inline-item">Sales</li>
         </ul>
       </small>
 
       <p class="lead">
-        Movements
-        <router-link :to="{ name: 'movement.new' }" class="btn btn-sm btn-success float-right">+ New Movement</router-link>
+        Sales
+        <router-link :to="{ name: 'sales.new' }" class="btn btn-sm btn-success float-right">+ New Sale</router-link>
       </p>
 
       <div class="row mt-2">
@@ -21,23 +21,23 @@
               <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
+                    <th scope="col">Store</th>
                     <th scope="col">Date</th>
-                    <th scope="col">From</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Comments</th>
+                    <th scope="col">SubTotal</th>
+                    <th scope="col">Total</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="element,index in list">
+                    <td scope="row">{{ element.store_name }}</td>
                     <td scope="row">{{ element.created_at }}</td>
-                    <td scope="row">{{ element.store_name_from }}</td>
-                    <td scope="row">{{ element.store_name_to }}</td>
-                    <td scope="row">{{ element.comments }}</td>
+                    <td scope="row">{{ element.subtotal }}</td>
+                    <td scope="row">{{ element.total }}</td>
                     <td scope="row">
-                      <button class="btn btn-sm btn-outline-info" type="button" name="button" @click="update(element.id)">
+                      <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'sale', params: { id: element.id }}">
                         <font-awesome-icon icon="edit" /> Details
-                      </button>
+                      </router-link>
                     </td>
                   </tr>
                 </tbody>
@@ -77,7 +77,7 @@ export default {
         const params = {
           user_id: this.userId,
         }
-        axios.post(`${this.baseApiUrl}/api/movements`, params).then(response => {
+        axios.post(`${this.baseApiUrl}/api/sales`, params).then(response => {
           this.loading = false
           this.list = response['data']
         })

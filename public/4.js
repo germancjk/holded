@@ -89,12 +89,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {//
   },
   data: function data() {
-    return {//
+    return {
+      userId: localStorage.getItem('user_id'),
+      todayTotal: 0,
+      todayProfit: 0,
+      monthTotal: 0,
+      monthProfit: 0
     };
   },
-  methods: {//
+  methods: {
+    today: function today() {
+      var _this = this;
+
+      axios.defaults.headers.common['Content-Type'] = 'application/json';
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt');
+      axios.post("".concat(this.baseApiUrl, "/api/board/today"), {
+        user_id: this.userId
+      }).then(function (response) {
+        _this.todayTotal = response.data[0].total;
+        _this.todayProfit = response.data[0].profit;
+      });
+    },
+    month: function month() {
+      var _this2 = this;
+
+      axios.defaults.headers.common['Content-Type'] = 'application/json';
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt');
+      axios.post("".concat(this.baseApiUrl, "/api/board/month"), {
+        user_id: this.userId
+      }).then(function (response) {
+        _this2.monthTotal = response.data[0].total;
+        _this2.monthProfit = response.data[0].profit;
+      });
+    }
   },
-  mounted: function mounted() {//
+  mounted: function mounted() {
+    this.today();
+    this.month();
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['baseApiUrl']))
 });
@@ -119,15 +150,61 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("p", { staticClass: "lead" }, [_vm._v("Board")]),
     _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _vm._m(1),
+      _c("div", { staticClass: "col-sm-4 mb-4" }, [
+        _c("div", { staticClass: "card shadow-sm" }, [
+          _c("ul", { staticClass: "list-group list-group-flush" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item" }, [
+              _vm._v("Sales "),
+              _c("strong", { staticClass: "float-right" }, [
+                _vm._v(_vm._s(_vm.todayTotal) + " €")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item text-success" }, [
+              _vm._v("Profit "),
+              _c("strong", { staticClass: "float-right" }, [
+                _vm._v(_vm._s(_vm.todayProfit) + " €")
+              ])
+            ])
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-4 mb-4" }, [
         _c("div", { staticClass: "card shadow-sm" }, [
           _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _vm._m(2),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item" }, [
+              _vm._v("Sales "),
+              _c("strong", { staticClass: "float-right" }, [
+                _vm._v(_vm._s(_vm.monthTotal) + " €")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item text-success" }, [
+              _vm._v("Profit "),
+              _c("strong", { staticClass: "float-right" }, [
+                _vm._v(_vm._s(_vm.monthProfit) + " €")
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _vm._m(3),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-4 mb-4" }, [
+        _c("div", { staticClass: "card shadow-sm" }, [
+          _c("ul", { staticClass: "list-group list-group-flush" }, [
+            _vm._m(4),
             _vm._v(" "),
             _c("li", { staticClass: "list-group-item" }, [_vm._v("Stock")]),
             _vm._v(" "),
@@ -163,69 +240,35 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-4 mb-4" }, [
-        _c("div", { staticClass: "card shadow-sm" }, [
-          _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _c("li", { staticClass: "list-group-item" }, [
-              _c("h5", { staticClass: "my-0" }, [_vm._v("Today")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _vm._v("Sales "),
-              _c("strong", { staticClass: "float-right" }, [
-                _vm._v("12.000,00 €")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-success" }, [
-              _vm._v("Profit "),
-              _c("strong", { staticClass: "float-right" }, [
-                _vm._v("8.540,00 €")
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4 mb-4" }, [
-        _c("div", { staticClass: "card shadow-sm" }, [
-          _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _c("li", { staticClass: "list-group-item" }, [
-              _c("h5", { staticClass: "my-0" }, [_vm._v("This Month")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _vm._v("Sales "),
-              _c("strong", { staticClass: "float-right" }, [
-                _vm._v("121.000,00 €")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-success" }, [
-              _vm._v("Profit "),
-              _c("strong", { staticClass: "float-right" }, [
-                _vm._v("46.540,00 €")
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4 mb-4" }, [
-        _c("div", { staticClass: "card text-white bg-primary shadow-sm" }, [
-          _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
-              _c("h5", { staticClass: "my-0" }, [_vm._v("Hi, Germán!")])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
-              _vm._v("My Profile")
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
-              _vm._v("Dapibus ac facilisis in")
-            ])
+    return _c("li", { staticClass: "list-group-item" }, [
+      _c("h5", { staticClass: "my-0" }, [_vm._v("Today")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item" }, [
+      _c("h5", { staticClass: "my-0" }, [_vm._v("This Month")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-4 mb-4" }, [
+      _c("div", { staticClass: "card text-white bg-primary shadow-sm" }, [
+        _c("ul", { staticClass: "list-group list-group-flush" }, [
+          _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
+            _c("h5", { staticClass: "my-0" }, [_vm._v("Hi, Germán!")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
+            _vm._v("My Profile")
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
+            _vm._v("Dapibus ac facilisis in")
           ])
         ])
       ])

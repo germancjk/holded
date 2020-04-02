@@ -17,7 +17,7 @@ class CreateSaleItemsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('sale_id');
             $table->unsignedInteger('item_sku_id');
-            $table->unsignedInteger('quantity');
+            $table->integer('quantity');
             $table->float('cost')->default(0);
             $table->float('taxes')->default(0);
             $table->float('discount')->default(0);

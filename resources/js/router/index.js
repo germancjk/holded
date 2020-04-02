@@ -86,9 +86,14 @@ const routes = [
           component: () => import ('../views/panel/Sales.vue')
         },
         {
-          path: '/panel/sales.new',
+          path: '/panel/sales/new',
           name: 'sales.new',
           component: () => import ('../views/panel/SalesNew.vue')
+        },
+        {
+          path: '/panel/sale/:id',
+          name: 'sale',
+          component: () => import ('../views/panel/Sale.vue')
         },
     ]
 
