@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{ Sale, SaleItem };
+use App\{ Sale, SaleItem, Stock };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -76,6 +76,12 @@ class SaleController extends Controller
           'total' => $value['total'],
           'profit' => $value['profit'],
         ]);
+
+        $q = $value['quantity'] * -1;
+        $stock = Stock::updateOrCreate(
+            ['user_id' => $request->user_id, 'item_sku_id' => $value['sku_id'], 'store_id' => $request->from],
+            ['quantity' => \DB::raw("quantity + {$q}")]
+        );
       }
 
       return response()->json([

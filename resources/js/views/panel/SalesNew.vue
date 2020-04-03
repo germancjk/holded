@@ -258,28 +258,28 @@ console.log(params)
           items.forEach(element => (suma += element.total))
         }
 
-        return suma
+        return suma.toFixed(2)
       },
       cartTaxes () {
         const items = this.cart
         let suma = 0
         items.forEach(element => (suma += element.taxes))
 
-        return suma
+        return suma.toFixed(2)
       },
       cartProfit () {
         const items = this.cart
         let suma = 0
         items.forEach(element => (suma += element.profit))
 
-        return suma
+        return suma.toFixed(2)
       },
       cartCost () {
         const items = this.cart
         let suma = 0
         items.forEach(element => (suma += element.cartCost))
 
-        return suma
+        return suma.toFixed(2)
       },
     },
     watch: {

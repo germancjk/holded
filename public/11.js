@@ -279,7 +279,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
 
-      return suma;
+      return suma.toFixed(2);
     },
     cartTaxes: function cartTaxes() {
       var items = this.cart;
@@ -287,7 +287,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       items.forEach(function (element) {
         return suma += element.taxes;
       });
-      return suma;
+      return suma.toFixed(2);
     },
     cartProfit: function cartProfit() {
       var items = this.cart;
@@ -295,7 +295,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       items.forEach(function (element) {
         return suma += element.profit;
       });
-      return suma;
+      return suma.toFixed(2);
     },
     cartCost: function cartCost() {
       var items = this.cart;
@@ -303,7 +303,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       items.forEach(function (element) {
         return suma += element.cartCost;
       });
-      return suma;
+      return suma.toFixed(2);
     }
   }),
   watch: {

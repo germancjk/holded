@@ -259,7 +259,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "row mt-5" }, [
+    _c("div", { staticClass: "row mt-3" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body" }, [

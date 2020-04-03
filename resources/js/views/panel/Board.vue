@@ -88,8 +88,8 @@ export default {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt')
 
       axios.post(`${this.baseApiUrl}/api/board/today`, {user_id: this.userId}).then(response => {
-        this.todayTotal = response.data[0].total
-        this.todayProfit = response.data[0].profit
+        this.todayTotal  = (response.data[0].total == null) ? 0 : (response.data[0].total).toFixed(2)
+        this.todayProfit = (response.data[0].profit == null) ? 0 : (response.data[0].profit).toFixed(2)
       })
     },
     month() {
@@ -97,8 +97,8 @@ export default {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt')
 
       axios.post(`${this.baseApiUrl}/api/board/month`, {user_id: this.userId}).then(response => {
-        this.monthTotal = response.data[0].total
-        this.monthProfit = response.data[0].profit
+        this.monthTotal  = (response.data[0].total == null) ? 0 : (response.data[0].total).toFixed(2)
+        this.monthProfit = (response.data[0].profit == null) ? 0 : (response.data[0].profit).toFixed(2)
       })
     },
   },

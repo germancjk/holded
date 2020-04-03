@@ -106,8 +106,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("".concat(this.baseApiUrl, "/api/board/today"), {
         user_id: this.userId
       }).then(function (response) {
-        _this.todayTotal = response.data[0].total;
-        _this.todayProfit = response.data[0].profit;
+        _this.todayTotal = response.data[0].total == null ? 0 : response.data[0].total.toFixed(2);
+        _this.todayProfit = response.data[0].profit == null ? 0 : response.data[0].profit.toFixed(2);
       });
     },
     month: function month() {
@@ -118,8 +118,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("".concat(this.baseApiUrl, "/api/board/month"), {
         user_id: this.userId
       }).then(function (response) {
-        _this2.monthTotal = response.data[0].total;
-        _this2.monthProfit = response.data[0].profit;
+        _this2.monthTotal = response.data[0].total == null ? 0 : response.data[0].total.toFixed(2);
+        _this2.monthProfit = response.data[0].profit == null ? 0 : response.data[0].profit.toFixed(2);
       });
     }
   },
