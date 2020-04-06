@@ -350,7 +350,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card shadow-sm" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "form-row" }, [
               _c(
@@ -584,18 +584,16 @@ var render = function() {
             _c("table", { staticClass: "table table-hover" }, [
               _c("tbody", [
                 _c("tr", { staticClass: "text-right" }, [
-                  _c("td", [_vm._v("Profit: " + _vm._s(_vm.cartProfit) + " €")])
+                  _c("td", [_vm._v("Profit: " + _vm._s(_vm.cartProfit))])
                 ]),
                 _vm._v(" "),
                 _c("tr", { staticClass: "text-right" }, [
-                  _c("td", [_vm._v("Taxes: " + _vm._s(_vm.cartTaxes) + " €")])
+                  _c("td", [_vm._v("Taxes: " + _vm._s(_vm.cartTaxes))])
                 ]),
                 _vm._v(" "),
                 _c("tr", { staticClass: "text-right" }, [
                   _c("td", [
-                    _c("strong", [
-                      _vm._v("Total: " + _vm._s(_vm.cartTotal) + " €")
-                    ])
+                    _c("strong", [_vm._v("Total: " + _vm._s(_vm.cartTotal))])
                   ])
                 ])
               ])

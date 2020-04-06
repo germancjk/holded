@@ -194,27 +194,32 @@ var render = function() {
                           _vm._v(_vm._s(element.comments))
                         ]),
                         _vm._v(" "),
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-outline-info",
-                              attrs: { type: "button", name: "button" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.update(element.id)
+                        _c(
+                          "td",
+                          { attrs: { scope: "row" } },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-sm btn-outline-info",
+                                attrs: {
+                                  to: {
+                                    name: "movement",
+                                    params: { id: element.id }
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _c("font-awesome-icon", {
-                                attrs: { icon: "edit" }
-                              }),
-                              _vm._v(" Details\n                  ")
-                            ],
-                            1
-                          )
-                        ])
+                              },
+                              [
+                                _c("font-awesome-icon", {
+                                  attrs: { icon: "edit" }
+                                }),
+                                _vm._v(" Details\n                  ")
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
                       ])
                     }),
                     0

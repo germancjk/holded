@@ -6,6 +6,13 @@ body {
   background-color: #ffffff;
 }
 
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
 /* nav {
   background-color: #ffffff;
 } */

@@ -19,7 +19,7 @@
     <!-- init search -->
     <div class="row">
       <div class="col-12">
-        <div class="card">
+        <div class="card shadow-sm">
           <div class="card-body">
             <div class="form-row">
               <div class="form-group col-6">

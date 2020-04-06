@@ -4,14 +4,25 @@
       <small>
         <ul class="list-inline-mb-0 pl-0">
           <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Movements</li>
+          <li class="list-inline-item"><a href="#">Movements</a> ></li>
+          <li class="list-inline-item">Movement</li>
         </ul>
       </small>
 
-      <p class="lead">
-        Movements
-        <router-link :to="{ name: 'movement.new' }" class="btn btn-sm btn-success float-right">+ New Movement</router-link>
-      </p>
+      <p class="lead">Movement </p>
+
+      <div class="row mt-2">
+        <div class="col-12">
+          <ul class="list-group shadow-sm">
+            <li class="list-group-item">From: {{ move.store_name_from }}</li>
+            <li class="list-group-item">To: {{ move.store_name_to }}</li>
+            <li class="list-group-item">Date: {{ move.created_at }}</li>
+            <li class="list-group-item">Comment: {{ move.comments }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="lead mt-4">Movement Items </p>
 
       <div class="row mt-2">
         <div class="col-12">
@@ -21,24 +32,14 @@
               <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">From</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Comments</th>
-                    <th scope="col"></th>
+                    <th scope="col">Item</th>
+                    <th scope="col" class="text-right">Quantity</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="element,index in list">
-                    <td scope="row">{{ element.created_at }}</td>
-                    <td scope="row">{{ element.store_name_from }}</td>
-                    <td scope="row">{{ element.store_name_to }}</td>
-                    <td scope="row">{{ element.comments }}</td>
-                    <td scope="row">
-                      <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'movement', params: { id: element.id }}">
-                        <font-awesome-icon icon="edit" /> Details
-                      </router-link>
-                    </td>
+                    <td scope="row">{{ element.name }}</td>
+                    <td scope="row" class="text-right">{{ element.quantity }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -62,6 +63,8 @@ export default {
     data(){
       return {
         userId: localStorage.getItem('user_id'),
+        id: this.$route.params.id,
+        move: [],
         list: [],
         loading: true,
       }
@@ -75,9 +78,26 @@ export default {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
         const params = {
+          id: this.id,
           user_id: this.userId,
         }
-        axios.post(`${this.baseApiUrl}/api/movements`, params).then(response => {
+        axios.post(`${this.baseApiUrl}/api/movement`, params).then(response => {
+          this.loading = false
+          this.move = response['data'][0]
+        })
+      },
+      items() {
+        this.loading = true
+        let token = localStorage.getItem('jwt')
+
+        axios.defaults.headers.common['Content-Type'] = 'application/json'
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+        const params = {
+          id: this.id,
+          user_id: this.userId,
+        }
+        axios.post(`${this.baseApiUrl}/api/movement/items`, params).then(response => {
           this.loading = false
           this.list = response['data']
         })
@@ -94,6 +114,7 @@ export default {
     mounted() {
       this.showError = false
       this.find()
+      this.items()
     },
     computed: {
       ...mapGetters(['baseApiUrl'])

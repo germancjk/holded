@@ -84,6 +84,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {//
@@ -106,8 +107,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("".concat(this.baseApiUrl, "/api/board/today"), {
         user_id: this.userId
       }).then(function (response) {
-        _this.todayTotal = response.data[0].total == null ? 0 : response.data[0].total.toFixed(2);
-        _this.todayProfit = response.data[0].profit == null ? 0 : response.data[0].profit.toFixed(2);
+        _this.todayTotal = response.data[0].total == null ? 0 : response.data[0].total;
+        _this.todayProfit = response.data[0].profit == null ? 0 : response.data[0].profit;
       });
     },
     month: function month() {
@@ -118,8 +119,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post("".concat(this.baseApiUrl, "/api/board/month"), {
         user_id: this.userId
       }).then(function (response) {
-        _this2.monthTotal = response.data[0].total == null ? 0 : response.data[0].total.toFixed(2);
-        _this2.monthProfit = response.data[0].profit == null ? 0 : response.data[0].profit.toFixed(2);
+        _this2.monthTotal = response.data[0].total == null ? 0 : response.data[0].total;
+        _this2.monthProfit = response.data[0].profit == null ? 0 : response.data[0].profit;
       });
     }
   },
@@ -159,14 +160,14 @@ var render = function() {
             _c("li", { staticClass: "list-group-item" }, [
               _vm._v("Sales "),
               _c("strong", { staticClass: "float-right" }, [
-                _vm._v(_vm._s(_vm.todayTotal) + " €")
+                _vm._v(_vm._s(_vm._f("currency")(_vm.todayTotal)))
               ])
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "list-group-item text-success" }, [
               _vm._v("Profit "),
               _c("strong", { staticClass: "float-right" }, [
-                _vm._v(_vm._s(_vm.todayProfit) + " €")
+                _vm._v(_vm._s(_vm._f("currency")(_vm.todayProfit)))
               ])
             ])
           ])
@@ -181,14 +182,14 @@ var render = function() {
             _c("li", { staticClass: "list-group-item" }, [
               _vm._v("Sales "),
               _c("strong", { staticClass: "float-right" }, [
-                _vm._v(_vm._s(_vm.monthTotal) + " €")
+                _vm._v(_vm._s(_vm._f("currency")(_vm.monthTotal)))
               ])
             ]),
             _vm._v(" "),
             _c("li", { staticClass: "list-group-item text-success" }, [
               _vm._v("Profit "),
               _c("strong", { staticClass: "float-right" }, [
-                _vm._v(_vm._s(_vm.monthProfit) + " €")
+                _vm._v(_vm._s(_vm._f("currency")(_vm.monthProfit)))
               ])
             ])
           ])
@@ -206,7 +207,37 @@ var render = function() {
           _c("ul", { staticClass: "list-group list-group-flush" }, [
             _vm._m(4),
             _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [_vm._v("Stock")]),
+            _c(
+              "li",
+              { staticClass: "list-group-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-dark",
+                    attrs: { to: { name: "stock" } }
+                  },
+                  [_vm._v("Stock")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "list-group-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-dark",
+                    attrs: { to: { name: "sales.new" } }
+                  },
+                  [_vm._v("+ New Sale")]
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
             _c(
               "li",
@@ -224,11 +255,37 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _vm._v("+ New Movement")
-            ]),
+            _c(
+              "li",
+              { staticClass: "list-group-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-dark",
+                    attrs: { to: { name: "movement.new" } }
+                  },
+                  [_vm._v("+ New Movement")]
+                )
+              ],
+              1
+            ),
             _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [_vm._v("+ New Item")])
+            _c(
+              "li",
+              { staticClass: "list-group-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-dark",
+                    attrs: { to: { name: "item.new" } }
+                  },
+                  [_vm._v("+ New Item")]
+                )
+              ],
+              1
+            )
           ])
         ])
       ])

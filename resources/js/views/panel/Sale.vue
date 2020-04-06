@@ -14,17 +14,17 @@
       <div class="row mt-2">
         <div class="col-6">
           <ul class="list-group">
-            <li class="list-group-item">Store: {{ item.store_name }}</li>
-            <li class="list-group-item">Date: {{ item.created_at }}</li>
-            <li class="list-group-item">Taxes: {{ item.taxes }}</li>
-            <li class="list-group-item">SubTotal: {{ item.subtotal }}</li>
-            <li class="list-group-item">Total: {{ item.total }}</li>
+            <li class="list-group-item">Store: <span class="float-right">{{ item.store_name }}</span></li>
+            <li class="list-group-item">Date: <span class="float-right">{{ item.created_at }}</span></li>
+            <li class="list-group-item">Taxes: <span class="float-right">{{ item.taxes | currency }}</span></li>
+            <li class="list-group-item">SubTotal: <span class="float-right">{{ item.subtotal | currency }}</span></li>
+            <li class="list-group-item">Total: <span class="float-right">{{ item.total | currency }}</span></li>
           </ul>
         </div>
         <div class="col-6">
           <ul class="list-group">
-            <li class="list-group-item">Cost: {{ item.cost }}</li>
-            <li class="list-group-item">Profit: {{ item.profit }}</li>
+            <li class="list-group-item">Cost: <span class="float-right">{{ item.cost | currency }}</span></li>
+            <li class="list-group-item">Profit: <span class="float-right">{{ item.profit | currency }}</span></li>
           </ul>
         </div>
       </div>
@@ -54,11 +54,11 @@
                     <td scope="row">{{ element.name }}</td>
                     <td scope="row" class="text-right">{{ element.quantity }}</td>
                     <td scope="row" class="text-right">{{ element.discount }}%</td>
-                    <td scope="row" class="text-right">{{ element.cost }}</td>
-                    <td scope="row" class="text-right">{{ element.taxes }}</td>
-                    <td scope="row" class="text-right">{{ element.subtotal }}</td>
-                    <td scope="row" class="text-right">{{ element.total }}</td>
-                    <td scope="row" class="text-right">{{ element.profit }}</td>
+                    <td scope="row" class="text-right">{{ element.cost | currency }}</td>
+                    <td scope="row" class="text-right">{{ element.taxes | currency }}</td>
+                    <td scope="row" class="text-right">{{ element.subtotal | currency }}</td>
+                    <td scope="row" class="text-right">{{ element.total | currency }}</td>
+                    <td scope="row" class="text-right">{{ element.profit | currency }}</td>
                   </tr>
                 </tbody>
               </table>

@@ -70,6 +70,7 @@ const routes = [
           name: 'stock',
           component: () => import ('../views/panel/Stock.vue')
         },
+        // movements
         {
           path: '/panel/movement/new',
           name: 'movement.new',
@@ -80,6 +81,12 @@ const routes = [
           name: 'movements',
           component: () => import ('../views/panel/Movements.vue')
         },
+        {
+          path: '/panel/movement/:id',
+          name: 'movement',
+          component: () => import ('../views/panel/Movement.vue')
+        },
+        // sales
         {
           path: '/panel/sales',
           name: 'sales',

@@ -28017,6 +28017,21 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('font-awesome-icon', _forta
 //   return value.charAt(0).toUpperCase() + value.slice(1)
 // })
 
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('currency', function (value) {
+  if (!value) return '';
+  return value.toFixed(2) + ' €';
+});
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('currencyColor', function (value) {
+  if (!value) return '';
+  return value > 0 ? '<span class="green">' + value.toFixed(2) + ' €</span>' : '<span class="red">' + value.toFixed(2) + ' €</span>';
+}); // Vue.filter('fecha', (valor) => {
+//   if (valor=='') return
+//
+//   const convertirFecha = value => moment(String(value)).format('DD/MM/YYYY')
+//   const fechaArray = valor.split('/')
+//   return convertirFecha(2020 + fechaArray[1] + fechaArray[0])
+// })
+
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
@@ -28121,7 +28136,8 @@ var routes = [{
   component: function component() {
     return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ../views/panel/Stock.vue */ "./resources/js/views/panel/Stock.vue"));
   }
-}, {
+}, // movements
+{
   path: '/panel/movement/new',
   name: 'movement.new',
   component: function component() {
@@ -28134,6 +28150,13 @@ var routes = [{
     return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/panel/Movements.vue */ "./resources/js/views/panel/Movements.vue"));
   }
 }, {
+  path: '/panel/movement/:id',
+  name: 'movement',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ../views/panel/Movement.vue */ "./resources/js/views/panel/Movement.vue"));
+  }
+}, // sales
+{
   path: '/panel/sales',
   name: 'sales',
   component: function component() {

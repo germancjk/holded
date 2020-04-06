@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{ Movement, MovementItem, Stock };
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovementController extends Controller
 {
@@ -79,9 +80,25 @@ class MovementController extends Controller
      * @param  \App\Movement  $movement
      * @return \Illuminate\Http\Response
      */
-    public function show(Movement $movement)
+    public function show(Request $request)
     {
-        //
+      return response()->json(
+        Movement::select(
+            'movements.id as id',
+            'movements.comments',
+            'movements.created_at',
+            'stf.name as store_name_from',
+            'stt.name as store_name_to',
+            )
+            ->join('stores as stf', 'movements.from', '=', 'stf.id')
+            ->join('stores as stt', 'movements.to', '=', 'stt.id')
+            ->where('movements.user_id', '=', $request->user_id)
+            ->where('movements.id', '=', $request->id)
+            ->orderBy('created_at')
+            ->getQuery()
+            ->get()
+            ->toArray()
+      );
     }
 
     /**
@@ -116,5 +133,22 @@ class MovementController extends Controller
     public function destroy(Movement $movement)
     {
         //
+    }
+
+    public function items(Request $request)
+    {
+      return response()->json(
+        MovementItem::join('item_skus', 'movement_items.item_sku_id', '=', 'item_skus.id')
+            ->join('items', 'items.id', '=', 'item_skus.item_id')
+            ->select(
+                'movement_items.quantity',
+                DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
+                )
+            // ->where('sales.user_id', '=', $request->user_id)
+            ->where('movement_items.movement_id', '=', $request->id)
+            ->getQuery()
+            ->get()
+            ->toArray()
+          );
     }
 }

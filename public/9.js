@@ -182,23 +182,38 @@ var render = function() {
       _c("div", { staticClass: "col-6" }, [
         _c("ul", { staticClass: "list-group" }, [
           _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("Store: " + _vm._s(_vm.item.store_name))
+            _vm._v("Store: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm.item.store_name))
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("Date: " + _vm._s(_vm.item.created_at))
+            _vm._v("Date: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm.item.created_at))
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("Taxes: " + _vm._s(_vm.item.taxes))
+            _vm._v("Taxes: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm._f("currency")(_vm.item.taxes)))
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("SubTotal: " + _vm._s(_vm.item.subtotal))
+            _vm._v("SubTotal: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm._f("currency")(_vm.item.subtotal)))
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("Total: " + _vm._s(_vm.item.total))
+            _vm._v("Total: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm._f("currency")(_vm.item.total)))
+            ])
           ])
         ])
       ]),
@@ -206,11 +221,17 @@ var render = function() {
       _c("div", { staticClass: "col-6" }, [
         _c("ul", { staticClass: "list-group" }, [
           _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("Cost: " + _vm._s(_vm.item.cost))
+            _vm._v("Cost: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm._f("currency")(_vm.item.cost)))
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("Profit: " + _vm._s(_vm.item.profit))
+            _vm._v("Profit: "),
+            _c("span", { staticClass: "float-right" }, [
+              _vm._v(_vm._s(_vm._f("currency")(_vm.item.profit)))
+            ])
           ])
         ])
       ])
@@ -271,7 +292,7 @@ var render = function() {
                             staticClass: "text-right",
                             attrs: { scope: "row" }
                           },
-                          [_vm._v(_vm._s(element.cost))]
+                          [_vm._v(_vm._s(_vm._f("currency")(element.cost)))]
                         ),
                         _vm._v(" "),
                         _c(
@@ -280,7 +301,7 @@ var render = function() {
                             staticClass: "text-right",
                             attrs: { scope: "row" }
                           },
-                          [_vm._v(_vm._s(element.taxes))]
+                          [_vm._v(_vm._s(_vm._f("currency")(element.taxes)))]
                         ),
                         _vm._v(" "),
                         _c(
@@ -289,7 +310,7 @@ var render = function() {
                             staticClass: "text-right",
                             attrs: { scope: "row" }
                           },
-                          [_vm._v(_vm._s(element.subtotal))]
+                          [_vm._v(_vm._s(_vm._f("currency")(element.subtotal)))]
                         ),
                         _vm._v(" "),
                         _c(
@@ -298,7 +319,7 @@ var render = function() {
                             staticClass: "text-right",
                             attrs: { scope: "row" }
                           },
-                          [_vm._v(_vm._s(element.total))]
+                          [_vm._v(_vm._s(_vm._f("currency")(element.total)))]
                         ),
                         _vm._v(" "),
                         _c(
@@ -307,7 +328,7 @@ var render = function() {
                             staticClass: "text-right",
                             attrs: { scope: "row" }
                           },
-                          [_vm._v(_vm._s(element.profit))]
+                          [_vm._v(_vm._s(_vm._f("currency")(element.profit)))]
                         )
                       ])
                     }),
