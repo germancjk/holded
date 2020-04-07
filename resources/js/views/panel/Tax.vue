@@ -61,11 +61,11 @@
                       <td>{{ element.name }}</td>
                       <td>{{ element.percent }}</td>
                       <td class="text-right">
-                        <button class="btn btn-sm btn-warning" type="button" name="button" @click="update(element.id)">
-                          <i class="fa fa-edit"></i> Edit
+                        <button class="btn btn-sm btn-outline-info" type="button" name="button" @click="update(element.id)">
+                          <font-awesome-icon icon="edit" /> Edit
                         </button>
-                        <button class="btn btn-sm btn-danger" type="button" name="button" @click="remove(element.id)">
-                          <i class="fa fa-trash"></i> Remove
+                        <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.id)">
+                          <font-awesome-icon icon="trash" /> Remove
                         </button>
                       </td>
                     </tr>
@@ -102,14 +102,14 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`api/tax/${this.id}`, { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
+            axios.patch(`/api/tax/${this.id}`, { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
                 this.percent = ''
                 this.submitName = 'Add'
                 this.getTaxes()
             })
           } else {
-            axios.post('api/tax', { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
+            axios.post('/api/tax', { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
                 this.percent = ''
                 this.getTaxes()
@@ -123,7 +123,7 @@ export default {
       update(id) {
         this.edit = true
 
-        axios.get(`api/tax/${id}`).then(response => {
+        axios.get(`/api/tax/${id}`).then(response => {
           this.submitName = 'Update'
           this.id = id
           this.name = response.data.name
@@ -132,7 +132,7 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`api/tax/${id}`, { user_id: this.userId }).then(response => {
+          axios.delete(`/api/tax/${id}`, { user_id: this.userId }).then(response => {
             this.getTaxes()
           })
         }

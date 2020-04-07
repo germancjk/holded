@@ -17,7 +17,7 @@ class MovementController extends Controller
             'movements.comments',
             'movements.created_at',
             'stf.name as store_name_from',
-            'stt.name as store_name_to',
+            'stt.name as store_name_to'
             )
             ->join('stores as stf', 'movements.from', '=', 'stf.id')
             ->join('stores as stt', 'movements.to', '=', 'stt.id')
@@ -88,7 +88,7 @@ class MovementController extends Controller
             'movements.comments',
             'movements.created_at',
             'stf.name as store_name_from',
-            'stt.name as store_name_to',
+            'stt.name as store_name_to'
             )
             ->join('stores as stf', 'movements.from', '=', 'stf.id')
             ->join('stores as stt', 'movements.to', '=', 'stt.id')

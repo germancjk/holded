@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+
+    <div class="alert alert-success" role="alert">
+      Welcome!
+    </div>
+
     <p class="lead">Board</p>
 
     <div class="row">
@@ -41,10 +46,10 @@
     <div class="row">
       <!-- monthly stats -->
       <div class="col-sm-8 mb-4">
+        <p class="lead">Stats</p>
         <div class="card shadow-sm">
           <div class="card-body">
-            monthly stats
-            https://vue-chartjs.org/guide/#introduction
+            <LineChart :chartdata="chartData"/>
           </div>
         </div>
       </div>
@@ -69,10 +74,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+// https://vue-chartjs.org/guide/#introduction
+import LineChart from "../../components/LineChart.vue"
 
 export default {
   components: {
-      //
+    LineChart
   },
   data(){
     return {
@@ -81,6 +88,25 @@ export default {
       todayProfit: 0,
       monthTotal: 0,
       monthProfit: 0,
+      chartData: {
+        labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+        datasets: [
+          {
+            label: 'This Month',
+            data: [40, 20, 0 ,10, 11],
+            backgroundColor: "rgba(1, 116, 188, 0.50)",
+            borderColor: "rgba(1, 116, 188, 0.50)",
+            pointBackgroundColor: "#007bff"
+          },
+          {
+            label: 'Last Month',
+            data: [20, 35, 42, 54, 12],
+            backgroundColor: "rgba(1, 116, 188, 0.50)",
+            borderColor: "rgba(1, 116, 188, 0.50)",
+            pointBackgroundColor: "#007bff"
+          },
+        ]
+      }
     }
   },
   methods : {

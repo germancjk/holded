@@ -16,7 +16,7 @@
           <ul class="list-group shadow-sm">
             <li class="list-group-item">From: {{ move.store_name_from }}</li>
             <li class="list-group-item">To: {{ move.store_name_to }}</li>
-            <li class="list-group-item">Date: {{ move.created_at }}</li>
+            <li class="list-group-item">Date: {{ move.created_at | moment("DD/MM/YYYY HH:mm") }}</li>
             <li class="list-group-item">Comment: {{ move.comments }}</li>
           </ul>
         </div>

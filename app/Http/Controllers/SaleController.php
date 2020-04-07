@@ -25,7 +25,7 @@ class SaleController extends Controller
             'sales.total',
             'sales.profit',
             'sales.created_at',
-            'stf.name as store_name',
+            'stf.name as store_name'
             )
             ->join('stores as stf', 'sales.store_id', '=', 'stf.id')
             ->where('sales.user_id', '=', $request->user_id)
@@ -109,7 +109,7 @@ class SaleController extends Controller
             'sales.total',
             'sales.profit',
             'sales.created_at',
-            'stf.name as store_name',
+            'stf.name as store_name'
             )
             ->join('stores as stf', 'sales.store_id', '=', 'stf.id')
             ->where('sales.id', '=', $request->id)

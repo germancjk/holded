@@ -54,7 +54,7 @@
                   <tr v-for="element,index in list">
                     <td scope="row">{{ element.name }}</td>
                     <td scope="row">{{ element.category_name }}</td>
-                    <td scope="row" class="text-right">{{ element.sku_sale_price }} €</td>
+                    <td scope="row" class="text-right">{{ element.sku_sale_price | currency }}</td>
                     <td class="text-right">
                       <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'item.edit', params: { id: element.item_id }}">
                         <font-awesome-icon icon="edit" /> Edit

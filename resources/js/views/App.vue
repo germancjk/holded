@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- nav -->
-    <nav class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm p-3 mb-3">
+    <nav class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm p-3">
       <!-- <a class="navbar-brand" href="/"><img src="/static/images/logo.png" alt="guia de recetas"></a> -->
       <router-link :to="{name: 'home'}" class="navbar-brand">holded</router-link>
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,7 @@
     </nav>
     <!-- end nav -->
 
-    <main class="container">
+    <main class="container-fluid">
       <!-- content -->
         <router-view></router-view>
 

@@ -104,13 +104,13 @@
             <table class="table table-hover">
               <tbody>
                 <tr class="text-right">
-                  <td>Profit: {{ cartProfit }}</td>
+                  <td>Profit: {{ cartProfit }} €</td>
                 </tr>
                 <tr class="text-right">
-                  <td>Taxes: {{ cartTaxes }}</td>
+                  <td>Taxes: {{ cartTaxes }} €</td>
                 </tr>
                 <tr class="text-right">
-                  <td><strong>Total: {{ cartTotal }}</strong> </td>
+                  <td><strong>Total: {{ cartTotal }} €</strong> </td>
                 </tr>
               </tbody>
             </table>

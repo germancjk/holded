@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                   <tr v-for="element,index in list">
-                    <td scope="row">{{ element.created_at }}</td>
+                    <td scope="row">{{ element.created_at | moment("DD/MM/YYYY HH:mm") }}</td>
                     <td scope="row">{{ element.store_name_from }}</td>
                     <td scope="row">{{ element.store_name_to }}</td>
                     <td scope="row">{{ element.comments }}</td>

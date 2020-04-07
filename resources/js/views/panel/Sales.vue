@@ -31,10 +31,10 @@
                 <tbody>
                   <tr v-for="element,index in list">
                     <td scope="row">{{ element.store_name }}</td>
-                    <td scope="row">{{ element.created_at }}</td>
-                    <td scope="row">{{ element.subtotal }}</td>
-                    <td scope="row">{{ element.total }}</td>
-                    <td scope="row">
+                    <td scope="row">{{ element.created_at | moment("DD/MM/YYYY HH:mm") }}</td>
+                    <td scope="row">{{ element.subtotal | currency }}</td>
+                    <td scope="row">{{ element.total | currency }}</td>
+                    <td scope="row" class="text-right">
                       <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'sale', params: { id: element.id }}">
                         <font-awesome-icon icon="edit" /> Details
                       </router-link>
