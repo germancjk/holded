@@ -37,20 +37,14 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Items
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link :to="{ name: 'items' }" class="dropdown-item text-dark">Items</router-link>
-              <router-link :to="{ name: 'item.new' }" class="dropdown-item text-dark">New Item</router-link>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Stock
+              Inventory
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <router-link :to="{ name: 'stock' }" class="dropdown-item text-dark">Stock</router-link>
               <router-link :to="{ name: 'movements' }" class="dropdown-item text-dark">Movements</router-link>
+              <div class="dropdown-divider"></div>
+              <router-link :to="{ name: 'items' }" class="dropdown-item text-dark">Items</router-link>
+              <router-link :to="{ name: 'item.new' }" class="dropdown-item text-dark">New Item</router-link>
             </div>
           </li>
           <li class="nav-item dropdown">

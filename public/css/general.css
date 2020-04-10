@@ -1,29 +1,20 @@
 @import "https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:300,400,600,700,800";
 
-body {
-  font-family:open sans,sans-serif;
-  background-color: #ffffff;
-}
-
+body{font-family:open sans,sans-serif;background-color: #ffffff;}
 h1,h2,h3,h4,h5,h6{font-family:open sans,sans-serif;color:#000;font-weight:300}
 h1{font-size:45px}
 h2{font-size:40px;line-height:50px}
 h3{font-size:20px;line-height:30px}
-p,a,li,blockquote,label{font-size:16px;letter-spacing:0;line-height:25px;margin-bottom:0}
+/* p,a,li,blockquote,label{font-size:16px;letter-spacing:0;line-height:25px;margin-bottom:0} */
 .bg-gray{background:#fafafa}
 .bg-blue{background: #007bff}
-
-.card {
-  border-radius: 0;
-}
-
-.green {
-  color: green;
-}
-
-.red {
-  color: red;
-}
+.card{border-radius: 0;}
+.lead{margin-bottom: 10px;}
+.green{color: green;}
+.red{color: red;}
 /* nav {
   background-color: #ffffff;
 } */
+.board {
+  margin-top: 15px;
+}

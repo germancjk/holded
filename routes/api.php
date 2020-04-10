@@ -75,4 +75,9 @@ Route::group(['middleware' => 'auth:api'], function() {
   // Board
   Route::post('/board/today', 'SaleController@boardToday');
   Route::post('/board/month', 'SaleController@boardMonth');
+
+  // User
+  Route::post('/user/info', 'UserController@info');
+  Route::patch('/user/update', 'UserController@update');
+  Route::patch('/user/updatePassword', 'UserController@updatePassword');
 });

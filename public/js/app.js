@@ -10087,12 +10087,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11530,53 +11524,7 @@ var render = function() {
                           "aria-expanded": "false"
                         }
                       },
-                      [_vm._v("\n            Items\n          ")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "dropdown-menu",
-                        attrs: { "aria-labelledby": "navbarDropdown" }
-                      },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "dropdown-item text-dark",
-                            attrs: { to: { name: "items" } }
-                          },
-                          [_vm._v("Items")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "dropdown-item text-dark",
-                            attrs: { to: { name: "item.new" } }
-                          },
-                          [_vm._v("New Item")]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item dropdown" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link text-dark dropdown-toggle",
-                        attrs: {
-                          href: "#",
-                          id: "navbarDropdown",
-                          role: "button",
-                          "data-toggle": "dropdown",
-                          "aria-haspopup": "true",
-                          "aria-expanded": "false"
-                        }
-                      },
-                      [_vm._v("\n            Stock\n          ")]
+                      [_vm._v("\n            Inventory\n          ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -11602,6 +11550,26 @@ var render = function() {
                             attrs: { to: { name: "movements" } }
                           },
                           [_vm._v("Movements")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "dropdown-divider" }),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "items" } }
+                          },
+                          [_vm._v("Items")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item text-dark",
+                            attrs: { to: { name: "item.new" } }
+                          },
+                          [_vm._v("New Item")]
                         )
                       ],
                       1
@@ -33144,7 +33112,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('font-awesome-icon', _forta
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(__webpack_require__(/*! vue-moment */ "./node_modules/vue-moment/dist/vue-moment.js")); // filters
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('currency', function (value) {
-  if (!value) return '';
+  if (value == undefined) return;
   return value.toFixed(2) + ' €';
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('currencyColor', function (value) {
@@ -33292,6 +33260,13 @@ var routes = [{
   name: 'sale',
   component: function component() {
     return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sale.vue */ "./resources/js/views/panel/Sale.vue"));
+  }
+}, // profile
+{
+  path: '/panel/profile',
+  name: 'profile',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ../views/panel/Profile.vue */ "./resources/js/views/panel/Profile.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

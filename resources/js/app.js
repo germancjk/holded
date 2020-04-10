@@ -16,8 +16,7 @@ Vue.use(require('vue-moment'));
 
 // filters
 Vue.filter('currency', function (value) {
-  if (!value) return ''
-
+  if(value == undefined) return
   return value.toFixed(2) + ' €'
 })
 

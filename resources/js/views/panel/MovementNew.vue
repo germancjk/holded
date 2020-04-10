@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container board">
 
     <small>
       <ul class="list-inline-mb-0 pl-0">

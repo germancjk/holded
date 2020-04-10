@@ -117,13 +117,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
  // https://vue-chartjs.org/guide/#introduction
 
 
@@ -492,66 +485,58 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container board" }, [
     _c(
       "div",
       { staticClass: "alert alert-success", attrs: { role: "alert" } },
       [_vm._v("\n    Welcome!\n  ")]
     ),
     _vm._v(" "),
-    _c("p", { staticClass: "lead" }, [_vm._v("Board")]),
-    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-4 mb-4" }, [
-        _c("div", { staticClass: "card shadow-sm" }, [
-          _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _vm._v("Sales "),
-              _c("strong", { staticClass: "float-right" }, [
+      _c("div", { staticClass: "col-lg-8 mb-4" }, [
+        _c(
+          "ul",
+          { staticClass: "list-group list-group-horizontal shadow-sm mb-3" },
+          [
+            _c("li", { staticClass: "list-group-item flex-fill" }, [
+              _c("h2", { staticStyle: { "font-size": "30px" } }, [
                 _vm._v(_vm._s(_vm._f("currency")(_vm.todayTotal)))
-              ])
+              ]),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "h2",
+                { staticClass: "green", staticStyle: { "font-size": "30px" } },
+                [_vm._v(_vm._s(_vm._f("currency")(_vm.todayProfit)))]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-success" }, [
-              _vm._v("Profit "),
-              _c("strong", { staticClass: "float-right" }, [
-                _vm._v(_vm._s(_vm._f("currency")(_vm.todayProfit)))
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4 mb-4" }, [
-        _c("div", { staticClass: "card shadow-sm" }, [
-          _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _vm._m(1),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _vm._v("Sales "),
-              _c("strong", { staticClass: "float-right" }, [
+            _c("li", { staticClass: "list-group-item flex-fill" }, [
+              _c("h2", { staticStyle: { "font-size": "30px" } }, [
                 _vm._v(_vm._s(_vm._f("currency")(_vm.monthTotal)))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item text-success" }, [
-              _vm._v("Profit "),
-              _c("strong", { staticClass: "float-right" }, [
-                _vm._v(_vm._s(_vm._f("currency")(_vm.monthProfit)))
-              ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "h2",
+                { staticClass: "green", staticStyle: { "font-size": "30px" } },
+                [_vm._v(_vm._s(_vm._f("currency")(_vm.monthProfit)))]
+              ),
+              _vm._v(" "),
+              _vm._m(3)
             ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(2)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-8 mb-4" }, [
-        _c("p", { staticClass: "lead" }, [_vm._v("Stats")]),
+          ]
+        ),
+        _vm._v(" "),
+        _c("p", { staticClass: "lead mb-3" }, [_vm._v("Stats")]),
         _vm._v(" "),
         _c("div", { staticClass: "card shadow-sm" }, [
           _c(
@@ -564,9 +549,35 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-4 mb-4" }, [
+        _c("div", { staticClass: "card shadow-sm mb-3" }, [
+          _c("ul", { staticClass: "list-group list-group-flush" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "list-group-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "text-dark",
+                    attrs: { to: { name: "profile" } }
+                  },
+                  [_vm._v("My profile")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item" }, [
+              _vm._v("Dapibus ac facilisis in")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "card shadow-sm" }, [
           _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _vm._m(3),
+            _vm._m(5),
             _vm._v(" "),
             _c(
               "li",
@@ -658,38 +669,48 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-group-item" }, [
-      _c("h5", { staticClass: "my-0" }, [_vm._v("Today")])
+    return _c("p", { staticClass: "lead" }, [
+      _vm._v("Total "),
+      _c("i", { staticStyle: { "font-size": "14px" } }, [_vm._v("- Today")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-group-item" }, [
-      _c("h5", { staticClass: "my-0" }, [_vm._v("This Month")])
+    return _c("p", { staticClass: "lead green" }, [
+      _vm._v("Profit "),
+      _c("i", { staticStyle: { "font-size": "14px" } }, [_vm._v("- Today")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-4 mb-4" }, [
-      _c("div", { staticClass: "card text-white bg-primary shadow-sm" }, [
-        _c("ul", { staticClass: "list-group list-group-flush" }, [
-          _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
-            _c("h5", { staticClass: "my-0" }, [_vm._v("Hi, Germán!")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
-            _vm._v("My Profile")
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item text-white bg-primary" }, [
-            _vm._v("Dapibus ac facilisis in")
-          ])
-        ])
+    return _c("p", { staticClass: "lead" }, [
+      _vm._v("Total "),
+      _c("i", { staticStyle: { "font-size": "14px" } }, [
+        _vm._v("- This month")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "lead green" }, [
+      _vm._v("Profit "),
+      _c("i", { staticStyle: { "font-size": "14px" } }, [
+        _vm._v("- This month")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item" }, [
+      _c("h5", { staticClass: "my-0" }, [_vm._v("Hi, Germán!")])
     ])
   },
   function() {

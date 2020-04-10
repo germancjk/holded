@@ -102,6 +102,12 @@ const routes = [
           name: 'sale',
           component: () => import ('../views/panel/Sale.vue')
         },
+        // profile
+        {
+          path: '/panel/profile',
+          name: 'profile',
+          component: () => import ('../views/panel/Profile.vue')
+        },
     ]
 
 const router = new VueRouter({
