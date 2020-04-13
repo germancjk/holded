@@ -1,14 +1,21 @@
 <template>
   <div>
-    <div class="row mb-5">
+    <div class="row">
       <div class="container-fluid bg-blue">
-        <section class="section gradient-banner pt-5 pb-5">
+        <section class="section gradient-banner">
           <div class="container">
             <div class="row align-items-center">
               <div class="col-md-6 order-2 order-md-1 text-center text-md-left">
-                <h1 class="text-white font-weight-bold mb-4">Showcase your app with Small Apps</h1>
-                <p class="text-white mb-5">Besides its beautiful design. Laapp is an incredibly rich core framework for you to showcase your App.</p>
-                <a href="http://demo.themefisher.com/small-apps-hugo" class="btn font-weight-bold btn-outline-primary">Download Now</a>
+                <h1 class="text-white font-weight-bold mb-4">Gestión de Stock y Ventas</h1>
+                <p class="text-white mb-5">
+                  Controla y gestiona el stock de tu empresa, fácil, ágil y GRATIS! Todo esto en un solo sistema.
+                </p>
+                <p>
+                  <a href="/" class="btn btn-outline-primary btn-main">
+                    REGISTRATE AHORA* <br>
+                  </a>
+                </p>
+                <p class="main-small text-white">* Solo por tiempo limitado - <strike>4.99€</strike> - 0€</p>
               </div>
               <div class="col-md-6 text-center order-1 order-md-2">
                 <img src="http://demo.themefisher.com/small-apps-hugo/images/mobile.webp" onerror="this.onerror=null;this.src='http:\/\/demo.themefisher.com\/small-apps-hugo\/images\/mobile.png'" class="img-fluid" alt="banner-image"></div>
@@ -18,33 +25,31 @@
       </div>
     </div>
 
-    <section class="section pt-0 position-relative pull-top mb-8">
+    <section class="section position-relative pull-top">
       <div class="container">
         <div class="rounded shadow p-5 bg-white">
           <div class="row justify-content-center">
             <div class="col-md-4 mb-4 text-center">
-              <i class="tf-ion-paintbucket text-primary h1"></i>
-              <h3 class="mt-4 text-capitalize h5">themes made easy</h3>
-              <p class="regular text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam non, recusandae tempore ipsam dignissimos molestias.</p>
+              <i class="text-primary h1"><font-awesome-icon icon="box" /></i>
+              <h3 class="mt-4 h5">Gestión de stock</h3>
+              <p class="regular text-muted">Simple e intuitivo sistema de gestión de stock, tanto de un local como de varios, movimientos entre tiendas y más!</p>
             </div>
             <div class="col-md-4 mb-4 text-center">
-              <i class="tf-ion-load-b text-primary h1"></i>
-              <h3 class="mt-4 text-capitalize h5">powerful design</h3>
-              <p class="regular text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam non, recusandae tempore ipsam dignissimos molestias.</p>
+              <i class="text-primary h1"><font-awesome-icon icon="hand-holding-usd" /></i>
+              <h3 class="mt-4 h5">Ventas</h3>
+              <p class="regular text-muted">Lleva el control de tus ventas, costos, ganancias de tus productos, lleva la contabilidad de tus ventas mensuales, anuales y diarias.</p>
             </div>
             <div class="col-md-4 mb-4 text-center">
-              <i class="tf-ion-ios-lightbulb text-primary h1"></i>
-              <h3 class="mt-4 text-capitalize h5">creative content</h3>
-              <p class="regular text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam non, recusandae tempore ipsam dignissimos molestias.</p>
+              <i class="text-primary h1"><font-awesome-icon icon="gem" /></i>
+              <h3 class="mt-4 h5">Productos</h3>
+              <p class="regular text-muted">Crea tus productos y las variantes de los mismos, crea tallas, colores y todo lo necesario para que tus productos sean diferenciados.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <p class="mb-5"></p>
-
-    <section class="feature section pt-0 hide-overflow mb-5">
+    <section class="feature section hide-overflow">
       <div class="container">
         <div class="row justify-content-between align-items-center">
           <div class="col-lg-6">
@@ -54,61 +59,40 @@
           </div>
           <div class="col-lg-6">
             <div class="feature-content">
-              <h2>Increase your productivity with Small Apps</h2>
-              <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <h2>Incrementa tu productividad, controla tu stock y tus ventas</h2>
+              <p class="desc">Comienza a controlar tu stock, donde compras, a cuanto, donde lo mueves, en qué tienda o depósito se encuentra. Vende y analiza tus costos, ganancias y muchísimo más.</p>
             </div>
             <div class="testimonial">
-              <p>"InVision is a window into everything that's being designed at Twitter. It gets all of our best work in one place."</p>
+              <p>"Queremos que aproveches la oportunidad de gestionar tu negocio de manera sencilla y todo en un mismo sitio"</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <p class="mb-5"></p>
-
-    <section class="service section bg-gray"><div class="container-fluid p-0"><div class="row"><div class="col-lg-12"><div class="section-title"><h2>An Interface For Lifestyle</h2><p>Small Apps makes it easy to stay on top of your Life Style. No late tasks. No gimmicks.</p></div></div></div><div class="row no-gutters"><div class="col-lg-6 align-self-center"><div class="service-thumb left aos-init aos-animate" data-aos="fade-right"><img class="img-fluid" src="http://demo.themefisher.com/small-apps-hugo/images/feature/iphone-ipad.webp" onerror="this.onerror=null;this.src='http:\/\/demo.themefisher.com\/small-apps-hugo\/images\/feature\/iphone-ipad.jpg'" alt="service image"></div></div><div class="col-lg-5 mr-auto align-self-center"><div class="service-box"><div class="row align-items-center"><div class="col-md-6 col-xs-12"><div class="service-item"><i class="tf-ribbon"></i><h3>Easy Prototyping</h3><p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p></div></div><div class="col-md-6 col-xs-12"><div class="service-item"><i class="tf-puzzle"></i><h3>Sensor Bridge</h3><p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p></div></div><div class="col-md-6 col-xs-12"><div class="service-item"><i class="tf-bargraph"></i><h3>Strategist</h3><p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p></div></div><div class="col-md-6 col-xs-12"><div class="service-item"><i class="tf-adjustments"></i><h3>Art Direction</h3><p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur aliquet quam id dui</p></div></div></div></div></div></div></div></section>
+    <div class="row">
+      <div class="container-fluid bg-blue text-white">
+        <section class="call-to-action-app section bg-blue text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h2 class="text-white">Comienza ahora a controlar tu negocio!</h2>
+                <p>Más de 1.000 empresas utilizan nuestro sistema, sé parte de nosotros.</p>
+                  <p>
+                    <a href="/" class="btn btn-outline-primary btn-main">
+                      REGISTRATE AHORA* <br>
+                    </a>
+                  </p>
+                  <p class="main-small">* Solo por tiempo limitado - <strike>4.99€</strike> - 0€</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
 
   </div>
 </template>
-
-<style scoped>
-/* .full-height {
-    height: 100vh;
-}
-.flex-center {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-.position-ref {
-    position: relative;
-}
-.top-right {
-    position: absolute;
-    right: 10px;
-    top: 18px;
-}
-.content {
-    text-align: center;
-}
-.title {
-    font-size: 60px;
-}
-.links > a {
-    color: #636b6f;
-    padding: 0 25px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .1rem;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-.m-b-md {
-    margin-bottom: 30px;
-    color: #000000;
-} */
-</style>
 
 <script>
   export default {}

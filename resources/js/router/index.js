@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Welcome'
+import Welcome from '../views/Welcome'
 
 Vue.use(VueRouter)
 
@@ -8,12 +8,17 @@ const routes = [
         {
             path: '/',
             name: 'home',
-            component: Home
+            component: Welcome
         },
         {
             path: '/login',
             name: 'login',
             component: () => import ('../views/Login.vue'),
+        },
+        {
+            path: '/logout',
+            name: 'logout',
+            component: () => import ('../views/Logout.vue'),
         },
         {
             path: '/register',
@@ -24,11 +29,6 @@ const routes = [
             path: '/panel/board',
             name: 'board',
             component: () => import ('../views/panel/Board.vue'),
-        },
-        {
-            path: '/logout',
-            name: 'logout',
-            component: () => import ('../views/Login.vue'),
         },
         {
           path: '/panel/categories',

@@ -95,6 +95,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -164,199 +166,206 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container board" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "p",
-      { staticClass: "lead" },
-      [
-        _vm._v("\n    Items list\n    "),
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-sm btn-success float-right",
-            attrs: { to: { name: "item.new" } }
-          },
-          [_vm._v("+ New Item")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card shadow-sm" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "form-row" }, [
-              _c(
-                "div",
-                { staticClass: "form-group col-4" },
-                [
-                  _c("v-select", {
+  return _c("div", { staticClass: "container-fluid", attrs: { id: "board" } }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "p",
+        { staticClass: "lead" },
+        [
+          _vm._v("\n      Items list\n      "),
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-sm btn-success float-right",
+              attrs: { to: { name: "item.new" } }
+            },
+            [_vm._v("+ New Item")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "form-row" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group col-4" },
+                  [
+                    _c("v-select", {
+                      attrs: {
+                        label: "name",
+                        options: _vm.categories,
+                        reduce: function(categories) {
+                          return categories.id
+                        },
+                        placeholder: "Select a category..."
+                      },
+                      model: {
+                        value: _vm.category,
+                        callback: function($$v) {
+                          _vm.category = $$v
+                        },
+                        expression: "category"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-4" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.search,
+                        expression: "search"
+                      }
+                    ],
+                    staticClass: "form-control",
                     attrs: {
-                      label: "name",
-                      options: _vm.categories,
-                      reduce: function(categories) {
-                        return categories.id
-                      },
-                      placeholder: "Select a category..."
+                      type: "text",
+                      placeholder: "Search by Name / SKU"
                     },
-                    model: {
-                      value: _vm.category,
-                      callback: function($$v) {
-                        _vm.category = $$v
-                      },
-                      expression: "category"
+                    domProps: { value: _vm.search },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.search = $event.target.value
+                      }
                     }
                   })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-4" }, [
-                _c("input", {
-                  directives: [
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-4" }, [
+                  _c(
+                    "button",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.search,
-                      expression: "search"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "Search by Name / SKU" },
-                  domProps: { value: _vm.search },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button", name: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.find()
+                        }
                       }
-                      _vm.search = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-4" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button", name: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.find()
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Search\n              ")]
-                )
+                    },
+                    [_vm._v("\n                  Search\n                ")]
+                  )
+                ])
               ])
             ])
           ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-3" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _vm.loading
-              ? _c(
-                  "p",
-                  { staticClass: "text-center" },
-                  [
-                    _c("font-awesome-icon", {
-                      attrs: { icon: "spinner", spin: "" }
-                    })
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            !_vm.loading
-              ? _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.list, function(element, index) {
-                      return _c("tr", [
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _vm._v(_vm._s(element.name))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _vm._v(_vm._s(element.category_name))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticClass: "text-right",
-                            attrs: { scope: "row" }
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(_vm._f("currency")(element.sku_sale_price))
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "text-right" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-sm btn-outline-info",
-                                attrs: {
-                                  to: {
-                                    name: "item.edit",
-                                    params: { id: element.item_id }
-                                  }
-                                }
-                              },
-                              [
-                                _c("font-awesome-icon", {
-                                  attrs: { icon: "edit" }
-                                }),
-                                _vm._v(" Edit\n                  ")
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-sm btn-outline-danger",
-                                attrs: { type: "button", name: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.remove(element.sku_id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("font-awesome-icon", {
-                                  attrs: { icon: "trash" }
-                                }),
-                                _vm._v(" Remove\n                  ")
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    }),
-                    0
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-3" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _vm.loading
+                ? _c(
+                    "p",
+                    { staticClass: "text-center" },
+                    [
+                      _c("font-awesome-icon", {
+                        attrs: { icon: "spinner", spin: "" }
+                      })
+                    ],
+                    1
                   )
-                ])
-              : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.loading
+                ? _c("table", { staticClass: "table table-hover" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.list, function(element, index) {
+                        return _c("tr", [
+                          _c("td", { attrs: { scope: "row" } }, [
+                            _vm._v(_vm._s(element.name))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { scope: "row" } }, [
+                            _vm._v(_vm._s(element.category_name))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-right",
+                              attrs: { scope: "row" }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("currency")(element.sku_sale_price)
+                                )
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "text-right" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-sm btn-outline-info",
+                                  attrs: {
+                                    to: {
+                                      name: "item.edit",
+                                      params: { id: element.item_id }
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("font-awesome-icon", {
+                                    attrs: { icon: "edit" }
+                                  }),
+                                  _vm._v(" Edit\n                    ")
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-sm btn-outline-danger",
+                                  attrs: { type: "button", name: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.remove(element.sku_id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("font-awesome-icon", {
+                                    attrs: { icon: "trash" }
+                                  }),
+                                  _vm._v(" Remove\n                    ")
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e()
+            ])
           ])
         ])
       ])

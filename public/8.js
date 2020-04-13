@@ -72,6 +72,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -154,83 +156,85 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container board" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("p", { staticClass: "lead" }, [_vm._v("Movement ")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("ul", { staticClass: "list-group shadow-sm" }, [
-          _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("From: " + _vm._s(_vm.move.store_name_from))
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("To: " + _vm._s(_vm.move.store_name_to))
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _vm._v(
-              "Date: " +
-                _vm._s(
-                  _vm._f("moment")(_vm.move.created_at, "DD/MM/YYYY HH:mm")
-                )
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _vm._v("Comment: " + _vm._s(_vm.move.comments))
+  return _c("div", { staticClass: "container-fluid", attrs: { id: "board" } }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("p", { staticClass: "lead" }, [_vm._v("Movement ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-2" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("ul", { staticClass: "list-group" }, [
+            _c("li", { staticClass: "list-group-item" }, [
+              _vm._v("From: " + _vm._s(_vm.move.store_name_from))
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item" }, [
+              _vm._v("To: " + _vm._s(_vm.move.store_name_to))
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item" }, [
+              _vm._v(
+                "Date: " +
+                  _vm._s(
+                    _vm._f("moment")(_vm.move.created_at, "DD/MM/YYYY HH:mm")
+                  )
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "list-group-item" }, [
+              _vm._v("Comment: " + _vm._s(_vm.move.comments))
+            ])
           ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("p", { staticClass: "lead mt-4" }, [_vm._v("Movement Items ")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _vm.loading
-              ? _c(
-                  "p",
-                  { staticClass: "text-center" },
-                  [
-                    _c("font-awesome-icon", {
-                      attrs: { icon: "spinner", spin: "" }
-                    })
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            !_vm.loading
-              ? _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.list, function(element, index) {
-                      return _c("tr", [
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _vm._v(_vm._s(element.name))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticClass: "text-right",
-                            attrs: { scope: "row" }
-                          },
-                          [_vm._v(_vm._s(element.quantity))]
-                        )
-                      ])
-                    }),
-                    0
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "lead mt-4" }, [_vm._v("Movement Items ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-2" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _vm.loading
+                ? _c(
+                    "p",
+                    { staticClass: "text-center" },
+                    [
+                      _c("font-awesome-icon", {
+                        attrs: { icon: "spinner", spin: "" }
+                      })
+                    ],
+                    1
                   )
-                ])
-              : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.loading
+                ? _c("table", { staticClass: "table table-hover" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.list, function(element, index) {
+                        return _c("tr", [
+                          _c("td", { attrs: { scope: "row" } }, [
+                            _vm._v(_vm._s(element.name))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-right",
+                              attrs: { scope: "row" }
+                            },
+                            [_vm._v(_vm._s(element.quantity))]
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e()
+            ])
           ])
         ])
       ])

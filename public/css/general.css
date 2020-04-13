@@ -5,16 +5,50 @@ h1,h2,h3,h4,h5,h6{font-family:open sans,sans-serif;color:#000;font-weight:300}
 h1{font-size:45px}
 h2{font-size:40px;line-height:50px}
 h3{font-size:20px;line-height:30px}
+.section {padding: 100px 0;}
+.btn-main {
+    padding: 17px 38px;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 20px;
+    outline: none;
+}
+.main-small {
+  font-size: 12px;
+}
+.btn-main-bottom {
+  padding: 17px 38px;
+  background: #fff;
+}
 /* p,a,li,blockquote,label{font-size:16px;letter-spacing:0;line-height:25px;margin-bottom:0} */
 .bg-gray{background:#fafafa}
 .bg-blue{background: #007bff}
-.card{border-radius: 0;}
+/* .card{border-radius: 0;} */
 .lead{margin-bottom: 10px;}
 .green{color: green;}
 .red{color: red;}
-/* nav {
-  background-color: #ffffff;
-} */
-.board {
-  margin-top: 15px;
+
+#board {
+  background: #f6f8fa;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
+#board .border-left-primary {
+    border-left: .25rem solid #4e73df!important;
+}
+#board .border-left-success {
+    border-left: .25rem solid #1cc88a!important;
+}
+#board .card {
+    border: 0;
+    border-radius: 2px;
+}
+#board .row {
+  margin-bottom: 20px;
+}
+
+/* #board .form-control {
+    border: 1px solid #f3f3f3;
+    padding: .56rem .75rem;
+    line-height: 14px;
+} */

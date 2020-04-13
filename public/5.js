@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
           localStorage.setItem('jwt', response.data.success.token);
 
           if (localStorage.getItem('jwt') != null) {
-            _this.$router.go('/board');
+            _this.$router.go('/panel/board');
           }
         })["catch"](function (error) {
           console.error(error);

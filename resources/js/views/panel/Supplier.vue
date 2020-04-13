@@ -1,5 +1,6 @@
 <template>
-    <div class="container board">
+  <div class="container-fluid" id="board">
+    <div class="container">
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
@@ -74,6 +75,7 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
 </template>
 
@@ -101,14 +103,14 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`/api/supplier/${this.id}`, { user_id: this.userId, name: this.name, address: this.address }).then(response => {
+            axios.patch(`${this.baseApiUrl}/api/supplier/${this.id}`, { user_id: this.userId, name: this.name, address: this.address }).then(response => {
                 this.name = ''
                 this.address = ''
                 this.submitName = 'Add'
                 this.getSuppliers()
             })
           } else {
-            axios.post('/api/supplier', { user_id: this.userId, name: this.name, address: this.address }).then(response => {
+            axios.post(`${this.baseApiUrl}/api/supplier`, { user_id: this.userId, name: this.name, address: this.address }).then(response => {
                 this.name = ''
                 this.address = ''
                 this.getSuppliers()
@@ -122,7 +124,7 @@ export default {
       update(id) {
         this.edit = true
 
-        axios.get(`/api/supplier/${id}`).then(response => {
+        axios.get(`${this.baseApiUrl}/api/supplier/${id}`).then(response => {
           this.submitName = 'Update'
           this.id = id
           this.name = response.data.name
@@ -131,7 +133,7 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`/api/supplier/${id}`, { user_id: this.userId }).then(response => {
+          axios.delete(`${this.baseApiUrl}/api/supplier/${id}`, { user_id: this.userId }).then(response => {
             this.getSuppliers()
           })
         }

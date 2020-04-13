@@ -1,5 +1,6 @@
 <template>
-    <div class="container board">
+  <div class="container-fluid" id="board">
+      <div class="container">
         <div class="row">
           <div class="col-12">
             <div class="card">
@@ -54,6 +55,7 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
 </template>
 
@@ -81,7 +83,7 @@ export default {
         },
         loadTasks() {
           this.categories.map(category => {
-              axios.get(`api/category/${category.id}/tasks`).then(response => {
+              axios.get(`${this.baseApiUrl}/api/category/${category.id}/tasks`).then(response => {
                   category.tasks = response.data
               })
           })
@@ -91,7 +93,7 @@ export default {
         endEditing(task) {
             this.editingTask = null
 
-            axios.patch(`api/task/${task.id}`, {name: task.name}).then(response => {
+            axios.patch(`${this.baseApiUrl}/api/task/${task.id}`, {name: task.name}).then(response => {
                 // You can do anything you wan't here.
             })
         },

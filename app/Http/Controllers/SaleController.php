@@ -207,4 +207,53 @@ class SaleController extends Controller
             ->toArray()
           );
     }
+
+    public function boardStats(Request $request)
+    {
+      $return = [
+        'this' => false,
+        'last' => false
+      ];
+
+      $from = date('Y-m-01') . ' 00:00:00';
+      $to   = date('Y-m-31') . ' 23:59:59';
+
+      $thisMonth = Sale::select(
+          DB::raw('SUM(total) as total'),
+          DB::raw("DATE_FORMAT(created_at,'%e') as day")
+        )
+        ->where('user_id', '=', $request->user_id)
+        ->whereBetween('created_at', [$from, $to])
+        ->groupBy('day')
+        ->get()
+        ->toArray();
+
+      $from = date('Y-m-01', strtotime('last month')) . ' 00:00:00';
+      $to   = date('Y-m-31', strtotime('last month')) . ' 23:59:59';
+
+      $lastMonth = Sale::select(
+          DB::raw('SUM(total) as total'),
+          DB::raw("DATE_FORMAT(created_at,'%e') as day")
+        )
+        ->where('user_id', '=', $request->user_id)
+        ->whereBetween('created_at', [$from, $to])
+        ->groupBy('day')
+        ->get()
+        ->toArray();
+
+      for($x=0; $x<=31; $x++){
+        $return['this'][$x] = 0;
+        $return['last'][$x] = 0;
+      }
+
+      foreach($thisMonth as $key => $value){
+        $return['this'][$value['day']-1] = $value['total'];
+      }
+
+      foreach($lastMonth as $key => $value){
+        $return['last'][$value['day']-1] = $value['total'];
+      }
+
+      return response()->json($return);
+    }
 }

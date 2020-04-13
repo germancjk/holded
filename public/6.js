@@ -92,6 +92,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {//
@@ -185,156 +186,160 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container board" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("p", { staticClass: "lead" }, [_vm._v("Categories")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _vm.showError
-          ? _c("div", { staticClass: "alert alert-danger" }, [
-              _vm._v("\n          " + _vm._s(_vm.messageError) + "\n        ")
-            ])
-          : _vm._e()
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.handleSubmit($event)
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-12" }, [
-                    _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "name",
-                        "aria-describedby": "name",
-                        required: "",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.name = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "small",
-                      {
-                        staticClass: "form-text text-muted",
-                        attrs: { id: "name" }
-                      },
-                      [_vm._v("Must be unique.")]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
-                    on: { click: _vm.handleSubmit }
-                  },
-                  [_vm._v(_vm._s(_vm.submitName))]
+  return _c("div", { staticClass: "container-fluid", attrs: { id: "board" } }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("p", { staticClass: "lead" }, [_vm._v("Categories")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _vm.showError
+            ? _c("div", { staticClass: "alert alert-danger" }, [
+                _vm._v(
+                  "\n            " + _vm._s(_vm.messageError) + "\n          "
                 )
-              ]
-            )
-          ])
+              ])
+            : _vm._e()
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-5" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _vm.categories
-              ? _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(1),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.handleSubmit($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "col-12" }, [
+                      _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.name,
+                            expression: "name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "name",
+                          "aria-describedby": "name",
+                          required: "",
+                          autofocus: ""
+                        },
+                        domProps: { value: _vm.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.name = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "small",
+                        {
+                          staticClass: "form-text text-muted",
+                          attrs: { id: "name" }
+                        },
+                        [_vm._v("Must be unique.")]
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
-                    "tbody",
-                    _vm._l(_vm.categories, function(element, index) {
-                      return _c("tr", [
-                        _c("td", [_vm._v(_vm._s(element.name))]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-right" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-outline-info",
-                              attrs: { type: "button", name: "button" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.update(element.id)
-                                }
-                              }
-                            },
-                            [
-                              _c("font-awesome-icon", {
-                                attrs: { icon: "edit" }
-                              }),
-                              _vm._v(" Edit\n                    ")
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-outline-danger",
-                              attrs: { type: "button", name: "button" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.remove(element.id)
-                                }
-                              }
-                            },
-                            [
-                              _c("font-awesome-icon", {
-                                attrs: { icon: "trash" }
-                              }),
-                              _vm._v(" Remove\n                    ")
-                            ],
-                            1
-                          )
-                        ])
-                      ])
-                    }),
-                    0
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: { click: _vm.handleSubmit }
+                    },
+                    [_vm._v(_vm._s(_vm.submitName))]
                   )
-                ])
-              : _vm._e()
+                ]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-5" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _vm.categories
+                ? _c("table", { staticClass: "table table-hover" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.categories, function(element, index) {
+                        return _c("tr", [
+                          _c("td", [_vm._v(_vm._s(element.name))]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "text-right" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-info",
+                                attrs: { type: "button", name: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.update(element.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("font-awesome-icon", {
+                                  attrs: { icon: "edit" }
+                                }),
+                                _vm._v(" Edit\n                      ")
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                attrs: { type: "button", name: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.remove(element.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("font-awesome-icon", {
+                                  attrs: { icon: "trash" }
+                                }),
+                                _vm._v(" Remove\n                      ")
+                              ],
+                              1
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e()
+            ])
           ])
         ])
       ])

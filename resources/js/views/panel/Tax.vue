@@ -1,5 +1,6 @@
 <template>
-    <div class="container board">
+  <div class="container-fluid" id="board">
+    <div class="container">
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
@@ -75,6 +76,7 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
 </template>
 
@@ -102,14 +104,14 @@ export default {
         e.preventDefault()
         if (this.name.length > 0) {
           if (this.edit) {
-            axios.patch(`/api/tax/${this.id}`, { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
+            axios.patch(`${this.baseApiUrl}/api/tax/${this.id}`, { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
                 this.percent = ''
                 this.submitName = 'Add'
                 this.getTaxes()
             })
           } else {
-            axios.post('/api/tax', { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
+            axios.post(`${this.baseApiUrl}/api/tax`, { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
                 this.percent = ''
                 this.getTaxes()
@@ -123,7 +125,7 @@ export default {
       update(id) {
         this.edit = true
 
-        axios.get(`/api/tax/${id}`).then(response => {
+        axios.get(`${this.baseApiUrl}/api/tax/${id}`).then(response => {
           this.submitName = 'Update'
           this.id = id
           this.name = response.data.name
@@ -132,7 +134,7 @@ export default {
       },
       remove(id) {
         if (id > 0) {
-          axios.delete(`/api/tax/${id}`, { user_id: this.userId }).then(response => {
+          axios.delete(`${this.baseApiUrl}/api/tax/${id}`, { user_id: this.userId }).then(response => {
             this.getTaxes()
           })
         }

@@ -77,27 +77,15 @@ __webpack_require__.r(__webpack_exports__);
             // set on store
             _this.setUser(response.data.success);
 
-            _this.$router.go('/board');
+            window.location = '/panel/board';
           }
         })["catch"](function (error) {
           console.error(error);
         });
       }
-    },
-    logout: function logout() {
-      var _this2 = this;
-
-      axios.post('api/logout', {
-        email: this.email
-      }).then(function (response) {
-        _this2.$router.go('/');
-      })["catch"](function (error) {
-        console.error(error);
-      });
     }
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
-    // localStorage.removeItem('jwt')
     if (localStorage.getItem('jwt')) {
       return next('board');
     }

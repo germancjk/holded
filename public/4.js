@@ -18,16 +18,16 @@ __webpack_require__.r(__webpack_exports__);
     return {
       options: {
         responsive: true,
-        maintainAspectRatio: false // title: {
-        //   display: true,
-        //   text: "My Data"
-        // }
-
+        maintainAspectRatio: false
       }
     };
   },
-  mounted: function mounted() {
-    this.renderChart(this.chartdata, this.options);
+  mounted: function mounted() {// this.renderChart(this.chartdata, this.options)
+  },
+  watch: {
+    chartdata: function chartdata(_chartdata) {
+      this.renderChart(this.chartdata, this.options);
+    }
   }
 });
 
@@ -117,6 +117,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // https://vue-chartjs.org/guide/#introduction
 
 
@@ -131,22 +175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       todayProfit: 0,
       monthTotal: 0,
       monthProfit: 0,
-      chartData: {
-        labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-        datasets: [{
-          label: 'This Month',
-          data: [40, 20, 0, 10, 11],
-          backgroundColor: "rgba(1, 116, 188, 0.50)",
-          borderColor: "rgba(1, 116, 188, 0.50)",
-          pointBackgroundColor: "#007bff"
-        }, {
-          label: 'Last Month',
-          data: [20, 35, 42, 54, 12],
-          backgroundColor: "rgba(1, 116, 188, 0.50)",
-          borderColor: "rgba(1, 116, 188, 0.50)",
-          pointBackgroundColor: "#007bff"
-        }]
-      }
+      chartData: {}
     };
   },
   methods: {
@@ -173,11 +202,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this2.monthTotal = response.data[0].total == null ? 0 : response.data[0].total;
         _this2.monthProfit = response.data[0].profit == null ? 0 : response.data[0].profit;
       });
+    },
+    stats: function stats() {
+      var _this3 = this;
+
+      axios.defaults.headers.common['Content-Type'] = 'application/json';
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('jwt');
+      axios.post("".concat(this.baseApiUrl, "/api/board/stats"), {
+        user_id: this.userId
+      }).then(function (response) {
+        if (response.status == 200) {
+          _this3.chartData = {
+            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 2, 27, 28, 29, 30, 31],
+            datasets: [{
+              label: 'This Month',
+              data: response.data["this"],
+              backgroundColor: "rgba(1, 116, 188, 0.50)",
+              borderColor: "rgba(1, 116, 188, 0.50)",
+              pointBackgroundColor: "#007bff"
+            }, {
+              label: 'Last Month',
+              data: response.data.last,
+              backgroundColor: "#fffbdb",
+              borderColor: "#fffacc",
+              pointBackgroundColor: "#fffacc"
+            }]
+          };
+        }
+      });
     }
   },
   mounted: function mounted() {
     this.today();
     this.month();
+    this.stats();
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['baseApiUrl']))
 });
@@ -485,176 +543,242 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container board" }, [
-    _c(
-      "div",
-      { staticClass: "alert alert-success", attrs: { role: "alert" } },
-      [_vm._v("\n    Welcome!\n  ")]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-8 mb-4" }, [
+  return _c("div", { staticClass: "container-fluid", attrs: { id: "board" } }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
         _c(
-          "ul",
-          { staticClass: "list-group list-group-horizontal shadow-sm mb-3" },
+          "div",
+          {
+            staticClass:
+              "col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card"
+          },
           [
-            _c("li", { staticClass: "list-group-item flex-fill" }, [
-              _c("h2", { staticStyle: { "font-size": "30px" } }, [
-                _vm._v(_vm._s(_vm._f("currency")(_vm.todayTotal)))
-              ]),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c(
-                "h2",
-                { staticClass: "green", staticStyle: { "font-size": "30px" } },
-                [_vm._v(_vm._s(_vm._f("currency")(_vm.todayProfit)))]
-              ),
-              _vm._v(" "),
-              _vm._m(1)
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item flex-fill" }, [
-              _c("h2", { staticStyle: { "font-size": "30px" } }, [
-                _vm._v(_vm._s(_vm._f("currency")(_vm.monthTotal)))
-              ]),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c(
-                "h2",
-                { staticClass: "green", staticStyle: { "font-size": "30px" } },
-                [_vm._v(_vm._s(_vm._f("currency")(_vm.monthProfit)))]
-              ),
-              _vm._v(" "),
-              _vm._m(3)
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "float-left" },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-cube text-danger icon-lg"
+                        }),
+                        _vm._v(" "),
+                        _c("font-awesome-icon", {
+                          staticClass: "text-danger",
+                          attrs: { icon: "box", size: "2x" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "float-right" }, [
+                      _c("p", { staticClass: "mb-0 text-right" }, [
+                        _vm._v("Total Hoy")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "fluid-container" }, [
+                        _c(
+                          "h3",
+                          { staticClass: "font-weight-medium text-right mb-0" },
+                          [_vm._v(_vm._s(_vm._f("currency")(_vm.todayTotal)))]
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
             ])
           ]
         ),
         _vm._v(" "),
-        _c("p", { staticClass: "lead mb-3" }, [_vm._v("Stats")]),
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card"
+          },
+          [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "float-left" },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-cube text-danger icon-lg"
+                        }),
+                        _vm._v(" "),
+                        _c("font-awesome-icon", {
+                          staticClass: "text-danger",
+                          attrs: { icon: "box", size: "2x" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "float-right" }, [
+                      _c("p", { staticClass: "mb-0 text-right" }, [
+                        _vm._v("Ganancia Hoy")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "fluid-container" }, [
+                        _c(
+                          "h3",
+                          {
+                            staticClass:
+                              "font-weight-medium text-right mb-0 green"
+                          },
+                          [_vm._v(_vm._s(_vm._f("currency")(_vm.todayProfit)))]
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ])
+          ]
+        ),
         _vm._v(" "),
-        _c("div", { staticClass: "card shadow-sm" }, [
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            [_c("LineChart", { attrs: { chartdata: _vm.chartData } })],
-            1
-          )
-        ])
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card"
+          },
+          [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "float-left" },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-cube text-danger icon-lg"
+                        }),
+                        _vm._v(" "),
+                        _c("font-awesome-icon", {
+                          staticClass: "text-danger",
+                          attrs: { icon: "box", size: "2x" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "float-right" }, [
+                      _c("p", { staticClass: "mb-0 text-right" }, [
+                        _vm._v("Total del Mes")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "fluid-container" }, [
+                        _c(
+                          "h3",
+                          { staticClass: "font-weight-medium text-right mb-0" },
+                          [_vm._v(_vm._s(_vm._f("currency")(_vm.monthTotal)))]
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card"
+          },
+          [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "float-left" },
+                      [
+                        _c("i", {
+                          staticClass: "mdi mdi-cube text-danger icon-lg"
+                        }),
+                        _vm._v(" "),
+                        _c("font-awesome-icon", {
+                          staticClass: "text-danger",
+                          attrs: { icon: "box", size: "2x" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "float-right" }, [
+                      _c("p", { staticClass: "mb-0 text-right" }, [
+                        _vm._v("Ganancia del Mes")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "fluid-container" }, [
+                        _c(
+                          "h3",
+                          {
+                            staticClass:
+                              "font-weight-medium text-right mb-0 green"
+                          },
+                          [_vm._v(_vm._s(_vm._f("currency")(_vm.monthProfit)))]
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(3)
+              ])
+            ])
+          ]
+        )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4 mb-4" }, [
-        _c("div", { staticClass: "card shadow-sm mb-3" }, [
-          _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _vm._m(4),
-            _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-12" }, [
+          _c("div", { staticClass: "card" }, [
             _c(
-              "li",
-              { staticClass: "list-group-item" },
+              "div",
+              { staticClass: "card-body" },
               [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-dark",
-                    attrs: { to: { name: "profile" } }
-                  },
-                  [_vm._v("My profile")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [
-              _vm._v("Dapibus ac facilisis in")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card shadow-sm" }, [
-          _c("ul", { staticClass: "list-group list-group-flush" }, [
-            _vm._m(5),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "list-group-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-dark",
-                    attrs: { to: { name: "stock" } }
-                  },
-                  [_vm._v("Stock")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "list-group-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-dark",
-                    attrs: { to: { name: "sales.new" } }
-                  },
-                  [_vm._v("+ New Sale")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "list-group-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-dark",
-                    attrs: { to: { name: "items" } }
-                  },
-                  [_vm._v("Items")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "list-group-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-dark",
-                    attrs: { to: { name: "movement.new" } }
-                  },
-                  [_vm._v("+ New Movement")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "list-group-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-dark",
-                    attrs: { to: { name: "item.new" } }
-                  },
-                  [_vm._v("+ New Item")]
-                )
+                _c("p", { staticClass: "lead mb-3" }, [_vm._v("Stats")]),
+                _vm._v(" "),
+                _c("LineChart", { attrs: { chartdata: _vm.chartData } })
               ],
               1
             )
@@ -669,57 +793,77 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "lead" }, [
-      _vm._v("Total "),
-      _c("i", { staticStyle: { "font-size": "14px" } }, [_vm._v("- Today")])
-    ])
+    return _c(
+      "p",
+      {
+        staticClass:
+          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-alert-octagon mr-1",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" Another text\n             ")
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "lead green" }, [
-      _vm._v("Profit "),
-      _c("i", { staticStyle: { "font-size": "14px" } }, [_vm._v("- Today")])
-    ])
+    return _c(
+      "p",
+      {
+        staticClass:
+          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-alert-octagon mr-1",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" Another text\n              ")
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "lead" }, [
-      _vm._v("Total "),
-      _c("i", { staticStyle: { "font-size": "14px" } }, [
-        _vm._v("- This month")
-      ])
-    ])
+    return _c(
+      "p",
+      {
+        staticClass:
+          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-alert-octagon mr-1",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" Another text\n               ")
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "lead green" }, [
-      _vm._v("Profit "),
-      _c("i", { staticStyle: { "font-size": "14px" } }, [
-        _vm._v("- This month")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-group-item" }, [
-      _c("h5", { staticClass: "my-0" }, [_vm._v("Hi, Germán!")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-group-item" }, [
-      _c("h5", { staticClass: "my-0" }, [_vm._v("Quick Links")])
-    ])
+    return _c(
+      "p",
+      {
+        staticClass:
+          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
+      },
+      [
+        _c("i", {
+          staticClass: "mdi mdi-alert-octagon mr-1",
+          attrs: { "aria-hidden": "true" }
+        }),
+        _vm._v(" Another text\n                ")
+      ]
+    )
   }
 ]
 render._withStripped = true

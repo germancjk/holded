@@ -1,125 +1,129 @@
 <template>
-  <div class="container board">
+  <div class="container-fluid" id="board">
+    <div class="container">
 
-    <small>
-      <ul class="list-inline-mb-0 pl-0">
-        <li class="list-inline-item"><a href="#">Board</a> ></li>
-        <li class="list-inline-item"><a href="#">Sales</a> ></li>
-        <li class="list-inline-item">New Sale</li>
-      </ul>
-    </small>
+      <small>
+        <ul class="list-inline-mb-0 pl-0">
+          <li class="list-inline-item"><a href="#">Board</a> ></li>
+          <li class="list-inline-item"><a href="#">Sales</a> ></li>
+          <li class="list-inline-item">New Sale</li>
+        </ul>
+      </small>
 
-    <!-- <p class="lead">New Sale</p> -->
+      <!-- messages -->
+      <div v-if="done" class="alert alert-success" role="alert">
+        Sale done!
+      </div>
 
-    <!-- messages -->
-    <div v-if="done" class="alert alert-success" role="alert">
-      Sale done!
-    </div>
+      <div class="alert alert-danger" v-if="showError">
+        <div v-for="element in messageError">{{ element }}</div>
+      </div>
 
-    <!-- init search -->
-    <div class="row">
-      <div class="col-12">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <div class="form-row">
-              <div class="form-group col-6">
-                <label for="tax">From <span class="text-danger">*</span></label>
-                <v-select v-model="from" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
+      <!-- init search -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="tax">Store <span class="text-danger">*</span></label>
+                  <v-select v-model="from" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
+                </div>
+                <div class="form-group col-3">
+                  <label>Quantity <span class="text-danger">*</span></label>
+                  <input type="text" v-model="quantity" class="form-control">
+                </div>
+                <div class="form-group col-3">
+                  <label>Discount %</label>
+                  <input type="text" v-model="discount" class="form-control">
+                </div>
               </div>
-              <div class="form-group col-3">
-                <label>Quantity <span class="text-danger">*</span></label>
-                <input type="text" v-model="quantity" class="form-control">
-              </div>
-              <div class="form-group col-3">
-                <label>Discount %</label>
-                <input type="text" v-model="discount" class="form-control">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-12">
-                <label for="name">Search by: Name, Name + SKU or Barcode <span class="text-danger">*</span></label>
-                <v-select v-model="item" label="name" :options="list" ></v-select>
+              <div class="form-row">
+                <div class="form-group col-12">
+                  <label for="name">Search by: Name, Name + SKU or Barcode <span class="text-danger">*</span></label>
+                  <v-select v-model="item" label="name" :options="list" ></v-select>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- init cart -->
-    <p class="lead mt-2">Cart</p>
+      <!-- init cart -->
+      <p class="lead mt-2">Cart</p>
 
-    <div class="row mt-2 mb-2">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <!-- <h5 class="card-title">To move</h5> -->
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th class="text-right">Discount %</th>
-                  <th class="text-right">Quantity</th>
-                  <th class="text-right">Total</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(row, index) in cart" :key="index">
-                  <td scope="row">{{ row.name }}</td>
-                  <td scope="row">
-                    <input
-                      v-model="row.discount"
-                      type="text"
-                      class="form-control col-sm-6 text-right float-right"
-                      max="100"
-                      @keyup="updateDiscount(row.discount, index)"
-                    >
-                  </td>
-                  <td scope="row">
-                    <input
-                      v-model="row.quantity"
-                      type="text"
-                      class="form-control col-sm-6 text-right float-right"
-                      min="1"
-                      @keyup="updateQuantity(row.quantity, index)"
-                    >
-                  </td>
-                  <td scope="row">
-                    <input
-                      v-model="row.total"
-                      type="text"
-                      class="form-control col-sm-6 text-right float-right"
-                      min="1"
-                      @keyup="updateTotal(row.total, index)"
-                    >
-                  </td>
-                  <td scope="row">
-                    <button type="button" class="btn btn-sm btn-outline-danger float-right" @click="deleteItem(index)">Borrar</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="row mt-2 mb-2">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <!-- <h5 class="card-title">To move</h5> -->
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th class="text-right">Discount %</th>
+                    <th class="text-right">Quantity</th>
+                    <th class="text-right">Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(row, index) in cart" :key="index">
+                    <td scope="row">{{ row.name }}</td>
+                    <td scope="row">
+                      <input
+                        v-model="row.discount"
+                        type="text"
+                        class="form-control col-sm-6 text-right float-right"
+                        max="100"
+                        @keyup="updateDiscount(row.discount, index)"
+                      >
+                    </td>
+                    <td scope="row">
+                      <input
+                        v-model="row.quantity"
+                        type="text"
+                        class="form-control col-sm-6 text-right float-right"
+                        min="1"
+                        @keyup="updateQuantity(row.quantity, index)"
+                      >
+                    </td>
+                    <td scope="row">
+                      <input
+                        v-model="row.total"
+                        type="text"
+                        class="form-control col-sm-6 text-right float-right"
+                        min="1"
+                        @keyup="updateTotal(row.total, index)"
+                      >
+                    </td>
+                    <td scope="row">
+                      <button type="button" class="btn btn-sm btn-outline-danger float-right" @click="deleteItem(index)">Borrar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
-            <table class="table table-hover">
-              <tbody>
-                <tr class="text-right">
-                  <td>Profit: {{ cartProfit }} €</td>
-                </tr>
-                <tr class="text-right">
-                  <td>Taxes: {{ cartTaxes }} €</td>
-                </tr>
-                <tr class="text-right">
-                  <td><strong>Total: {{ cartTotal }} €</strong> </td>
-                </tr>
-              </tbody>
-            </table>
+              <table class="table table-hover">
+                <tbody>
+                  <tr class="text-right">
+                    <td>Profit: {{ cartProfit }} €</td>
+                  </tr>
+                  <tr class="text-right">
+                    <td>Taxes: {{ cartTaxes }} €</td>
+                  </tr>
+                  <tr class="text-right">
+                    <td><strong>Total: {{ cartTotal }} €</strong> </td>
+                  </tr>
+                </tbody>
+              </table>
 
+            </div>
           </div>
         </div>
       </div>
+      <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
     </div>
-    <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
   </div>
 </template>
 
@@ -146,6 +150,8 @@ export default {
         btnDisabled: false,
         submitName: 'Done',
         done: false,
+        showError: false,
+        messageError: [],
       }
     },
     methods : {
@@ -183,7 +189,6 @@ export default {
           profit: profit,
         })
         this.item = 0
-        console.log(this.cart)
       },
       updateQuantity(quantity, index){
         const total = this.cart[index].price * quantity
@@ -217,26 +222,38 @@ export default {
         this.item = 0
       },
       submit() {
-        // this.btnDisabled = true
-        const params = {
-          user_id: this.userId,
-          from: this.from,
-          cart: this.cart,
-          taxes: this.cartTaxes,
-          total: this.cartTotal,
-          profit: this.cartProfit,
-          cost: this.cartCost,
+        this.btnDisabled = true
+        this.messageError = []
+
+        if(this.from === 0){
+          this.messageError.push('Select From')
         }
-console.log(params)
-        axios.post(`${this.baseApiUrl}/api/sales.new`, params).then(response => {
-          console.log(response)
-          if (response.data.status == true) {
-            // this.clean()
+
+        if (this.messageError.length === 0) {
+          const params = {
+            user_id: this.userId,
+            from: this.from,
+            cart: this.cart,
+            taxes: this.cartTaxes,
+            total: this.cartTotal,
+            profit: this.cartProfit,
+            cost: this.cartCost,
           }
-        })
+
+          axios.post(`${this.baseApiUrl}/api/sales.new`, params).then(response => {
+            if (response.data.status == true) {
+              this.clean()
+            }
+          })
+        } else {
+          this.messageError.unshift('Errors below:')
+          this.showError = true
+          this.btnDisabled = false
+        }
       },
       clean() {
         this.done = true
+        this.showError = false
         this.name = ''
         this.item = 0
         this.from = 0

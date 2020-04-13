@@ -12,9 +12,6 @@
         <!-- !logged -->
         <ul class="navbar-nav mr-md-3" v-if="!isLoggedIn">
           <li class="nav-item">
-            <router-link :to="{name: 'home'}" class="nav-link text-dark">holded</router-link>
-          </li>
-          <li class="nav-item">
             <router-link :to="{ name: 'login' }" class="nav-link text-dark">Login</router-link>
           </li>
           <li class="nav-item">
@@ -23,7 +20,7 @@
         </ul>
 
         <!-- logged -->
-        <ul class="navbar-nav mr-md-3"v-if="isLoggedIn">
+        <ul class="navbar-nav mr-md-3" v-if="isLoggedIn">
           <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Hi, {{name}}</router-link></li>
           <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Board</router-link></li>
           <li class="nav-item dropdown">
@@ -63,6 +60,7 @@
               <font-awesome-icon icon="user-cog" />
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <router-link :to="{ name: 'profile' }" class="dropdown-item text-dark">My Profile</router-link>
               <router-link :to="{ name: 'logout' }" class="dropdown-item text-dark">Logout</router-link>
             </div>
           </li>
@@ -71,12 +69,12 @@
     </nav>
     <!-- end nav -->
 
-    <main class="container-fluid">
+    <main>
       <!-- content -->
-        <router-view></router-view>
+      <router-view></router-view>
 
-      <!-- footer -->
-        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <footer class="pt-4 pt-md-5 border-top">
+        <div class="container">
           <div class="row">
             <div class="col-12 col-md">
               <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
@@ -112,8 +110,9 @@
               </ul>
             </div>
           </div>
-        </footer>
-      <!-- end footer -->
+        </div>
+      </footer>
+
     </main>
   </div>
 </template>

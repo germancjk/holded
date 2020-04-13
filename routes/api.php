@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   // Board
   Route::post('/board/today', 'SaleController@boardToday');
   Route::post('/board/month', 'SaleController@boardMonth');
+  Route::post('/board/stats', 'SaleController@boardStats');
 
   // User
   Route::post('/user/info', 'UserController@info');

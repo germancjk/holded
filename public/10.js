@@ -71,6 +71,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -133,106 +135,108 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container board" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "p",
-      { staticClass: "lead" },
-      [
-        _vm._v("\n    Movements\n    "),
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-sm btn-success float-right",
-            attrs: { to: { name: "movement.new" } }
-          },
-          [_vm._v("+ New Movement")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row mt-2" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _vm.loading
-              ? _c(
-                  "p",
-                  { staticClass: "text-center" },
-                  [
-                    _c("font-awesome-icon", {
-                      attrs: { icon: "spinner", spin: "" }
-                    })
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            !_vm.loading
-              ? _c("table", { staticClass: "table table-hover" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.list, function(element, index) {
-                      return _c("tr", [
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("moment")(
-                                element.created_at,
-                                "DD/MM/YYYY HH:mm"
+  return _c("div", { staticClass: "container-fluid", attrs: { id: "board" } }, [
+    _c("div", { staticClass: "container" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "p",
+        { staticClass: "lead" },
+        [
+          _vm._v("\n      Movements\n      "),
+          _c(
+            "router-link",
+            {
+              staticClass: "btn btn-sm btn-success float-right",
+              attrs: { to: { name: "movement.new" } }
+            },
+            [_vm._v("+ New Movement")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-2" }, [
+        _c("div", { staticClass: "col-12" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _vm.loading
+                ? _c(
+                    "p",
+                    { staticClass: "text-center" },
+                    [
+                      _c("font-awesome-icon", {
+                        attrs: { icon: "spinner", spin: "" }
+                      })
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.loading
+                ? _c("table", { staticClass: "table table-hover" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.list, function(element, index) {
+                        return _c("tr", [
+                          _c("td", { attrs: { scope: "row" } }, [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("moment")(
+                                  element.created_at,
+                                  "DD/MM/YYYY HH:mm"
+                                )
                               )
                             )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _vm._v(_vm._s(element.store_name_from))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _vm._v(_vm._s(element.store_name_to))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { attrs: { scope: "row" } }, [
-                          _vm._v(_vm._s(element.comments))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { attrs: { scope: "row" } },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-sm btn-outline-info",
-                                attrs: {
-                                  to: {
-                                    name: "movement",
-                                    params: { id: element.id }
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { scope: "row" } }, [
+                            _vm._v(_vm._s(element.store_name_from))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { scope: "row" } }, [
+                            _vm._v(_vm._s(element.store_name_to))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { attrs: { scope: "row" } }, [
+                            _vm._v(_vm._s(element.comments))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { attrs: { scope: "row" } },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-sm btn-outline-info",
+                                  attrs: {
+                                    to: {
+                                      name: "movement",
+                                      params: { id: element.id }
+                                    }
                                   }
-                                }
-                              },
-                              [
-                                _c("font-awesome-icon", {
-                                  attrs: { icon: "edit" }
-                                }),
-                                _vm._v(" Details\n                  ")
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    }),
-                    0
-                  )
-                ])
-              : _vm._e()
+                                },
+                                [
+                                  _c("font-awesome-icon", {
+                                    attrs: { icon: "edit" }
+                                  }),
+                                  _vm._v(" Details\n                    ")
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e()
+            ])
           ])
         ])
       ])

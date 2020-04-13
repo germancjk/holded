@@ -1,119 +1,121 @@
 <template>
-  <div class="container board">
+  <div class="container-fluid" id="board">
+    <div class="container">
 
-    <small>
-      <ul class="list-inline-mb-0 pl-0">
-        <li class="list-inline-item"><a href="#">Board</a> ></li>
-        <li class="list-inline-item">Items ></li>
-        <li class="list-inline-item">New</li>
-      </ul>
-    </small>
+      <small>
+        <ul class="list-inline-mb-0 pl-0">
+          <li class="list-inline-item"><a href="#">Board</a> ></li>
+          <li class="list-inline-item">Items ></li>
+          <li class="list-inline-item">New</li>
+        </ul>
+      </small>
 
-    <p class="lead">Create an Item</p>
+      <p class="lead">Create an Item</p>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="alert alert-danger" v-if="showError">
-          <div v-for="element in messageError">{{ element }}</div>
-        </div>
-        <div class="alert alert-success" v-if="showAdd">
-          Item Added
-        </div>
-      </div>
-    </div>
-
-    <form @submit.prevent="submit">
-      <!-- item description -->
       <div class="row">
         <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="form-row">
-                <div class="form-group col-12">
-                  <label for="name">Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
-                  <small id="name" class="form-text text-muted">This will be the generic name of the item</small>
-                </div>
-              </div>
+          <div class="alert alert-danger" v-if="showError">
+            <div v-for="element in messageError">{{ element }}</div>
+          </div>
+          <div class="alert alert-success" v-if="showAdd">
+            Item Added
+          </div>
+        </div>
+      </div>
 
-              <div class="form-row">
-                <div class="form-group col-6">
-                  <label for="categories">Category <span class="text-danger">*</span></label>
-                  <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id" placeholder="Select..."></v-select>
-                </div>
-
-                <div class="form-group col-6">
-                  <label for="supplier">Supplier <span class="text-danger">*</span></label>
-                  <v-select v-model="supplier" label="name" :options="suppliers" :reduce="suppliers => suppliers.id" placeholder="Select..."></v-select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-6">
-                  <label for="tax">Tax <span class="text-danger">*</span></label>
-                  <v-select v-model="tax" label="name" :options="taxes" :reduce="taxes => taxes.id" placeholder="Select..."></v-select>
+      <form @submit.prevent="submit">
+        <!-- item description -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col-12">
+                    <label for="name">Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
+                    <small id="name" class="form-text text-muted">This will be the generic name of the item</small>
+                  </div>
                 </div>
 
-                <div class="form-group col-6">
-                  <label for="store">Store (default) <span class="text-danger">*</span></label>
-                  <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Select..."></v-select>
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label for="categories">Category <span class="text-danger">*</span></label>
+                    <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id" placeholder="Select..."></v-select>
+                  </div>
+
+                  <div class="form-group col-6">
+                    <label for="supplier">Supplier <span class="text-danger">*</span></label>
+                    <v-select v-model="supplier" label="name" :options="suppliers" :reduce="suppliers => suppliers.id" placeholder="Select..."></v-select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label for="tax">Tax <span class="text-danger">*</span></label>
+                    <v-select v-model="tax" label="name" :options="taxes" :reduce="taxes => taxes.id" placeholder="Select..."></v-select>
+                  </div>
+
+                  <div class="form-group col-6">
+                    <label for="store">Store (default) <span class="text-danger">*</span></label>
+                    <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Select..."></v-select>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- init skus -->
-      <p class="lead mt-2">Skus - <i>The SKU is an unique name of each variant.</i></p>
+        <!-- init skus -->
+        <p class="lead mt-2">Skus - <i>The SKU is an unique name of each variant.</i></p>
 
-      <div class="row mb-2">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="form-row">
-                <div class="form-group col-6">
-                  <label for="sku">Name <span class="text-danger">*</span></label>
+        <div class="row mb-2">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label for="sku">Name <span class="text-danger">*</span></label>
+                  </div>
+                  <div class="form-group col-3">
+                    <label for="cost">Barcode</label>
+                  </div>
+                  <div class="form-group col-1">
+                    <label for="cost">Cost</label>
+                  </div>
+                  <div class="form-group col-1">
+                    <label for="sale_price">Sale Price</label>
+                  </div>
+                  <div class="form-group col-1">
+                    <label for="quantity">Quantity</label>
+                  </div>
                 </div>
-                <div class="form-group col-3">
-                  <label for="cost">Barcode</label>
+                <div class="form-row" v-for="(sku, index) in skus" :key="index">
+                  <div class="form-group col-6">
+                    <input v-model="sku.name" :name="`skus[${index}][name]`" type="text" class="form-control" required autofocus placeholder="SKU Name - must be unique" >
+                  </div>
+                  <div class="form-group col-3">
+                    <input v-model="sku.barcode" :name="`skus[${index}][barcode]`" type="text" class="form-control" value="0">
+                  </div>
+                  <div class="form-group col-1">
+                    <input v-model="sku.cost" :name="`skus[${index}][cost]`" type="text" class="form-control" value="0">
+                  </div>
+                  <div class="form-group col-1">
+                    <input v-model="sku.sale_price" :name="`skus[${index}][sale_price]`" type="text" class="form-control" value="0">
+                  </div>
+                  <div class="form-group col-1">
+                    <input v-model="sku.quantity" :name="`skus[${index}][quantity]`" type="text" class="form-control" value="0">
+                  </div>
                 </div>
-                <div class="form-group col-1">
-                  <label for="cost">Cost</label>
+                <div class="form-row">
+                  <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Add New</button>
                 </div>
-                <div class="form-group col-1">
-                  <label for="sale_price">Sale Price</label>
-                </div>
-                <div class="form-group col-1">
-                  <label for="quantity">Quantity</label>
-                </div>
-              </div>
-              <div class="form-row" v-for="(sku, index) in skus" :key="index">
-                <div class="form-group col-6">
-                  <input v-model="sku.name" :name="`skus[${index}][name]`" type="text" class="form-control" required autofocus placeholder="SKU Name - must be unique" >
-                </div>
-                <div class="form-group col-3">
-                  <input v-model="sku.barcode" :name="`skus[${index}][barcode]`" type="text" class="form-control" value="0">
-                </div>
-                <div class="form-group col-1">
-                  <input v-model="sku.cost" :name="`skus[${index}][cost]`" type="text" class="form-control" value="0">
-                </div>
-                <div class="form-group col-1">
-                  <input v-model="sku.sale_price" :name="`skus[${index}][sale_price]`" type="text" class="form-control" value="0">
-                </div>
-                <div class="form-group col-1">
-                  <input v-model="sku.quantity" :name="`skus[${index}][quantity]`" type="text" class="form-control" value="0">
-                </div>
-              </div>
-              <div class="form-row">
-                <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Add New</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
-    </form>
+        <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -235,22 +237,22 @@ export default {
         this.messageError = []
         this.btnDisabled = true
 
-        if (this.name.length === 0) {
+        if (this.name.length == 0) {
           this.messageError.push('Name is empty')
         }
-        if (this.category.length === 0) {
+        if (this.category == 0) {
           this.messageError.push('Select Category')
         }
-        if (this.supplier.length === 0) {
+        if (this.supplier == 0) {
           this.messageError.push('Select Supplier')
         }
-        if (this.tax.length === 0) {
+        if (this.tax == 0) {
           this.messageError.push('Select Tax')
         }
-        if (this.store.length === 0) {
+        if (this.store == 0) {
           this.messageError.push('Select Store')
         }
-        if (this.skus[0].name.length === 0) {
+        if (this.skus[0].name.length == 0) {
           this.messageError.push('Please add at least one Sku')
         }
 
@@ -269,7 +271,6 @@ export default {
           })
         } else {
           this.messageError.unshift('Errors below:')
-          console.log('Error', this.messageError.length)
           this.showError = true
           this.btnDisabled = false
         }

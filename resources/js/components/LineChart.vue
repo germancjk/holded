@@ -9,15 +9,16 @@ export default {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        // title: {
-        //   display: true,
-        //   text: "My Data"
-        // }
       }
     }
   },
   mounted() {
-    this.renderChart(this.chartdata, this.options)
+    // this.renderChart(this.chartdata, this.options)
+  },
+  watch: {
+    chartdata: function (chartdata) {
+      this.renderChart(this.chartdata, this.options)
+    },
   }
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
-    <div class="container board">
+  <div class="container-fluid" id="board">
+    <div class="container">
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
@@ -13,7 +14,7 @@
 
       <div class="row mt-2">
         <div class="col-12">
-          <ul class="list-group shadow-sm">
+          <ul class="list-group">
             <li class="list-group-item">From: {{ move.store_name_from }}</li>
             <li class="list-group-item">To: {{ move.store_name_to }}</li>
             <li class="list-group-item">Date: {{ move.created_at | moment("DD/MM/YYYY HH:mm") }}</li>
@@ -48,6 +49,7 @@
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>

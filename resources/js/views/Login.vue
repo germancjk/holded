@@ -65,7 +65,7 @@ import { mapGetters, mapActions } from 'vuex'
               if (localStorage.getItem('jwt') != null){
                 // set on store
                 this.setUser(response.data.success)
-                this.$router.go('/board')
+                window.location = '/panel/board';
               }
             })
             .catch(function (error) {
@@ -73,20 +73,8 @@ import { mapGetters, mapActions } from 'vuex'
             });
         }
       },
-      logout(){
-        axios.post('api/logout', {
-            email: this.email,
-          })
-          .then(response => {
-              this.$router.go('/')
-          })
-          .catch(function (error) {
-            console.error(error);
-          });
-      },
     },
     beforeRouteEnter (to, from, next) {
-      // localStorage.removeItem('jwt')
       if (localStorage.getItem('jwt')) {
         return next('board');
       }

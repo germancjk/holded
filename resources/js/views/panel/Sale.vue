@@ -1,5 +1,6 @@
 <template>
-    <div class="container board">
+  <div class="container-fluid" id="board">
+    <div class="container">
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
@@ -13,7 +14,7 @@
 
       <div class="row mt-2">
         <div class="col-6">
-          <ul class="list-group shadow-sm">
+          <ul class="list-group">
             <li class="list-group-item">Store: <span class="float-right">{{ item.store_name }}</span></li>
             <li class="list-group-item">Date: <span class="float-right">{{ item.created_at | moment("DD/MM/YYYY HH:mm") }}</span></li>
             <li class="list-group-item">Taxes: <span class="float-right">{{ item.taxes | currency }}</span></li>
@@ -22,7 +23,7 @@
           </ul>
         </div>
         <div class="col-6">
-          <ul class="list-group shadow-sm">
+          <ul class="list-group">
             <li class="list-group-item">Cost: <span class="float-right">{{ item.cost | currency }}</span></li>
             <li class="list-group-item">Profit: <span class="float-right">{{ item.profit | currency }}</span></li>
           </ul>
@@ -67,6 +68,7 @@
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>

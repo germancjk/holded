@@ -1,5 +1,6 @@
 <template>
-    <div class="container board">
+  <div class="container-fluid" id="board">
+    <div class="container">
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
@@ -87,7 +88,7 @@
             </div>
           </div>
         </div>
-
+      </div>
     </div>
 </template>
 

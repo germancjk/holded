@@ -81,7 +81,7 @@
                         localStorage.setItem('jwt',response.data.success.token)
 
                         if (localStorage.getItem('jwt') != null){
-                            this.$router.go('/board')
+                            this.$router.go('/panel/board')
                         }
                       })
                       .catch(error => {
