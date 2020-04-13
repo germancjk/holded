@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{ Item, ItemSku };
+use App\{ Item, ItemSku, Stock };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -45,6 +45,23 @@ class ItemController extends Controller
       'tax_id' => $request->tax_id
     ]);
 
+    foreach ($request->skus as $key => $value) {
+      $itemSku = ItemSku::create([
+        'user_id' => $request->user_id,
+        'item_id' => $item->id,
+        'name' => $value['name'],
+        'cost' => $value['cost'],
+        'sale_price' => $value['sale_price']
+      ]);
+
+      $stock = Stock::create([
+        'user_id' => $request->user_id,
+        'item_sku_id' => $itemSku->id,
+        'store_id' => $request->store,
+        'quantity' => $value['quantity']
+      ]);
+    }
+
     return response()->json([
       'status' => (bool) $item,
       'data'   => $item,
@@ -52,58 +69,41 @@ class ItemController extends Controller
     ]);
   }
 
-  public function show(Request $request)
+  public function show(Item $item)
   {
-    return response()->json(
-      Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
-          ->join('categories', 'items.category_id', '=', 'categories.id')
-          ->select(
-              'items.id as item_id',
-              'items.name as item_name',
-              'item_skus.id as sku_id',
-              'item_skus.name as sku_name',
-              'item_skus.sale_price as sku_sale_price',
-              'categories.name as category_name',
-              DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
-              )
-          ->where('item_skus.id', '=', $request->sku_id)
-          ->getQuery()
-          ->get()
-          ->toArray()
-        );
+    return response()->json($item);
   }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  \App\Item  $item
+   * @return \Illuminate\Http\Response
+   */
+  public function edit(Item $item)
+  {
+      //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Item $item)
-    {
-        //
-    }
+  public function update(Request $request, Item $item)
+  {
+    $status = $item->update([
+      'user_id' => $request->user_id,
+      'name' => $request->name,
+      'category_id' => $request->category_id,
+      'supplier_id' => $request->supplier_id,
+      'tax_id' => $request->tax_id
+      ]);
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Item $item)
-    {
-        //
-    }
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  \App\Item  $item
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy(Item $item)
+  {
+      //
+  }
 }

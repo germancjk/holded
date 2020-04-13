@@ -157,10 +157,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
  // https://vue-chartjs.org/guide/#introduction
 
 
@@ -566,10 +562,6 @@ var render = function() {
                       "div",
                       { staticClass: "float-left" },
                       [
-                        _c("i", {
-                          staticClass: "mdi mdi-cube text-danger icon-lg"
-                        }),
-                        _vm._v(" "),
                         _c("font-awesome-icon", {
                           staticClass: "text-danger",
                           attrs: { icon: "box", size: "2x" }
@@ -592,9 +584,7 @@ var render = function() {
                       ])
                     ])
                   ]
-                ),
-                _vm._v(" "),
-                _vm._m(0)
+                )
               ])
             ])
           ]
@@ -620,13 +610,9 @@ var render = function() {
                       "div",
                       { staticClass: "float-left" },
                       [
-                        _c("i", {
-                          staticClass: "mdi mdi-cube text-danger icon-lg"
-                        }),
-                        _vm._v(" "),
                         _c("font-awesome-icon", {
-                          staticClass: "text-danger",
-                          attrs: { icon: "box", size: "2x" }
+                          staticClass: "text-success",
+                          attrs: { icon: "hand-holding-usd", size: "2x" }
                         })
                       ],
                       1
@@ -649,9 +635,7 @@ var render = function() {
                       ])
                     ])
                   ]
-                ),
-                _vm._v(" "),
-                _vm._m(1)
+                )
               ])
             ])
           ]
@@ -677,10 +661,6 @@ var render = function() {
                       "div",
                       { staticClass: "float-left" },
                       [
-                        _c("i", {
-                          staticClass: "mdi mdi-cube text-danger icon-lg"
-                        }),
-                        _vm._v(" "),
                         _c("font-awesome-icon", {
                           staticClass: "text-danger",
                           attrs: { icon: "box", size: "2x" }
@@ -703,9 +683,7 @@ var render = function() {
                       ])
                     ])
                   ]
-                ),
-                _vm._v(" "),
-                _vm._m(2)
+                )
               ])
             ])
           ]
@@ -731,13 +709,9 @@ var render = function() {
                       "div",
                       { staticClass: "float-left" },
                       [
-                        _c("i", {
-                          staticClass: "mdi mdi-cube text-danger icon-lg"
-                        }),
-                        _vm._v(" "),
                         _c("font-awesome-icon", {
-                          staticClass: "text-danger",
-                          attrs: { icon: "box", size: "2x" }
+                          staticClass: "text-success",
+                          attrs: { icon: "hand-holding-usd", size: "2x" }
                         })
                       ],
                       1
@@ -760,9 +734,7 @@ var render = function() {
                       ])
                     ])
                   ]
-                ),
-                _vm._v(" "),
-                _vm._m(3)
+                )
               ])
             ])
           ]
@@ -788,84 +760,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "p",
-      {
-        staticClass:
-          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
-      },
-      [
-        _c("i", {
-          staticClass: "mdi mdi-alert-octagon mr-1",
-          attrs: { "aria-hidden": "true" }
-        }),
-        _vm._v(" Another text\n             ")
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "p",
-      {
-        staticClass:
-          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
-      },
-      [
-        _c("i", {
-          staticClass: "mdi mdi-alert-octagon mr-1",
-          attrs: { "aria-hidden": "true" }
-        }),
-        _vm._v(" Another text\n              ")
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "p",
-      {
-        staticClass:
-          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
-      },
-      [
-        _c("i", {
-          staticClass: "mdi mdi-alert-octagon mr-1",
-          attrs: { "aria-hidden": "true" }
-        }),
-        _vm._v(" Another text\n               ")
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "p",
-      {
-        staticClass:
-          "text-muted mt-3 mb-0 text-left text-md-center text-xl-left"
-      },
-      [
-        _c("i", {
-          staticClass: "mdi mdi-alert-octagon mr-1",
-          attrs: { "aria-hidden": "true" }
-        }),
-        _vm._v(" Another text\n                ")
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

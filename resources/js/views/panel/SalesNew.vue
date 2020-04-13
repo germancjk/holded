@@ -122,7 +122,10 @@
           </div>
         </div>
       </div>
-      <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
+
+      <p class="text-right">
+        <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
+      </p>
     </div>
   </div>
 </template>

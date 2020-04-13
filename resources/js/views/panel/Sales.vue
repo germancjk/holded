@@ -42,6 +42,19 @@
                   </tr>
                 </tbody>
               </table>
+
+              <nav>
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active">
+                    <span class="page-link">2
+                      <span class="sr-only">(current)</span>
+                    </span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+              </nav>
+
             </div>
           </div>
         </div>
@@ -65,6 +78,9 @@ export default {
         userId: localStorage.getItem('user_id'),
         list: [],
         loading: true,
+        currentPage: 2,
+        rows: 3,
+        perPage: 2,
       }
     },
     methods : {

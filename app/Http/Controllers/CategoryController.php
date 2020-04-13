@@ -30,11 +30,6 @@ class CategoryController extends Controller
       return response()->json($category);
     }
 
-    // public function tasks(Category $category)
-    // {
-    //     return response()->json($category->tasks()->orderBy('order')->get());
-    // }
-
     public function update(Request $request, Category $category)
     {
         $status = $category->update([

@@ -159,6 +159,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       tax: 0,
       store: 0,
       skus: [{
+        id: 0,
         barcode: '',
         name: '',
         cost: 0,
@@ -194,6 +195,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.skus = [];
           response.data.forEach(function (element) {
             _this.skus.push({
+              id: element.id,
               name: element.name,
               cost: element.cost,
               sale_price: element.sale_price,
@@ -205,6 +207,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     addSku: function addSku() {
       this.skus.push({
+        id: 0,
         name: '',
         barcode: '',
         cost: 0,
@@ -212,50 +215,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         quantity: 0
       });
     },
-    submitStock: function submitStock(stock) {
-      var _this2 = this;
-
-      // submit stock
-      var total = this.skus.length;
-      axios.post("".concat(this.baseApiUrl, "/api/stock"), stock).then(function (response) {
-        _this2.submitedLeft++; // clear when fits total of skus
-
-        if (total == _this2.submitedLeft) {
-          _this2.showAdd = true;
-
-          _this2.clearForm();
-        }
-      });
-    },
-    submitSku: function submitSku(item_id) {
-      var _this3 = this;
-
-      // submit new sku
-      this.skus.forEach(function (element) {
-        if (element.name.length > 0) {
-          var params = {
-            user_id: _this3.userId,
-            item_id: item_id,
-            barcode: element.barcode,
-            name: element.name,
-            cost: element.cost,
-            sale_price: element.sale_price
-          };
-          axios.post("".concat(_this3.baseApiUrl, "/api/itemsku"), params).then(function (response) {
-            var stock = {
-              user_id: _this3.userId,
-              item_sku_id: response.data.data.id,
-              store_id: _this3.store,
-              quantity: element.quantity
-            };
-
-            _this3.submitStock(stock);
-          });
-        }
-      });
-    },
     submit: function submit(e) {
-      var _this4 = this;
+      var _this2 = this;
 
       e.preventDefault();
       this.messageError = [];
@@ -290,13 +251,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: this.name,
         category_id: this.category,
         supplier_id: this.supplier,
-        tax_id: this.tax
+        tax_id: this.tax,
+        skus: this.skus,
+        store: this.store
       }; // add new item
 
       if (this.messageError.length === 0) {
-        axios.post("".concat(this.baseApiUrl, "/api/item"), params).then(function (response) {
-          _this4.submitSku(response.data.data.id);
-        });
+        if (this.id) {
+          axios.patch("".concat(this.baseApiUrl, "/api/item/").concat(this.id), params).then(function (response) {
+            if (response.status == true) {
+              _this2.showAdd = true;
+
+              _this2.clearForm();
+            }
+          });
+        } else {
+          axios.post("".concat(this.baseApiUrl, "/api/item"), params).then(function (response) {
+            if (response.status == true) {
+              _this2.showAdd = true;
+
+              _this2.clearForm();
+            }
+          });
+        }
       } else {
         this.messageError.unshift('Errors below:');
         this.showError = true;

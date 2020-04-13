@@ -10,7 +10,7 @@ class ItemSku extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['item_id', 'name', 'cost', 'sale_price', 'user_id'];
+  protected $fillable = ['item_id', 'name', 'cost', 'sale_price', 'user_id', 'sku_id'];
 
   // public function item() {
   //   return $this->hasOne(Item::class);

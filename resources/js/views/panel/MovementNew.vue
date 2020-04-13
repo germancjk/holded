@@ -17,6 +17,10 @@
         Movement done!
       </div>
 
+      <div class="alert alert-danger" v-if="showError">
+        <div v-for="element in messageError">{{ element }}</div>
+      </div>
+
       <!-- init search -->
       <div class="row">
         <div class="col-12">
@@ -36,8 +40,7 @@
               <div class="form-row">
                 <div class="form-group col-12">
                   <label for="name">Search by: Name, Name + SKU or Barcode <span class="text-danger">*</span></label>
-                  <v-select v-model="item" label="name" :options="list" ></v-select>
-                  <!-- <small>Test of name of a product</small> -->
+                  <v-select :disabled="from == 0" v-model="item" label="name" :options="list" ></v-select>
                 </div>
               </div>
               <div class="form-row">
@@ -58,8 +61,6 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <!-- <h5 class="card-title">To move</h5> -->
-
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -87,12 +88,13 @@
                   </tr>
                 </tbody>
               </table>
-
             </div>
           </div>
         </div>
       </div>
-      <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
+      <p class="text-right">
+        <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
+      </p>
     </div>
   </div>
 </template>
@@ -120,6 +122,8 @@ export default {
         btnDisabled: false,
         submitName: 'Move',
         done: false,
+        showError: false,
+        messageError: [],
       }
     },
     methods : {
@@ -160,18 +164,36 @@ export default {
       },
       submit() {
         this.btnDisabled = true
-        const params = {
-          user_id: this.userId,
-          from: this.from,
-          to: this.to,
-          cart: this.cart,
-          comments: this.comments,
+        this.messageError = []
+
+        if(this.from === 0){
+          this.messageError.push('Select From')
         }
-        axios.post(`${this.baseApiUrl}/api/movement`, params).then(response => {
-          if (response.data.status == true) {
-            this.clean()
+        if(this.to === 0){
+          this.messageError.push('Select To')
+        }
+        if(this.cart.length === 0){
+          this.messageError.push('Select Item/s')
+        }
+
+        if (this.messageError.length === 0) {
+          const params = {
+            user_id: this.userId,
+            from: this.from,
+            to: this.to,
+            cart: this.cart,
+            comments: this.comments,
           }
-        })
+          axios.post(`${this.baseApiUrl}/api/movement`, params).then(response => {
+            if (response.data.status == true) {
+              this.clean()
+            }
+          })
+        } else {
+          this.messageError.unshift('Errors below:')
+          this.showError = true
+          this.btnDisabled = false
+        }
       },
       clean() {
         this.done = true

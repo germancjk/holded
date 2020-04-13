@@ -149,6 +149,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -637,15 +640,17 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "button", disabled: _vm.btnDisabled },
-          on: { click: _vm.submit }
-        },
-        [_vm._v(_vm._s(_vm.submitName))]
-      )
+      _c("p", { staticClass: "text-right" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "button", disabled: _vm.btnDisabled },
+            on: { click: _vm.submit }
+          },
+          [_vm._v(_vm._s(_vm.submitName))]
+        )
+      ])
     ])
   ])
 }

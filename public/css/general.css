@@ -20,13 +20,12 @@ h3{font-size:20px;line-height:30px}
   padding: 17px 38px;
   background: #fff;
 }
-/* p,a,li,blockquote,label{font-size:16px;letter-spacing:0;line-height:25px;margin-bottom:0} */
 .bg-gray{background:#fafafa}
 .bg-blue{background: #007bff}
-/* .card{border-radius: 0;} */
 .lead{margin-bottom: 10px;}
 .green{color: green;}
 .red{color: red;}
+.padding-bottom{padding-bottom:0px;}
 
 #board {
   background: #f6f8fa;
@@ -46,9 +45,3 @@ h3{font-size:20px;line-height:30px}
 #board .row {
   margin-bottom: 20px;
 }
-
-/* #board .form-control {
-    border: 1px solid #f3f3f3;
-    padding: .56rem .75rem;
-    line-height: 14px;
-} */

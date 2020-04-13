@@ -141,6 +141,7 @@ export default {
         store: 0,
         skus: [
           {
+            id: 0,
             barcode: '',
             name: '',
             cost: 0,
@@ -178,6 +179,7 @@ export default {
             this.skus = []
             response.data.forEach(element => {
               this.skus.push({
+                id: element.id,
                 name: element.name,
                 cost: element.cost,
                 sale_price: element.sale_price,
@@ -189,48 +191,13 @@ export default {
       },
       addSku () {
         this.skus.push({
+          id: 0,
           name: '',
           barcode: '',
           cost: 0,
           sale_price: 0,
           quantity: 0
         })
-      },
-      submitStock(stock) {
-        // submit stock
-        const total = this.skus.length;
-        axios.post(`${this.baseApiUrl}/api/stock`, stock).then(response => {
-          this.submitedLeft++;
-          // clear when fits total of skus
-          if (total == this.submitedLeft) {
-            this.showAdd = true
-            this.clearForm()
-          }
-        })
-      },
-      submitSku(item_id) {
-        // submit new sku
-        this.skus.forEach(element => {
-          if (element.name.length > 0) {
-            let params = {
-              user_id: this.userId,
-              item_id: item_id,
-              barcode: element.barcode,
-              name: element.name,
-              cost: element.cost,
-              sale_price: element.sale_price,
-            }
-            axios.post(`${this.baseApiUrl}/api/itemsku`, params).then(response => {
-              let stock = {
-                user_id: this.userId,
-                item_sku_id: response.data.data.id,
-                store_id: this.store,
-                quantity: element.quantity
-              }
-              this.submitStock(stock)
-            })
-          }
-        });
       },
       submit(e) {
         e.preventDefault()
@@ -262,13 +229,27 @@ export default {
           category_id: this.category,
           supplier_id: this.supplier,
           tax_id: this.tax,
+          skus: this.skus,
+          store: this.store,
         }
 
         // add new item
         if (this.messageError.length === 0) {
-          axios.post(`${this.baseApiUrl}/api/item`, params).then(response => {
-            this.submitSku(response.data.data.id)
-          })
+          if (this.id) {
+            axios.patch(`${this.baseApiUrl}/api/item/${this.id}`, params).then(response => {
+              if(response.status == true){
+                this.showAdd = true
+                this.clearForm()
+              }
+            })
+          } else {
+            axios.post(`${this.baseApiUrl}/api/item`, params).then(response => {
+              if(response.status == true){
+                this.showAdd = true
+                this.clearForm()
+              }
+            })
+          }
         } else {
           this.messageError.unshift('Errors below:')
           this.showError = true

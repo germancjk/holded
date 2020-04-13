@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <section class="section position-relative pull-top">
+    <section class="section position-relative pull-top padding-bottom">
       <div class="container">
         <div class="rounded shadow p-5 bg-white">
           <div class="row justify-content-center">

@@ -9,7 +9,6 @@
             <div class="card-body">
               <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
                 <div class="float-left">
-                  <i class="mdi mdi-cube text-danger icon-lg"></i>
                   <font-awesome-icon icon="box" class="text-danger" size="2x"/></i>
                 </div>
                 <div class="float-right">
@@ -19,9 +18,9 @@
                   </div>
                 </div>
               </div>
-               <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+               <!-- <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
                  <i aria-hidden="true" class="mdi mdi-alert-octagon mr-1"></i> Another text
-               </p>
+               </p> -->
              </div>
            </div>
          </div>
@@ -31,8 +30,7 @@
              <div class="card-body">
                <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
                  <div class="float-left">
-                   <i class="mdi mdi-cube text-danger icon-lg"></i>
-                   <font-awesome-icon icon="box" class="text-danger" size="2x"/></i>
+                   <font-awesome-icon icon="hand-holding-usd" class="text-success" size="2x"/></i>
                  </div>
                  <div class="float-right">
                    <p class="mb-0 text-right">Ganancia Hoy</p>
@@ -41,9 +39,9 @@
                    </div>
                  </div>
                </div>
-                <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+                <!-- <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
                   <i aria-hidden="true" class="mdi mdi-alert-octagon mr-1"></i> Another text
-                </p>
+                </p> -->
               </div>
             </div>
           </div>
@@ -53,7 +51,6 @@
               <div class="card-body">
                 <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
                   <div class="float-left">
-                    <i class="mdi mdi-cube text-danger icon-lg"></i>
                     <font-awesome-icon icon="box" class="text-danger" size="2x"/></i>
                   </div>
                   <div class="float-right">
@@ -63,9 +60,9 @@
                     </div>
                   </div>
                 </div>
-                 <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+                 <!-- <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
                    <i aria-hidden="true" class="mdi mdi-alert-octagon mr-1"></i> Another text
-                 </p>
+                 </p> -->
                </div>
              </div>
            </div>
@@ -75,8 +72,7 @@
                <div class="card-body">
                  <div class="d-flex flex-md-column flex-xl-row flex-wrap justify-content-between align-items-md-center justify-content-xl-between">
                    <div class="float-left">
-                     <i class="mdi mdi-cube text-danger icon-lg"></i>
-                     <font-awesome-icon icon="box" class="text-danger" size="2x"/></i>
+                     <font-awesome-icon icon="hand-holding-usd" class="text-success" size="2x"/></i>
                    </div>
                    <div class="float-right">
                      <p class="mb-0 text-right">Ganancia del Mes</p>
@@ -85,9 +81,9 @@
                      </div>
                    </div>
                  </div>
-                  <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
+                  <!-- <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
                     <i aria-hidden="true" class="mdi mdi-alert-octagon mr-1"></i> Another text
-                  </p>
+                  </p> -->
                 </div>
               </div>
             </div>

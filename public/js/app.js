@@ -11239,70 +11239,74 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("section", { staticClass: "section position-relative pull-top" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "rounded shadow p-5 bg-white" }, [
-          _c("div", { staticClass: "row justify-content-center" }, [
-            _c("div", { staticClass: "col-md-4 mb-4 text-center" }, [
-              _c(
-                "i",
-                { staticClass: "text-primary h1" },
-                [_c("font-awesome-icon", { attrs: { icon: "box" } })],
-                1
-              ),
-              _vm._v(" "),
-              _c("h3", { staticClass: "mt-4 h5" }, [
-                _vm._v("Gestión de stock")
+    _c(
+      "section",
+      { staticClass: "section position-relative pull-top padding-bottom" },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "rounded shadow p-5 bg-white" }, [
+            _c("div", { staticClass: "row justify-content-center" }, [
+              _c("div", { staticClass: "col-md-4 mb-4 text-center" }, [
+                _c(
+                  "i",
+                  { staticClass: "text-primary h1" },
+                  [_c("font-awesome-icon", { attrs: { icon: "box" } })],
+                  1
+                ),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mt-4 h5" }, [
+                  _vm._v("Gestión de stock")
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "regular text-muted" }, [
+                  _vm._v(
+                    "Simple e intuitivo sistema de gestión de stock, tanto de un local como de varios, movimientos entre tiendas y más!"
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "regular text-muted" }, [
-                _vm._v(
-                  "Simple e intuitivo sistema de gestión de stock, tanto de un local como de varios, movimientos entre tiendas y más!"
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4 mb-4 text-center" }, [
-              _c(
-                "i",
-                { staticClass: "text-primary h1" },
-                [
-                  _c("font-awesome-icon", {
-                    attrs: { icon: "hand-holding-usd" }
-                  })
-                ],
-                1
-              ),
+              _c("div", { staticClass: "col-md-4 mb-4 text-center" }, [
+                _c(
+                  "i",
+                  { staticClass: "text-primary h1" },
+                  [
+                    _c("font-awesome-icon", {
+                      attrs: { icon: "hand-holding-usd" }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mt-4 h5" }, [_vm._v("Ventas")]),
+                _vm._v(" "),
+                _c("p", { staticClass: "regular text-muted" }, [
+                  _vm._v(
+                    "Lleva el control de tus ventas, costos, ganancias de tus productos, lleva la contabilidad de tus ventas mensuales, anuales y diarias."
+                  )
+                ])
+              ]),
               _vm._v(" "),
-              _c("h3", { staticClass: "mt-4 h5" }, [_vm._v("Ventas")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "regular text-muted" }, [
-                _vm._v(
-                  "Lleva el control de tus ventas, costos, ganancias de tus productos, lleva la contabilidad de tus ventas mensuales, anuales y diarias."
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4 mb-4 text-center" }, [
-              _c(
-                "i",
-                { staticClass: "text-primary h1" },
-                [_c("font-awesome-icon", { attrs: { icon: "gem" } })],
-                1
-              ),
-              _vm._v(" "),
-              _c("h3", { staticClass: "mt-4 h5" }, [_vm._v("Productos")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "regular text-muted" }, [
-                _vm._v(
-                  "Crea tus productos y las variantes de los mismos, crea tallas, colores y todo lo necesario para que tus productos sean diferenciados."
-                )
+              _c("div", { staticClass: "col-md-4 mb-4 text-center" }, [
+                _c(
+                  "i",
+                  { staticClass: "text-primary h1" },
+                  [_c("font-awesome-icon", { attrs: { icon: "gem" } })],
+                  1
+                ),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mt-4 h5" }, [_vm._v("Productos")]),
+                _vm._v(" "),
+                _c("p", { staticClass: "regular text-muted" }, [
+                  _vm._v(
+                    "Crea tus productos y las variantes de los mismos, crea tallas, colores y todo lo necesario para que tus productos sean diferenciados."
+                  )
+                ])
               ])
             ])
           ])
         ])
-      ])
-    ]),
+      ]
+    ),
     _vm._v(" "),
     _vm._m(2),
     _vm._v(" "),

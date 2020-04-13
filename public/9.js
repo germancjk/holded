@@ -119,6 +119,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -138,7 +140,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       list: [],
       btnDisabled: false,
       submitName: 'Move',
-      done: false
+      done: false,
+      showError: false,
+      messageError: []
     };
   },
   methods: _objectSpread({
@@ -187,18 +191,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       this.btnDisabled = true;
-      var params = {
-        user_id: this.userId,
-        from: this.from,
-        to: this.to,
-        cart: this.cart,
-        comments: this.comments
-      };
-      axios.post("".concat(this.baseApiUrl, "/api/movement"), params).then(function (response) {
-        if (response.data.status == true) {
-          _this3.clean();
-        }
-      });
+      this.messageError = [];
+
+      if (this.from === 0) {
+        this.messageError.push('Select From');
+      }
+
+      if (this.to === 0) {
+        this.messageError.push('Select To');
+      }
+
+      if (this.cart.length === 0) {
+        this.messageError.push('Select Item/s');
+      }
+
+      if (this.messageError.length === 0) {
+        var params = {
+          user_id: this.userId,
+          from: this.from,
+          to: this.to,
+          cart: this.cart,
+          comments: this.comments
+        };
+        axios.post("".concat(this.baseApiUrl, "/api/movement"), params).then(function (response) {
+          if (response.data.status == true) {
+            _this3.clean();
+          }
+        });
+      } else {
+        this.messageError.unshift('Errors below:');
+        this.showError = true;
+        this.btnDisabled = false;
+      }
     },
     clean: function clean() {
       this.done = true;
@@ -258,6 +282,17 @@ var render = function() {
             "div",
             { staticClass: "alert alert-success", attrs: { role: "alert" } },
             [_vm._v("\n      Movement done!\n    ")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showError
+        ? _c(
+            "div",
+            { staticClass: "alert alert-danger" },
+            _vm._l(_vm.messageError, function(element) {
+              return _c("div", [_vm._v(_vm._s(element))])
+            }),
+            0
           )
         : _vm._e(),
       _vm._v(" "),
@@ -327,7 +362,11 @@ var render = function() {
                     _vm._m(4),
                     _vm._v(" "),
                     _c("v-select", {
-                      attrs: { label: "name", options: _vm.list },
+                      attrs: {
+                        disabled: _vm.from == 0,
+                        label: "name",
+                        options: _vm.list
+                      },
                       model: {
                         value: _vm.item,
                         callback: function($$v) {
@@ -450,15 +489,17 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "button", disabled: _vm.btnDisabled },
-          on: { click: _vm.submit }
-        },
-        [_vm._v(_vm._s(_vm.submitName))]
-      )
+      _c("p", { staticClass: "text-right" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { type: "button", disabled: _vm.btnDisabled },
+            on: { click: _vm.submit }
+          },
+          [_vm._v(_vm._s(_vm.submitName))]
+        )
+      ])
     ])
   ])
 }
