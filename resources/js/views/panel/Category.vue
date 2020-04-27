@@ -3,13 +3,13 @@
     <div class="container">
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Tools</a> ></li>
-          <li class="list-inline-item">Categories</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item">Herramientas ></li>
+          <li class="list-inline-item">Categorias</li>
         </ul>
       </small>
 
-      <p class="lead">Categories</p>
+      <p class="lead">Categorias</p>
 
         <div class="row">
           <div class="col-12">
@@ -27,9 +27,9 @@
                 <form @submit.prevent="handleSubmit">
                   <div class="form-group">
                     <div class="col-12">
-                      <label for="name">Name</label>
+                      <label for="name">Nombre</label>
                       <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
-                      <small id="name" class="form-text text-muted">Must be unique.</small>
+                      <small id="name" class="form-text text-muted">Debe ser único.</small>
                     </div>
                   </div>
                   <button type="button" class="btn btn-primary" @click="handleSubmit">{{ submitName }}</button>
@@ -47,8 +47,7 @@
                 <table class="table table-hover" v-if="categories">
                   <thead>
                     <tr>
-                      <!-- <th scope="col">#</th> -->
-                      <th scope="col">Name</th>
+                      <th scope="col">Nombre</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -58,10 +57,10 @@
                       <td>{{ element.name }}</td>
                       <td class="text-right">
                         <button class="btn btn-sm btn-outline-info" type="button" name="button" @click="update(element.id)">
-                          <font-awesome-icon icon="edit" /> Edit
+                          <font-awesome-icon icon="edit" /> Editar
                         </button>
                         <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.id)">
-                          <font-awesome-icon icon="trash" /> Remove
+                          <font-awesome-icon icon="trash" /> Eliminar
                         </button>
                       </td>
                     </tr>
@@ -88,7 +87,7 @@ export default {
         name: '',
         edit: false,
         id: null,
-        submitName: 'Add',
+        submitName: 'Hecho',
         showError: false,
         messageError: '',
       }
@@ -100,7 +99,7 @@ export default {
           if (this.edit) {
             axios.patch(`${this.baseApiUrl}/api/category/${this.id}`, { user_id: this.userId, name: this.name }).then(response => {
                 this.name = ''
-                this.submitName = 'Add'
+                this.submitName = 'Agregar'
                 this.getCategories()
             })
           } else {

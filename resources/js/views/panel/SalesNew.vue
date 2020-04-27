@@ -4,9 +4,9 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Sales</a> ></li>
-          <li class="list-inline-item">New Sale</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item"><router-link :to="{ name: 'sales' }">Venta</router-link> ></li>
+          <li class="list-inline-item">Nueva Venta</li>
         </ul>
       </small>
 
@@ -26,21 +26,21 @@
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-6">
-                  <label for="tax">Store <span class="text-danger">*</span></label>
+                  <label for="tax">Tienda <span class="text-danger">*</span></label>
                   <v-select v-model="from" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
                 </div>
                 <div class="form-group col-3">
-                  <label>Quantity <span class="text-danger">*</span></label>
+                  <label>Cantidad <span class="text-danger">*</span></label>
                   <input type="text" v-model="quantity" class="form-control">
                 </div>
                 <div class="form-group col-3">
-                  <label>Discount %</label>
+                  <label>Descuento %</label>
                   <input type="text" v-model="discount" class="form-control">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-12">
-                  <label for="name">Search by: Name, Name + SKU or Barcode <span class="text-danger">*</span></label>
+                  <label for="name">Buscar por: Nombre, Nombre + SKU <span class="text-danger">*</span></label>
                   <v-select v-model="item" label="name" :options="list" ></v-select>
                 </div>
               </div>
@@ -50,7 +50,7 @@
       </div>
 
       <!-- init cart -->
-      <p class="lead mt-2">Cart</p>
+      <p class="lead mt-2">Cesta</p>
 
       <div class="row mt-2 mb-2">
         <div class="col-12">
@@ -60,9 +60,9 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th class="text-right">Discount %</th>
-                    <th class="text-right">Quantity</th>
+                    <th>Nombre</th>
+                    <th class="text-right">Descuento %</th>
+                    <th class="text-right">Cantidad</th>
                     <th class="text-right">Total</th>
                     <th></th>
                   </tr>
@@ -107,10 +107,10 @@
               <table class="table table-hover">
                 <tbody>
                   <tr class="text-right">
-                    <td>Profit: {{ cartProfit }} €</td>
+                    <td>Ganancia: {{ cartProfit }} €</td>
                   </tr>
                   <tr class="text-right">
-                    <td>Taxes: {{ cartTaxes }} €</td>
+                    <td>Impuestos: {{ cartTaxes }} €</td>
                   </tr>
                   <tr class="text-right">
                     <td><strong>Total: {{ cartTotal }} €</strong> </td>
@@ -151,7 +151,7 @@ export default {
         list: [],
         cart: [],
         btnDisabled: false,
-        submitName: 'Done',
+        submitName: 'Hecho',
         done: false,
         showError: false,
         messageError: [],
@@ -229,7 +229,11 @@ export default {
         this.messageError = []
 
         if(this.from === 0){
-          this.messageError.push('Select From')
+          this.messageError.push('Selecciona desde')
+        }
+
+        if(this.cart.length === 0){
+          this.messageError.push('Agrega al menos un artículo')
         }
 
         if (this.messageError.length === 0) {
@@ -249,7 +253,7 @@ export default {
             }
           })
         } else {
-          this.messageError.unshift('Errors below:')
+          this.messageError.unshift('Chequea los siguientes errores:')
           this.showError = true
           this.btnDisabled = false
         }

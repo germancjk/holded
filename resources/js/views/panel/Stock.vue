@@ -4,12 +4,12 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Stock control</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item">Control de Stock</li>
         </ul>
       </small>
 
-      <p class="lead">Stock control</p>
+      <p class="lead">Control de Stock</p>
 
       <div class="row">
         <div class="col-12">
@@ -17,14 +17,14 @@
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-4">
-                  <v-select class="newSelect" v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Select a store..."></v-select>
+                  <v-select class="newSelect" v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Selecciona tienda..."></v-select>
                 </div>
                 <div class="form-group col-4">
-                  <input type="text" v-model="search" class="form-control" placeholder="Search by Name">
+                  <input type="text" v-model="search" class="form-control" placeholder="Buscar por nombre">
                 </div>
                 <div class="form-group col-4">
                   <button class="btn btn-primary" type="button" name="button" @click="find()">
-                    Search
+                    Buscar
                   </button>
                 </div>
               </div>
@@ -41,9 +41,9 @@
               <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Store</th>
-                    <th scope="col" class="text-right">Quantity</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tienda</th>
+                    <th scope="col" class="text-right">Cantidad</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -10728,7 +10728,7 @@ var render = function() {
                           staticClass: "nav-link text-dark",
                           attrs: { to: { name: "login" } }
                         },
-                        [_vm._v("Login")]
+                        [_vm._v("Ingresar")]
                       )
                     ],
                     1
@@ -10744,7 +10744,7 @@ var render = function() {
                           staticClass: "btn btn-outline-primary",
                           attrs: { to: { name: "register" } }
                         },
-                        [_vm._v("Register")]
+                        [_vm._v("Registrate")]
                       )
                     ],
                     1
@@ -10764,7 +10764,7 @@ var render = function() {
                           staticClass: "nav-link text-dark",
                           attrs: { to: { name: "board" } }
                         },
-                        [_vm._v("Hi, " + _vm._s(_vm.name))]
+                        [_vm._v("Hola, " + _vm._s(_vm.name))]
                       )
                     ],
                     1
@@ -10780,7 +10780,7 @@ var render = function() {
                           staticClass: "nav-link text-dark",
                           attrs: { to: { name: "board" } }
                         },
-                        [_vm._v("Board")]
+                        [_vm._v("Panel")]
                       )
                     ],
                     1
@@ -10800,7 +10800,7 @@ var render = function() {
                           "aria-expanded": "false"
                         }
                       },
-                      [_vm._v("\n            Sales\n          ")]
+                      [_vm._v("\n            Ventas\n          ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -10816,7 +10816,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "sales.new" } }
                           },
-                          [_vm._v("New Sale")]
+                          [_vm._v("Nueva Venta")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -10825,7 +10825,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "sales" } }
                           },
-                          [_vm._v("Sales")]
+                          [_vm._v("Ventas")]
                         )
                       ],
                       1
@@ -10846,7 +10846,7 @@ var render = function() {
                           "aria-expanded": "false"
                         }
                       },
-                      [_vm._v("\n            Inventory\n          ")]
+                      [_vm._v("\n            Inventario\n          ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -10871,7 +10871,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "movements" } }
                           },
-                          [_vm._v("Movements")]
+                          [_vm._v("Movimientos")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "dropdown-divider" }),
@@ -10891,7 +10891,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "item.new" } }
                           },
-                          [_vm._v("New Item")]
+                          [_vm._v("Nuevo Item")]
                         )
                       ],
                       1
@@ -10912,7 +10912,7 @@ var render = function() {
                           "aria-expanded": "false"
                         }
                       },
-                      [_vm._v("\n            Tools\n          ")]
+                      [_vm._v("\n            Herramientas\n          ")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -10928,7 +10928,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "categories" } }
                           },
-                          [_vm._v("Categories")]
+                          [_vm._v("Categorias")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -10937,7 +10937,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "stores" } }
                           },
-                          [_vm._v("Stores")]
+                          [_vm._v("Tiendas")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -10946,7 +10946,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "suppliers" } }
                           },
-                          [_vm._v("Suppliers")]
+                          [_vm._v("Proveedores")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -10955,7 +10955,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "taxes" } }
                           },
-                          [_vm._v("Taxes")]
+                          [_vm._v("Impuestos")]
                         )
                       ],
                       1
@@ -10995,7 +10995,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "profile" } }
                           },
-                          [_vm._v("My Profile")]
+                          [_vm._v("Mi Perfil")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -11004,7 +11004,7 @@ var render = function() {
                             staticClass: "dropdown-item text-dark",
                             attrs: { to: { name: "logout" } }
                           },
-                          [_vm._v("Logout")]
+                          [_vm._v("Salir")]
                         )
                       ],
                       1
@@ -32434,11 +32434,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(__webpack_require__(/*! vue-momen
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('currency', function (value) {
   if (value == undefined) return;
   return value.toFixed(2) + ' €';
-});
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('currencyColor', function (value) {
-  if (!value) return '';
-  return value > 0 ? '<span class="green">' + value.toFixed(2) + ' €</span>' : '<span class="red">' + value.toFixed(2) + ' €</span>';
-});
+}); // Vue.filter('currencyColor', function (value) {
+//   if (!value) return ''
+//
+//   return (value > 0) ? '<span class="green">' + value.toFixed(2) + ' €</span>' : '<span class="red">' + value.toFixed(2) + ' €</span>'
+// })
+
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
@@ -32475,118 +32476,118 @@ var routes = [{
   path: '/login',
   name: 'login',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../views/Login.vue */ "./resources/js/views/Login.vue"));
   }
 }, {
   path: '/logout',
   name: 'logout',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ../views/Logout.vue */ "./resources/js/views/Logout.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../views/Logout.vue */ "./resources/js/views/Logout.vue"));
   }
 }, {
   path: '/register',
   name: 'register',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
   }
 }, {
   path: '/panel/board',
   name: 'board',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../views/panel/Board.vue */ "./resources/js/views/panel/Board.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ../views/panel/Board.vue */ "./resources/js/views/panel/Board.vue"));
   }
 }, {
   path: '/panel/categories',
   name: 'categories',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../views/panel/Category.vue */ "./resources/js/views/panel/Category.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../views/panel/Category.vue */ "./resources/js/views/panel/Category.vue"));
   }
 }, {
   path: '/panel/stores',
   name: 'stores',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ../views/panel/Stores.vue */ "./resources/js/views/panel/Stores.vue"));
+    return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ../views/panel/Stores.vue */ "./resources/js/views/panel/Stores.vue"));
   }
 }, {
   path: '/panel/taxes',
   name: 'taxes',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ../views/panel/Tax.vue */ "./resources/js/views/panel/Tax.vue"));
+    return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ../views/panel/Tax.vue */ "./resources/js/views/panel/Tax.vue"));
   }
 }, {
   path: '/panel/suppliers',
   name: 'suppliers',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ../views/panel/Supplier.vue */ "./resources/js/views/panel/Supplier.vue"));
+    return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ../views/panel/Supplier.vue */ "./resources/js/views/panel/Supplier.vue"));
   }
 }, {
   path: '/panel/item/new',
   name: 'item.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../views/panel/ItemNew.vue */ "./resources/js/views/panel/ItemNew.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/panel/ItemNew.vue */ "./resources/js/views/panel/ItemNew.vue"));
   }
 }, {
   path: '/panel/item/:id',
   name: 'item.edit',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../views/panel/ItemNew.vue */ "./resources/js/views/panel/ItemNew.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ../views/panel/ItemNew.vue */ "./resources/js/views/panel/ItemNew.vue"));
   }
 }, {
   path: '/panel/items',
   name: 'items',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../views/panel/Items.vue */ "./resources/js/views/panel/Items.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/panel/Items.vue */ "./resources/js/views/panel/Items.vue"));
   }
 }, {
   path: '/panel/stock',
   name: 'stock',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ../views/panel/Stock.vue */ "./resources/js/views/panel/Stock.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ../views/panel/Stock.vue */ "./resources/js/views/panel/Stock.vue"));
   }
 }, // movements
 {
   path: '/panel/movement/new',
   name: 'movement.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../views/panel/MovementNew.vue */ "./resources/js/views/panel/MovementNew.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ../views/panel/MovementNew.vue */ "./resources/js/views/panel/MovementNew.vue"));
   }
 }, {
   path: '/panel/movements',
   name: 'movements',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ../views/panel/Movements.vue */ "./resources/js/views/panel/Movements.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ../views/panel/Movements.vue */ "./resources/js/views/panel/Movements.vue"));
   }
 }, {
   path: '/panel/movement/:id',
   name: 'movement',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../views/panel/Movement.vue */ "./resources/js/views/panel/Movement.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../views/panel/Movement.vue */ "./resources/js/views/panel/Movement.vue"));
   }
 }, // sales
 {
   path: '/panel/sales',
   name: 'sales',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sales.vue */ "./resources/js/views/panel/Sales.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sales.vue */ "./resources/js/views/panel/Sales.vue"));
   }
 }, {
   path: '/panel/sales/new',
   name: 'sales.new',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ../views/panel/SalesNew.vue */ "./resources/js/views/panel/SalesNew.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ../views/panel/SalesNew.vue */ "./resources/js/views/panel/SalesNew.vue"));
   }
 }, {
   path: '/panel/sale/:id',
   name: 'sale',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sale.vue */ "./resources/js/views/panel/Sale.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sale.vue */ "./resources/js/views/panel/Sale.vue"));
   }
 }, // profile
 {
   path: '/panel/profile',
   name: 'profile',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../views/panel/Profile.vue */ "./resources/js/views/panel/Profile.vue"));
+    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../views/panel/Profile.vue */ "./resources/js/views/panel/Profile.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

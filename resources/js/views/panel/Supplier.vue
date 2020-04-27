@@ -4,13 +4,13 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Tools</a> ></li>
-          <li class="list-inline-item">Suppliers</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item">Herramientas ></li>
+          <li class="list-inline-item">Proveedores</li>
         </ul>
       </small>
 
-      <p class="lead">Suppliers</p>
+      <p class="lead">Proveedores</p>
 
       <div class="row">
         <div class="col-12">
@@ -28,11 +28,11 @@
                 <form @submit.prevent="handleSubmit">
                   <div class="form-group">
                     <div class="col-12">
-                      <label for="name">Name</label>
+                      <label for="name">Nombre</label>
                       <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
                     </div>
                     <div class="col-12">
-                      <label for="address">Address</label>
+                      <label for="address">Dirección</label>
                       <input type="text" class="form-control" id="address" aria-describedby="address" v-model="address" required>
                     </div>
                   </div>
@@ -51,8 +51,8 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Address</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Dirección</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -62,10 +62,10 @@
                       <td>{{ element.address }}</td>
                       <td class="text-right">
                         <button class="btn btn-sm btn-outline-info" type="button" name="button" @click="update(element.id)">
-                          <font-awesome-icon icon="edit" /> Edit
+                          <font-awesome-icon icon="edit" /> Editar
                         </button>
                         <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.id)">
-                          <font-awesome-icon icon="trash" /> Remove
+                          <font-awesome-icon icon="trash" /> Eliminar
                         </button>
                       </td>
                     </tr>
@@ -93,7 +93,7 @@ export default {
         address: '',
         edit: false,
         id: null,
-        submitName: 'Add',
+        submitName: 'Hecho',
         showError: false,
         messageError: ''
       }
@@ -106,7 +106,7 @@ export default {
             axios.patch(`${this.baseApiUrl}/api/supplier/${this.id}`, { user_id: this.userId, name: this.name, address: this.address }).then(response => {
                 this.name = ''
                 this.address = ''
-                this.submitName = 'Add'
+                this.submitName = 'Hecho'
                 this.getSuppliers()
             })
           } else {
@@ -125,7 +125,7 @@ export default {
         this.edit = true
 
         axios.get(`${this.baseApiUrl}/api/supplier/${id}`).then(response => {
-          this.submitName = 'Update'
+          this.submitName = 'Actualizar'
           this.id = id
           this.name = response.data.name
           this.address = response.data.address
@@ -145,7 +145,7 @@ export default {
       this.getSuppliers()
     },
     computed: {
-      ...mapGetters(['suppliers'])
+      ...mapGetters(['suppliers', 'baseApiUrl'])
     }
 }
 </script>

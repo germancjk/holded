@@ -4,9 +4,9 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Tools</a> ></li>
-          <li class="list-inline-item">Taxes</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item">Herramientas ></li>
+          <li class="list-inline-item">Impuestos</li>
         </ul>
       </small>
 
@@ -27,11 +27,11 @@
                 <form @submit.prevent="handleSubmit">
                   <div class="form-group">
                     <div class="col-12">
-                      <label for="name">Name</label>
+                      <label for="name">Nombre</label>
                       <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
                     </div>
                     <div class="col-12">
-                      <label for="percent">Percent</label>
+                      <label for="percent">Porcentaje</label>
                       <input type="text" class="form-control" id="percent" aria-describedby="percent" v-model="percent" required>
                     </div>
                   </div>
@@ -50,23 +50,21 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Percent</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Porcentaje</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="element,index in taxes">
-                      <th scope="row">{{ element.id }}</th>
                       <td>{{ element.name }}</td>
                       <td>{{ element.percent }}</td>
                       <td class="text-right">
                         <button class="btn btn-sm btn-outline-info" type="button" name="button" @click="update(element.id)">
-                          <font-awesome-icon icon="edit" /> Edit
+                          <font-awesome-icon icon="edit" /> Editar
                         </button>
                         <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.id)">
-                          <font-awesome-icon icon="trash" /> Remove
+                          <font-awesome-icon icon="trash" /> Eliminar
                         </button>
                       </td>
                     </tr>
@@ -94,7 +92,7 @@ export default {
         percent: '',
         edit: false,
         id: null,
-        submitName: 'Add',
+        submitName: 'Hecho',
         showError: false,
         messageError: ''
       }
@@ -107,7 +105,7 @@ export default {
             axios.patch(`${this.baseApiUrl}/api/tax/${this.id}`, { user_id: this.userId, name: this.name, percent: this.percent }).then(response => {
                 this.name = ''
                 this.percent = ''
-                this.submitName = 'Add'
+                this.submitName = 'Hecho'
                 this.getTaxes()
             })
           } else {
@@ -126,7 +124,7 @@ export default {
         this.edit = true
 
         axios.get(`${this.baseApiUrl}/api/tax/${id}`).then(response => {
-          this.submitName = 'Update'
+          this.submitName = 'Actualizar'
           this.id = id
           this.name = response.data.name
           this.percent = response.data.percent
@@ -146,7 +144,7 @@ export default {
       this.getTaxes()
     },
     computed: {
-      ...mapGetters(['taxes'])
+      ...mapGetters(['taxes', 'baseApiUrl'])
     }
 }
 </script>

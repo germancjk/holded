@@ -3,14 +3,14 @@
     <div class="container">
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Sales</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item">Ventas</li>
         </ul>
       </small>
 
       <p class="lead">
-        Sales
-        <router-link :to="{ name: 'sales.new' }" class="btn btn-sm btn-success float-right">+ New Sale</router-link>
+        Ventas
+        <router-link :to="{ name: 'sales.new' }" class="btn btn-sm btn-success float-right">+ Nueva Venta</router-link>
       </p>
 
       <div class="row mt-2">
@@ -21,8 +21,8 @@
               <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
-                    <th scope="col">Store</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">Tienda</th>
+                    <th scope="col">Fecha</th>
                     <th scope="col">SubTotal</th>
                     <th scope="col">Total</th>
                     <th scope="col"></th>
@@ -36,7 +36,7 @@
                     <td scope="row">{{ element.total | currency }}</td>
                     <td scope="row" class="text-right">
                       <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'sale', params: { id: element.id }}">
-                        <font-awesome-icon icon="edit" /> Details
+                        <font-awesome-icon icon="edit" /> Detalle
                       </router-link>
                     </td>
                   </tr>

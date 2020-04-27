@@ -18,9 +18,6 @@
                   </div>
                 </div>
               </div>
-               <!-- <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-                 <i aria-hidden="true" class="mdi mdi-alert-octagon mr-1"></i> Another text
-               </p> -->
              </div>
            </div>
          </div>
@@ -39,9 +36,6 @@
                    </div>
                  </div>
                </div>
-                <!-- <p class="text-muted mt-3 mb-0 text-left text-md-center text-xl-left">
-                  <i aria-hidden="true" class="mdi mdi-alert-octagon mr-1"></i> Another text
-                </p> -->
               </div>
             </div>
           </div>

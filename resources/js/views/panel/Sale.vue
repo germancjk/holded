@@ -4,33 +4,33 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Sales</a> ></li>
-          <li class="list-inline-item">Sale</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item"><router-link :to="{ name: 'sales' }">Venta</router-link> ></li>
+          <li class="list-inline-item">Venta</li>
         </ul>
       </small>
 
-      <p class="lead">Sale </p>
+      <p class="lead">Venta </p>
 
       <div class="row mt-2">
         <div class="col-6">
           <ul class="list-group">
-            <li class="list-group-item">Store: <span class="float-right">{{ item.store_name }}</span></li>
-            <li class="list-group-item">Date: <span class="float-right">{{ item.created_at | moment("DD/MM/YYYY HH:mm") }}</span></li>
-            <li class="list-group-item">Taxes: <span class="float-right">{{ item.taxes | currency }}</span></li>
+            <li class="list-group-item">Tienda: <span class="float-right">{{ item.store_name }}</span></li>
+            <li class="list-group-item">Fecha venta: <span class="float-right">{{ item.created_at | moment("DD/MM/YYYY HH:mm") }}</span></li>
+            <li class="list-group-item">Impuestos: <span class="float-right">{{ item.taxes | currency }}</span></li>
             <li class="list-group-item">SubTotal: <span class="float-right">{{ item.subtotal | currency }}</span></li>
             <li class="list-group-item">Total: <span class="float-right">{{ item.total | currency }}</span></li>
           </ul>
         </div>
         <div class="col-6">
           <ul class="list-group">
-            <li class="list-group-item">Cost: <span class="float-right">{{ item.cost | currency }}</span></li>
-            <li class="list-group-item">Profit: <span class="float-right">{{ item.profit | currency }}</span></li>
+            <li class="list-group-item">Costo: <span class="float-right">{{ item.cost | currency }}</span></li>
+            <li class="list-group-item">Ganancia: <span class="float-right">{{ item.profit | currency }}</span></li>
           </ul>
         </div>
       </div>
 
-      <p class="lead mt-4">Sale Items </p>
+      <p class="lead mt-4">Items vendidos </p>
 
       <div class="row mt-2">
         <div class="col-12">
@@ -41,13 +41,13 @@
                 <thead>
                   <tr>
                     <th scope="col">Item</th>
-                    <th scope="col" class="text-right">Quantity</th>
-                    <th scope="col" class="text-right">Discount</th>
-                    <th scope="col" class="text-right">Cost</th>
-                    <th scope="col" class="text-right">Taxes</th>
+                    <th scope="col" class="text-right">Cantidad</th>
+                    <th scope="col" class="text-right">Descuento</th>
+                    <th scope="col" class="text-right">Costo</th>
+                    <th scope="col" class="text-right">Impuestos</th>
                     <th scope="col" class="text-right">SubTotal</th>
                     <th scope="col" class="text-right">Total</th>
-                    <th scope="col" class="text-right">Profit</th>
+                    <th scope="col" class="text-right">Ganancia</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -12,47 +12,47 @@
         <!-- !logged -->
         <ul class="navbar-nav mr-md-3" v-if="!isLoggedIn">
           <li class="nav-item">
-            <router-link :to="{ name: 'login' }" class="nav-link text-dark">Login</router-link>
+            <router-link :to="{ name: 'login' }" class="nav-link text-dark">Ingresar</router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'register' }" class="btn btn-outline-primary">Register</router-link>
+            <router-link :to="{ name: 'register' }" class="btn btn-outline-primary">Registrate</router-link>
           </li>
         </ul>
 
         <!-- logged -->
         <ul class="navbar-nav mr-md-3" v-if="isLoggedIn">
-          <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Hi, {{name}}</router-link></li>
-          <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Board</router-link></li>
+          <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Hola, {{name}}</router-link></li>
+          <li class="nav-item"><router-link :to="{ name: 'board' }" class="nav-link text-dark">Panel</router-link></li>
           <li class="nav-item dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Sales
+              Ventas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link :to="{ name: 'sales.new' }" class="dropdown-item text-dark">New Sale</router-link>
-              <router-link :to="{ name: 'sales' }" class="dropdown-item text-dark">Sales</router-link>
+              <router-link :to="{ name: 'sales.new' }" class="dropdown-item text-dark">Nueva Venta</router-link>
+              <router-link :to="{ name: 'sales' }" class="dropdown-item text-dark">Ventas</router-link>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Inventory
+              Inventario
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <router-link :to="{ name: 'stock' }" class="dropdown-item text-dark">Stock</router-link>
-              <router-link :to="{ name: 'movements' }" class="dropdown-item text-dark">Movements</router-link>
+              <router-link :to="{ name: 'movements' }" class="dropdown-item text-dark">Movimientos</router-link>
               <div class="dropdown-divider"></div>
               <router-link :to="{ name: 'items' }" class="dropdown-item text-dark">Items</router-link>
-              <router-link :to="{ name: 'item.new' }" class="dropdown-item text-dark">New Item</router-link>
+              <router-link :to="{ name: 'item.new' }" class="dropdown-item text-dark">Nuevo Item</router-link>
             </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Tools
+              Herramientas
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link :to="{ name: 'categories' }" class="dropdown-item text-dark">Categories</router-link>
-              <router-link :to="{ name: 'stores' }" class="dropdown-item text-dark">Stores</router-link>
-              <router-link :to="{ name: 'suppliers' }" class="dropdown-item text-dark">Suppliers</router-link>
-              <router-link :to="{ name: 'taxes' }" class="dropdown-item text-dark">Taxes</router-link>
+              <router-link :to="{ name: 'categories' }" class="dropdown-item text-dark">Categorias</router-link>
+              <router-link :to="{ name: 'stores' }" class="dropdown-item text-dark">Tiendas</router-link>
+              <router-link :to="{ name: 'suppliers' }" class="dropdown-item text-dark">Proveedores</router-link>
+              <router-link :to="{ name: 'taxes' }" class="dropdown-item text-dark">Impuestos</router-link>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -60,8 +60,8 @@
               <font-awesome-icon icon="user-cog" />
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link :to="{ name: 'profile' }" class="dropdown-item text-dark">My Profile</router-link>
-              <router-link :to="{ name: 'logout' }" class="dropdown-item text-dark">Logout</router-link>
+              <router-link :to="{ name: 'profile' }" class="dropdown-item text-dark">Mi Perfil</router-link>
+              <router-link :to="{ name: 'logout' }" class="dropdown-item text-dark">Salir</router-link>
             </div>
           </li>
         </ul>

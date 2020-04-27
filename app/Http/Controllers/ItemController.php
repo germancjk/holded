@@ -87,13 +87,48 @@ class ItemController extends Controller
 
   public function update(Request $request, Item $item)
   {
-    $status = $item->update([
+    $item = $item->update([
       'user_id' => $request->user_id,
       'name' => $request->name,
       'category_id' => $request->category_id,
       'supplier_id' => $request->supplier_id,
       'tax_id' => $request->tax_id
       ]);
+
+    foreach ($request->skus as $key => $value) {
+      if($value['id'] != 0){
+        // edit
+        $itemSku = ItemSku::where('id', $value['id'])
+          ->where('user_id', $request->user_id)
+          ->update([
+            'name' => $value['name'],
+            'cost' => $value['cost'],
+            'sale_price' => $value['sale_price'],
+          ]);
+      } else {
+        // create
+        $itemSku = ItemSku::create([
+          'user_id' => $request->user_id,
+          'item_id' => $item->id,
+          'name' => $value['name'],
+          'cost' => $value['cost'],
+          'sale_price' => $value['sale_price']
+        ]);
+
+        $stock = Stock::create([
+          'user_id' => $request->user_id,
+          'item_sku_id' => $itemSku->id,
+          'store_id' => $request->store,
+          'quantity' => $value['quantity']
+        ]);
+      }
+    }
+
+    return response()->json([
+      'status' => (bool) $item,
+      'data'   => $item,
+      'message' => $item ? 'Item Updated!' : 'Error Updating Item'
+    ]);
   }
 
   /**

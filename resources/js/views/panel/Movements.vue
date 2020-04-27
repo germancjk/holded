@@ -4,14 +4,14 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Movements</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item">Movimientos</li>
         </ul>
       </small>
 
       <p class="lead">
-        Movements
-        <router-link :to="{ name: 'movement.new' }" class="btn btn-sm btn-success float-right">+ New Movement</router-link>
+        Movimientos
+        <router-link :to="{ name: 'movement.new' }" class="btn btn-sm btn-success float-right">+ Nuevo Movimiento</router-link>
       </p>
 
       <div class="row mt-2">
@@ -22,10 +22,10 @@
               <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">From</th>
-                    <th scope="col">To</th>
-                    <th scope="col">Comments</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Desde</th>
+                    <th scope="col">Hacia</th>
+                    <th scope="col">Comentarios</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -37,7 +37,7 @@
                     <td scope="row">{{ element.comments }}</td>
                     <td scope="row">
                       <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'movement', params: { id: element.id }}">
-                        <font-awesome-icon icon="edit" /> Details
+                        <font-awesome-icon icon="edit" /> Detalle
                       </router-link>
                     </td>
                   </tr>

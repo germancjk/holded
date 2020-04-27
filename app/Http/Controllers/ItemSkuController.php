@@ -9,13 +9,7 @@ class ItemSkuController extends Controller
 {
   public function index()
   {
-    // return response()->json(
-    //   ItemSku::query()
-    //     ->with('category', 'itemSku')
-    //     ->orderBy('name')
-    //     ->get()
-    //     ->toArray()
-    //   );
+    
   }
 
     public function show(Request $request)

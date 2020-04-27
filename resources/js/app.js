@@ -20,11 +20,11 @@ Vue.filter('currency', function (value) {
   return value.toFixed(2) + ' €'
 })
 
-Vue.filter('currencyColor', function (value) {
-  if (!value) return ''
-
-  return (value > 0) ? '<span class="green">' + value.toFixed(2) + ' €</span>' : '<span class="red">' + value.toFixed(2) + ' €</span>'
-})
+// Vue.filter('currencyColor', function (value) {
+//   if (!value) return ''
+//
+//   return (value > 0) ? '<span class="green">' + value.toFixed(2) + ' €</span>' : '<span class="red">' + value.toFixed(2) + ' €</span>'
+// })
 
 const app = new Vue({
     el: '#app',

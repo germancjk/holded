@@ -4,15 +4,15 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Items ></li>
-          <li class="list-inline-item">List</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item"><router-link :to="{ name: 'items' }">Items</router-link> ></li>
+          <li class="list-inline-item">Listado</li>
         </ul>
       </small>
 
       <p class="lead">
-        Items list
-        <router-link :to="{ name: 'item.new' }" class="btn btn-sm btn-success float-right">+ New Item</router-link>
+        Listado de Items
+        <router-link :to="{ name: 'item.new' }" class="btn btn-sm btn-success float-right">+ Nuevo Item</router-link>
       </p>
 
       <div class="row">
@@ -21,14 +21,14 @@
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-4">
-                  <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id" placeholder="Select a category..."></v-select>
+                  <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id" placeholder="Selecciona categoria..."></v-select>
                 </div>
                 <div class="form-group col-4">
-                  <input type="text" v-model="search" class="form-control" placeholder="Search by Name / SKU">
+                  <input type="text" v-model="search" class="form-control" placeholder="Buscar por nombre / SKU">
                 </div>
                 <div class="form-group col-4">
                   <button class="btn btn-primary" type="button" name="button" @click="find()">
-                    Search
+                    Buscar
                   </button>
                 </div>
               </div>
@@ -45,9 +45,9 @@
               <table class="table table-hover" v-if="!loading">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col" class="text-right">Sale Price</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col" class="text-right">Precio de venta</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -58,10 +58,10 @@
                     <td scope="row" class="text-right">{{ element.sku_sale_price | currency }}</td>
                     <td class="text-right">
                       <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'item.edit', params: { id: element.item_id }}">
-                        <font-awesome-icon icon="edit" /> Edit
+                        <font-awesome-icon icon="edit" /> Editar
                       </router-link>
                       <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.sku_id)">
-                        <font-awesome-icon icon="trash" /> Remove
+                        <font-awesome-icon icon="trash" /> Eliminar
                       </button>
                     </td>
                   </tr>

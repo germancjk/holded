@@ -4,17 +4,17 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Stock</a> ></li>
-          <li class="list-inline-item">Movements</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item"><router-link :to="{ name: 'movements' }">Movements</router-link> ></li>
+          <li class="list-inline-item">Listado</li>
         </ul>
       </small>
 
-      <p class="lead">Movements <i>You can move items between stores with tracking</i></p>
+      <p class="lead">Movimientos <i>Mueve items de una tienda a otra</i></p>
 
       <!-- messages -->
       <div v-if="done" class="alert alert-success" role="alert">
-        Movement done!
+        Movimiento realizado!
       </div>
 
       <div class="alert alert-danger" v-if="showError">
@@ -28,24 +28,24 @@
             <div class="card-body">
               <div class="form-row">
                 <div class="form-group col-6">
-                  <label for="tax">From <span class="text-danger">*</span></label>
+                  <label for="tax">Desde <span class="text-danger">*</span></label>
                   <v-select v-model="from" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
                 </div>
 
                 <div class="form-group col-6">
-                  <label for="store">To <span class="text-danger">*</span></label>
+                  <label for="store">Hacia <span class="text-danger">*</span></label>
                   <v-select v-model="to" label="name" :options="stores" :reduce="stores => stores.id" ></v-select>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-12">
-                  <label for="name">Search by: Name, Name + SKU or Barcode <span class="text-danger">*</span></label>
+                  <label for="name">Buscar por: Nombre, Nombre + SKU o Código de barras <span class="text-danger">*</span></label>
                   <v-select :disabled="from == 0" v-model="item" label="name" :options="list" ></v-select>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-12">
-                  <label for="comments">Comments <i>(optional)</i> </label>
+                  <label for="comments">Comentarios <i>(opcional)</i> </label>
                   <textarea v-model="comments" class="form-control"></textarea>
                 </div>
               </div>
@@ -55,7 +55,7 @@
       </div>
 
       <!-- init cart -->
-      <p class="lead mt-2">Items to move</p>
+      <p class="lead mt-2">Items a mover</p>
 
       <div class="row mt-2 mb-2">
         <div class="col-12">
@@ -64,9 +64,9 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th class="text-right">Available</th>
-                    <th class="text-right">Quantity</th>
+                    <th>Nombre</th>
+                    <th class="text-right">Disponible</th>
+                    <th class="text-right">Cantidad</th>
                     <th ></th>
                   </tr>
                 </thead>
@@ -83,7 +83,7 @@
                       >
                     </td>
                     <td scope="row">
-                      <button type="button" class="btn btn-sm btn-outline-danger float-right" @click="deleteItem(index)">Borrar</button>
+                      <button type="button" class="btn btn-sm btn-outline-danger float-right" @click="deleteItem(index)">Eliminar</button>
                     </td>
                   </tr>
                 </tbody>
@@ -120,7 +120,7 @@ export default {
         cart: [],
         list: [],
         btnDisabled: false,
-        submitName: 'Move',
+        submitName: 'Mover',
         done: false,
         showError: false,
         messageError: [],
@@ -167,13 +167,13 @@ export default {
         this.messageError = []
 
         if(this.from === 0){
-          this.messageError.push('Select From')
+          this.messageError.push('Selecciona Desde')
         }
         if(this.to === 0){
-          this.messageError.push('Select To')
+          this.messageError.push('Selecciona Hacia')
         }
         if(this.cart.length === 0){
-          this.messageError.push('Select Item/s')
+          this.messageError.push('Selecciona Item/s')
         }
 
         if (this.messageError.length === 0) {

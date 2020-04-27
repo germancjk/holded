@@ -4,26 +4,26 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item"><a href="#">Movements</a> ></li>
-          <li class="list-inline-item">Movement</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item"><router-link :to="{ name: 'movements' }">Movimientos</router-link> ></li>
+          <li class="list-inline-item">Movimiento</li>
         </ul>
       </small>
 
-      <p class="lead">Movement </p>
+      <p class="lead">Movimiento </p>
 
       <div class="row mt-2">
         <div class="col-12">
           <ul class="list-group">
-            <li class="list-group-item">From: {{ move.store_name_from }}</li>
-            <li class="list-group-item">To: {{ move.store_name_to }}</li>
-            <li class="list-group-item">Date: {{ move.created_at | moment("DD/MM/YYYY HH:mm") }}</li>
-            <li class="list-group-item">Comment: {{ move.comments }}</li>
+            <li class="list-group-item">Desde: {{ move.store_name_from }}</li>
+            <li class="list-group-item">Hacia: {{ move.store_name_to }}</li>
+            <li class="list-group-item">Fecha: {{ move.created_at | moment("DD/MM/YYYY HH:mm") }}</li>
+            <li class="list-group-item">Comentario: {{ move.comments }}</li>
           </ul>
         </div>
       </div>
 
-      <p class="lead mt-4">Movement Items </p>
+      <p class="lead mt-4">Items </p>
 
       <div class="row mt-2">
         <div class="col-12">
@@ -34,7 +34,7 @@
                 <thead>
                   <tr>
                     <th scope="col">Item</th>
-                    <th scope="col" class="text-right">Quantity</th>
+                    <th scope="col" class="text-right">Cantidad</th>
                   </tr>
                 </thead>
                 <tbody>

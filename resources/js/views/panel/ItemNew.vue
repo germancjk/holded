@@ -4,13 +4,13 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Items ></li>
-          <li class="list-inline-item">New</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item"><router-link :to="{ name: 'items' }">Items</router-link> ></li>
+          <li class="list-inline-item">Nuevo Item</li>
         </ul>
       </small>
 
-      <p class="lead">Create an Item</p>
+      <p class="lead">Crear Item</p>
 
       <div class="row">
         <div class="col-12">
@@ -18,7 +18,7 @@
             <div v-for="element in messageError">{{ element }}</div>
           </div>
           <div class="alert alert-success" v-if="showAdd">
-            Item Added
+            Item agregado!
           </div>
         </div>
       </div>
@@ -31,32 +31,32 @@
               <div class="card-body">
                 <div class="form-row">
                   <div class="form-group col-12">
-                    <label for="name">Name <span class="text-danger">*</span></label>
+                    <label for="name">Nombre <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
-                    <small id="name" class="form-text text-muted">This will be the generic name of the item</small>
+                    <small id="name" class="form-text text-muted">Este será el nombre genérico del artículo</small>
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-6">
-                    <label for="categories">Category <span class="text-danger">*</span></label>
+                    <label for="categories">Categoria <span class="text-danger">*</span></label>
                     <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id" placeholder="Select..."></v-select>
                   </div>
 
                   <div class="form-group col-6">
-                    <label for="supplier">Supplier <span class="text-danger">*</span></label>
+                    <label for="supplier">Proveedor <span class="text-danger">*</span></label>
                     <v-select v-model="supplier" label="name" :options="suppliers" :reduce="suppliers => suppliers.id" placeholder="Select..."></v-select>
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-6">
-                    <label for="tax">Tax <span class="text-danger">*</span></label>
+                    <label for="tax">Impuesto <span class="text-danger">*</span></label>
                     <v-select v-model="tax" label="name" :options="taxes" :reduce="taxes => taxes.id" placeholder="Select..."></v-select>
                   </div>
 
                   <div class="form-group col-6">
-                    <label for="store">Store (default) <span class="text-danger">*</span></label>
+                    <label for="store">Tienda <span class="text-danger">*</span></label>
                     <v-select v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Select..."></v-select>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
         </div>
 
         <!-- init skus -->
-        <p class="lead mt-2">Skus - <i>The SKU is an unique name of each variant.</i></p>
+        <p class="lead mt-2">Skus - <i>SKU es el nombre único de cada variante.</i></p>
 
         <div class="row mb-2">
           <div class="col-12">
@@ -74,19 +74,19 @@
               <div class="card-body">
                 <div class="form-row">
                   <div class="form-group col-6">
-                    <label for="sku">Name <span class="text-danger">*</span></label>
+                    <label for="sku">Nombre <span class="text-danger">*</span></label>
                   </div>
                   <div class="form-group col-3">
-                    <label for="cost">Barcode</label>
+                    <label for="cost">Código de barras</label>
                   </div>
                   <div class="form-group col-1">
-                    <label for="cost">Cost</label>
+                    <label for="cost">Costo</label>
                   </div>
                   <div class="form-group col-1">
-                    <label for="sale_price">Sale Price</label>
+                    <label for="sale_price">Precio de venta</label>
                   </div>
                   <div class="form-group col-1">
-                    <label for="quantity">Quantity</label>
+                    <label for="quantity">Cantidad</label>
                   </div>
                 </div>
                 <div class="form-row" v-for="(sku, index) in skus" :key="index">
@@ -107,13 +107,17 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Add New</button>
+                  <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Agregar Nuevo</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
+
+        <p class="text-right">
+          <button type="button" :disabled="btnDisabled" class="btn btn-primary" @click="submit">{{ submitName }}</button>
+        </p>
+
       </form>
     </div>
   </div>
@@ -149,7 +153,7 @@ export default {
             quantity: 0
           }
         ],
-        submitName: 'Add',
+        submitName: 'Hecho',
         showError: false,
         btnDisabled: false,
         messageError: [],

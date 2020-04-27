@@ -4,15 +4,15 @@
 
       <small>
         <ul class="list-inline-mb-0 pl-0">
-          <li class="list-inline-item"><a href="#">Board</a> ></li>
-          <li class="list-inline-item">Profile</li>
+          <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
+          <li class="list-inline-item">Perfil</li>
         </ul>
       </small>
 
         <div class="row">
           <div class="col-6">
 
-            <p class="lead">Profile</p>
+            <p class="lead">Perfil</p>
 
             <div class="card">
               <div class="card-body">
@@ -30,11 +30,11 @@
                       <p><strong>{{ email }}</strong></p>
                     </div>
                     <div class="col-12">
-                      <label for="name">Name</label>
+                      <label for="name">Nombre</label>
                       <input type="text" class="form-control" id="name" aria-describedby="name" v-model="name" required autofocus>
                     </div>
                     <div class="col-12">
-                      <label for="business_name">Business Name</label>
+                      <label for="business_name">Nombre de Empresa</label>
                       <input type="text" class="form-control" id="business_name" aria-describedby="business_name" v-model="business_name" required>
                     </div>
                     <div class="col-12">
@@ -42,7 +42,7 @@
                       <input type="text" class="form-control" id="business_ruc" aria-describedby="business_ruc" v-model="business_ruc" required>
                     </div>
                     <div class="col-12">
-                      <label for="business_address">Address</label>
+                      <label for="business_address">Dirección</label>
                       <input type="text" class="form-control" id="business_address" aria-describedby="business_address" v-model="business_address" required>
                     </div>
                   </div>
@@ -55,7 +55,7 @@
 
           <div class="col-6">
 
-            <p class="lead">Change Password</p>
+            <p class="lead">Cambiar Clave</p>
 
             <div class="card">
               <div class="card-body">
@@ -69,15 +69,15 @@
                 <form @submit.prevent="handleSubmit">
                   <div class="form-group">
                     <div class="col-12">
-                      <label for="password">Actual Password</label>
+                      <label for="password">Clave Actual</label>
                       <input type="text" class="form-control" id="password" aria-describedby="password" v-model="password" required autofocus>
                     </div>
                     <div class="col-12">
-                      <label for="new_password">New Password</label>
+                      <label for="new_password">Nueva Clave</label>
                       <input type="text" class="form-control" id="new_password" aria-describedby="new_password" v-model="new_password" required>
                     </div>
                     <div class="col-12">
-                      <label for="new_password_confirmation">Repeat New Password</label>
+                      <label for="new_password_confirmation">Repetir Nueva Clave</label>
                       <input type="text" class="form-control" id="new_password_confirmation" aria-describedby="new_password_confirmation" v-model="new_password_confirmation" required>
                     </div>
                   </div>
@@ -110,12 +110,13 @@ export default {
         password: '',
         new_password: '',
         new_password_confirmation: '',
-        submitName: 'Update',
+        submitName: 'Actualizar',
         showError: false,
         showSuccessUpdate: false,
-        messageSuccessUpdate: 'Updated!',
+        showErrorPassword: false,
+        messageSuccessUpdate: 'Actualizado!',
         showSuccessUpdatePassword: false,
-        messageSuccessUpdatePassword: 'Updated!',
+        messageSuccessUpdatePassword: 'Actualizado!',
       }
     },
     methods : {
