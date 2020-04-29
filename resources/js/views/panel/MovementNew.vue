@@ -153,6 +153,7 @@ export default {
             quantity: 0,
             available: response['data'][0].quantity,
           })
+          this.item = 0
         })
       },
       addCart(item) {
@@ -184,7 +185,7 @@ export default {
             cart: this.cart,
             comments: this.comments,
           }
-          axios.post(`${this.baseApiUrl}/api/movement`, params).then(response => {
+          axios.post(`${this.baseApiUrl}/api/movement.new`, params).then(response => {
             if (response.data.status == true) {
               this.clean()
             }

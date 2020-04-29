@@ -196,7 +196,7 @@ var render = function() {
             { staticClass: "list-inline-item" },
             [
               _c("router-link", { attrs: { to: { name: "sales" } } }, [
-                _vm._v("Venta")
+                _vm._v("Ventas")
               ]),
               _vm._v(" >")
             ],

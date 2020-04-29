@@ -10073,19 +10073,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11061,107 +11048,55 @@ var staticRenderFns = [
             }),
             _vm._v(" "),
             _c("small", { staticClass: "d-block mb-3 text-muted" }, [
-              _vm._v("© 2017-2019")
+              _vm._v("© 2020")
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-6 col-md" }, [
-            _c("h5", [_vm._v("Features")]),
+            _c("h5", [_vm._v("Recursos")]),
             _vm._v(" "),
             _c("ul", { staticClass: "list-unstyled text-small" }, [
               _c("li", [
                 _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Cool stuff")
+                  _vm._v("Precio")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "a",
+                  { staticClass: "text-muted", attrs: { href: "/register" } },
+                  [_vm._v("Registrate Gratis")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+                  _vm._v("Privacidad")
                 ])
               ]),
               _vm._v(" "),
               _c("li", [
                 _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Random feature")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Team feature")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Stuff for developers")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Another one")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Last time")
+                  _vm._v("Políticas de Cookies")
                 ])
               ])
             ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-6 col-md" }, [
-            _c("h5", [_vm._v("Resources")]),
+            _c("h5", [_vm._v("Nosotros")]),
             _vm._v(" "),
             _c("ul", { staticClass: "list-unstyled text-small" }, [
               _c("li", [
                 _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Resource")
+                  _vm._v("Quienes somos")
                 ])
               ]),
               _vm._v(" "),
               _c("li", [
                 _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Resource name")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Another resource")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Final resource")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6 col-md" }, [
-            _c("h5", [_vm._v("About")]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "list-unstyled text-small" }, [
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Team")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Locations")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Privacy")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Terms")
+                  _vm._v("Contactanos")
                 ])
               ])
             ])
@@ -11360,7 +11295,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "btn btn-outline-primary btn-main",
-          attrs: { href: "/" }
+          attrs: { href: "http://localhost:8000/register" }
         },
         [_vm._v("\n                  REGISTRATE AHORA* "), _c("br")]
       )
@@ -11456,7 +11391,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "btn btn-outline-primary btn-main",
-          attrs: { href: "/" }
+          attrs: { href: "/register" }
         },
         [_vm._v("\n                    REGISTRATE AHORA* "), _c("br")]
       )

@@ -81,10 +81,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -97,9 +93,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       userId: localStorage.getItem('user_id'),
       list: [],
       loading: true,
-      currentPage: 2,
-      rows: 3,
-      perPage: 2
+      currentPage: 1,
+      perPage: 25,
+      totalPages: 0
     };
   },
   methods: {
@@ -111,26 +107,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
       var params = {
-        user_id: this.userId
+        user_id: this.userId,
+        currentPage: this.currentPage,
+        perPage: this.perPage
       };
       axios.post("".concat(this.baseApiUrl, "/api/sales"), params).then(function (response) {
         _this.loading = false;
-        _this.list = response['data'];
+        _this.list = response['data']['results'];
+        _this.totalPages = response['data']['totalPages'];
       });
-    },
-    remove: function remove(id) {
-      if (id > 0) {// axios.delete(`${this.baseApiUrl}/api/item/${id}`).then(response => {
-        //   console.log(response)
-        //   this.items()
-        // })
-      }
     }
   },
   mounted: function mounted() {
     this.showError = false;
     this.find();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['baseApiUrl']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['baseApiUrl'])),
+  watch: {
+    currentPage: function currentPage() {
+      this.find();
+    }
+  }
 });
 
 /***/ }),
@@ -271,7 +268,36 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm._m(1)
+              _c("nav", [
+                _c(
+                  "ul",
+                  { staticClass: "pagination" },
+                  _vm._l(_vm.totalPages, function(page) {
+                    return _c(
+                      "li",
+                      {
+                        staticClass: "page-item",
+                        class: { active: page === _vm.currentPage }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "page-link",
+                            on: {
+                              click: function($event) {
+                                _vm.currentPage = page
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(page))]
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ])
             ])
           ])
         ])
@@ -295,33 +321,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("nav", [
-      _c("ul", { staticClass: "pagination" }, [
-        _c("li", { staticClass: "page-item" }, [
-          _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-            _vm._v("1")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "page-item active" }, [
-          _c("span", { staticClass: "page-link" }, [
-            _vm._v("2\n                    "),
-            _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "page-item" }, [
-          _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-            _vm._v("3")
-          ])
-        ])
       ])
     ])
   }

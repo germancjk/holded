@@ -73,6 +73,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -84,7 +92,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       userId: localStorage.getItem('user_id'),
       list: [],
-      loading: true
+      loading: true,
+      currentPage: 1,
+      perPage: 25,
+      totalPages: 0
     };
   },
   methods: {
@@ -96,26 +107,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.defaults.headers.common['Content-Type'] = 'application/json';
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
       var params = {
-        user_id: this.userId
+        user_id: this.userId,
+        currentPage: this.currentPage,
+        perPage: this.perPage
       };
       axios.post("".concat(this.baseApiUrl, "/api/movements"), params).then(function (response) {
         _this.loading = false;
-        _this.list = response['data'];
+        _this.list = response['data']['results'];
+        _this.totalPages = response['data']['totalPages'];
       });
-    },
-    remove: function remove(id) {
-      if (id > 0) {// axios.delete(`${this.baseApiUrl}/api/item/${id}`).then(response => {
-        //   console.log(response)
-        //   this.items()
-        // })
-      }
     }
   },
   mounted: function mounted() {
     this.showError = false;
     this.find();
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['baseApiUrl']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['baseApiUrl'])),
+  watch: {
+    currentPage: function currentPage() {
+      this.find();
+    }
+  }
 });
 
 /***/ }),
@@ -251,7 +263,38 @@ var render = function() {
                       0
                     )
                   ])
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("nav", [
+                _c(
+                  "ul",
+                  { staticClass: "pagination" },
+                  _vm._l(_vm.totalPages, function(page) {
+                    return _c(
+                      "li",
+                      {
+                        staticClass: "page-item",
+                        class: { active: page === _vm.currentPage }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "page-link",
+                            on: {
+                              click: function($event) {
+                                _vm.currentPage = page
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(page))]
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ])
             ])
           ])
         ])

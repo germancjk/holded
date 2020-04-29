@@ -15,7 +15,22 @@ class SaleController extends Controller
      */
     public function index(Request $request)
     {
-      return response()->json(
+      $skip = ($request->currentPage - 1) * $request->perPage;
+      $take = $request->perPage;
+
+      $json = [
+        'results' => false,
+        'totalPages' => 0
+      ];
+
+      $total =
+        Sale::select('sales.id')
+            ->where('sales.user_id', '=', $request->user_id)
+            ->count();
+
+      $json['totalPages'] = ceil($total/$take);
+
+      $json['results'] =
         Sale::select(
             'sales.id',
             'sales.store_id',
@@ -29,11 +44,14 @@ class SaleController extends Controller
             )
             ->join('stores as stf', 'sales.store_id', '=', 'stf.id')
             ->where('sales.user_id', '=', $request->user_id)
-            ->orderBy('created_at')
+            ->orderByDesc('created_at')
+            ->skip($skip)
+            ->take($take)
             ->getQuery()
             ->get()
-            ->toArray()
-      );
+            ->toArray();
+
+      return response()->json($json);
     }
 
     /**

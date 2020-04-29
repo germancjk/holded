@@ -178,6 +178,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           quantity: 0,
           available: response['data'][0].quantity
         });
+
+        _this2.item = 0;
       });
     },
     addCart: function addCart(item) {
@@ -213,7 +215,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           cart: this.cart,
           comments: this.comments
         };
-        axios.post("".concat(this.baseApiUrl, "/api/movement"), params).then(function (response) {
+        axios.post("".concat(this.baseApiUrl, "/api/movement.new"), params).then(function (response) {
           if (response.data.status == true) {
             _this3.clean();
           }

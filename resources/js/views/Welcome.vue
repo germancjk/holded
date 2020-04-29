@@ -11,7 +11,7 @@
                   Controla y gestiona el stock de tu empresa, fácil, ágil y GRATIS! Todo esto en un solo sistema.
                 </p>
                 <p>
-                  <a href="/" class="btn btn-outline-primary btn-main">
+                  <a href="http://localhost:8000/register" class="btn btn-outline-primary btn-main">
                     REGISTRATE AHORA* <br>
                   </a>
                 </p>
@@ -79,7 +79,7 @@
                 <h2 class="text-white">Comienza ahora a controlar tu negocio!</h2>
                 <p>Más de 1.000 empresas utilizan nuestro sistema, sé parte de nosotros.</p>
                   <p>
-                    <a href="/" class="btn btn-outline-primary btn-main">
+                    <a href="/register" class="btn btn-outline-primary btn-main">
                       REGISTRATE AHORA* <br>
                     </a>
                   </p>

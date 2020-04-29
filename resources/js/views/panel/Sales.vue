@@ -45,13 +45,9 @@
 
               <nav>
                 <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active">
-                    <span class="page-link">2
-                      <span class="sr-only">(current)</span>
-                    </span>
+                  <li v-for="page in totalPages" class="page-item" v-bind:class="{'active':(page === currentPage)}">
+                    <button class="page-link" @click="currentPage = page">{{ page }}</button>
                   </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
                 </ul>
               </nav>
 
@@ -78,9 +74,9 @@ export default {
         userId: localStorage.getItem('user_id'),
         list: [],
         loading: true,
-        currentPage: 2,
-        rows: 3,
-        perPage: 2,
+        currentPage: 1,
+        perPage: 25,
+        totalPages: 0,
       }
     },
     methods : {
@@ -93,19 +89,14 @@ export default {
 
         const params = {
           user_id: this.userId,
+          currentPage: this.currentPage,
+          perPage: this.perPage,
         }
         axios.post(`${this.baseApiUrl}/api/sales`, params).then(response => {
           this.loading = false
-          this.list = response['data']
+          this.list = response['data']['results']
+          this.totalPages = response['data']['totalPages']
         })
-      },
-      remove(id) {
-        if (id > 0) {
-          // axios.delete(`${this.baseApiUrl}/api/item/${id}`).then(response => {
-          //   console.log(response)
-          //   this.items()
-          // })
-        }
       },
     },
     mounted() {
@@ -114,6 +105,11 @@ export default {
     },
     computed: {
       ...mapGetters(['baseApiUrl'])
+    },
+    watch: {
+      currentPage: function () {
+        this.find()
+      },
     }
 }
 </script>

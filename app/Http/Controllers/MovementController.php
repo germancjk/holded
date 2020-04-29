@@ -11,7 +11,22 @@ class MovementController extends Controller
 
     public function index(Request $request)
     {
-      return response()->json(
+      $skip = ($request->currentPage - 1) * $request->perPage;
+      $take = $request->perPage;
+
+      $json = [
+        'results' => false,
+        'totalPages' => 0
+      ];
+
+      $total =
+        Movement::select('movements.id as id')
+            ->where('movements.user_id', '=', $request->user_id)
+            ->count();
+
+      $json['totalPages'] = ceil($total/$take);
+
+      $json['results'] =
         Movement::select(
             'movements.id as id',
             'movements.comments',
@@ -22,11 +37,14 @@ class MovementController extends Controller
             ->join('stores as stf', 'movements.from', '=', 'stf.id')
             ->join('stores as stt', 'movements.to', '=', 'stt.id')
             ->where('movements.user_id', '=', $request->user_id)
-            ->orderBy('created_at')
+            ->orderByDesc('created_at')
+            ->skip($skip)
+            ->take($take)
             ->getQuery()
             ->get()
-            ->toArray()
-      );
+            ->toArray();
+
+      return response()->json($json);
     }
 
     public function create()
@@ -42,16 +60,18 @@ class MovementController extends Controller
         'from' => $request->from,
         'to' => $request->to,
         'comments' => $request->comments,
-        'status' => 1,
+        'status' => 1
       ]);
+
       // add items to movement item
-      foreach($request->cart as $line){
+      foreach($request->cart as $key => $line){
         // add movement
         $item = MovementItem::create([
           'movement_id' => $move->id,
           'item_sku_id' => $line['sku_id'],
-          'quantity' => $line['quantity'],
+          'quantity' => $line['quantity']
         ]);
+
         // update stock
         // from
         $q = $line['quantity'] * -1;

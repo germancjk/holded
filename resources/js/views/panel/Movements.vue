@@ -43,6 +43,14 @@
                   </tr>
                 </tbody>
               </table>
+
+              <nav>
+                <ul class="pagination">
+                  <li v-for="page in totalPages" class="page-item" v-bind:class="{'active':(page === currentPage)}">
+                    <button class="page-link" @click="currentPage = page">{{ page }}</button>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
@@ -66,6 +74,9 @@ export default {
         userId: localStorage.getItem('user_id'),
         list: [],
         loading: true,
+        currentPage: 1,
+        perPage: 25,
+        totalPages: 0,
       }
     },
     methods : {
@@ -78,19 +89,14 @@ export default {
 
         const params = {
           user_id: this.userId,
+          currentPage: this.currentPage,
+          perPage: this.perPage,
         }
         axios.post(`${this.baseApiUrl}/api/movements`, params).then(response => {
           this.loading = false
-          this.list = response['data']
+          this.list = response['data']['results']
+          this.totalPages = response['data']['totalPages']
         })
-      },
-      remove(id) {
-        if (id > 0) {
-          // axios.delete(`${this.baseApiUrl}/api/item/${id}`).then(response => {
-          //   console.log(response)
-          //   this.items()
-          // })
-        }
       },
     },
     mounted() {
@@ -99,6 +105,11 @@ export default {
     },
     computed: {
       ...mapGetters(['baseApiUrl'])
+    },
+    watch: {
+      currentPage: function () {
+        this.find()
+      },
     }
 }
 </script>
