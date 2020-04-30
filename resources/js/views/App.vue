@@ -3,7 +3,7 @@
     <!-- nav -->
     <nav class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm p-3">
       <!-- <a class="navbar-brand" href="/"><img src="/static/images/logo.png" alt="guia de recetas"></a> -->
-      <router-link :to="{name: 'home'}" class="navbar-brand">holded</router-link>
+      <router-link :to="{name: 'home'}" class="navbar-brand">saletransit</router-link>
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -78,21 +78,21 @@
           <div class="row">
             <div class="col-12 col-md">
               <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
-              <small class="d-block mb-3 text-muted">&copy; 2020</small>
+              <small class="d-block mb-3 text-muted">SaleTransit &copy; 2020</small>
             </div>
             <div class="col-6 col-md">
               <h5>Recursos</h5>
               <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Precio</a></li>
                 <li><a class="text-muted" href="/register">Registrate Gratis</a></li>
-                <li><a class="text-muted" href="#">Privacidad</a></li>
-                <li><a class="text-muted" href="#">Políticas de Cookies</a></li>
+                <li><router-link :to="{ name: 'prices' }" class="text-muted">Precios</router-link></li>
+                <!-- <li><a class="text-muted" href="#">Privacidad</a></li>
+                <li><a class="text-muted" href="#">Políticas de Cookies</a></li> -->
               </ul>
             </div>
             <div class="col-6 col-md">
               <h5>Nosotros</h5>
               <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Quienes somos</a></li>
+                <li><router-link :to="{ name: 'about' }" class="text-muted">Quienes somos</router-link></li>
                 <li><a class="text-muted" href="#">Contactanos</a></li>
               </ul>
             </div>

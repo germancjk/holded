@@ -5,7 +5,7 @@
       <small>
         <ul class="list-inline-mb-0 pl-0">
           <li class="list-inline-item"><router-link :to="{ name: 'board' }">Panel</router-link> ></li>
-          <li class="list-inline-item"><router-link :to="{ name: 'sales' }">Venta</router-link> ></li>
+          <li class="list-inline-item"><router-link :to="{ name: 'sales' }">Ventas</router-link> ></li>
           <li class="list-inline-item">Nueva Venta</li>
         </ul>
       </small>

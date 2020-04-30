@@ -142,7 +142,19 @@ export default {
       },
       updatePasssword(e) {
         e.preventDefault()
-        if (this.name.length > 0) {
+        let valid = true
+
+        if (this.password.length <= 6) {
+          this.messageErrorPassword = 'Error'
+          valid = false
+        }
+
+        if (this.password != this.new_password) {
+          this.messageError = 'Error'
+          valid = false
+        }
+
+        if(valid){
           const params = {
             user_id: this.userId,
             password: this.password,
@@ -155,8 +167,7 @@ export default {
             }
           })
         } else {
-          this.showError = true
-          this.messageError = 'Error chars length'
+          this.showErrorPassword = true
         }
       },
       info() {

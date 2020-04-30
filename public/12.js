@@ -162,8 +162,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       e.preventDefault();
+      var valid = true;
 
-      if (this.name.length > 0) {
+      if (this.password.length <= 6) {
+        this.messageErrorPassword = 'Error';
+        valid = false;
+      }
+
+      if (this.password != this.new_password) {
+        this.messageError = 'Error';
+        valid = false;
+      }
+
+      if (valid) {
         var params = {
           user_id: this.userId,
           password: this.password,
@@ -176,8 +187,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
       } else {
-        this.showError = true;
-        this.messageError = 'Error chars length';
+        this.showErrorPassword = true;
       }
     },
     info: function info() {

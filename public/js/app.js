@@ -10691,7 +10691,7 @@ var render = function() {
         _c(
           "router-link",
           { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
-          [_vm._v("holded")]
+          [_vm._v("saletransit")]
         ),
         _vm._v(" "),
         _vm._m(0),
@@ -11005,7 +11005,67 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("main", [_c("router-view"), _vm._v(" "), _vm._m(1)], 1)
+    _c(
+      "main",
+      [
+        _c("router-view"),
+        _vm._v(" "),
+        _c("footer", { staticClass: "pt-4 pt-md-5 border-top" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-6 col-md" }, [
+                _c("h5", [_vm._v("Recursos")]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "list-unstyled text-small" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "text-muted",
+                          attrs: { to: { name: "prices" } }
+                        },
+                        [_vm._v("Precios")]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-6 col-md" }, [
+                _c("h5", [_vm._v("Nosotros")]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "list-unstyled text-small" }, [
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "text-muted",
+                          attrs: { to: { name: "about" } }
+                        },
+                        [_vm._v("Quienes somos")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3)
+                ])
+              ])
+            ])
+          ])
+        ])
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [
@@ -11033,75 +11093,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "pt-4 pt-md-5 border-top" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 col-md" }, [
-            _c("img", {
-              staticClass: "mb-2",
-              attrs: {
-                src: "/docs/4.4/assets/brand/bootstrap-solid.svg",
-                alt: "",
-                width: "24",
-                height: "24"
-              }
-            }),
-            _vm._v(" "),
-            _c("small", { staticClass: "d-block mb-3 text-muted" }, [
-              _vm._v("© 2020")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6 col-md" }, [
-            _c("h5", [_vm._v("Recursos")]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "list-unstyled text-small" }, [
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Precio")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  { staticClass: "text-muted", attrs: { href: "/register" } },
-                  [_vm._v("Registrate Gratis")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Privacidad")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Políticas de Cookies")
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6 col-md" }, [
-            _c("h5", [_vm._v("Nosotros")]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "list-unstyled text-small" }, [
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Quienes somos")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
-                  _vm._v("Contactanos")
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "col-12 col-md" }, [
+      _c("img", {
+        staticClass: "mb-2",
+        attrs: {
+          src: "/docs/4.4/assets/brand/bootstrap-solid.svg",
+          alt: "",
+          width: "24",
+          height: "24"
+        }
+      }),
+      _vm._v(" "),
+      _c("small", { staticClass: "d-block mb-3 text-muted" }, [
+        _vm._v("SaleTransit © 2020")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "text-muted", attrs: { href: "/register" } }, [
+        _vm._v("Registrate Gratis")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+        _vm._v("Contactanos")
       ])
     ])
   }
@@ -32523,6 +32547,19 @@ var routes = [{
   name: 'profile',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../views/panel/Profile.vue */ "./resources/js/views/panel/Profile.vue"));
+  }
+}, // pages
+{
+  path: '/about',
+  name: 'about',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ../views/About.vue */ "./resources/js/views/About.vue"));
+  }
+}, {
+  path: '/prices',
+  name: 'prices',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ../views/Prices.vue */ "./resources/js/views/Prices.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

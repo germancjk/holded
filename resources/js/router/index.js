@@ -108,6 +108,17 @@ const routes = [
           name: 'profile',
           component: () => import ('../views/panel/Profile.vue')
         },
+        // pages
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import ('../views/About.vue')
+        },
+        {
+          path: '/prices',
+          name: 'prices',
+          component: () => import ('../views/Prices.vue')
+        },
     ]
 
 const router = new VueRouter({
