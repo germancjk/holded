@@ -56,7 +56,6 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <!-- <h5 class="card-title">To move</h5> -->
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -265,7 +264,6 @@ export default {
         this.item = 0
         this.from = 0
         this.cart = []
-        this.list = []
       },
       ...mapActions(['getStores'])
     },

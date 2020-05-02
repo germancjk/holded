@@ -9,6 +9,15 @@
 
                     <div class="card-body">
                         <form method="POST" action="/register">
+                          <div class="alert alert-danger" role="alert" v-if="errors.length">
+                            <p>
+                              <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+                              <ul>
+                                <li v-for="error in errors">{{ error }}</li>
+                              </ul>
+                            </p>
+                          </div>
+
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
@@ -45,7 +54,7 @@
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right"></label>
 
                                 <div class="col-md-6">
-                                    <input type="checkbox" name="terms" id="terms" value="1">
+                                    <input type="checkbox" name="terms" id="terms" v-model="terms" value="1">
                                     <label for="terms">acepto los términos y condiciones</label>
                                 </div>
                             </div>
@@ -72,17 +81,42 @@
     export default {
         data(){
             return {
-                name : "",
-                email : "",
-                password : "",
-                password_confirmation : ""
+                name : null,
+                email : null,
+                password : null,
+                password_confirmation : null,
+                terms: null,
+                errors: [],
             }
         },
         methods : {
             handleSubmit(e) {
                 e.preventDefault()
+                this.errors = [];
 
-                if (this.password === this.password_confirmation && this.password.length > 0)
+                if (!this.name) {
+                  this.errors.push('El nombre es obligatorio.');
+                }
+
+                if (!this.email) {
+                  this.errors.push('El correo electrónico es obligatorio.');
+                } else if (!this.validEmail(this.email)) {
+                  this.errors.push('El correo electrónico debe ser válido.');
+                }
+
+                if (this.password.length < 6) {
+                  this.errors.push('La clave debe ser mayor a 6 caracteres.');
+                }
+
+                if (this.password !== this.password_confirmation) {
+                  this.errors.push('Las claves no coinciden.');
+                }
+
+                if (!this.terms) {
+                  this.errors.push('Por favor chequea los términos y condiciones.');
+                }
+
+                if (this.errors.length === 0)
                 {
                     axios.post('api/register', {
                         name: this.name,
@@ -101,17 +135,16 @@
                       .catch(error => {
                         console.error(error);
                       });
-                } else {
-                    this.password = ""
-                    this.passwordConfirm = ""
-
-                    return alert('Passwords do not match')
                 }
+            },
+            validEmail: function (email) {
+              var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              return re.test(email);
             }
         },
         beforeRouteEnter (to, from, next) {
             if (localStorage.getItem('jwt')) {
-                return next('board');
+                return next('panel/board');
             }
 
             next();

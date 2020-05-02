@@ -18,7 +18,7 @@
                 <p class="main-small text-white">* Solo por tiempo limitado - <strike>4.99€</strike> - 0€</p>
               </div>
               <div class="col-md-6 text-center order-1 order-md-2">
-                <img src="http://demo.themefisher.com/small-apps-hugo/images/mobile.webp" onerror="this.onerror=null;this.src='http:\/\/demo.themefisher.com\/small-apps-hugo\/images\/mobile.png'" class="img-fluid" alt="banner-image"></div>
+                <img src="/images/intro1.png" class="img-fluid" alt="banner-image"></div>
               </div>
             </div>
           </section>
@@ -54,7 +54,7 @@
         <div class="row justify-content-between align-items-center">
           <div class="col-lg-6">
             <div class="image-content aos-init aos-animate" data-aos="fade-right">
-              <img class="img-fluid" src="http://demo.themefisher.com/small-apps-hugo/images/feature/feature-new-01.webp" onerror="this.onerror=null;this.src='http:\/\/demo.themefisher.com\/small-apps-hugo\/images\/feature\/feature-new-01.jpg'" alt="feature image">
+              <img class="img-fluid" src="/images/intro2.png" alt="feature image">
             </div>
           </div>
           <div class="col-lg-6">

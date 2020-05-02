@@ -4,9 +4,11 @@
             <div class="col-md-8">
                 <div class="card rounded shadow p-5 bg-white border-0">
                     <h3 class="text-center">Ingresar al Panel</h3>
-                    <hr>
 
                     <div class="card-body">
+                      <div class="alert alert-danger" role="alert" v-if="error">
+                        El usuario o clave no es válido.
+                      </div>
                         <form method="POST" action="/login">
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail</label>
@@ -48,15 +50,16 @@ import { mapGetters, mapActions } from 'vuex'
   export default {
     data(){
       return {
-        email : "",
-        password : ""
+        email : null,
+        password : null,
+        error: false
       }
     },
     methods : {
       handleSubmit(e){
         e.preventDefault()
 
-        if (this.password.length > 0) {
+        if (this.email && this.password) {
           axios.post('api/login', {
               email: this.email,
               password: this.password
@@ -73,7 +76,7 @@ import { mapGetters, mapActions } from 'vuex'
               }
             })
             .catch(function (error) {
-              console.error(error);
+              this.error = true
             });
         }
       },

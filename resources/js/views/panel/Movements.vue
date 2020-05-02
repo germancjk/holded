@@ -25,7 +25,7 @@
                     <th scope="col">Fecha</th>
                     <th scope="col">Desde</th>
                     <th scope="col">Hacia</th>
-                    <th scope="col">Comentarios</th>
+                    <th scope="col" class="d-none d-lg-block">Comentarios</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -34,7 +34,7 @@
                     <td scope="row">{{ element.created_at | moment("DD/MM/YYYY HH:mm") }}</td>
                     <td scope="row">{{ element.store_name_from }}</td>
                     <td scope="row">{{ element.store_name_to }}</td>
-                    <td scope="row">{{ element.comments }}</td>
+                    <td scope="row" class="d-none d-lg-block">{{ element.comments }}</td>
                     <td scope="row">
                       <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'movement', params: { id: element.id }}">
                         <font-awesome-icon icon="edit" /> Detalle

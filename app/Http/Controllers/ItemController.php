@@ -58,7 +58,8 @@ class ItemController extends Controller
         'user_id' => $request->user_id,
         'item_sku_id' => $itemSku->id,
         'store_id' => $request->store,
-        'quantity' => $value['quantity']
+        'quantity' => 0
+        // 'quantity' => $value['quantity']
       ]);
     }
 

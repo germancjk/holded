@@ -203,19 +203,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         if (response.status == 200) {
           _this3.chartData = {
-            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 2, 27, 28, 29, 30, 31],
+            labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
             datasets: [{
-              label: 'This Month',
+              label: 'Mes Actual',
               data: response.data["this"],
               backgroundColor: "rgba(1, 116, 188, 0.50)",
               borderColor: "rgba(1, 116, 188, 0.50)",
               pointBackgroundColor: "#007bff"
             }, {
-              label: 'Last Month',
+              label: 'Mes Pasado',
               data: response.data.last,
-              backgroundColor: "#fffbdb",
-              borderColor: "#fffacc",
-              pointBackgroundColor: "#fffacc"
+              backgroundColor: "#f9d6d5",
+              borderColor: "#f7c6c5",
+              pointBackgroundColor: "#f7c6c5"
             }]
           };
         }

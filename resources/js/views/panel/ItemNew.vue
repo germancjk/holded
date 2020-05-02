@@ -76,35 +76,35 @@
                   <div class="form-group col-6">
                     <label for="sku">Nombre <span class="text-danger">*</span></label>
                   </div>
-                  <div class="form-group col-3">
+                  <div class="form-group col-2">
                     <label for="cost">Código de barras</label>
                   </div>
-                  <div class="form-group col-1">
+                  <div class="form-group col-2">
                     <label for="cost">Costo</label>
                   </div>
-                  <div class="form-group col-1">
+                  <div class="form-group col-2">
                     <label for="sale_price">Precio de venta</label>
                   </div>
-                  <div class="form-group col-1">
+                  <!-- <div class="form-group col-1">
                     <label for="quantity">Cantidad</label>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="form-row" v-for="(sku, index) in skus" :key="index">
                   <div class="form-group col-6">
                     <input v-model="sku.name" :name="`skus[${index}][name]`" type="text" class="form-control" required autofocus placeholder="SKU Name - must be unique" >
                   </div>
-                  <div class="form-group col-3">
+                  <div class="form-group col-2">
                     <input v-model="sku.barcode" :name="`skus[${index}][barcode]`" type="text" class="form-control" value="0">
                   </div>
-                  <div class="form-group col-1">
+                  <div class="form-group col-2">
                     <input v-model="sku.cost" :name="`skus[${index}][cost]`" type="text" class="form-control" value="0">
                   </div>
-                  <div class="form-group col-1">
+                  <div class="form-group col-2">
                     <input v-model="sku.sale_price" :name="`skus[${index}][sale_price]`" type="text" class="form-control" value="0">
                   </div>
-                  <div class="form-group col-1">
+                  <!-- <div class="form-group col-1">
                     <input v-model="sku.quantity" :name="`skus[${index}][quantity]`" type="text" class="form-control" value="0">
-                  </div>
+                  </div> -->
                 </div>
                 <div class="form-row">
                   <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Agregar Nuevo</button>
@@ -138,7 +138,7 @@ export default {
         userId: localStorage.getItem('user_id'),
         id: this.$route.params.id,
         edit: false,
-        name: '',
+        name: null,
         supplier: 0,
         category: 0,
         tax: 0,
@@ -146,11 +146,11 @@ export default {
         skus: [
           {
             id: 0,
-            barcode: '',
-            name: '',
+            barcode: null,
+            name: null,
             cost: 0,
             sale_price: 0,
-            quantity: 0
+            // quantity: 0
           }
         ],
         submitName: 'Hecho',
@@ -171,7 +171,7 @@ export default {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
           axios.get(`${this.baseApiUrl}/api/item/${this.id}`).then(response => {
-            this.submitName = 'Update'
+            this.submitName = 'Actualizar'
             this.name = response.data.name
             this.supplier = response.data.supplier_id
             this.category = response.data.category_id
@@ -187,7 +187,7 @@ export default {
                 name: element.name,
                 cost: element.cost,
                 sale_price: element.sale_price,
-                quantity: 0
+                // quantity: 0
               })
             })
           })
@@ -196,11 +196,11 @@ export default {
       addSku () {
         this.skus.push({
           id: 0,
-          name: '',
-          barcode: '',
+          name: null,
+          barcode: null,
           cost: 0,
           sale_price: 0,
-          quantity: 0
+          // quantity: 0
         })
       },
       submit(e) {
@@ -208,7 +208,7 @@ export default {
         this.messageError = []
         this.btnDisabled = true
 
-        if (this.name.length == 0) {
+        if (!this.name) {
           this.messageError.push('Name is empty')
         }
         if (this.category == 0) {
@@ -223,7 +223,7 @@ export default {
         if (this.store == 0) {
           this.messageError.push('Select Store')
         }
-        if (this.skus[0].name.length == 0) {
+        if (!this.skus[0].name) {
           this.messageError.push('Please add at least one Sku')
         }
 
@@ -275,7 +275,7 @@ export default {
             name: '',
             cost: 0,
             sale_price: 0,
-            quantity: 0
+            // quantity: 0
           }
         ]
         this.getCategories()
@@ -283,7 +283,7 @@ export default {
         this.getStores()
         this.getTaxes()
       },
-      ...mapActions(['getSuppliers', 'getTaxes', 'getCategories', 'getStores'])
+      ...mapActions(['getSuppliers', 'getTaxes', 'getCategories'])
     },
     mounted() {
       this.showError = false

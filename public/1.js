@@ -157,18 +157,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       userId: localStorage.getItem('user_id'),
       id: this.$route.params.id,
       edit: false,
-      name: '',
+      name: null,
       supplier: 0,
       category: 0,
       tax: 0,
       store: 0,
       skus: [{
         id: 0,
-        barcode: '',
-        name: '',
+        barcode: null,
+        name: null,
         cost: 0,
-        sale_price: 0,
-        quantity: 0
+        sale_price: 0 // quantity: 0
+
       }],
       submitName: 'Hecho',
       showError: false,
@@ -188,7 +188,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         axios.defaults.headers.common['Content-Type'] = 'application/json';
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         axios.get("".concat(this.baseApiUrl, "/api/item/").concat(this.id)).then(function (response) {
-          _this.submitName = 'Update';
+          _this.submitName = 'Actualizar';
           _this.name = response.data.name;
           _this.supplier = response.data.supplier_id;
           _this.category = response.data.category_id;
@@ -202,8 +202,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               id: element.id,
               name: element.name,
               cost: element.cost,
-              sale_price: element.sale_price,
-              quantity: 0
+              sale_price: element.sale_price // quantity: 0
+
             });
           });
         });
@@ -212,11 +212,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addSku: function addSku() {
       this.skus.push({
         id: 0,
-        name: '',
-        barcode: '',
+        name: null,
+        barcode: null,
         cost: 0,
-        sale_price: 0,
-        quantity: 0
+        sale_price: 0 // quantity: 0
+
       });
     },
     submit: function submit(e) {
@@ -226,7 +226,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.messageError = [];
       this.btnDisabled = true;
 
-      if (this.name.length == 0) {
+      if (!this.name) {
         this.messageError.push('Name is empty');
       }
 
@@ -246,7 +246,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.messageError.push('Select Store');
       }
 
-      if (this.skus[0].name.length == 0) {
+      if (!this.skus[0].name) {
         this.messageError.push('Please add at least one Sku');
       }
 
@@ -297,15 +297,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.skus = [{
         name: '',
         cost: 0,
-        sale_price: 0,
-        quantity: 0
+        sale_price: 0 // quantity: 0
+
       }];
       this.getCategories();
       this.getSuppliers();
       this.getStores();
       this.getTaxes();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getSuppliers', 'getTaxes', 'getCategories', 'getStores'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getSuppliers', 'getTaxes', 'getCategories'])),
   mounted: function mounted() {
     this.showError = false;
     this.checkEdit();
@@ -609,7 +609,7 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group col-3" }, [
+                          _c("div", { staticClass: "form-group col-2" }, [
                             _c("input", {
                               directives: [
                                 {
@@ -637,7 +637,7 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group col-1" }, [
+                          _c("div", { staticClass: "form-group col-2" }, [
                             _c("input", {
                               directives: [
                                 {
@@ -665,7 +665,7 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-group col-1" }, [
+                          _c("div", { staticClass: "form-group col-2" }, [
                             _c("input", {
                               directives: [
                                 {
@@ -692,34 +692,6 @@ var render = function() {
                                     "sale_price",
                                     $event.target.value
                                   )
-                                }
-                              }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "form-group col-1" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: sku.quantity,
-                                  expression: "sku.quantity"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                name: "skus[" + index + "][quantity]",
-                                type: "text",
-                                value: "0"
-                              },
-                              domProps: { value: sku.quantity },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(sku, "quantity", $event.target.value)
                                 }
                               }
                             })
@@ -829,22 +801,18 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group col-3" }, [
+      _c("div", { staticClass: "form-group col-2" }, [
         _c("label", { attrs: { for: "cost" } }, [_vm._v("Código de barras")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group col-1" }, [
+      _c("div", { staticClass: "form-group col-2" }, [
         _c("label", { attrs: { for: "cost" } }, [_vm._v("Costo")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group col-1" }, [
+      _c("div", { staticClass: "form-group col-2" }, [
         _c("label", { attrs: { for: "sale_price" } }, [
           _vm._v("Precio de venta")
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-1" }, [
-        _c("label", { attrs: { for: "quantity" } }, [_vm._v("Cantidad")])
       ])
     ])
   }

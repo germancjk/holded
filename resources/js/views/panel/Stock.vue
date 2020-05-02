@@ -44,6 +44,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Tienda</th>
                     <th scope="col" class="text-right">Cantidad</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,11 @@
                     <td scope="row">{{ element.name }}</td>
                     <td scope="row">{{ element.store_name }}</td>
                     <td scope="row" class="text-right">{{ element.quantity }}</td>
+                    <td scope="row" class="text-right">
+                      <button @click="item=element.id; name=element.name; quantity=element.quantity;" type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                        <font-awesome-icon icon="edit" /> Editar
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -59,6 +65,37 @@
         </div>
       </div>
     </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar Cantidad</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group lead">
+                <label>{{ name }}</label>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label for="quantity">Cantidad <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="quantity" aria-describedby="quantity" v-model="quantity" required autofocus>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" @click="update()">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -78,7 +115,10 @@ export default {
         list: [],
         search: null,
         store: null,
-        loading: true,
+        item: 0,
+        name: null,
+        quantity: 0,
+        loading: false,
       }
     },
     methods : {
@@ -95,6 +135,17 @@ export default {
           search: this.search,
         }
         axios.post(`${this.baseApiUrl}/api/stock/search`, params).then(response => {
+          this.loading = false
+          this.list = response['data']
+        })
+      },
+      update() {
+        const params = {
+          user_id: this.userId,
+          item: this.item,
+          quantity: this.quantity,
+        }
+        axios.post(`${this.baseApiUrl}/api/stock/update`, params).then(response => {
           this.loading = false
           this.list = response['data']
         })

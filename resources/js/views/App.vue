@@ -2,8 +2,8 @@
   <div>
     <!-- nav -->
     <nav class="navbar navbar-expand-lg navbar-light border-bottom shadow-sm p-3">
-      <!-- <a class="navbar-brand" href="/"><img src="/static/images/logo.png" alt="guia de recetas"></a> -->
-      <router-link :to="{name: 'home'}" class="navbar-brand">saletransit</router-link>
+      <a class="navbar-brand" href="/"><img src="/images/logo.png" alt="saletransit" class="img-responsive img-fluid"></a>
+      <!-- <router-link :to="{name: 'home'}" class="navbar-brand">saletransit</router-link> -->
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
