@@ -15,8 +15,10 @@ class StockController extends Controller
             ->join('items', 'item_skus.item_id', '=', 'items.id')
             ->join('stores', 'stocks.store_id', '=', 'stores.id')
             ->select(
+                'stocks.id',
                 'stocks.quantity as quantity',
                 'item_skus.id as sku_id',
+                'stores.id as store_id',
                 'stores.name as store_name',
                 DB::raw("CONCAT(items.name,' ',item_skus.name) as name")
                 )
@@ -30,9 +32,16 @@ class StockController extends Controller
           );
     }
 
-    public function update(Stock $stock)
+    public function update(Request $request, Stock $stock)
     {
-      //
+        $status = $stock->update([
+          'quantity' => $request->quantity
+          ]);
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Stock Updated!' : 'Error Updating Stock'
+        ]);
     }
 
     /**

@@ -9,7 +9,7 @@ class Stock extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['item_sku_id', 'store_id', 'quantity', 'user_id'];
+  protected $fillable = ['id', 'item_sku_id', 'store_id', 'quantity', 'user_id'];
 
   public function scopeByStore($query, $search)
   {

@@ -53,7 +53,9 @@
                     <td scope="row">{{ element.store_name }}</td>
                     <td scope="row" class="text-right">{{ element.quantity }}</td>
                     <td scope="row" class="text-right">
-                      <button @click="item=element.id; name=element.name; quantity=element.quantity;" type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
+                      <button
+                        @click="id=element.id; name=element.name; quantity=element.quantity; store_id=element.store_id"
+                        type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModal">
                         <font-awesome-icon icon="edit" /> Editar
                       </button>
                     </td>
@@ -115,8 +117,9 @@ export default {
         list: [],
         search: null,
         store: null,
-        item: 0,
+        id: 0,
         name: null,
+        store_id: 0,
         quantity: 0,
         loading: false,
       }
@@ -131,7 +134,7 @@ export default {
 
         const params = {
           user_id: this.userId,
-          store_id: this.store,
+          store_id: this.store_id,
           search: this.search,
         }
         axios.post(`${this.baseApiUrl}/api/stock/search`, params).then(response => {
@@ -141,13 +144,11 @@ export default {
       },
       update() {
         const params = {
-          user_id: this.userId,
-          item: this.item,
           quantity: this.quantity,
         }
-        axios.post(`${this.baseApiUrl}/api/stock/update`, params).then(response => {
-          this.loading = false
-          this.list = response['data']
+
+        axios.patch(`${this.baseApiUrl}/api/stock/${this.id}`, params).then(response => {
+          console.log(response)
         })
       },
       remove(id) {

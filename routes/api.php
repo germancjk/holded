@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth:api'], function() {
   Route::patch('/store/{id}', 'StoreController@update');
   Route::delete('/store/{id}', 'StoreController@destroy');
 
-  // Stores
+  // Taxes
   Route::resource('/tax', 'TaxController');
   Route::get('/tax/{id}', 'TaxController@show');
   Route::patch('/tax/{id}', 'TaxController@update');

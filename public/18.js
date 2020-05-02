@@ -121,6 +121,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -134,8 +136,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       list: [],
       search: null,
       store: null,
-      item: 0,
+      id: 0,
       name: null,
+      store_id: 0,
       quantity: 0,
       loading: false
     };
@@ -150,7 +153,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
       var params = {
         user_id: this.userId,
-        store_id: this.store,
+        store_id: this.store_id,
         search: this.search
       };
       axios.post("".concat(this.baseApiUrl, "/api/stock/search"), params).then(function (response) {
@@ -159,26 +162,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     update: function update() {
-      var _this2 = this;
-
       var params = {
-        user_id: this.userId,
-        item: this.item,
         quantity: this.quantity
       };
-      axios.post("".concat(this.baseApiUrl, "/api/stock/update"), params).then(function (response) {
-        _this2.loading = false;
-        _this2.list = response['data'];
+      axios.patch("".concat(this.baseApiUrl, "/api/stock/").concat(this.id), params).then(function (response) {
+        console.log(response);
       });
     },
     remove: function remove(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       if (id > 0) {
         axios["delete"]("".concat(this.baseApiUrl, "/api/item/").concat(id)).then(function (response) {
           console.log(response);
 
-          _this3.items();
+          _this2.items();
         });
       }
     }
@@ -368,9 +366,10 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.item = element.id
+                                      _vm.id = element.id
                                       _vm.name = element.name
                                       _vm.quantity = element.quantity
+                                      _vm.store_id = element.store_id
                                     }
                                   }
                                 },
