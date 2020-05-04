@@ -23,18 +23,18 @@
                   <tr>
                     <th scope="col">Tienda</th>
                     <th scope="col">Fecha</th>
-                    <th scope="col" class="d-none d-lg-block">SubTotal</th>
-                    <th scope="col">Total</th>
-                    <th scope="col" class="d-none d-lg-block"></th>
+                    <th scope="col" class="text-right">SubTotal</th>
+                    <th scope="col" class="text-right">Total</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="element,index in list">
                     <td scope="row">{{ element.store_name }}</td>
                     <td scope="row">{{ element.created_at | moment("DD/MM/YYYY HH:mm") }}</td>
-                    <td scope="row" class="d-none d-lg-block">{{ element.subtotal | currency }}</td>
-                    <td scope="row">{{ element.total | currency }}</td>
-                    <td scope="row" class="text-right d-none d-lg-block">
+                    <td scope="row" class="text-right">{{ element.subtotal | currency }}</td>
+                    <td scope="row" class="text-right">{{ element.total | currency }}</td>
+                    <td scope="row" class="text-right">
                       <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'sale', params: { id: element.id }}">
                         <font-awesome-icon icon="edit" /> Detalle
                       </router-link>

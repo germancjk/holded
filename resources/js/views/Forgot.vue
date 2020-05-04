@@ -3,11 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card rounded shadow p-5 bg-white border-0">
-                    <h3 class="text-center">Ingresar al Panel</h3>
+                    <h3 class="text-center">Recuperar Clave</h3>
 
                     <div class="card-body">
                       <div class="alert alert-danger" role="alert" v-if="error">
-                        El usuario o clave no es válido.
+                        Hemos enviado un email con los pasos a seguir.
                       </div>
                         <form method="POST" action="/login">
                             <div class="form-group row">
@@ -18,25 +18,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Clave</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" v-model="password" required>
-                                </div>
-                            </div>
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary" @click="handleSubmit">
-                                        Ingresar
+                                        Recuperar
                                     </button>
                                 </div>
                             </div>
                         </form>
-
-                        <hr>
-                        <p class="text-center">Olvidé mi clave <a href="/forgot">Recupérala</a> </p>
                     </div>
                 </div>
             </div>
@@ -51,42 +40,28 @@ import { mapGetters, mapActions } from 'vuex'
     data(){
       return {
         email : null,
-        password : null,
         error: false
       }
     },
     methods : {
       handleSubmit(e){
         e.preventDefault()
-
-        if (this.email && this.password) {
-          axios.post('api/login', {
+        if (this.email) {
+          axios.post(`${this.baseApiUrl}/api/password/create`, {
               email: this.email,
-              password: this.password
             })
             .then(response => {
-              localStorage.setItem('user_id', response.data.success.id)
-              localStorage.setItem('user', response.data.success.name)
-              localStorage.setItem('jwt', response.data.success.token)
-
-              if (localStorage.getItem('jwt') != null){
-                // set on store
-                // this.setUser(response.data.success)
-                window.location = '/panel/board';
-              }
+                console.log(response)
             })
             .catch(function (error) {
               console.log(error)
+              this.error = true
             });
         }
       },
     },
-    beforeRouteEnter (to, from, next) {
-      if (localStorage.getItem('jwt')) {
-        return next('board');
-      }
-
-      next();
+    computed: {
+      ...mapGetters(['baseApiUrl'])
     }
   }
 </script>

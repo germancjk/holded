@@ -67,8 +67,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleSubmit: function handleSubmit(e) {
-      var _this = this;
-
       e.preventDefault();
 
       if (this.email && this.password) {
@@ -82,12 +80,11 @@ __webpack_require__.r(__webpack_exports__);
 
           if (localStorage.getItem('jwt') != null) {
             // set on store
-            _this.setUser(response.data.success);
-
+            // this.setUser(response.data.success)
             window.location = '/panel/board';
           }
         })["catch"](function (error) {
-          this.error = true;
+          console.log(error);
         });
       }
     }

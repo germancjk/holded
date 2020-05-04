@@ -227,7 +227,7 @@ var render = function() {
                           _c(
                             "td",
                             {
-                              staticClass: "d-none d-lg-block",
+                              staticClass: "text-right",
                               attrs: { scope: "row" }
                             },
                             [
@@ -237,14 +237,19 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c("td", { attrs: { scope: "row" } }, [
-                            _vm._v(_vm._s(_vm._f("currency")(element.total)))
-                          ]),
+                          _c(
+                            "td",
+                            {
+                              staticClass: "text-right",
+                              attrs: { scope: "row" }
+                            },
+                            [_vm._v(_vm._s(_vm._f("currency")(element.total)))]
+                          ),
                           _vm._v(" "),
                           _c(
                             "td",
                             {
-                              staticClass: "text-right d-none d-lg-block",
+                              staticClass: "text-right",
                               attrs: { scope: "row" }
                             },
                             [
@@ -325,15 +330,15 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha")]),
         _vm._v(" "),
-        _c(
-          "th",
-          { staticClass: "d-none d-lg-block", attrs: { scope: "col" } },
-          [_vm._v("SubTotal")]
-        ),
+        _c("th", { staticClass: "text-right", attrs: { scope: "col" } }, [
+          _vm._v("SubTotal")
+        ]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
+        _c("th", { staticClass: "text-right", attrs: { scope: "col" } }, [
+          _vm._v("Total")
+        ]),
         _vm._v(" "),
-        _c("th", { staticClass: "d-none d-lg-block", attrs: { scope: "col" } })
+        _c("th", { attrs: { scope: "col" } })
       ])
     ])
   }

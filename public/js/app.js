@@ -32439,6 +32439,12 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../views/Register.vue */ "./resources/js/views/Register.vue"));
   }
 }, {
+  path: '/forgot',
+  name: 'forgot',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ../views/Forgot.vue */ "./resources/js/views/Forgot.vue"));
+  }
+}, {
   path: '/panel/board',
   name: 'board',
   component: function component() {
