@@ -10,16 +10,18 @@ export default new Vuex.Store({
     suppliers: [],
     categories: [],
     searches: [],
-    baseApiUrl: 'http://localhost:8000',
+    baseApiUrl: 'http://localhost:8000'
+    // baseApiUrl: 'http://saletransit.com'
   },
   mutations: {
     loadCategories (state) {
       let token = localStorage.getItem('jwt')
+      let user_id = localStorage.getItem('user_id')
 
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get(`${state.baseApiUrl}/api/category`).then(response => {
+      axios.post(`${state.baseApiUrl}/api/category`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -29,11 +31,12 @@ export default new Vuex.Store({
     },
     loadStores (state) {
       let token = localStorage.getItem('jwt')
+      let user_id = localStorage.getItem('user_id')
 
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get(`${state.baseApiUrl}/api/store`).then(response => {
+      axios.post(`${state.baseApiUrl}/api/store`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -43,11 +46,12 @@ export default new Vuex.Store({
     },
     loadSuppliers (state) {
       let token = localStorage.getItem('jwt')
+      let user_id = localStorage.getItem('user_id')
 
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get(`${state.baseApiUrl}/api/supplier`).then(response => {
+      axios.post(`${state.baseApiUrl}/api/supplier`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -57,11 +61,12 @@ export default new Vuex.Store({
     },
     loadTaxes (state) {
       let token = localStorage.getItem('jwt')
+      let user_id = localStorage.getItem('user_id')
 
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.get(`${state.baseApiUrl}/api/tax`).then(response => {
+      axios.post(`${state.baseApiUrl}/api/tax`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)

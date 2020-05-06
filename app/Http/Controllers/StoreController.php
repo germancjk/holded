@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Store::all()->toArray());
+        return response()->json(
+          Store::where('user_id', '=', $request->user_id)
+               ->orderBy('name')
+               ->get()
+               ->toArray()
+        );
     }
 
     public function store(Request $request)

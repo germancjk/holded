@@ -109,12 +109,14 @@ export default {
   data(){
       return {
           isLoggedIn : null,
-          name : null
+          name : null,
+          id: null,
       }
   },
   mounted(){
       this.isLoggedIn = localStorage.getItem('jwt')
       this.name = localStorage.getItem('user')
+      this.id = localStorage.getItem('user_id')
   }
 }
 </script>

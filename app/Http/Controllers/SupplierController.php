@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Supplier::all()->toArray());
+        return response()->json(
+          Supplier::where('user_id', '=', $request->user_id)
+               ->orderBy('name')
+               ->get()
+               ->toArray()
+        );
     }
 
     public function store(Request $request)

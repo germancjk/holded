@@ -10,15 +10,15 @@
         </ul>
       </small>
 
-      <p class="lead">Crear Item</p>
+      <p class="lead">{{ submitName }} Item</p>
 
-      <div class="row">
+      <div class="row" v-if="showError || showAdd">
         <div class="col-12">
           <div class="alert alert-danger" v-if="showError">
             <div v-for="element in messageError">{{ element }}</div>
           </div>
           <div class="alert alert-success" v-if="showAdd">
-            Item agregado!
+            Item agregado/editado!
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="form-row">
-                  <div class="form-group col-6">
+                  <div class="form-group col">
                     <label for="sku">Nombre <span class="text-danger">*</span></label>
                   </div>
                   <div class="form-group col-2">
@@ -85,12 +85,12 @@
                   <div class="form-group col-2">
                     <label for="sale_price">Precio de venta</label>
                   </div>
-                  <!-- <div class="form-group col-1">
+                  <div v-if="!id" class="form-group col-2">
                     <label for="quantity">Cantidad</label>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="form-row" v-for="(sku, index) in skus" :key="index">
-                  <div class="form-group col-6">
+                  <div class="form-group col">
                     <input v-model="sku.name" :name="`skus[${index}][name]`" type="text" class="form-control" required autofocus placeholder="SKU Name - must be unique" >
                   </div>
                   <div class="form-group col-2">
@@ -102,9 +102,9 @@
                   <div class="form-group col-2">
                     <input v-model="sku.sale_price" :name="`skus[${index}][sale_price]`" type="text" class="form-control" value="0">
                   </div>
-                  <!-- <div class="form-group col-1">
+                  <div v-if="!id" class="form-group col-2">
                     <input v-model="sku.quantity" :name="`skus[${index}][quantity]`" type="text" class="form-control" value="0">
-                  </div> -->
+                  </div>
                 </div>
                 <div class="form-row">
                   <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Agregar Nuevo</button>
@@ -150,10 +150,10 @@ export default {
             name: null,
             cost: 0,
             sale_price: 0,
-            // quantity: 0
+            quantity: 0
           }
         ],
-        submitName: 'Hecho',
+        submitName: 'Crear',
         showError: false,
         btnDisabled: false,
         messageError: [],
@@ -187,7 +187,8 @@ export default {
                 name: element.name,
                 cost: element.cost,
                 sale_price: element.sale_price,
-                // quantity: 0
+                barcode: element.barcode,
+                quantity: null
               })
             })
           })
@@ -200,7 +201,7 @@ export default {
           barcode: null,
           cost: 0,
           sale_price: 0,
-          // quantity: 0
+          quantity: 0
         })
       },
       submit(e) {
@@ -229,27 +230,30 @@ export default {
 
         const params = {
           user_id: this.userId,
+          item_id: this.id,
           name: this.name,
           category_id: this.category,
           supplier_id: this.supplier,
           tax_id: this.tax,
           skus: this.skus,
           store: this.store,
+          quantity: this.quantity,
         }
 
         // add new item
         if (this.messageError.length === 0) {
           if (this.id) {
             axios.patch(`${this.baseApiUrl}/api/item/${this.id}`, params).then(response => {
-              if(response.status == true){
+              if(response.data.status === true){
                 this.showAdd = true
-                this.clearForm()
+                this.btnDisabled = false
               }
             })
           } else {
             axios.post(`${this.baseApiUrl}/api/item`, params).then(response => {
-              if(response.status == true){
+              if(response.data.status === true){
                 this.showAdd = true
+                this.btnDisabled = false
                 this.clearForm()
               }
             })
@@ -275,7 +279,7 @@ export default {
             name: '',
             cost: 0,
             sale_price: 0,
-            // quantity: 0
+            quantity: 0
           }
         ]
         this.getCategories()
@@ -283,7 +287,7 @@ export default {
         this.getStores()
         this.getTaxes()
       },
-      ...mapActions(['getSuppliers', 'getTaxes', 'getCategories'])
+      ...mapActions(['getSuppliers', 'getTaxes', 'getCategories', 'getStores'])
     },
     mounted() {
       this.showError = false

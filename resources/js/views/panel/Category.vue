@@ -84,7 +84,7 @@ export default {
     data(){
       return {
         userId: localStorage.getItem('user_id'),
-        name: '',
+        name: null,
         edit: false,
         id: null,
         submitName: 'Hecho',

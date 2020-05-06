@@ -24,24 +24,28 @@ Route::group([
 Route::group(['middleware' => 'auth:api'], function() {
   // Categories
   Route::resource('/category', 'CategoryController');
+  Route::post('/category', 'CategoryController@index');
   Route::get('/category/{id}', 'CategoryController@show');
   Route::patch('/category/{id}', 'CategoryController@update');
   Route::delete('/category/{id}', 'CategoryController@destroy');
 
   // Stores
   Route::resource('/store', 'StoreController');
+  Route::post('/store', 'StoreController@index');
   Route::get('/store/{id}', 'StoreController@show');
   Route::patch('/store/{id}', 'StoreController@update');
   Route::delete('/store/{id}', 'StoreController@destroy');
 
   // Taxes
   Route::resource('/tax', 'TaxController');
+  Route::post('/tax', 'TaxController@index');
   Route::get('/tax/{id}', 'TaxController@show');
   Route::patch('/tax/{id}', 'TaxController@update');
   Route::delete('/tax/{id}', 'TaxController@destroy');
 
   // Supplier
   Route::resource('/supplier', 'SupplierController');
+  Route::post('/supplier', 'SupplierController@index');
   Route::get('/supplier/{id}', 'SupplierController@show');
   Route::patch('/supplier/{id}', 'SupplierController@update');
   Route::delete('/supplier/{id}', 'SupplierController@destroy');

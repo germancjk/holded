@@ -20,6 +20,7 @@ class CreateItemSkusTable extends Migration
             $table->string('name');
             $table->float('cost')->default(0);
             $table->float('sale_price')->default(0);
+            $table->string('barcode')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

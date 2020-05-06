@@ -167,10 +167,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         barcode: null,
         name: null,
         cost: 0,
-        sale_price: 0 // quantity: 0
-
+        sale_price: 0,
+        quantity: 0
       }],
-      submitName: 'Hecho',
+      submitName: 'Crear',
       showError: false,
       btnDisabled: false,
       messageError: [],
@@ -202,8 +202,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               id: element.id,
               name: element.name,
               cost: element.cost,
-              sale_price: element.sale_price // quantity: 0
-
+              sale_price: element.sale_price,
+              barcode: element.barcode,
+              quantity: null
             });
           });
         });
@@ -215,8 +216,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: null,
         barcode: null,
         cost: 0,
-        sale_price: 0 // quantity: 0
-
+        sale_price: 0,
+        quantity: 0
       });
     },
     submit: function submit(e) {
@@ -252,27 +253,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var params = {
         user_id: this.userId,
+        item_id: this.id,
         name: this.name,
         category_id: this.category,
         supplier_id: this.supplier,
         tax_id: this.tax,
         skus: this.skus,
-        store: this.store
+        store: this.store,
+        quantity: this.quantity
       }; // add new item
 
       if (this.messageError.length === 0) {
         if (this.id) {
           axios.patch("".concat(this.baseApiUrl, "/api/item/").concat(this.id), params).then(function (response) {
-            if (response.status == true) {
+            if (response.data.status === true) {
               _this2.showAdd = true;
-
-              _this2.clearForm();
+              _this2.btnDisabled = false;
             }
           });
         } else {
           axios.post("".concat(this.baseApiUrl, "/api/item"), params).then(function (response) {
-            if (response.status == true) {
+            if (response.data.status === true) {
               _this2.showAdd = true;
+              _this2.btnDisabled = false;
 
               _this2.clearForm();
             }
@@ -297,15 +300,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.skus = [{
         name: '',
         cost: 0,
-        sale_price: 0 // quantity: 0
-
+        sale_price: 0,
+        quantity: 0
       }];
       this.getCategories();
       this.getSuppliers();
       this.getStores();
       this.getTaxes();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getSuppliers', 'getTaxes', 'getCategories'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getSuppliers', 'getTaxes', 'getCategories', 'getStores'])),
   mounted: function mounted() {
     this.showError = false;
     this.checkEdit();
@@ -366,28 +369,32 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "lead" }, [_vm._v("Crear Item")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-12" }, [
-          _vm.showError
-            ? _c(
-                "div",
-                { staticClass: "alert alert-danger" },
-                _vm._l(_vm.messageError, function(element) {
-                  return _c("div", [_vm._v(_vm._s(element))])
-                }),
-                0
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.showAdd
-            ? _c("div", { staticClass: "alert alert-success" }, [
-                _vm._v("\n          Item agregado!\n        ")
-              ])
-            : _vm._e()
-        ])
+      _c("p", { staticClass: "lead" }, [
+        _vm._v(_vm._s(_vm.submitName) + " Item")
       ]),
+      _vm._v(" "),
+      _vm.showError || _vm.showAdd
+        ? _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _vm.showError
+                ? _c(
+                    "div",
+                    { staticClass: "alert alert-danger" },
+                    _vm._l(_vm.messageError, function(element) {
+                      return _c("div", [_vm._v(_vm._s(element))])
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showAdd
+                ? _c("div", { staticClass: "alert alert-success" }, [
+                    _vm._v("\n          Item agregado/editado!\n        ")
+                  ])
+                : _vm._e()
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "form",
@@ -572,14 +579,30 @@ var render = function() {
                   "div",
                   { staticClass: "card-body" },
                   [
-                    _vm._m(6),
+                    _c("div", { staticClass: "form-row" }, [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _vm._m(9),
+                      _vm._v(" "),
+                      !_vm.id
+                        ? _c("div", { staticClass: "form-group col-2" }, [
+                            _c("label", { attrs: { for: "quantity" } }, [
+                              _vm._v("Cantidad")
+                            ])
+                          ])
+                        : _vm._e()
+                    ]),
                     _vm._v(" "),
                     _vm._l(_vm.skus, function(sku, index) {
                       return _c(
                         "div",
                         { key: index, staticClass: "form-row" },
                         [
-                          _c("div", { staticClass: "form-group col-6" }, [
+                          _c("div", { staticClass: "form-group col" }, [
                             _c("input", {
                               directives: [
                                 {
@@ -695,7 +718,41 @@ var render = function() {
                                 }
                               }
                             })
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          !_vm.id
+                            ? _c("div", { staticClass: "form-group col-2" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: sku.quantity,
+                                      expression: "sku.quantity"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "skus[" + index + "][quantity]",
+                                    type: "text",
+                                    value: "0"
+                                  },
+                                  domProps: { value: sku.quantity },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        sku,
+                                        "quantity",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                })
+                              ])
+                            : _vm._e()
                         ]
                       )
                     }),
@@ -793,27 +850,35 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row" }, [
-      _c("div", { staticClass: "form-group col-6" }, [
-        _c("label", { attrs: { for: "sku" } }, [
-          _vm._v("Nombre "),
-          _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-2" }, [
-        _c("label", { attrs: { for: "cost" } }, [_vm._v("Código de barras")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-2" }, [
-        _c("label", { attrs: { for: "cost" } }, [_vm._v("Costo")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group col-2" }, [
-        _c("label", { attrs: { for: "sale_price" } }, [
-          _vm._v("Precio de venta")
-        ])
+    return _c("div", { staticClass: "form-group col" }, [
+      _c("label", { attrs: { for: "sku" } }, [
+        _vm._v("Nombre "),
+        _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-2" }, [
+      _c("label", { attrs: { for: "cost" } }, [_vm._v("Código de barras")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-2" }, [
+      _c("label", { attrs: { for: "cost" } }, [_vm._v("Costo")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-2" }, [
+      _c("label", { attrs: { for: "sale_price" } }, [_vm._v("Precio de venta")])
     ])
   }
 ]

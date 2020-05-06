@@ -20,6 +20,7 @@ class ItemController extends Controller
               'item_skus.id as sku_id',
               'item_skus.name as sku_name',
               'item_skus.cost',
+              'item_skus.barcode',
               'item_skus.sale_price as sku_sale_price',
               'categories.name as category_name',
               'taxes.percent',
@@ -51,6 +52,7 @@ class ItemController extends Controller
         'item_id' => $item->id,
         'name' => $value['name'],
         'cost' => $value['cost'],
+        'barcode' => $value['barcode'],
         'sale_price' => $value['sale_price']
       ]);
 
@@ -58,8 +60,7 @@ class ItemController extends Controller
         'user_id' => $request->user_id,
         'item_sku_id' => $itemSku->id,
         'store_id' => $request->store,
-        'quantity' => 0
-        // 'quantity' => $value['quantity']
+        'quantity' => $value['quantity']
       ]);
     }
 
@@ -104,15 +105,17 @@ class ItemController extends Controller
           ->update([
             'name' => $value['name'],
             'cost' => $value['cost'],
+            'barcode' => $value['barcode'],
             'sale_price' => $value['sale_price'],
           ]);
       } else {
         // create
         $itemSku = ItemSku::create([
           'user_id' => $request->user_id,
-          'item_id' => $item->id,
+          'item_id' => $request->id,
           'name' => $value['name'],
           'cost' => $value['cost'],
+          'barcode' => $value['barcode'],
           'sale_price' => $value['sale_price']
         ]);
 
@@ -120,7 +123,7 @@ class ItemController extends Controller
           'user_id' => $request->user_id,
           'item_sku_id' => $itemSku->id,
           'store_id' => $request->store,
-          'quantity' => $value['quantity']
+          'quantity' => 0
         ]);
       }
     }

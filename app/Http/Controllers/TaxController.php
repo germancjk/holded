@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class TaxController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Tax::all()->toArray());
+        return response()->json(
+          Tax::where('user_id', '=', $request->user_id)
+               ->orderBy('name')
+               ->get()
+               ->toArray()
+        );
     }
 
     public function store(Request $request)

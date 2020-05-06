@@ -17,7 +17,6 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
-            $table->string('barcode')->nullable();
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('tax_id');
