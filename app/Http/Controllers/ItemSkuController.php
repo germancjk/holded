@@ -2,60 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\ItemSku;
+use App\{ ItemSku, Stock };
 use Illuminate\Http\Request;
 
 class ItemSkuController extends Controller
 {
-  public function index()
-  {
-    
-  }
-
     public function show(Request $request)
     {
-      return response()->json(ItemSku::where('item_id', $request->id)
-                                      ->get()
-                                      ->toArray()
-                                    );
+      return response()->json(
+        ItemSku::where('item_id', $request->id)
+                  ->get()
+                  ->toArray()
+                );
     }
 
-    public function search(Request $request)
+    public function destroy($itemSku)
     {
-      // Route::post('/search/', 'ItemSkuController@search');
-    }
+      $status = ItemSku::where('id', $itemSku)->delete();
+      $status = Stock::where('item_sku_id', $itemSku)->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ItemSku  $itemSku
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ItemSku $itemSku)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ItemSku  $itemSku
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ItemSku $itemSku)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ItemSku  $itemSku
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ItemSku $itemSku)
-    {
-        //
+      return response()->json([
+          'status' => $status,
+          'message' => $status ? 'ItemSku Deleted' : 'Error Deleting ItemSku'
+      ]);
     }
 }

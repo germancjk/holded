@@ -21,7 +21,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.post(`${state.baseApiUrl}/api/category`, { user_id: user_id }).then(response => {
+      axios.post(`${state.baseApiUrl}/api/categories`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -36,7 +36,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.post(`${state.baseApiUrl}/api/store`, { user_id: user_id }).then(response => {
+      axios.post(`${state.baseApiUrl}/api/stores`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -51,7 +51,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.post(`${state.baseApiUrl}/api/supplier`, { user_id: user_id }).then(response => {
+      axios.post(`${state.baseApiUrl}/api/suppliers`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)
@@ -66,7 +66,7 @@ export default new Vuex.Store({
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-      axios.post(`${state.baseApiUrl}/api/tax`, { user_id: user_id }).then(response => {
+      axios.post(`${state.baseApiUrl}/api/taxes`, { user_id: user_id }).then(response => {
         let data = []
         response.data.forEach((item) => {
           data.push(item)

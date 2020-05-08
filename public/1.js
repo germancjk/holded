@@ -145,6 +145,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -179,8 +189,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread({
-    checkEdit: function checkEdit() {
+    loadSkus: function loadSkus() {
       var _this = this;
+
+      var token = localStorage.getItem('jwt');
+      axios.defaults.headers.common['Content-Type'] = 'application/json';
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+      axios.get("".concat(this.baseApiUrl, "/api/item/sku/").concat(this.id)).then(function (response) {
+        _this.skus = [];
+        response.data.forEach(function (element) {
+          _this.skus.push({
+            id: element.id,
+            name: element.name,
+            cost: element.cost,
+            sale_price: element.sale_price,
+            barcode: element.barcode,
+            quantity: null
+          });
+
+          _this.btnDisabled = false;
+        });
+      });
+    },
+    checkEdit: function checkEdit() {
+      var _this2 = this;
 
       if (this.id) {
         this.edit = true;
@@ -188,26 +220,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         axios.defaults.headers.common['Content-Type'] = 'application/json';
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         axios.get("".concat(this.baseApiUrl, "/api/item/").concat(this.id)).then(function (response) {
-          _this.submitName = 'Actualizar';
-          _this.name = response.data.name;
-          _this.supplier = response.data.supplier_id;
-          _this.category = response.data.category_id;
-          _this.tax = response.data.tax_id;
-          _this.store = response.data.store_id;
+          _this2.submitName = 'Actualizar';
+          _this2.name = response.data.name;
+          _this2.supplier = response.data.supplier_id;
+          _this2.category = response.data.category_id;
+          _this2.tax = response.data.tax_id;
+          _this2.store = 0;
         });
-        axios.get("".concat(this.baseApiUrl, "/api/item/sku/").concat(this.id)).then(function (response) {
-          _this.skus = [];
-          response.data.forEach(function (element) {
-            _this.skus.push({
-              id: element.id,
-              name: element.name,
-              cost: element.cost,
-              sale_price: element.sale_price,
-              barcode: element.barcode,
-              quantity: null
-            });
-          });
-        });
+        this.loadSkus();
       }
     },
     addSku: function addSku() {
@@ -221,7 +241,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     submit: function submit(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault();
       this.messageError = [];
@@ -261,23 +281,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         skus: this.skus,
         store: this.store,
         quantity: this.quantity
-      }; // add new item
+      };
 
       if (this.messageError.length === 0) {
         if (this.id) {
+          // update item
           axios.patch("".concat(this.baseApiUrl, "/api/item/").concat(this.id), params).then(function (response) {
             if (response.data.status === true) {
-              _this2.showAdd = true;
-              _this2.btnDisabled = false;
+              _this3.showAdd = true; // reload to get sku_id, it's ok!
+
+              _this3.loadSkus();
             }
           });
         } else {
+          // new item
           axios.post("".concat(this.baseApiUrl, "/api/item"), params).then(function (response) {
             if (response.data.status === true) {
-              _this2.showAdd = true;
-              _this2.btnDisabled = false;
+              _this3.showAdd = true;
+              _this3.btnDisabled = false;
 
-              _this2.clearForm();
+              _this3.clearForm();
             }
           });
         }
@@ -285,6 +308,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.messageError.unshift('Errors below:');
         this.showError = true;
         this.btnDisabled = false;
+      }
+    },
+    remove: function remove(index, sku) {
+      var _this4 = this;
+
+      if (sku) {
+        this.$swal({
+          title: "\xBFEliminar '".concat(sku.name, "'?"),
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si, borrar',
+          cancelButtonText: 'No, cancelar',
+          showCloseButton: true
+        }).then(function (result) {
+          if (result.value) {
+            if (sku.id > 0) {
+              axios["delete"]("".concat(_this4.baseApiUrl, "/api/itemsku/").concat(sku.id), {
+                user_id: _this4.userId
+              }).then(function (response) {// console.log(response)
+              });
+            }
+
+            _this4.skus.splice(index, 1);
+          }
+        });
       }
     },
     clearForm: function clearForm() {
@@ -298,7 +346,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.store = 0;
       this.tax = 0;
       this.skus = [{
-        name: '',
+        name: null,
         cost: 0,
         sale_price: 0,
         quantity: 0
@@ -594,7 +642,9 @@ var render = function() {
                               _vm._v("Cantidad")
                             ])
                           ])
-                        : _vm._e()
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group col-1" })
                     ]),
                     _vm._v(" "),
                     _vm._l(_vm.skus, function(sku, index) {
@@ -752,7 +802,30 @@ var render = function() {
                                   }
                                 })
                               ])
-                            : _vm._e()
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group col-1" }, [
+                            _c("label", { attrs: { for: "delete" } }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-outline-danger",
+                                  attrs: { type: "button", name: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.remove(index, sku)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("font-awesome-icon", {
+                                    attrs: { icon: "trash" }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ])
                         ]
                       )
                     }),

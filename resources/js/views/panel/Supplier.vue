@@ -64,7 +64,7 @@
                         <button class="btn btn-sm btn-outline-info" type="button" name="button" @click="update(element.id)">
                           <font-awesome-icon icon="edit" /> Editar
                         </button>
-                        <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.id)">
+                        <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.id, element.name)">
                           <font-awesome-icon icon="trash" /> Eliminar
                         </button>
                       </td>
@@ -131,10 +131,21 @@ export default {
           this.address = response.data.address
         })
       },
-      remove(id) {
+      remove(id, name) {
         if (id > 0) {
-          axios.delete(`${this.baseApiUrl}/api/supplier/${id}`, { user_id: this.userId }).then(response => {
-            this.getSuppliers()
+          this.$swal({
+            title: `¿Eliminar '${name}'?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, borrar',
+            cancelButtonText: 'No, cancelar',
+            showCloseButton: true,
+          }).then((result) => {
+            if(result.value) {
+              axios.delete(`${this.baseApiUrl}/api/supplier/${id}`, { user_id: this.userId }).then(response => {
+                this.getSuppliers()
+              })
+            }
           })
         }
       },

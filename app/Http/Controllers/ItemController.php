@@ -30,7 +30,8 @@ class ItemController extends Controller
           ->byCategory($request->category_id)
           ->bySearchItem($request->search)
           ->orWhere->bySearchItemSku($request->search)
-          ->getQuery()
+          ->whereNull('items.deleted_at')
+          ->whereNull('item_skus.deleted_at')
           ->get()
           ->toArray()
         );
@@ -112,7 +113,7 @@ class ItemController extends Controller
         // create
         $itemSku = ItemSku::create([
           'user_id' => $request->user_id,
-          'item_id' => $request->id,
+          'item_id' => $request->item_id,
           'name' => $value['name'],
           'cost' => $value['cost'],
           'barcode' => $value['barcode'],
@@ -143,6 +144,6 @@ class ItemController extends Controller
    */
   public function destroy(Item $item)
   {
-      //
+    //
   }
 }

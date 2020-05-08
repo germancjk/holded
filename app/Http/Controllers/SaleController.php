@@ -133,7 +133,6 @@ class SaleController extends Controller
             ->where('sales.id', '=', $request->id)
             ->where('sales.user_id', '=', $request->user_id)
             ->orderBy('created_at')
-            ->getQuery()
             ->get()
             ->toArray()
       );
@@ -190,7 +189,6 @@ class SaleController extends Controller
                 )
             // ->where('sales.user_id', '=', $request->user_id)
             ->where('sale_items.sale_id', '=', $request->id)
-            ->getQuery()
             ->get()
             ->toArray()
           );
@@ -205,7 +203,6 @@ class SaleController extends Controller
         Sale::select(DB::raw('SUM(total) as total'), DB::raw('SUM(profit) as profit'))
             ->where('user_id', '=', $request->user_id)
             ->whereBetween('created_at', [$from, $to])
-            ->getQuery()
             ->get()
             ->toArray()
           );
@@ -220,7 +217,6 @@ class SaleController extends Controller
         Sale::select(DB::raw('SUM(total) as total'), DB::raw('SUM(profit) as profit'))
             ->where('user_id', '=', $request->user_id)
             ->whereBetween('created_at', [$from, $to])
-            ->getQuery()
             ->get()
             ->toArray()
           );

@@ -10,7 +10,7 @@ class Item extends Model
 {
   use SoftDeletes;
 
-  protected $fillable = ['name', 'barcode', 'category_id', 'supplier_id', 'tax_id', 'user_id', 'sku_id'];
+  protected $fillable = ['item_id', 'name', 'barcode', 'category_id', 'supplier_id', 'tax_id', 'user_id', 'sku_id'];
 
   public function scopeByCategory($query, $search)
   {

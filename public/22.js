@@ -159,14 +159,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this2.percent = response.data.percent;
       });
     },
-    remove: function remove(id) {
+    remove: function remove(id, name) {
       var _this3 = this;
 
       if (id > 0) {
-        axios["delete"]("".concat(this.baseApiUrl, "/api/tax/").concat(id), {
-          user_id: this.userId
-        }).then(function (response) {
-          _this3.getTaxes();
+        this.$swal({
+          title: "\xBFEliminar '".concat(name, "'?"),
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si, borrar',
+          cancelButtonText: 'No, cancelar',
+          showCloseButton: true
+        }).then(function (result) {
+          if (result.value) {
+            axios["delete"]("".concat(_this3.baseApiUrl, "/api/tax/").concat(id), {
+              user_id: _this3.userId
+            }).then(function (response) {
+              _this3.getTaxes();
+            });
+          }
         });
       }
     }
@@ -374,7 +385,7 @@ var render = function() {
                             attrs: { type: "button", name: "button" },
                             on: {
                               click: function($event) {
-                                return _vm.remove(element.id)
+                                return _vm.remove(element.id, element.name)
                               }
                             }
                           },

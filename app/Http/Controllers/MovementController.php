@@ -40,7 +40,6 @@ class MovementController extends Controller
             ->orderByDesc('created_at')
             ->skip($skip)
             ->take($take)
-            ->getQuery()
             ->get()
             ->toArray();
 
@@ -115,7 +114,6 @@ class MovementController extends Controller
             ->where('movements.user_id', '=', $request->user_id)
             ->where('movements.id', '=', $request->id)
             ->orderBy('created_at')
-            ->getQuery()
             ->get()
             ->toArray()
       );
@@ -166,7 +164,7 @@ class MovementController extends Controller
                 )
             // ->where('sales.user_id', '=', $request->user_id)
             ->where('movement_items.movement_id', '=', $request->id)
-            ->getQuery()
+            ->whereNull('movement_items.deleted_at')
             ->get()
             ->toArray()
           );

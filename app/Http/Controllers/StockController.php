@@ -26,7 +26,6 @@ class StockController extends Controller
             ->byStore($request->store_id)
             ->bySearchItem($request->search)
             ->orderBy('name')
-            ->getQuery()
             ->get()
             ->toArray()
           );

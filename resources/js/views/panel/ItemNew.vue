@@ -88,6 +88,8 @@
                   <div v-if="!id" class="form-group col-2">
                     <label for="quantity">Cantidad</label>
                   </div>
+                  <div class="form-group col-1">
+                  </div>
                 </div>
                 <div class="form-row" v-for="(sku, index) in skus" :key="index">
                   <div class="form-group col">
@@ -105,6 +107,13 @@
                   <div v-if="!id" class="form-group col-2">
                     <input v-model="sku.quantity" :name="`skus[${index}][quantity]`" type="text" class="form-control" value="0">
                   </div>
+                  <div class="form-group col-1">
+                    <label for="delete">
+                      <button class="btn btn-outline-danger" type="button" name="button" @click="remove(index, sku)">
+                          <font-awesome-icon icon="trash" />
+                      </button>
+                    </label>
+                  </div>
                 </div>
                 <div class="form-row">
                   <button type="button" class="btn btn-success btn-sm" @click="addSku">+ Agregar Nuevo</button>
@@ -120,6 +129,7 @@
 
       </form>
     </div>
+
   </div>
 </template>
 
@@ -162,6 +172,28 @@ export default {
       }
     },
     methods : {
+      loadSkus(){
+        let token = localStorage.getItem('jwt')
+
+        axios.defaults.headers.common['Content-Type'] = 'application/json'
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+        axios.get(`${this.baseApiUrl}/api/item/sku/${this.id}`).then(response => {
+          this.skus = []
+          response.data.forEach(element => {
+            this.skus.push({
+              id: element.id,
+              name: element.name,
+              cost: element.cost,
+              sale_price: element.sale_price,
+              barcode: element.barcode,
+              quantity: null
+            })
+
+            this.btnDisabled = false
+          })
+        })
+      },
       checkEdit() {
         if (this.id) {
           this.edit = true
@@ -176,22 +208,10 @@ export default {
             this.supplier = response.data.supplier_id
             this.category = response.data.category_id
             this.tax = response.data.tax_id
-            this.store = response.data.store_id
+            this.store = 0
           })
 
-          axios.get(`${this.baseApiUrl}/api/item/sku/${this.id}`).then(response => {
-            this.skus = []
-            response.data.forEach(element => {
-              this.skus.push({
-                id: element.id,
-                name: element.name,
-                cost: element.cost,
-                sale_price: element.sale_price,
-                barcode: element.barcode,
-                quantity: null
-              })
-            })
-          })
+          this.loadSkus()
         }
       },
       addSku () {
@@ -240,21 +260,24 @@ export default {
           quantity: this.quantity,
         }
 
-        // add new item
         if (this.messageError.length === 0) {
           if (this.id) {
+            // update item
             axios.patch(`${this.baseApiUrl}/api/item/${this.id}`, params).then(response => {
               if(response.data.status === true){
                 this.showAdd = true
-                this.btnDisabled = false
+                // reload to get sku_id, it's ok!
+                this.loadSkus()
               }
             })
           } else {
+            // new item
             axios.post(`${this.baseApiUrl}/api/item`, params).then(response => {
               if(response.data.status === true){
                 this.showAdd = true
                 this.btnDisabled = false
                 this.clearForm()
+
               }
             })
           }
@@ -262,6 +285,28 @@ export default {
           this.messageError.unshift('Errors below:')
           this.showError = true
           this.btnDisabled = false
+        }
+      },
+      remove(index, sku) {
+        if (sku) {
+          this.$swal({
+            title: `¿Eliminar '${sku.name}'?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, borrar',
+            cancelButtonText: 'No, cancelar',
+            showCloseButton: true,
+          }).then((result) => {
+            if(result.value) {
+              if(sku.id > 0){
+                axios.delete(`${this.baseApiUrl}/api/itemsku/${sku.id}`, { user_id: this.userId }).then(response => {
+                  // console.log(response)
+                })
+              }
+
+              this.skus.splice(index, 1)
+            }
+          })
         }
       },
       clearForm() {
@@ -276,7 +321,7 @@ export default {
         this.tax = 0
         this.skus = [
           {
-            name: '',
+            name: null,
             cost: 0,
             sale_price: 0,
             quantity: 0

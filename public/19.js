@@ -174,8 +174,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (id > 0) {
         axios["delete"]("".concat(this.baseApiUrl, "/api/item/").concat(id)).then(function (response) {
-          console.log(response);
-
           _this2.items();
         });
       }

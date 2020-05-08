@@ -154,7 +154,6 @@ export default {
       remove(id) {
         if (id > 0) {
           axios.delete(`${this.baseApiUrl}/api/item/${id}`).then(response => {
-            console.log(response)
             this.items()
           })
         }

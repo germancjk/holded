@@ -24,28 +24,32 @@ Route::group([
 Route::group(['middleware' => 'auth:api'], function() {
   // Categories
   Route::resource('/category', 'CategoryController');
-  Route::post('/category', 'CategoryController@index');
+  Route::post('/categories', 'CategoryController@index');
+  Route::post('/category', 'CategoryController@store');
   Route::get('/category/{id}', 'CategoryController@show');
   Route::patch('/category/{id}', 'CategoryController@update');
   Route::delete('/category/{id}', 'CategoryController@destroy');
 
   // Stores
   Route::resource('/store', 'StoreController');
-  Route::post('/store', 'StoreController@index');
+  Route::post('/stores', 'StoreController@index');
+  Route::post('/store', 'StoreController@store');
   Route::get('/store/{id}', 'StoreController@show');
   Route::patch('/store/{id}', 'StoreController@update');
   Route::delete('/store/{id}', 'StoreController@destroy');
 
   // Taxes
   Route::resource('/tax', 'TaxController');
-  Route::post('/tax', 'TaxController@index');
+  Route::post('/taxes', 'TaxController@index');
+  Route::post('/tax', 'TaxController@store');
   Route::get('/tax/{id}', 'TaxController@show');
   Route::patch('/tax/{id}', 'TaxController@update');
   Route::delete('/tax/{id}', 'TaxController@destroy');
 
   // Supplier
   Route::resource('/supplier', 'SupplierController');
-  Route::post('/supplier', 'SupplierController@index');
+  Route::post('/suppliers', 'SupplierController@index');
+  Route::post('/supplier', 'SupplierController@store');
   Route::get('/supplier/{id}', 'SupplierController@show');
   Route::patch('/supplier/{id}', 'SupplierController@update');
   Route::delete('/supplier/{id}', 'SupplierController@destroy');
