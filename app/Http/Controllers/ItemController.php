@@ -37,6 +37,36 @@ class ItemController extends Controller
         );
   }
 
+  public function items(Request $request)
+  {
+    $items = Item::join('item_skus', 'items.id', '=', 'item_skus.item_id')
+        ->join('categories', 'items.category_id', '=', 'categories.id')
+        ->select(
+            'items.id as item_id',
+            'items.name as item_name',
+            'item_skus.id as sku_id',
+            'item_skus.name as sku_name',
+            'item_skus.sale_price as sku_sale_price',
+            'categories.name as category_name'
+            )
+        ->byCategory($request->category_id)
+        ->bySearchItem($request->search)
+        ->orWhere->bySearchItemSku($request->search)
+        ->where('items.user_id', '=', $request->user_id)
+        ->get()
+        ->toArray();
+
+    $subItems = [];
+    foreach($items as $key => $value){
+      $subItems[$value['item_id']]['item_id'] = $value['item_id'];
+      $subItems[$value['item_id']]['category_name'] = $value['category_name'];
+      $subItems[$value['item_id']]['item_name'] = $value['item_name'];
+      $subItems[$value['item_id']]['skus'][] = $value;
+    }
+
+    return response()->json($subItems);
+  }
+
   public function store(Request $request)
   {
     $item = Item::create([

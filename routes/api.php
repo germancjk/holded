@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
   // Item
   Route::resource('/item', 'ItemController');
-  Route::get('/items', 'ItemController@index');
+  Route::post('/items', 'ItemController@items');
   Route::get('/item/{id}', 'ItemController@show');
   Route::get('/item/sku/{id}', 'ItemSkuController@show');
   Route::patch('/item/{id}', 'ItemController@update');

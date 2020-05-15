@@ -13,4 +13,13 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
       .js('resources/js/bootstrap.js', 'public/js')
-      .sass('resources/sass/app.scss', 'public/css');
+      .styles([
+          'public/css/app.css',
+          'public/css/general.css'
+      ], 'public/css/all.css');
+
+mix.webpackConfig({
+  output: {
+    chunkFilename: "js/chunk/[chunkhash].js"
+  }
+});

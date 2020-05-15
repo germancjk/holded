@@ -21,7 +21,7 @@ Vue.use(VueSweetalert2);
 // filters
 Vue.filter('currency', function (value) {
   if(value == undefined) return
-  return value.toFixed(2) + '€'
+  return '$ ' + value.toFixed(2)
 })
 
 const app = new Vue({

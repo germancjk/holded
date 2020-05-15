@@ -11635,3 +11635,51 @@ a.text-dark:focus {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+@import "https://fonts.googleapis.com/css?family=Lora:400,400i|Open+Sans:300,400,600,700,800";
+
+body{font-family:open sans,sans-serif;background-color: #ffffff;}
+h1,h2,h3,h4,h5,h6{font-family:open sans,sans-serif;color:#000;font-weight:300}
+h1{font-size:45px}
+h2{font-size:40px;line-height:50px}
+h3{font-size:20px;line-height:30px}
+.section {padding: 100px 0;}
+.btn-main {
+    padding: 17px 38px;
+    border-radius: 3px;
+    background: #fff;
+    font-size: 20px;
+    outline: none;
+}
+.main-small {
+  font-size: 12px;
+}
+.btn-main-bottom {
+  padding: 17px 38px;
+  background: #fff;
+}
+.bg-gray{background:#fafafa}
+.bg-blue{background: #007bff}
+.lead{margin-bottom: 10px;}
+.green{color: green;}
+.red{color: red;}
+.padding-bottom{padding-bottom:0px;}
+
+#board {
+  background: #f6f8fa;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+#board .border-left-primary {
+    border-left: .25rem solid #4e73df!important;
+}
+#board .border-left-success {
+    border-left: .25rem solid #1cc88a!important;
+}
+#board .card {
+    border: 0;
+    border-radius: 2px;
+}
+#board .row {
+  margin-bottom: 20px;
+}

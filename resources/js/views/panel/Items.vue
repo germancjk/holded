@@ -20,13 +20,13 @@
           <div class="card">
             <div class="card-body">
               <div class="form-row">
-                <div class="form-group col-4">
+                <div class="form-group col-sm">
                   <v-select v-model="category" label="name" :options="categories" :reduce="categories => categories.id" placeholder="Selecciona categoria..."></v-select>
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-sm">
                   <input type="text" v-model="search" class="form-control" placeholder="Buscar por nombre / SKU">
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-sm">
                   <button class="btn btn-primary" type="button" name="button" @click="find()">
                     Buscar
                   </button>
@@ -52,19 +52,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="element,index in list">
-                    <td scope="row">{{ element.name }}</td>
-                    <td scope="row">{{ element.category_name }}</td>
-                    <td scope="row" class="text-right">{{ element.sku_sale_price | currency }}</td>
-                    <td class="text-right">
-                      <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'item.edit', params: { id: element.item_id }}">
-                        <font-awesome-icon icon="edit" /> Editar
-                      </router-link>
-                      <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.sku_id)">
-                        <font-awesome-icon icon="trash" /> Eliminar
-                      </button>
-                    </td>
-                  </tr>
+                  <template v-for="element,index in list">
+                    <tr style="background-color:#f8f8f8;">
+                      <td>{{ element.item_name }}</td>
+                      <td>{{ element.category_name }}</td>
+                      <td></td>
+                      <td class="text-right">
+                        <router-link class="btn btn-sm btn-outline-info" :to="{ name: 'item.edit', params: { id: element.item_id }}">
+                          <font-awesome-icon icon="edit" /> Editar
+                        </router-link>
+                        <button class="btn btn-sm btn-outline-danger" type="button" name="button" @click="remove(element.item_id)">
+                          <font-awesome-icon icon="trash" /> Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                    <tr v-for="subelement, subindex in element.skus" class="table-light">
+                      <td> > <i>{{ subelement.item_name }} {{ subelement.sku_name}}</i></td>
+                      <td></td>
+                      <td class="text-right">{{ subelement.sku_sale_price | currency }}</td>
+                      <td class="text-right"></td>
+                    </tr>
+                  </template>
                 </tbody>
               </table>
             </div>
@@ -107,7 +115,7 @@ export default {
           category_id: this.category,
           search: this.search,
         }
-        axios.post(`${this.baseApiUrl}/api/search`, params).then(response => {
+        axios.post(`${this.baseApiUrl}/api/items`, params).then(response => {
           this.loading = false
           this.list = response['data']
         })

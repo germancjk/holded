@@ -16,13 +16,13 @@
           <div class="card">
             <div class="card-body">
               <div class="form-row">
-                <div class="form-group col-4">
+                <div class="form-group col-sm">
                   <v-select class="newSelect" v-model="store" label="name" :options="stores" :reduce="stores => stores.id" placeholder="Selecciona tienda..."></v-select>
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-sm">
                   <input type="text" v-model="search" class="form-control" placeholder="Buscar por nombre">
                 </div>
-                <div class="form-group col-4">
+                <div class="form-group col-sm">
                   <button class="btn btn-primary" type="button" name="button" @click="find()">
                     Buscar
                   </button>
