@@ -10,7 +10,7 @@
       </small>
 
         <div class="row">
-          <div class="col-6">
+          <div class="col-sm mb-3">
 
             <p class="lead">Perfil</p>
 
@@ -53,7 +53,7 @@
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-sm mb-3">
 
             <p class="lead">Cambiar Clave</p>
 

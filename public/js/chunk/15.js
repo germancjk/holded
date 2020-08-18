@@ -251,7 +251,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "col-sm mb-3" }, [
           _c("p", { staticClass: "lead" }, [_vm._v("Perfil")]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [
@@ -445,7 +445,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
+        _c("div", { staticClass: "col-sm mb-3" }, [
           _c("p", { staticClass: "lead" }, [_vm._v("Cambiar Clave")]),
           _vm._v(" "),
           _c("div", { staticClass: "card" }, [

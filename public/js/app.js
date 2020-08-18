@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "js/chunk/" + {"0":"78fd3627982d477e8791","1":"e1641d87d1a1fe805856","2":"fb0da8be36acd70e9644","3":"008ffc8faa3140047dd7","4":"02da353114525b6e5f25","5":"8c6c332a89eca20f1a76","6":"444a420e48c0d67fa407","7":"ca9414d413143fc888be","8":"ed5ccb2f7ea9278f582b","9":"5ce9237b2247df960a93","10":"4f81200e74bf5b8bc06f","11":"bdf0e5f29a72f06ce4db","12":"767a1f04605bc9ca5e5a","13":"001cd3baa4755ca2c88d","14":"790e684f7b48de26ab9d","15":"e3143a137859502e1ecb","16":"91997ed27e6745a84065","17":"0e88c08a7dcd8888a718","18":"36dc2654854c6dcd125d","19":"b51d1e40652660b8d4bc","20":"86c8a5279505a9438b9b","21":"a0819dc0bc666d9fac02","22":"b0479793656d87fb6560"}[chunkId] + ".js"
+/******/ 		return __webpack_require__.p + "js/chunk/" + chunkId + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -14925,7 +14925,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "text-white mb-5" }, [
                     _vm._v(
-                      "\n                Controla y gestiona el stock de tu empresa, fácil, ágil y GRATIS! Todo esto en un solo sistema.\n              "
+                      "\n                Controla y gestiona el stock de tu empresa, pequeño emprendimiento o PYME, fácil, ágil y GRATIS! Todo esto en un solo sistema.\n              "
                     )
                   ]),
                   _vm._v(" "),
@@ -15037,7 +15037,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(
-                      "Más de 1.000 empresas utilizan nuestro sistema, sé parte de nosotros."
+                      "Más de 1.000 empresas y PYMES utilizan nuestro sistema, sé parte de nosotros."
                     )
                   ]),
                   _vm._v(" "),
@@ -15072,7 +15072,7 @@ var staticRenderFns = [
         "a",
         {
           staticClass: "btn btn-outline-primary btn-main",
-          attrs: { href: "http://localhost:8000/register" }
+          attrs: { href: "http://saletransit.com/register" }
         },
         [_vm._v("\n                  REGISTRATE AHORA* "), _c("br")]
       )

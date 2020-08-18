@@ -105,15 +105,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -143,7 +134,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         category_id: this.category,
         search: this.search
       };
-      axios.post("".concat(this.baseApiUrl, "/api/search"), params).then(function (response) {
+      axios.post("".concat(this.baseApiUrl, "/api/items"), params).then(function (response) {
         _this.loading = false;
         _this.list = response['data'];
       });
@@ -159,8 +150,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['getCategories'])),
   mounted: function mounted() {
-    this.showError = false;
-    this.find();
+    this.showError = false; // this.find()
+
+    this.loading = false;
     this.getCategories();
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['categories', 'baseApiUrl']))
@@ -219,7 +211,7 @@ var render = function() {
         "p",
         { staticClass: "lead" },
         [
-          _vm._v("\n        Listado de Items\n        "),
+          _vm._v("\n      Listado de Items\n      "),
           _c(
             "router-link",
             {
@@ -239,7 +231,7 @@ var render = function() {
               _c("div", { staticClass: "form-row" }, [
                 _c(
                   "div",
-                  { staticClass: "form-group col-4" },
+                  { staticClass: "form-group col-sm" },
                   [
                     _c("v-select", {
                       attrs: {
@@ -262,7 +254,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group col-4" }, [
+                _c("div", { staticClass: "form-group col-sm" }, [
                   _c("input", {
                     directives: [
                       {
@@ -289,7 +281,7 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "form-group col-4" }, [
+                _c("div", { staticClass: "form-group col-sm" }, [
                   _c(
                     "button",
                     {
@@ -301,7 +293,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("\n                    Buscar\n                  ")]
+                    [_vm._v("\n                  Buscar\n                ")]
                   )
                 ])
               ])
@@ -309,8 +301,6 @@ var render = function() {
           ])
         ])
       ]),
-      _vm._v(" "),
-      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "row mt-3" }, [
         _c("div", { staticClass: "col-12" }, [
@@ -331,84 +321,120 @@ var render = function() {
               _vm._v(" "),
               !_vm.loading
                 ? _c("table", { staticClass: "table table-hover" }, [
-                    _vm._m(1),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c(
                       "tbody",
-                      _vm._l(_vm.list, function(element, index) {
-                        return _c("tr", [
-                          _c("td", { attrs: { scope: "row" } }, [
-                            _vm._v(_vm._s(element.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { attrs: { scope: "row" } }, [
-                            _vm._v(_vm._s(element.category_name))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "text-right",
-                              attrs: { scope: "row" }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(
-                                  _vm._f("currency")(element.sku_sale_price)
+                      [
+                        _vm._l(_vm.list, function(element, index) {
+                          return [
+                            _c(
+                              "tr",
+                              {
+                                staticStyle: { "background-color": "#f8f8f8" }
+                              },
+                              [
+                                _c("td", [_vm._v(_vm._s(element.item_name))]),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(_vm._s(element.category_name))
+                                ]),
+                                _vm._v(" "),
+                                _c("td"),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  { staticClass: "text-right" },
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass:
+                                          "btn btn-sm btn-outline-info",
+                                        attrs: {
+                                          to: {
+                                            name: "item.edit",
+                                            params: { id: element.item_id }
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("font-awesome-icon", {
+                                          attrs: { icon: "edit" }
+                                        }),
+                                        _vm._v(
+                                          " Editar\n                      "
+                                        )
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-sm btn-outline-danger",
+                                        attrs: {
+                                          type: "button",
+                                          name: "button"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.remove(element.item_id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("font-awesome-icon", {
+                                          attrs: { icon: "trash" }
+                                        }),
+                                        _vm._v(
+                                          " Eliminar\n                      "
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
                                 )
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            { staticClass: "text-right" },
-                            [
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "btn btn-sm btn-outline-info",
-                                  attrs: {
-                                    to: {
-                                      name: "item.edit",
-                                      params: { id: element.item_id }
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("font-awesome-icon", {
-                                    attrs: { icon: "edit" }
-                                  }),
-                                  _vm._v(" Editar\n                      ")
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-sm btn-outline-danger",
-                                  attrs: { type: "button", name: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.remove(element.sku_id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("font-awesome-icon", {
-                                    attrs: { icon: "trash" }
-                                  }),
-                                  _vm._v(" Eliminar\n                      ")
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ])
-                      }),
-                      0
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(element.skus, function(
+                              subelement,
+                              subindex
+                            ) {
+                              return _c("tr", [
+                                _c("td", [
+                                  _vm._v(" > "),
+                                  _c("i", [
+                                    _vm._v(
+                                      _vm._s(subelement.item_name) +
+                                        " " +
+                                        _vm._s(subelement.sku_name)
+                                    )
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("td"),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-right" }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm._f("currency")(
+                                        subelement.sku_sale_price
+                                      )
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "text-right" })
+                              ])
+                            })
+                          ]
+                        })
+                      ],
+                      2
                     )
                   ])
                 : _vm._e()
@@ -420,34 +446,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("div", { staticClass: "form-row" }, [
-              _c("div", { staticClass: "col" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "First name" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col" }, [
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "Last name" }
-                })
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -66,7 +66,7 @@
                         </button>
                       </td>
                     </tr>
-                    <tr v-for="subelement, subindex in element.skus" class="table-light">
+                    <tr v-for="subelement, subindex in element.skus">
                       <td> > <i>{{ subelement.item_name }} {{ subelement.sku_name}}</i></td>
                       <td></td>
                       <td class="text-right">{{ subelement.sku_sale_price | currency }}</td>
@@ -131,7 +131,8 @@ export default {
     },
     mounted() {
       this.showError = false
-      this.find()
+      // this.find()
+      this.loading = false
       this.getCategories()
     },
     computed: {

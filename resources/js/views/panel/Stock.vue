@@ -119,7 +119,6 @@ export default {
         store: null,
         id: 0,
         name: null,
-        store_id: 0,
         quantity: 0,
         loading: false,
       }
@@ -134,7 +133,7 @@ export default {
 
         const params = {
           user_id: this.userId,
-          store_id: this.store_id,
+          store_id: this.store,
           search: this.search,
         }
         axios.post(`${this.baseApiUrl}/api/stock/search`, params).then(response => {
@@ -162,7 +161,6 @@ export default {
     },
     mounted() {
       this.showError = false
-      this.find()
       this.getStores()
     },
     computed: {

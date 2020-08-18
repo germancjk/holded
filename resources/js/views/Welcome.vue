@@ -8,10 +8,10 @@
               <div class="col-md-6 order-2 order-md-1 text-center text-md-left">
                 <h1 class="text-white font-weight-bold mb-4">Gestión de Stock y Ventas</h1>
                 <p class="text-white mb-5">
-                  Controla y gestiona el stock de tu empresa, fácil, ágil y GRATIS! Todo esto en un solo sistema.
+                  Controla y gestiona el stock de tu empresa, pequeño emprendimiento o PYME, fácil, ágil y GRATIS! Todo esto en un solo sistema.
                 </p>
                 <p>
-                  <a href="http://localhost:8000/register" class="btn btn-outline-primary btn-main">
+                  <a href="http://saletransit.com/register" class="btn btn-outline-primary btn-main">
                     REGISTRATE AHORA* <br>
                   </a>
                 </p>
@@ -77,7 +77,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <h2 class="text-white">Comienza ahora a controlar tu negocio!</h2>
-                <p>Más de 1.000 empresas utilizan nuestro sistema, sé parte de nosotros.</p>
+                <p>Más de 1.000 empresas y PYMES utilizan nuestro sistema, sé parte de nosotros.</p>
                   <p>
                     <a href="/register" class="btn btn-outline-primary btn-main">
                       REGISTRATE AHORA* <br>
