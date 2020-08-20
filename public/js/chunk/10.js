@@ -137,6 +137,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (response) {
           localStorage.setItem('user', response.data.success.name);
           localStorage.setItem('jwt', response.data.success.token);
+          localStorage.setItem('user_id', response.data.success.id);
 
           if (localStorage.getItem('jwt') != null) {
             _this.$router.go('/panel/board');

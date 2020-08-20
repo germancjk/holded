@@ -127,7 +127,8 @@
                       .then(response => {
                         localStorage.setItem('user',response.data.success.name)
                         localStorage.setItem('jwt',response.data.success.token)
-
+                        localStorage.setItem('user_id', response.data.success.id)
+                        
                         if (localStorage.getItem('jwt') != null){
                             this.$router.go('/panel/board')
                         }
