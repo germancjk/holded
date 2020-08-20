@@ -13,6 +13,39 @@
         <router-link :to="{ name: 'sales.new' }" class="btn btn-sm btn-success float-right">+ Nueva Venta</router-link>
       </p>
 
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-sm">
+                  <select class="form-control" v-model="date">
+                    <option value="1" selected>Hoy</option>
+                    <option value="2">Ayer</option>
+                    <option value="3">Mes Actual</option>
+                    <option value="4">Mes Pasado</option>
+                    <option value="5">Personalizado</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm" v-if="date==5">
+                  <date-picker
+                    v-model="range" range
+                    format="DD/MM/YYYY"
+                    value-type="YYYY-MM-DD"
+                    placeholder="Selecciona fechas..."
+                  ></date-picker>
+                </div>
+                <div class="form-group col-sm">
+                  <button class="btn btn-primary" type="button" name="button" @click="find()">
+                    Buscar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row mt-2">
         <div class="col-12">
           <div class="card">
@@ -65,9 +98,13 @@ import vSelect from 'vue-select'
 
 import 'vue-select/dist/vue-select.css';
 
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+
 export default {
     components: {
-      vSelect
+      vSelect,
+      DatePicker
     },
     data(){
       return {
@@ -77,6 +114,8 @@ export default {
         currentPage: 1,
         perPage: 25,
         totalPages: 0,
+        date: 1,
+        range: null,
       }
     },
     methods : {
@@ -91,6 +130,8 @@ export default {
           user_id: this.userId,
           currentPage: this.currentPage,
           perPage: this.perPage,
+          date: this.date,
+          range: this.range,
         }
         axios.post(`${this.baseApiUrl}/api/sales`, params).then(response => {
           this.loading = false

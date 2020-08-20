@@ -36326,7 +36326,7 @@ var routes = [{
   path: '/panel/sales',
   name: 'sales',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sales.vue */ "./resources/js/views/panel/Sales.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, /*! ../views/panel/Sales.vue */ "./resources/js/views/panel/Sales.vue"));
   }
 }, {
   path: '/panel/sales/new',

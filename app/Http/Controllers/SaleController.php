@@ -15,6 +15,7 @@ class SaleController extends Controller
      */
     public function index(Request $request)
     {
+      $date = $request->date;
       $skip = ($request->currentPage - 1) * $request->perPage;
       $take = $request->perPage;
 
@@ -23,9 +24,17 @@ class SaleController extends Controller
         'totalPages' => 0
       ];
 
+      if($date == 1) { $init = date('Y-m-d') . " 00:00:00"; $end = date('Y-m-d') . " 23:59:59"; } // hoy
+      elseif($date == 2) { $init = date('Y-m-d', strtotime('-1 day')) . " 00:00:00"; $end = date('Y-m-d', strtotime('-1 day')) . " 23:59:59"; } // ayer
+      elseif($date == 3) { $init = date('Y-m-01') . " 00:00:00"; $end = date('Y-m-31') . " 23:59:59"; } // mes actual
+      elseif($date == 4) { $init = date('Y-m-01', strtotime('-1 month')) . " 00:00:00"; $end = date('Y-m-31', strtotime('-1 month')) . " 23:59:59"; } // mes pasado
+      elseif($date == 5) { $init = $request->range[0] . " 00:00:00"; $end = $request->range[1] . " 23:59:59"; } // mes pasado
+
+
       $total =
         Sale::select('sales.id')
             ->where('sales.user_id', '=', $request->user_id)
+            ->whereBetween('sales.created_at', [$init, $end])
             ->count();
 
       $json['totalPages'] = ceil($total/$take);
@@ -44,7 +53,8 @@ class SaleController extends Controller
             )
             ->join('stores as stf', 'sales.store_id', '=', 'stf.id')
             ->where('sales.user_id', '=', $request->user_id)
-            ->orderByDesc('created_at')
+            ->whereBetween('sales.created_at', [$init, $end])
+            ->orderByDesc('sales.created_at')
             ->skip($skip)
             ->take($take)
             ->getQuery()
