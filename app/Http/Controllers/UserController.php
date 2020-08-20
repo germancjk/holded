@@ -54,7 +54,7 @@ class UserController extends Controller
         $success['name'] = $user->name;
         $success['id'] = $user->id;
 
-        $user->notify(new RegisterSuccess());
+        $user->notify(new RegisterSuccess($user->id));
 
         return response()->json(['success' => $success ]);
     }

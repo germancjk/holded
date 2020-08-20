@@ -43,11 +43,13 @@ class RegisterSuccess extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
       return (new MailMessage)
-          ->line('Te damos la bienvenida a SaleTransit!')
+          ->subject('Te damos la bienvenida a SaleTransit')
+          ->greeting('Bienvenido/a a SaleTransit!')
           ->line('Esperamos que puedas disfrutar de todas nuestras opciones, donde puedas organizar tu stock y ventas completamente GRATIS!')
-          ->line('Siempre estamos manteniendo el sistema para que tengas nuevas opciones.')
+          ->line('Continuamente mantenemos el sistema creando nuevas opciones.')
+          ->action('Acceder al Panel', url('/'))
           ->line('Gracias,')
-          ->line('Un saludo desde SaleTransit');
+          ->salutation('Un saludo');
     }
 
     /**
