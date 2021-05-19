@@ -216,8 +216,14 @@ export default {
         this.cart[index].cartCost = this.cart[index].quantity * this.cart[index].cost
       },
       updateTotal(total, index){
-        this.cart[index].total = total
+        total = (total !== '') ? parseInt(total) : 0
+        const taxes = (total * this.cart[index].percent) / 100
+        const profit = total - taxes - (this.cart[index].cost * this.cart[index].quantity)
+
         this.cart[index].discount = 0
+        this.cart[index].taxes = taxes
+        this.cart[index].total = total
+        this.cart[index].profit = profit
       },
       deleteItem: function(index) {
         this.cart.splice(index, 1)
@@ -228,11 +234,11 @@ export default {
         this.messageError = []
 
         if(this.from === 0){
-          this.messageError.push('Selecciona desde')
+          this.messageError.push('- Selecciona Tienda')
         }
 
         if(this.cart.length === 0){
-          this.messageError.push('Agrega al menos un artículo')
+          this.messageError.push('- Agrega al menos un artículo')
         }
 
         if (this.messageError.length === 0) {
@@ -277,7 +283,7 @@ export default {
         const items = this.cart
         let suma = 0
         if(items.length > 0){
-          items.forEach(element => (suma += element.total))
+          items.forEach(element => (suma += parseInt(element.total)))
         }
 
         return suma.toFixed(2)

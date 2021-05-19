@@ -52,6 +52,8 @@ class ItemController extends Controller
         ->byCategory($request->category_id)
         ->bySearchItem($request->search)
         ->orWhere->bySearchItemSku($request->search)
+        ->whereNull('items.deleted_at')
+        ->whereNull('item_skus.deleted_at')
         ->where('items.user_id', '=', $request->user_id)
         ->get()
         ->toArray();

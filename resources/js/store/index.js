@@ -10,8 +10,8 @@ export default new Vuex.Store({
     suppliers: [],
     categories: [],
     searches: [],
-    baseApiUrl: 'http://localhost:8000'
-    // baseApiUrl: 'http://saletransit.com'
+    // baseApiUrl: 'http://localhost:8000'
+    baseApiUrl: 'http://saletransit.com'
   },
   mutations: {
     loadCategories (state) {

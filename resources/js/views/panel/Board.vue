@@ -84,6 +84,36 @@
 
        </div>
 
+       <div class="row">
+         <div class="col-md-4">
+           <div class="card">
+             <div class="card-body">
+               <p>Ventas</p>
+               <router-link :to="{ name: 'sales.new' }" class="btn btn-success">Nueva Venta</router-link>
+               <router-link :to="{ name: 'sales' }" class="btn btn-primary">Ver Ventas</router-link>
+             </div>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="card">
+             <div class="card-body">
+               <p>Items</p>
+               <router-link :to="{ name: 'item.new' }" class="btn btn-success">Nuevo Item</router-link>
+               <router-link :to="{ name: 'items' }" class="btn btn-primary">Ver Items</router-link>
+             </div>
+           </div>
+         </div>
+         <div class="col-md-4">
+           <div class="card">
+             <div class="card-body">
+               <p>Stock / Movimientos</p>
+               <router-link :to="{ name: 'stock' }" class="btn btn-success">Ver Stock</router-link>
+               <router-link :to="{ name: 'movements' }" class="btn btn-primary">Ver Movimientos</router-link>
+             </div>
+           </div>
+         </div>
+       </div>
+
       <div class="row">
         <div class="col-lg-12">
           <div class="card">

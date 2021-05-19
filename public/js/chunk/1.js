@@ -155,6 +155,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -248,27 +251,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.btnDisabled = true;
 
       if (!this.name) {
-        this.messageError.push('Name is empty');
+        this.messageError.push('- Completa Nombre');
       }
 
       if (this.category == 0) {
-        this.messageError.push('Select Category');
+        this.messageError.push('- Selecciona Categoria');
       }
 
       if (this.supplier == 0) {
-        this.messageError.push('Select Supplier');
+        this.messageError.push('- Selecciona Proveedor');
       }
 
       if (this.tax == 0) {
-        this.messageError.push('Select Tax');
+        this.messageError.push('- Ingresa Impuesto');
       }
 
       if (this.store == 0) {
-        this.messageError.push('Select Store');
+        this.messageError.push('- Selecciona Tienda (para ingresar nuevos SKU)');
       }
 
       if (!this.skus[0].name) {
-        this.messageError.push('Please add at least one Sku');
+        this.messageError.push('- Por favor, ingresa al menos una variante');
       }
 
       var params = {
@@ -288,7 +291,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           // update item
           axios.patch("".concat(this.baseApiUrl, "/api/item/").concat(this.id), params).then(function (response) {
             if (response.data.status === true) {
-              _this3.showAdd = true; // reload to get sku_id, it's ok!
+              _this3.showAdd = true;
+              _this3.showError = false; // reload to get sku_id, it's ok!
 
               _this3.loadSkus();
             }
@@ -305,7 +309,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
         }
       } else {
-        this.messageError.unshift('Errors below:');
+        this.messageError.unshift('Corrige los siguientes errores:');
         this.showError = true;
         this.btnDisabled = false;
       }
@@ -668,7 +672,7 @@ var render = function() {
                                 type: "text",
                                 required: "",
                                 autofocus: "",
-                                placeholder: "SKU Name - must be unique"
+                                placeholder: "SKU / Talla / Modelo / Color"
                               },
                               domProps: { value: sku.name },
                               on: {
