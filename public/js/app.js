@@ -10421,14 +10421,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      expandMenu: false,
       isLoggedIn: null,
       name: null,
       id: null
     };
-  },
-  methods: {
-    onClickClose: function onClickClose() {// this.$root.$emit('bv::toggle::collapse', 'dropdown-menu')
-    }
   },
   mounted: function mounted() {
     this.isLoggedIn = localStorage.getItem('jwt');
@@ -14901,7 +14898,7 @@ var render = function() {
                             attrs: {
                               to: { name: "login" },
                               "data-toggle": "collapse",
-                              "data-target": ".navbar-collapse.in"
+                              "data-target": ".navbar-collapse"
                             }
                           },
                           [_vm._v("Ingresar")]
@@ -14921,7 +14918,7 @@ var render = function() {
                             attrs: {
                               to: { name: "register" },
                               "data-toggle": "collapse",
-                              "data-target": ".navbar-collapse.in"
+                              "data-target": ".navbar-collapse"
                             }
                           },
                           [_vm._v("Registrate")]
@@ -15001,7 +14998,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "sales.new" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Nueva Venta")]
@@ -15014,7 +15011,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "sales" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Ventas")]
@@ -15055,7 +15052,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "stock" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Stock")]
@@ -15068,7 +15065,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "movements" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Movimientos")]
@@ -15083,7 +15080,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "items" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Items")]
@@ -15096,7 +15093,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "item.new" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Nuevo Item")]
@@ -15137,7 +15134,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "categories" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Categorias")]
@@ -15150,7 +15147,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "stores" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Tiendas")]
@@ -15163,7 +15160,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "suppliers" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Proveedores")]
@@ -15176,7 +15173,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "taxes" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Impuestos")]
@@ -15222,7 +15219,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "profile" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Mi Perfil")]
@@ -15235,7 +15232,7 @@ var render = function() {
                               attrs: {
                                 to: { name: "logout" },
                                 "data-toggle": "collapse",
-                                "data-target": ".navbar-collapse.in"
+                                "data-target": ".navbar-collapse"
                               }
                             },
                             [_vm._v("Salir")]
@@ -15336,11 +15333,11 @@ var staticRenderFns = [
       {
         staticClass: "navbar-toggler border-0",
         attrs: {
+          "aria-expanded": "false",
           type: "button",
           "data-toggle": "collapse",
           "data-target": "#navbarSupportedContent",
           "aria-controls": "navbarSupportedContent",
-          "aria-expanded": "false",
           "aria-label": "Toggle navigation"
         }
       },
@@ -37236,8 +37233,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     suppliers: [],
     categories: [],
     searches: [],
-    // baseApiUrl: 'http://localhost:8000'
-    baseApiUrl: 'http://saletransit.com'
+    baseApiUrl: 'http://localhost:8000' // baseApiUrl: 'http://saletransit.com'
+
   },
   mutations: {
     loadCategories: function loadCategories(state) {
